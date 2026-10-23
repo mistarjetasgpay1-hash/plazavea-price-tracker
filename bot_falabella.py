@@ -5,7 +5,7 @@ import time
 from pathlib import Path
 import requests
 
-# 1. Configuración y Credenciales (Nuevos Secrets)
+# 1. Configuración y Credenciales
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN2", "").strip()
 CHAT_ID = os.getenv("CHAT_ID2", "").strip()
 
@@ -14,23 +14,22 @@ if not TELEGRAM_TOKEN or not CHAT_ID:
         "Faltan las variables TELEGRAM_TOKEN2 o CHAT_ID2 en los Secrets de GitHub."
     )
 
-# Endpoint de búsqueda de Falabella Perú
-API_URL = "https://www.falabella.com.pe/s/browse/v1/listing/pe"
 ARCHIVO_ESTADO = Path("notificados_falabella.json")
-UMBRAL_DESCUENTO = 49.0
-PAGINAS_A_ESCANEAR = 5
+UMBRAL_DESCUENTO = 45.0
+PAGINAS_A_ESCANEAR = 4
 MAX_ALERTAS_POR_EJECUCION = 30
 
-# Zonas/Categorías de Falabella a monitorear (puedes agregar más códigos catXXXX)
-CATEGORIAS = [
-    {"categoryId": "cat760706", "zone": "Tecnología"},
-    {"categoryId": "cat40512", "zone": "Electrohogar"},
-    {"categoryId": "cat50678", "zone": "Dormitorio"},
+# Búsquedas y categorías activas en Falabella Perú
+BUSQUEDAS = [
+    {"nombre": "Tecnología", "q": "tecnologia"},
+    {"nombre": "Electrohogar", "q": "electrohogar"},
+    {"nombre": "Celulares y Smartphones", "q": "smartphones"},
+    {"nombre": "Laptops y Cómputo", "q": "laptops"},
+    {"nombre": "Televisores", "q": "televisores"},
 ]
 
 
 def cargar_notificados() -> set:
-    """Carga los IDs de ofertas ya notificadas desde el archivo JSON."""
     if not ARCHIVO_ESTADO.exists():
         return set()
     try:
@@ -42,7 +41,6 @@ def cargar_notificados() -> set:
 
 
 def guardar_notificados(notificados: set) -> None:
-    """Guarda la lista ordenada de ofertas notificadas."""
     with ARCHIVO_ESTADO.open("w", encoding="utf-8") as f:
         json.dump(sorted(notificados), f, indent=2, ensure_ascii=False)
 
@@ -50,10 +48,9 @@ def guardar_notificados(notificados: set) -> None:
 def post_telegram_con_reintento(
     session: requests.Session, endpoint: str, payload: dict
 ) -> bool:
-    """Envía la petición a Telegram manejando límites de velocidad (HTTP 429)."""
     for _ in range(2):
         try:
-            resp = session.post(endpoint, json=payload, timeout=8)
+            resp = session.post(endpoint, json=payload, timeout=10)
             if resp.ok:
                 return True
             if resp.status_code == 429:
@@ -61,6 +58,7 @@ def post_telegram_con_reintento(
                 print(f"[RATE LIMIT] Esperando {espera}s solicitados por Telegram...")
                 time.sleep(espera + 1)
                 continue
+            print(f"[ERROR TELEGRAM] HTTP {resp.status_code}: {resp.text}")
             return False
         except requests.RequestException as e:
             print(f"[WARN] Error de red con Telegram: {e}")
@@ -71,7 +69,6 @@ def post_telegram_con_reintento(
 def enviar_alerta_telegram(
     session: requests.Session, mensaje: str, imagen_url: str = ""
 ) -> bool:
-    """Envía la alerta con foto (sendPhoto) o usa texto plano (sendMessage) como respaldo."""
     base_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
 
     if imagen_url:
@@ -93,7 +90,6 @@ def enviar_alerta_telegram(
 
 
 def limpiar_precio(valor_str: str) -> float:
-    """Convierte cadenas de precio de Falabella ('1,299.00' o '1299') en float."""
     if not valor_str:
         return 0.0
     limpio = re.sub(r"[^\d.]", "", str(valor_str).replace(",", ""))
@@ -103,30 +99,79 @@ def limpiar_precio(valor_str: str) -> float:
         return 0.0
 
 
-def extraer_datos_falabella(prod: dict) -> tuple[float, float, str, str]:
+def obtener_productos_pagina(
+    session: requests.Session, termino: str, pagina: int
+) -> list:
     """
-    Extrae (precio_normal, mejor_precio_oferta, url_producto, imagen_url)
-    desde el objeto de producto de Falabella Perú.
+    Obtiene los productos de Falabella Perú probando primero la página web (__NEXT_DATA__)
+    y como segundo método la API interna de búsqueda.
     """
-    precios = prod.get("prices", [])
-    precio_lista = 0.0
-    precio_oferta = 0.0
+    # Método 1: Extracción directa de __NEXT_DATA__ en la URL pública de Falabella Perú
+    url_web = "https://www.falabella.com.pe/falabella-pe/search"
+    params_web = {
+        "Ntt": termino,
+        "page": pagina,
+        "sortBy": "derived.price.search.discount,desc",
+    }
 
+    try:
+        resp = session.get(url_web, params=params_web, timeout=12)
+        if resp.ok:
+            match = re.search(
+                r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>',
+                resp.text,
+                re.DOTALL,
+            )
+            if match:
+                next_data = json.loads(match.group(1))
+                resultados = (
+                    next_data.get("props", {})
+                    .get("pageProps", {})
+                    .get("results", [])
+                )
+                if resultados:
+                    return resultados
+    except Exception as e:
+        print(f"[DEBUG] Falló lectura de __NEXT_DATA__ en '{termino}' (pág {pagina}): {e}")
+
+    # Método 2 (Respaldo): Endpoint API de búsqueda con prefijo de tienda
+    url_api = "https://www.falabella.com.pe/s/browse/v1/search/pe"
+    params_api = {
+        "Ntt": termino,
+        "page": pagina,
+        "sortBy": "derived.price.search.discount,desc",
+        "zones": "150101",
+    }
+
+    try:
+        resp_api = session.get(url_api, params=params_api, timeout=10)
+        if resp_api.ok:
+            return resp_api.json().get("data", {}).get("results", [])
+        print(f"[WARN] API devolvió HTTP {resp_api.status_code} para '{termino}' (pág {pagina})")
+    except Exception as e:
+        print(f"[WARN] Error en API para '{termino}' (pág {pagina}): {e}")
+
+    return []
+
+
+def extraer_datos_falabella(prod: dict) -> tuple[float, float, str, str]:
+    precios = prod.get("prices", [])
     precios_detectados = []
+
     for p in precios:
         simbolo_lista = p.get("price", [])
         if not simbolo_lista:
             continue
         monto = limpiar_precio(simbolo_lista[0])
         if monto > 0:
-            precios_detectados.append((monto, p.get("type", "")))
+            precios_detectados.append(monto)
 
     if len(precios_detectados) >= 2:
-        montos = [m for m, _ in precios_detectados]
-        precio_lista = max(montos)
-        precio_oferta = min(montos)
+        precio_lista = max(precios_detectados)
+        precio_oferta = min(precios_detectados)
+    else:
+        precio_lista, precio_oferta = 0.0, 0.0
 
-    # URL del producto
     url_producto = prod.get("url", "").strip()
     if url_producto and not url_producto.startswith("http"):
         url_producto = f"https://www.falabella.com.pe{url_producto}"
@@ -134,7 +179,6 @@ def extraer_datos_falabella(prod: dict) -> tuple[float, float, str, str]:
         prod_id = prod.get("productId", "")
         url_producto = f"https://www.falabella.com.pe/falabella-pe/product/{prod_id}"
 
-    # Imagen del producto
     media_urls = prod.get("mediaUrls", [])
     imagen_url = ""
     if media_urls:
@@ -162,12 +206,13 @@ def monitorear_ofertas() -> None:
                         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                         "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
                     ),
-                    "Accept": "application/json, text/plain, */*",
-                    "Referer": "https://www.falabella.com.pe/",
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/json,*/*;q=0.8",
+                    "Accept-Language": "es-PE,es;q=0.9,en;q=0.8",
+                    "Referer": "https://www.falabella.com.pe/falabella-pe",
                 }
             )
 
-            for cat in CATEGORIAS:
+            for item in BUSQUEDAS:
                 if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
                     break
 
@@ -175,21 +220,12 @@ def monitorear_ofertas() -> None:
                     if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
                         break
 
-                    params = {
-                        "categoryId": cat["categoryId"],
-                        "page": pagina,
-                        "sortBy": "derived.price.search.discount,desc",
-                    }
+                    resultados = obtener_productos_pagina(session, item["q"], pagina)
+                    print(
+                        f"[INFO] {item['nombre']} (pág {pagina}): "
+                        f"{len(resultados)} productos escaneados."
+                    )
 
-                    try:
-                        respuesta = session.get(API_URL, params=params, timeout=8)
-                        respuesta.raise_for_status()
-                        json_resp = respuesta.json()
-                    except (requests.RequestException, ValueError) as e:
-                        print(f"[WARN] Error en {cat['zone']} (pág {pagina}): {e}")
-                        continue
-
-                    resultados = json_resp.get("data", {}).get("results", [])
                     if not resultados:
                         break
 
@@ -210,7 +246,6 @@ def monitorear_ofertas() -> None:
                         ):
                             continue
 
-                        # Clave única por ID y precio para notificar si baja aún más de precio
                         clave_unica = f"{prod_id}|{precio_oferta:.2f}"
                         if clave_unica in notificados:
                             continue
