@@ -5,7 +5,7 @@ import time
 from pathlib import Path
 import requests
 
-# 1. Configuración y Credenciales
+# 1. Credenciales exclusivas para el Bot de Falabella (Separado de Plaza Vea)
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN2", "").strip()
 CHAT_ID = os.getenv("CHAT_ID2", "").strip()
 
@@ -14,18 +14,34 @@ if not TELEGRAM_TOKEN or not CHAT_ID:
         "Faltan las variables TELEGRAM_TOKEN2 o CHAT_ID2 en los Secrets de GitHub."
     )
 
+# Archivo de estado exclusivo para Falabella (no interfiere con notificados.json de Plaza Vea)
 ARCHIVO_ESTADO = Path("notificados_falabella.json")
 UMBRAL_DESCUENTO = 45.0
 PAGINAS_A_ESCANEAR = 4
 MAX_ALERTAS_POR_EJECUCION = 30
 
-# Búsquedas y categorías activas en Falabella Perú
-BUSQUEDAS = [
-    {"nombre": "Tecnología", "q": "tecnologia"},
-    {"nombre": "Electrohogar", "q": "electrohogar"},
-    {"nombre": "Celulares y Smartphones", "q": "smartphones"},
-    {"nombre": "Laptops y Cómputo", "q": "laptops"},
-    {"nombre": "Televisores", "q": "televisores"},
+# URLs directas de categorías en Falabella Perú
+CATEGORIAS = [
+    {
+        "nombre": "Tecnología",
+        "url": "https://www.falabella.com.pe/falabella-pe/category/cat760706/Tecnologia",
+        "cat_id": "cat760706",
+    },
+    {
+        "nombre": "Electrohogar",
+        "url": "https://www.falabella.com.pe/falabella-pe/category/cat40512/Electrohogar",
+        "cat_id": "cat40512",
+    },
+    {
+        "nombre": "Celulares",
+        "url": "https://www.falabella.com.pe/falabella-pe/category/cat760706/Celulares-y-Telefonos",
+        "cat_id": "cat760706",
+    },
+    {
+        "nombre": "Cómputo y Laptops",
+        "url": "https://www.falabella.com.pe/falabella-pe/category/cat40496/Computo",
+        "cat_id": "cat40496",
+    },
 ]
 
 
@@ -89,6 +105,90 @@ def enviar_alerta_telegram(
     return post_telegram_con_reintento(session, f"{base_url}/sendMessage", payload_texto)
 
 
+def buscar_productos_recursivo(nodo) -> list:
+    """
+    Busca automáticamente la lista de productos dentro de cualquier estructura JSON
+    de Falabella identificando objetos que contengan 'productId' y 'prices'.
+    """
+    if isinstance(nodo, list):
+        if nodo and isinstance(nodo[0], dict) and "productId" in nodo[0] and "prices" in nodo[0]:
+            return nodo
+        for elemento in nodo:
+            hallado = buscar_productos_recursivo(elemento)
+            if hallado:
+                return hallado
+    elif isinstance(nodo, dict):
+        # Priorizar llaves conocidas de Falabella
+        for llave_prioritaria in ("results", "products", "searchData", "categoryData", "data"):
+            if llave_prioritaria in nodo:
+                hallado = buscar_productos_recursivo(nodo[llave_prioritaria])
+                if hallado:
+                    return hallado
+        for valor in nodo.values():
+            hallado = buscar_productos_recursivo(valor)
+            if hallado:
+                return hallado
+    return []
+
+
+def obtener_productos_falabella(
+    session: requests.Session, cat: dict, pagina: int
+) -> list:
+    """Extrae los productos de Falabella Perú desde HTML (__NEXT_DATA__) o API con prefijo."""
+    params_web = {
+        "page": pagina,
+        "sortBy": "derived.price.search.discount,desc",
+    }
+
+    try:
+        resp = session.get(cat["url"], params=params_web, timeout=14)
+        if resp.ok:
+            match = re.search(
+                r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>',
+                resp.text,
+                re.DOTALL,
+            )
+            if match:
+                next_data = json.loads(match.group(1))
+                productos = buscar_productos_recursivo(next_data)
+                if productos:
+                    return productos
+                if pagina == 1:
+                    page_props = next_data.get("props", {}).get("pageProps", {})
+                    print(
+                        f"[DEBUG] __NEXT_DATA__ leído en {cat['nombre']}, "
+                        f"llaves en pageProps: {list(page_props.keys())}"
+                    )
+            else:
+                if pagina == 1:
+                    titulo = re.findall(r"<title>(.*?)</title>", resp.text, re.IGNORECASE)
+                    print(
+                        f"[DEBUG] HTML sin __NEXT_DATA__ en {cat['nombre']} "
+                        f"(HTTP {resp.status_code}, Título: {titulo})"
+                    )
+        else:
+            print(f"[WARN] Web devolvió HTTP {resp.status_code} en {cat['nombre']} (pág {pagina})")
+    except Exception as e:
+        print(f"[WARN] Error leyendo web {cat['nombre']} (pág {pagina}): {e}")
+
+    # Respaldo: API con el prefijo /falabella-pe/ requerido en Perú
+    url_api = "https://www.falabella.com.pe/falabella-pe/s/browse/v1/listing/pe"
+    params_api = {
+        "categoryId": cat["cat_id"],
+        "page": pagina,
+        "sortBy": "derived.price.search.discount,desc",
+        "zones": "150101",
+    }
+    try:
+        resp_api = session.get(url_api, params=params_api, timeout=10)
+        if resp_api.ok:
+            return buscar_productos_recursivo(resp_api.json())
+    except Exception:
+        pass
+
+    return []
+
+
 def limpiar_precio(valor_str: str) -> float:
     if not valor_str:
         return 0.0
@@ -97,61 +197,6 @@ def limpiar_precio(valor_str: str) -> float:
         return float(limpio)
     except ValueError:
         return 0.0
-
-
-def obtener_productos_pagina(
-    session: requests.Session, termino: str, pagina: int
-) -> list:
-    """
-    Obtiene los productos de Falabella Perú probando primero la página web (__NEXT_DATA__)
-    y como segundo método la API interna de búsqueda.
-    """
-    # Método 1: Extracción directa de __NEXT_DATA__ en la URL pública de Falabella Perú
-    url_web = "https://www.falabella.com.pe/falabella-pe/search"
-    params_web = {
-        "Ntt": termino,
-        "page": pagina,
-        "sortBy": "derived.price.search.discount,desc",
-    }
-
-    try:
-        resp = session.get(url_web, params=params_web, timeout=12)
-        if resp.ok:
-            match = re.search(
-                r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>',
-                resp.text,
-                re.DOTALL,
-            )
-            if match:
-                next_data = json.loads(match.group(1))
-                resultados = (
-                    next_data.get("props", {})
-                    .get("pageProps", {})
-                    .get("results", [])
-                )
-                if resultados:
-                    return resultados
-    except Exception as e:
-        print(f"[DEBUG] Falló lectura de __NEXT_DATA__ en '{termino}' (pág {pagina}): {e}")
-
-    # Método 2 (Respaldo): Endpoint API de búsqueda con prefijo de tienda
-    url_api = "https://www.falabella.com.pe/s/browse/v1/search/pe"
-    params_api = {
-        "Ntt": termino,
-        "page": pagina,
-        "sortBy": "derived.price.search.discount,desc",
-        "zones": "150101",
-    }
-
-    try:
-        resp_api = session.get(url_api, params=params_api, timeout=10)
-        if resp_api.ok:
-            return resp_api.json().get("data", {}).get("results", [])
-        print(f"[WARN] API devolvió HTTP {resp_api.status_code} para '{termino}' (pág {pagina})")
-    except Exception as e:
-        print(f"[WARN] Error en API para '{termino}' (pág {pagina}): {e}")
-
-    return []
 
 
 def extraer_datos_falabella(prod: dict) -> tuple[float, float, str, str]:
@@ -212,7 +257,7 @@ def monitorear_ofertas() -> None:
                 }
             )
 
-            for item in BUSQUEDAS:
+            for cat in CATEGORIAS:
                 if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
                     break
 
@@ -220,9 +265,9 @@ def monitorear_ofertas() -> None:
                     if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
                         break
 
-                    resultados = obtener_productos_pagina(session, item["q"], pagina)
+                    resultados = obtener_productos_falabella(session, cat, pagina)
                     print(
-                        f"[INFO] {item['nombre']} (pág {pagina}): "
+                        f"[INFO] {cat['nombre']} (pág {pagina}): "
                         f"{len(resultados)} productos escaneados."
                     )
 
