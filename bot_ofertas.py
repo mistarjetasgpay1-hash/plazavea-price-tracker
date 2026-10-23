@@ -4,7 +4,7 @@ import time
 from pathlib import Path
 import requests
 
-# 1. Configuración y Credenciales (seguro para repositorios públicos)
+# 1. Configuración y Credenciales
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "").strip()
 CHAT_ID = os.getenv("CHAT_ID", "").strip()
 
@@ -16,7 +16,8 @@ if not TELEGRAM_TOKEN or not CHAT_ID:
 API_URL = "https://www.plazavea.com.pe/api/io/_v/api/intelligent-search/product_search/"
 ARCHIVO_ESTADO = Path("notificados.json")
 UMBRAL_DESCUENTO = 49.0
-PAGINAS_A_ESCANEAR = 8  # 8 páginas x 50 productos = 400 productos por ejecución
+PAGINAS_A_ESCANEAR = 8          # 400 productos evaluados
+MAX_ALERTAS_POR_EJECUCION = 30  # Evita bloqueos de Telegram y timeouts en la carga inicial
 
 
 def cargar_notificados() -> set:
@@ -47,7 +48,7 @@ def post_telegram_con_reintento(
             if resp.ok:
                 return True
             if resp.status_code == 429:
-                espera = resp.json().get("parameters", {}).get("retry_after", 5)
+                espera = min(resp.json().get("parameters", {}).get("retry_after", 5), 15)
                 print(f"[RATE LIMIT] Esperando {espera}s solicitados por Telegram...")
                 time.sleep(espera + 1)
                 continue
@@ -61,13 +62,9 @@ def post_telegram_con_reintento(
 def enviar_alerta_telegram(
     session: requests.Session, mensaje: str, imagen_url: str = ""
 ) -> bool:
-    """
-    Envía la alerta con foto (sendPhoto) si hay imagen disponible.
-    Si el producto no tiene foto o falla la carga, usa sendMessage como respaldo.
-    """
+    """Envía la alerta con foto (sendPhoto) o usa texto plano (sendMessage) como respaldo."""
     base_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
 
-    # 1. Intentar envío con imagen (sendPhoto)
     if imagen_url:
         payload_foto = {
             "chat_id": CHAT_ID,
@@ -78,7 +75,6 @@ def enviar_alerta_telegram(
             return True
         print("[WARN] Falló envío con foto. Reintentando en solo texto...")
 
-    # 2. Respaldo: envío en texto plano (sendMessage)
     payload_texto = {
         "chat_id": CHAT_ID,
         "text": mensaje,
@@ -101,10 +97,7 @@ def construir_url_producto(producto: dict) -> str:
 
 
 def extraer_mejor_oferta(producto: dict) -> tuple[float, float, int, str]:
-    """
-    Recorre los SKUs y vendedores del producto para obtener:
-    (list_price, selling_price, stock_disponible, imagen_url)
-    """
+    """Obtiene (list_price, selling_price, stock_disponible, imagen_url) del producto."""
     items = producto.get("items", [])
     for item in items:
         imagenes = item.get("images", [])
@@ -129,86 +122,95 @@ def monitorear_ofertas() -> None:
     nuevos_registros = False
     alertas_enviadas = 0
 
-    with requests.Session() as session:
-        session.headers.update(
-            {
-                "User-Agent": (
-                    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-                    "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
-                ),
-                "Accept": "application/json",
-            }
-        )
+    try:
+        with requests.Session() as session:
+            session.headers.update(
+                {
+                    "User-Agent": (
+                        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                        "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+                    ),
+                    "Accept": "application/json",
+                }
+            )
 
-        for pagina in range(1, PAGINAS_A_ESCANEAR + 1):
-            params = {
-                "page": pagina,
-                "count": 50,
-                "sort": "discount:desc",
-            }
-
-            try:
-                respuesta = session.get(API_URL, params=params, timeout=6)
-                respuesta.raise_for_status()
-                data = respuesta.json()
-            except (requests.RequestException, ValueError) as e:
-                print(f"[WARN] Error consultando página {pagina}: {e}")
-                continue
-
-            productos = data.get("products", [])
-            if not productos:
-                break
-
-            for prod in productos:
-                url_producto = construir_url_producto(prod)
-                prod_id = str(prod.get("productId", url_producto))
-                clave_unica = f"{prod_id}|{url_producto}"
-
-                if clave_unica in notificados:
-                    continue
-
-                precio_lista, precio_oferta, stock, imagen_url = extraer_mejor_oferta(
-                    prod
-                )
-                if (
-                    precio_lista <= 0
-                    or precio_oferta <= 0
-                    or precio_oferta >= precio_lista
-                ):
-                    continue
-
-                descuento = ((precio_lista - precio_oferta) / precio_lista) * 100.0
-
-                if descuento > UMBRAL_DESCUENTO:
-                    nombre = prod.get("productName", "Producto sin nombre").strip()
-                    marca = prod.get("brand", "Genérico").strip()
-
-                    mensaje = (
-                        f"🔥 OFERTA DETECTADA (-{descuento:.1f}%)\n\n"
-                        f"Producto: {nombre}\n"
-                        f"Marca: {marca}\n"
-                        f"Precio Lista: S/ {precio_lista:,.2f}\n"
-                        f"Precio Oferta: S/ {precio_oferta:,.2f}\n"
-                        f"Stock reportado: {stock} unid.\n\n"
-                        f"Enlace: {url_producto}"
+            for pagina in range(1, PAGINAS_A_ESCANEAR + 1):
+                if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
+                    print(
+                        f"[INFO] Límite de {MAX_ALERTAS_POR_EJECUCION} alertas por lote alcanzado. "
+                        "El resto se enviará en la siguiente ejecución."
                     )
+                    break
 
-                    if enviar_alerta_telegram(session, mensaje, imagen_url):
-                        notificados.add(clave_unica)
-                        nuevos_registros = True
-                        alertas_enviadas += 1
-                        print(f"[OK] ({alertas_enviadas}) {nombre} (-{descuento:.1f}%)")
-                        # Pausa breve para respetar el límite de mensajes por segundo de Telegram
-                        time.sleep(0.35)
+                params = {
+                    "page": pagina,
+                    "count": 50,
+                    "sort": "discount:desc",
+                }
 
-    if nuevos_registros:
-        guardar_notificados(notificados)
-        print(f"[INFO] Se guardaron {alertas_enviadas} ofertas nuevas en notificados.json.")
-    else:
-        print("[INFO] Sin ofertas nuevas que superen el umbral.")
+                try:
+                    respuesta = session.get(API_URL, params=params, timeout=6)
+                    respuesta.raise_for_status()
+                    data = respuesta.json()
+                except (requests.RequestException, ValueError) as e:
+                    print(f"[WARN] Error consultando página {pagina}: {e}")
+                    continue
 
-    duracion = time.monotonic() - inicio
-    print(f"[FIN] Escaneo de {PAGINAS_A_ESCANEAR} páginas completado en {duracion:.2f} s.")
+                productos = data.get("products", [])
+                if not productos:
+                    break
+
+                for prod in productos:
+                    if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
+                        break
+
+                    url_producto = construir_url_producto(prod)
+                    prod_id = str(prod.get("productId", url_producto))
+                    clave_unica = f"{prod_id}|{url_producto}"
+
+                    if clave_unica in notificados:
+                        continue
+
+                    precio_lista, precio_oferta, stock, imagen_url = extraer_mejor_oferta(prod)
+                    if (
+                        precio_lista <= 0
+                        or precio_oferta <= 0
+                        or precio_oferta >= precio_lista
+                    ):
+                        continue
+
+                    descuento = ((precio_lista - precio_oferta) / precio_lista) * 100.0
+
+                    if descuento > UMBRAL_DESCUENTO:
+                        nombre = prod.get("productName", "Producto sin nombre").strip()
+                        marca = prod.get("brand", "Genérico").strip()
+
+                        mensaje = (
+                            f"🔥 OFERTA DETECTADA (-{descuento:.1f}%)\n\n"
+                            f"Producto: {nombre}\n"
+                            f"Marca: {marca}\n"
+                            f"Precio Lista: S/ {precio_lista:,.2f}\n"
+                            f"Precio Oferta: S/ {precio_oferta:,.2f}\n"
+                            f"Stock reportado: {stock} unid.\n\n"
+                            f"Enlace: {url_producto}"
+                        )
+
+                        if enviar_alerta_telegram(session, mensaje, imagen_url):
+                            notificados.add(clave_unica)
+                            nuevos_registros = True
+                            alertas_enviadas += 1
+                            print(f"[OK] ({alertas_enviadas}/{MAX_ALERTAS_POR_EJECUCION}) {nombre} (-{descuento:.1f}%)")
+                            time.sleep(0.5)
+    finally:
+        # Garantiza que el progreso se guarde incluso si el proceso se interrumpe
+        if nuevos_registros:
+            guardar_notificados(notificados)
+            print(f"[INFO] Se guardaron {alertas_enviadas} ofertas nuevas en notificados.json.")
+        else:
+            print("[INFO] Sin ofertas nuevas que superen el umbral.")
+
+        duracion = time.monotonic() - inicio
+        print(f"[FIN] Ejecución completada en {duracion:.2f} s.")
 
 
 if __name__ == "__main__":
