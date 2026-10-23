@@ -4,11 +4,12 @@ import time
 from pathlib import Path
 import requests
 
-# 1. Configuración y Credenciales (con fallback local)
-TELEGRAM_TOKEN = os.getenv(
-    "TELEGRAM_TOKEN", "8837743219:AAEUvwq2EoWnFPDO-2u4-Af6on9S0gxfvFA"
-)
-CHAT_ID = os.getenv("CHAT_ID", "6820786359")
+# 1. Configuración y Credenciales (seguro para repositorios públicos)
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
+CHAT_ID = os.getenv("CHAT_ID", "")
+
+if not TELEGRAM_TOKEN or not CHAT_ID:
+    raise ValueError("Faltan las variables de entorno TELEGRAM_TOKEN o CHAT_ID.")
 
 API_URL = "https://www.plazavea.com.pe/api/io/_v/api/intelligent-search/product_search/"
 ARCHIVO_ESTADO = Path("notificados.json")
