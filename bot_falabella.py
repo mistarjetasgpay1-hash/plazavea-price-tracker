@@ -14,33 +14,37 @@ if not TELEGRAM_TOKEN or not CHAT_ID:
         "Faltan las variables TELEGRAM_TOKEN2 o CHAT_ID2 en los Secrets de GitHub."
     )
 
-# Archivo de estado exclusivo para Falabella (no interfiere con notificados.json de Plaza Vea)
+# Archivo de estado exclusivo para Falabella (no toca notificados.json de Plaza Vea)
 ARCHIVO_ESTADO = Path("notificados_falabella.json")
 UMBRAL_DESCUENTO = 45.0
 PAGINAS_A_ESCANEAR = 4
 MAX_ALERTAS_POR_EJECUCION = 30
 
-# URLs directas de categorías en Falabella Perú
+# Categorías de Falabella Perú con su ID y slug exacto
 CATEGORIAS = [
     {
         "nombre": "Tecnología",
         "url": "https://www.falabella.com.pe/falabella-pe/category/cat760706/Tecnologia",
         "cat_id": "cat760706",
+        "slug": "Tecnologia",
     },
     {
         "nombre": "Electrohogar",
         "url": "https://www.falabella.com.pe/falabella-pe/category/cat40512/Electrohogar",
         "cat_id": "cat40512",
+        "slug": "Electrohogar",
     },
     {
         "nombre": "Celulares",
         "url": "https://www.falabella.com.pe/falabella-pe/category/cat760706/Celulares-y-Telefonos",
         "cat_id": "cat760706",
+        "slug": "Celulares-y-Telefonos",
     },
     {
-        "nombre": "Cómputo y Laptops",
+        "nombre": "Cómputo",
         "url": "https://www.falabella.com.pe/falabella-pe/category/cat40496/Computo",
         "cat_id": "cat40496",
+        "slug": "Computo",
     },
 ]
 
@@ -106,22 +110,23 @@ def enviar_alerta_telegram(
 
 
 def buscar_productos_recursivo(nodo) -> list:
-    """
-    Busca automáticamente la lista de productos dentro de cualquier estructura JSON
-    de Falabella identificando objetos que contengan 'productId' y 'prices'.
-    """
+    """Encuentra la lista de productos dentro de cualquier respuesta JSON de Falabella."""
     if isinstance(nodo, list):
-        if nodo and isinstance(nodo[0], dict) and "productId" in nodo[0] and "prices" in nodo[0]:
+        if (
+            nodo
+            and isinstance(nodo[0], dict)
+            and ("productId" in nodo[0] or "skuId" in nodo[0])
+            and "prices" in nodo[0]
+        ):
             return nodo
         for elemento in nodo:
             hallado = buscar_productos_recursivo(elemento)
             if hallado:
                 return hallado
     elif isinstance(nodo, dict):
-        # Priorizar llaves conocidas de Falabella
-        for llave_prioritaria in ("results", "products", "searchData", "categoryData", "data"):
-            if llave_prioritaria in nodo:
-                hallado = buscar_productos_recursivo(nodo[llave_prioritaria])
+        for llave in ("results", "products", "data", "searchData", "categoryData"):
+            if llave in nodo:
+                hallado = buscar_productos_recursivo(nodo[llave])
                 if hallado:
                     return hallado
         for valor in nodo.values():
@@ -131,60 +136,92 @@ def buscar_productos_recursivo(nodo) -> list:
     return []
 
 
-def obtener_productos_falabella(
-    session: requests.Session, cat: dict, pagina: int
-) -> list:
-    """Extrae los productos de Falabella Perú desde HTML (__NEXT_DATA__) o API con prefijo."""
-    params_web = {
-        "page": pagina,
-        "sortBy": "derived.price.search.discount,desc",
-    }
-
+def inicializar_contexto_catalyst(session: requests.Session, cat: dict) -> str:
+    """
+    Visita la página de categoría para obtener las cookies de sesión y descubrir
+    el 'catalystBaseUrl' exacto que usa Falabella Perú.
+    """
     try:
-        resp = session.get(cat["url"], params=params_web, timeout=14)
-        if resp.ok:
-            match = re.search(
-                r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>',
-                resp.text,
-                re.DOTALL,
-            )
-            if match:
-                next_data = json.loads(match.group(1))
-                productos = buscar_productos_recursivo(next_data)
-                if productos:
-                    return productos
-                if pagina == 1:
-                    page_props = next_data.get("props", {}).get("pageProps", {})
-                    print(
-                        f"[DEBUG] __NEXT_DATA__ leído en {cat['nombre']}, "
-                        f"llaves en pageProps: {list(page_props.keys())}"
-                    )
-            else:
-                if pagina == 1:
-                    titulo = re.findall(r"<title>(.*?)</title>", resp.text, re.IGNORECASE)
-                    print(
-                        f"[DEBUG] HTML sin __NEXT_DATA__ en {cat['nombre']} "
-                        f"(HTTP {resp.status_code}, Título: {titulo})"
-                    )
-        else:
-            print(f"[WARN] Web devolvió HTTP {resp.status_code} en {cat['nombre']} (pág {pagina})")
-    except Exception as e:
-        print(f"[WARN] Error leyendo web {cat['nombre']} (pág {pagina}): {e}")
+        resp = session.get(cat["url"], timeout=14)
+        if not resp.ok:
+            return ""
+        match = re.search(
+            r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>',
+            resp.text,
+            re.DOTALL,
+        )
+        if match:
+            next_data = json.loads(match.group(1))
+            page_props = next_data.get("props", {}).get("pageProps", {})
 
-    # Respaldo: API con el prefijo /falabella-pe/ requerido en Perú
-    url_api = "https://www.falabella.com.pe/falabella-pe/s/browse/v1/listing/pe"
-    params_api = {
+            # Revisar si hay productos directamente en serverData o page
+            productos_directos = buscar_productos_recursivo(page_props)
+            if productos_directos:
+                cat["_productos_pag1"] = productos_directos
+
+            catalyst_url = page_props.get("catalystBaseUrl", "")
+            base_url = page_props.get("baseUrl", "")
+            if not hasattr(session, "_debug_impreso"):
+                print(
+                    f"[DEBUG] catalystBaseUrl='{catalyst_url}' | baseUrl='{base_url}' | "
+                    f"serverData keys={list(page_props.get('serverData', {}).keys()) if isinstance(page_props.get('serverData'), dict) else type(page_props.get('serverData')).__name__}"
+                )
+                session._debug_impreso = True
+            return catalyst_url.rstrip("/")
+    except Exception as e:
+        print(f"[WARN] Error inicializando contexto en {cat['nombre']}: {e}")
+    return ""
+
+
+def obtener_productos_falabella(
+    session: requests.Session, cat: dict, pagina: int, catalyst_base: str
+) -> list:
+    if pagina == 1 and "_productos_pag1" in cat:
+        return cat.pop("_productos_pag1")
+
+    # Construir candidatos de endpoints usando el catalystBaseUrl descubierto
+    endpoints = []
+    if catalyst_base:
+        if catalyst_base.startswith("http"):
+            endpoints.append(f"{catalyst_base}/s/browse/v1/listing/pe")
+            endpoints.append(f"{catalyst_base}/v1/listing/pe")
+        else:
+            endpoints.append(f"https://www.falabella.com.pe{catalyst_base}/s/browse/v1/listing/pe")
+            endpoints.append(f"https://www.falabella.com.pe{catalyst_base}/v1/listing/pe")
+
+    endpoints.extend(
+        [
+            "https://www.falabella.com.pe/s/browse/v1/listing/pe",
+            "https://www.falabella.com.pe/falabella-pe/s/browse/v1/listing/pe",
+        ]
+    )
+
+    params = {
         "categoryId": cat["cat_id"],
+        "categoryName": cat["slug"],
         "page": pagina,
         "sortBy": "derived.price.search.discount,desc",
         "zones": "150101",
+        "channel": "web",
     }
-    try:
-        resp_api = session.get(url_api, params=params_api, timeout=10)
-        if resp_api.ok:
-            return buscar_productos_recursivo(resp_api.json())
-    except Exception:
-        pass
+
+    headers_api = {
+        "Accept": "application/json, text/plain, */*",
+        "Referer": cat["url"],
+        "x-Requested-With": "XMLHttpRequest",
+    }
+
+    for ep in dict.fromkeys(endpoints):
+        try:
+            resp = session.get(ep, params=params, headers=headers_api, timeout=10)
+            if resp.ok and "application/json" in resp.headers.get("Content-Type", ""):
+                productos = buscar_productos_recursivo(resp.json())
+                if productos:
+                    return productos
+            elif pagina == 1:
+                print(f"[DEBUG] Endpoint {ep} -> HTTP {resp.status_code}")
+        except Exception:
+            continue
 
     return []
 
@@ -251,21 +288,27 @@ def monitorear_ofertas() -> None:
                         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                         "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
                     ),
-                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/json,*/*;q=0.8",
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                     "Accept-Language": "es-PE,es;q=0.9,en;q=0.8",
-                    "Referer": "https://www.falabella.com.pe/falabella-pe",
                 }
             )
 
+            catalyst_base = ""
             for cat in CATEGORIAS:
                 if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
                     break
+
+                descubierto = inicializar_contexto_catalyst(session, cat)
+                if descubierto:
+                    catalyst_base = descubierto
 
                 for pagina in range(1, PAGINAS_A_ESCANEAR + 1):
                     if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
                         break
 
-                    resultados = obtener_productos_falabella(session, cat, pagina)
+                    resultados = obtener_productos_falabella(
+                        session, cat, pagina, catalyst_base
+                    )
                     print(
                         f"[INFO] {cat['nombre']} (pág {pagina}): "
                         f"{len(resultados)} productos escaneados."
