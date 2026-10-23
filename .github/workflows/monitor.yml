@@ -2,11 +2,9 @@ name: Monitor de Ofertas Plaza Vea
 
 on:
   schedule:
-    # Frecuencia máxima permitida por GitHub: cada 5 minutos (288 veces al día)
     - cron: '*/5 * * * *'
   workflow_dispatch:
 
-# Evita que dos ejecuciones se pisen, pero deja terminar la actual para no perder el guardado de notificados.json
 concurrency:
   group: monitor-plazavea
   cancel-in-progress: false
@@ -17,7 +15,7 @@ permissions:
 jobs:
   monitorear:
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 6
 
     steps:
       - name: Descargar repositorio
@@ -30,9 +28,10 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-        run: python3 bot_ofertas.py
+        run: python3 -u bot_ofertas.py
 
       - name: Guardar estado si hubo cambios
+        if: always()
         run: |
           if [ -f notificados.json ]; then
             git add notificados.json
@@ -41,7 +40,6 @@ jobs:
               git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
               git commit -m "chore: actualizar ofertas notificadas [skip ci]"
               
-              # Reintenta hasta 3 veces si GitHub devuelve un error temporal de servidor
               for i in 1 2 3; do
                 git pull --rebase origin main && git push && break
                 echo "Fallo temporal de GitHub en intento $i. Reintentando en 5s..."
