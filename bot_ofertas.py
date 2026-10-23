@@ -5,16 +5,18 @@ from pathlib import Path
 import requests
 
 # 1. Configuración y Credenciales (seguro para repositorios públicos)
-TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "")
-CHAT_ID = os.getenv("CHAT_ID", "")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "").strip()
+CHAT_ID = os.getenv("CHAT_ID", "").strip()
 
 if not TELEGRAM_TOKEN or not CHAT_ID:
-    raise ValueError("Faltan las variables de entorno TELEGRAM_TOKEN o CHAT_ID.")
+    raise ValueError(
+        "Faltan las variables TELEGRAM_TOKEN o CHAT_ID en los Secrets de GitHub."
+    )
 
 API_URL = "https://www.plazavea.com.pe/api/io/_v/api/intelligent-search/product_search/"
 ARCHIVO_ESTADO = Path("notificados.json")
 UMBRAL_DESCUENTO = 49.0
-PAGINAS_A_ESCANEAR = 3  # 50 productos por página = 150 productos evaluados en ~2 segundos
+PAGINAS_A_ESCANEAR = 8  # 8 páginas x 50 productos = 400 productos por ejecución
 
 
 def cargar_notificados() -> set:
@@ -35,21 +37,54 @@ def guardar_notificados(notificados: set) -> None:
         json.dump(sorted(notificados), f, indent=2, ensure_ascii=False)
 
 
-def enviar_alerta_telegram(session: requests.Session, mensaje: str) -> bool:
-    """Envía un mensaje en texto plano (sin parse_mode) a Telegram."""
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    payload = {
+def post_telegram_con_reintento(
+    session: requests.Session, endpoint: str, payload: dict
+) -> bool:
+    """Envía la petición a Telegram manejando límites de velocidad (HTTP 429)."""
+    for _ in range(2):
+        try:
+            resp = session.post(endpoint, json=payload, timeout=8)
+            if resp.ok:
+                return True
+            if resp.status_code == 429:
+                espera = resp.json().get("parameters", {}).get("retry_after", 5)
+                print(f"[RATE LIMIT] Esperando {espera}s solicitados por Telegram...")
+                time.sleep(espera + 1)
+                continue
+            return False
+        except requests.RequestException as e:
+            print(f"[WARN] Error de red con Telegram: {e}")
+            return False
+    return False
+
+
+def enviar_alerta_telegram(
+    session: requests.Session, mensaje: str, imagen_url: str = ""
+) -> bool:
+    """
+    Envía la alerta con foto (sendPhoto) si hay imagen disponible.
+    Si el producto no tiene foto o falla la carga, usa sendMessage como respaldo.
+    """
+    base_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
+
+    # 1. Intentar envío con imagen (sendPhoto)
+    if imagen_url:
+        payload_foto = {
+            "chat_id": CHAT_ID,
+            "photo": imagen_url,
+            "caption": mensaje[:1024],
+        }
+        if post_telegram_con_reintento(session, f"{base_url}/sendPhoto", payload_foto):
+            return True
+        print("[WARN] Falló envío con foto. Reintentando en solo texto...")
+
+    # 2. Respaldo: envío en texto plano (sendMessage)
+    payload_texto = {
         "chat_id": CHAT_ID,
         "text": mensaje,
         "disable_web_page_preview": False,
     }
-    try:
-        resp = session.post(url, json=payload, timeout=5)
-        resp.raise_for_status()
-        return True
-    except requests.RequestException as e:
-        print(f"[ERROR] Fallo al enviar mensaje a Telegram: {e}")
-        return False
+    return post_telegram_con_reintento(session, f"{base_url}/sendMessage", payload_texto)
 
 
 def construir_url_producto(producto: dict) -> str:
@@ -58,16 +93,23 @@ def construir_url_producto(producto: dict) -> str:
     if link.startswith("http"):
         return link
     slug = producto.get("linkText", "").strip("/")
-    return f"https://www.plazavea.com.pe/{slug}/p" if slug else "https://www.plazavea.com.pe"
+    return (
+        f"https://www.plazavea.com.pe/{slug}/p"
+        if slug
+        else "https://www.plazavea.com.pe"
+    )
 
 
-def extraer_mejor_oferta(producto: dict) -> tuple[float, float, int]:
+def extraer_mejor_oferta(producto: dict) -> tuple[float, float, int, str]:
     """
     Recorre los SKUs y vendedores del producto para obtener:
-    (list_price, selling_price, stock_disponible)
+    (list_price, selling_price, stock_disponible, imagen_url)
     """
     items = producto.get("items", [])
     for item in items:
+        imagenes = item.get("images", [])
+        imagen_url = imagenes[0].get("imageUrl", "").strip() if imagenes else ""
+
         sellers = item.get("sellers", [])
         for seller in sellers:
             oferta = seller.get("commertialOffer", {})
@@ -76,17 +118,17 @@ def extraer_mejor_oferta(producto: dict) -> tuple[float, float, int]:
             stock = int(oferta.get("AvailableQuantity") or 0)
 
             if stock > 0 and list_price > 0 and selling_price > 0:
-                return list_price, selling_price, stock
+                return list_price, selling_price, stock, imagen_url
 
-    return 0.0, 0.0, 0
+    return 0.0, 0.0, 0, ""
 
 
 def monitorear_ofertas() -> None:
     inicio = time.monotonic()
     notificados = cargar_notificados()
     nuevos_registros = False
+    alertas_enviadas = 0
 
-    # Reutilizar la conexión TCP/TLS acelera las consultas drásticamente
     with requests.Session() as session:
         session.headers.update(
             {
@@ -106,7 +148,7 @@ def monitorear_ofertas() -> None:
             }
 
             try:
-                respuesta = session.get(API_URL, params=params, timeout=5)
+                respuesta = session.get(API_URL, params=params, timeout=6)
                 respuesta.raise_for_status()
                 data = respuesta.json()
             except (requests.RequestException, ValueError) as e:
@@ -125,8 +167,14 @@ def monitorear_ofertas() -> None:
                 if clave_unica in notificados:
                     continue
 
-                precio_lista, precio_oferta, stock = extraer_mejor_oferta(prod)
-                if precio_lista <= 0 or precio_oferta <= 0 or precio_oferta >= precio_lista:
+                precio_lista, precio_oferta, stock, imagen_url = extraer_mejor_oferta(
+                    prod
+                )
+                if (
+                    precio_lista <= 0
+                    or precio_oferta <= 0
+                    or precio_oferta >= precio_lista
+                ):
                     continue
 
                 descuento = ((precio_lista - precio_oferta) / precio_lista) * 100.0
@@ -135,7 +183,6 @@ def monitorear_ofertas() -> None:
                     nombre = prod.get("productName", "Producto sin nombre").strip()
                     marca = prod.get("brand", "Genérico").strip()
 
-                    # Texto plano sin parse_mode para evitar errores con símbolos especiales
                     mensaje = (
                         f"🔥 OFERTA DETECTADA (-{descuento:.1f}%)\n\n"
                         f"Producto: {nombre}\n"
@@ -146,20 +193,22 @@ def monitorear_ofertas() -> None:
                         f"Enlace: {url_producto}"
                     )
 
-                    if enviar_alerta_telegram(session, mensaje):
+                    if enviar_alerta_telegram(session, mensaje, imagen_url):
                         notificados.add(clave_unica)
                         nuevos_registros = True
-                        print(f"[OK] Notificado: {nombre} (-{descuento:.1f}%)")
+                        alertas_enviadas += 1
+                        print(f"[OK] ({alertas_enviadas}) {nombre} (-{descuento:.1f}%)")
+                        # Pausa breve para respetar el límite de mensajes por segundo de Telegram
+                        time.sleep(0.35)
 
-    # Solo escribe en disco si hubo cambios reales para optimizar el paso de Git
     if nuevos_registros:
         guardar_notificados(notificados)
-        print("[INFO] Archivo notificados.json actualizado.")
+        print(f"[INFO] Se guardaron {alertas_enviadas} ofertas nuevas en notificados.json.")
     else:
         print("[INFO] Sin ofertas nuevas que superen el umbral.")
 
     duracion = time.monotonic() - inicio
-    print(f"[FIN] Ejecución completada en {duracion:.2f} segundos.")
+    print(f"[FIN] Escaneo de {PAGINAS_A_ESCANEAR} páginas completado en {duracion:.2f} s.")
 
 
 if __name__ == "__main__":
