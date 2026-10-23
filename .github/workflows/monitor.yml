@@ -1,0 +1,47 @@
+name: Monitor de Ofertas Plaza Vea
+
+on:
+  schedule:
+    # Se ejecuta al minuto 0 cada 2 horas (12 ejecuciones al día)
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # Permite ejecución manual desde la pestaña Actions
+
+# Evita ejecuciones paralelas si una tarea demora más de lo previsto
+concurrency:
+  group: monitor-plazavea
+  cancel-in-progress: true
+
+permissions:
+  contents: write # Necesario para hacer commit y push de notificados.json
+
+jobs:
+  monitorear:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar dependencia ligera
+        run: pip install --quiet requests
+
+      - name: Ejecutar bot de ofertas
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
+        run: python3 bot_ofertas.py
+
+      - name: Guardar estado si hubo cambios
+        run: |
+          if [ -f notificados.json ]; then
+            git add notificados.json
+            if ! git diff --cached --quiet; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git commit -m "chore: actualizar ofertas notificadas [skip ci]"
+              git push
+            else
+              echo "No hay cambios en notificados.json. Se omite el commit."
+            fi
+          fi
