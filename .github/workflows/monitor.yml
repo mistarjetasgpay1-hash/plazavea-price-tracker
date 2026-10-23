@@ -2,17 +2,17 @@ name: Monitor de Ofertas Plaza Vea
 
 on:
   schedule:
-    # Se ejecuta al minuto 0 cada 2 horas (12 ejecuciones al día)
-    - cron: '0 */2 * * *'
-  workflow_dispatch: # Permite ejecución manual desde la pestaña Actions
+    # Frecuencia máxima permitida por GitHub: cada 5 minutos (288 veces al día)
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
 
-# Evita ejecuciones paralelas si una tarea demora más de lo previsto
+# Evita que dos ejecuciones se pisen, pero deja terminar la actual para no perder el guardado de notificados.json
 concurrency:
   group: monitor-plazavea
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
-  contents: write # Necesario para hacer commit y push de notificados.json
+  contents: write
 
 jobs:
   monitorear:
@@ -40,7 +40,13 @@ jobs:
               git config user.name "github-actions[bot]"
               git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
               git commit -m "chore: actualizar ofertas notificadas [skip ci]"
-              git push
+              
+              # Reintenta hasta 3 veces si GitHub devuelve un error temporal de servidor
+              for i in 1 2 3; do
+                git pull --rebase origin main && git push && break
+                echo "Fallo temporal de GitHub en intento $i. Reintentando en 5s..."
+                sleep 5
+              done
             else
               echo "No hay cambios en notificados.json. Se omite el commit."
             fi
