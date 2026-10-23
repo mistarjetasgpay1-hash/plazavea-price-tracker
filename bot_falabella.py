@@ -14,37 +14,33 @@ if not TELEGRAM_TOKEN or not CHAT_ID:
         "Faltan las variables TELEGRAM_TOKEN2 o CHAT_ID2 en los Secrets de GitHub."
     )
 
-# Archivo de estado exclusivo para Falabella (no toca notificados.json de Plaza Vea)
+# Archivo de estado exclusivo para Falabella (no interfiere con notificados.json de Plaza Vea)
 ARCHIVO_ESTADO = Path("notificados_falabella.json")
 UMBRAL_DESCUENTO = 45.0
 PAGINAS_A_ESCANEAR = 4
 MAX_ALERTAS_POR_EJECUCION = 30
 
-# Categorías de Falabella Perú con su ID y slug exacto
+# Categorías de Falabella Perú a monitorear
 CATEGORIAS = [
     {
         "nombre": "Tecnología",
         "url": "https://www.falabella.com.pe/falabella-pe/category/cat760706/Tecnologia",
-        "cat_id": "cat760706",
-        "slug": "Tecnologia",
-    },
-    {
-        "nombre": "Electrohogar",
-        "url": "https://www.falabella.com.pe/falabella-pe/category/cat40512/Electrohogar",
-        "cat_id": "cat40512",
-        "slug": "Electrohogar",
     },
     {
         "nombre": "Celulares",
         "url": "https://www.falabella.com.pe/falabella-pe/category/cat760706/Celulares-y-Telefonos",
-        "cat_id": "cat760706",
-        "slug": "Celulares-y-Telefonos",
     },
     {
-        "nombre": "Cómputo",
+        "nombre": "Electrohogar",
+        "url": "https://www.falabella.com.pe/falabella-pe/category/cat40512/Electrohogar",
+    },
+    {
+        "nombre": "Cómputo y Laptops",
         "url": "https://www.falabella.com.pe/falabella-pe/category/cat40496/Computo",
-        "cat_id": "cat40496",
-        "slug": "Computo",
+    },
+    {
+        "nombre": "Televisores",
+        "url": "https://www.falabella.com.pe/falabella-pe/category/cat40554/Televisores",
     },
 ]
 
@@ -65,52 +61,79 @@ def guardar_notificados(notificados: set) -> None:
         json.dump(sorted(notificados), f, indent=2, ensure_ascii=False)
 
 
-def post_telegram_con_reintento(
-    session: requests.Session, endpoint: str, payload: dict
-) -> bool:
-    for _ in range(2):
-        try:
-            resp = session.post(endpoint, json=payload, timeout=10)
-            if resp.ok:
-                return True
-            if resp.status_code == 429:
-                espera = min(resp.json().get("parameters", {}).get("retry_after", 5), 15)
-                print(f"[RATE LIMIT] Esperando {espera}s solicitados por Telegram...")
-                time.sleep(espera + 1)
-                continue
-            print(f"[ERROR TELEGRAM] HTTP {resp.status_code}: {resp.text}")
-            return False
-        except requests.RequestException as e:
-            print(f"[WARN] Error de red con Telegram: {e}")
-            return False
-    return False
+def descargar_imagen_bytes(session: requests.Session, imagen_url: str) -> bytes | None:
+    """
+    Descarga la imagen desde Falabella usando la sesión del script para evitar
+    el error 400 ('failed to get HTTP URL content') de los servidores de Telegram.
+    """
+    if not imagen_url:
+        return None
+    try:
+        headers_img = {
+            "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+            "Referer": "https://www.falabella.com.pe/",
+        }
+        resp = session.get(imagen_url, headers=headers_img, timeout=8)
+        if resp.ok and resp.content and len(resp.content) > 500:
+            return resp.content
+    except requests.RequestException:
+        pass
+    return None
 
 
 def enviar_alerta_telegram(
     session: requests.Session, mensaje: str, imagen_url: str = ""
 ) -> bool:
+    """
+    Envía la alerta subiendo la foto descargada directamente como binario a Telegram,
+    o usa texto plano como respaldo si el producto no tiene foto.
+    """
     base_url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
 
-    if imagen_url:
-        payload_foto = {
-            "chat_id": CHAT_ID,
-            "photo": imagen_url,
-            "caption": mensaje[:1024],
-        }
-        if post_telegram_con_reintento(session, f"{base_url}/sendPhoto", payload_foto):
-            return True
-        print("[WARN] Falló envío con foto. Reintentando en solo texto...")
+    # 1. Intentar descargar la imagen y subirla como archivo (evita bloqueo de URL en Telegram)
+    img_bytes = descargar_imagen_bytes(session, imagen_url)
+    if img_bytes:
+        for _ in range(2):
+            try:
+                resp = session.post(
+                    f"{base_url}/sendPhoto",
+                    data={"chat_id": CHAT_ID, "caption": mensaje[:1024]},
+                    files={"photo": ("oferta.jpg", img_bytes, "image/jpeg")},
+                    timeout=12,
+                )
+                if resp.ok:
+                    return True
+                if resp.status_code == 429:
+                    espera = min(resp.json().get("parameters", {}).get("retry_after", 5), 15)
+                    time.sleep(espera + 1)
+                    continue
+                break
+            except requests.RequestException:
+                break
 
+    # 2. Respaldo en texto plano si la imagen no existe o falla
     payload_texto = {
         "chat_id": CHAT_ID,
         "text": mensaje,
         "disable_web_page_preview": False,
     }
-    return post_telegram_con_reintento(session, f"{base_url}/sendMessage", payload_texto)
+    for _ in range(2):
+        try:
+            resp = session.post(f"{base_url}/sendMessage", json=payload_texto, timeout=10)
+            if resp.ok:
+                return True
+            if resp.status_code == 429:
+                espera = min(resp.json().get("parameters", {}).get("retry_after", 5), 15)
+                time.sleep(espera + 1)
+                continue
+            return False
+        except requests.RequestException:
+            return False
+    return False
 
 
 def buscar_productos_recursivo(nodo) -> list:
-    """Encuentra la lista de productos dentro de cualquier respuesta JSON de Falabella."""
+    """Encuentra la lista de productos dentro del bloque __NEXT_DATA__ de Falabella."""
     if isinstance(nodo, list):
         if (
             nodo
@@ -136,94 +159,53 @@ def buscar_productos_recursivo(nodo) -> list:
     return []
 
 
-def inicializar_contexto_catalyst(session: requests.Session, cat: dict) -> str:
-    """
-    Visita la página de categoría para obtener las cookies de sesión y descubrir
-    el 'catalystBaseUrl' exacto que usa Falabella Perú.
-    """
-    try:
-        resp = session.get(cat["url"], timeout=14)
-        if not resp.ok:
-            return ""
-        match = re.search(
-            r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>',
-            resp.text,
-            re.DOTALL,
-        )
-        if match:
-            next_data = json.loads(match.group(1))
-            page_props = next_data.get("props", {}).get("pageProps", {})
-
-            # Revisar si hay productos directamente en serverData o page
-            productos_directos = buscar_productos_recursivo(page_props)
-            if productos_directos:
-                cat["_productos_pag1"] = productos_directos
-
-            catalyst_url = page_props.get("catalystBaseUrl", "")
-            base_url = page_props.get("baseUrl", "")
-            if not hasattr(session, "_debug_impreso"):
-                print(
-                    f"[DEBUG] catalystBaseUrl='{catalyst_url}' | baseUrl='{base_url}' | "
-                    f"serverData keys={list(page_props.get('serverData', {}).keys()) if isinstance(page_props.get('serverData'), dict) else type(page_props.get('serverData')).__name__}"
-                )
-                session._debug_impreso = True
-            return catalyst_url.rstrip("/")
-    except Exception as e:
-        print(f"[WARN] Error inicializando contexto en {cat['nombre']}: {e}")
-    return ""
-
-
-def obtener_productos_falabella(
-    session: requests.Session, cat: dict, pagina: int, catalyst_base: str
+def obtener_productos_pagina(
+    session: requests.Session, cat: dict, pagina: int
 ) -> list:
-    if pagina == 1 and "_productos_pag1" in cat:
-        return cat.pop("_productos_pag1")
-
-    # Construir candidatos de endpoints usando el catalystBaseUrl descubierto
-    endpoints = []
-    if catalyst_base:
-        if catalyst_base.startswith("http"):
-            endpoints.append(f"{catalyst_base}/s/browse/v1/listing/pe")
-            endpoints.append(f"{catalyst_base}/v1/listing/pe")
-        else:
-            endpoints.append(f"https://www.falabella.com.pe{catalyst_base}/s/browse/v1/listing/pe")
-            endpoints.append(f"https://www.falabella.com.pe{catalyst_base}/v1/listing/pe")
-
-    endpoints.extend(
-        [
-            "https://www.falabella.com.pe/s/browse/v1/listing/pe",
-            "https://www.falabella.com.pe/falabella-pe/s/browse/v1/listing/pe",
-        ]
-    )
-
+    """
+    Consulta la página de categoría en Falabella Perú aplicando el filtro de
+    vendedor oficial ('FALABELLA') y ordenamiento por mayor descuento.
+    """
     params = {
-        "categoryId": cat["cat_id"],
-        "categoryName": cat["slug"],
         "page": pagina,
         "sortBy": "derived.price.search.discount,desc",
-        "zones": "150101",
-        "channel": "web",
+        "f.derived.variant.sellerId": "FALABELLA",  # Filtro nativo solo Falabella Oficial
     }
 
-    headers_api = {
-        "Accept": "application/json, text/plain, */*",
-        "Referer": cat["url"],
-        "x-Requested-With": "XMLHttpRequest",
-    }
-
-    for ep in dict.fromkeys(endpoints):
-        try:
-            resp = session.get(ep, params=params, headers=headers_api, timeout=10)
-            if resp.ok and "application/json" in resp.headers.get("Content-Type", ""):
-                productos = buscar_productos_recursivo(resp.json())
-                if productos:
-                    return productos
-            elif pagina == 1:
-                print(f"[DEBUG] Endpoint {ep} -> HTTP {resp.status_code}")
-        except Exception:
-            continue
+    try:
+        resp = session.get(cat["url"], params=params, timeout=14)
+        if resp.ok:
+            match = re.search(
+                r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>',
+                resp.text,
+                re.DOTALL,
+            )
+            if match:
+                next_data = json.loads(match.group(1))
+                return buscar_productos_recursivo(next_data)
+    except Exception as e:
+        print(f"[WARN] Error consultando {cat['nombre']} (pág {pagina}): {e}")
 
     return []
+
+
+def es_vendedor_oficial(prod: dict) -> bool:
+    """Verifica que el vendedor sea exclusivamente Falabella Oficial y no un tercero."""
+    seller_name = str(prod.get("sellerName") or "").strip().upper()
+    seller_id = str(prod.get("sellerId") or "").strip().upper()
+
+    # Si alguno de los campos existe, debe ser explícitamente FALABELLA
+    if seller_name and "FALABELLA" not in seller_name:
+        return False
+    if seller_id and "FALABELLA" not in seller_id:
+        return False
+
+    # Descartar productos reacondicionados si vienen infiltrados
+    nombre = str(prod.get("displayName") or "").upper()
+    if "REACONDICIONADO" in nombre or "REFURBISHED" in nombre:
+        return False
+
+    return True
 
 
 def limpiar_precio(valor_str: str) -> float:
@@ -234,6 +216,24 @@ def limpiar_precio(valor_str: str) -> float:
         return float(limpio)
     except ValueError:
         return 0.0
+
+
+def construir_url_imagen(prod: dict) -> str:
+    """Construye la URL válida del CDN de imágenes de Falabella Perú."""
+    media_urls = prod.get("mediaUrls", [])
+    if media_urls:
+        primera = str(media_urls[0]).strip()
+        if primera.startswith("http"):
+            return primera
+        if primera.startswith("//"):
+            return f"https:{primera}"
+        # En Falabella Perú los IDs de mediaUrls se sirven desde media.falabella.com.pe
+        return f"https://media.falabella.com.pe/falabellaPE/{primera}/public"
+
+    prod_id = str(prod.get("productId") or prod.get("skuId") or "").strip()
+    if prod_id:
+        return f"https://media.falabella.com.pe/falabellaPE/{prod_id}_1/public"
+    return ""
 
 
 def extraer_datos_falabella(prod: dict) -> tuple[float, float, str, str]:
@@ -254,22 +254,14 @@ def extraer_datos_falabella(prod: dict) -> tuple[float, float, str, str]:
     else:
         precio_lista, precio_oferta = 0.0, 0.0
 
-    url_producto = prod.get("url", "").strip()
+    url_producto = str(prod.get("url") or "").strip()
     if url_producto and not url_producto.startswith("http"):
         url_producto = f"https://www.falabella.com.pe{url_producto}"
     elif not url_producto:
         prod_id = prod.get("productId", "")
         url_producto = f"https://www.falabella.com.pe/falabella-pe/product/{prod_id}"
 
-    media_urls = prod.get("mediaUrls", [])
-    imagen_url = ""
-    if media_urls:
-        primera_img = media_urls[0]
-        imagen_url = (
-            primera_img
-            if primera_img.startswith("http")
-            else f"https://falabella.scene7.com/is/image/FalabellaPE/{primera_img}"
-        )
+    imagen_url = construir_url_imagen(prod)
 
     return precio_lista, precio_oferta, url_producto, imagen_url
 
@@ -293,25 +285,18 @@ def monitorear_ofertas() -> None:
                 }
             )
 
-            catalyst_base = ""
             for cat in CATEGORIAS:
                 if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
                     break
-
-                descubierto = inicializar_contexto_catalyst(session, cat)
-                if descubierto:
-                    catalyst_base = descubierto
 
                 for pagina in range(1, PAGINAS_A_ESCANEAR + 1):
                     if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
                         break
 
-                    resultados = obtener_productos_falabella(
-                        session, cat, pagina, catalyst_base
-                    )
+                    resultados = obtener_productos_pagina(session, cat, pagina)
                     print(
                         f"[INFO] {cat['nombre']} (pág {pagina}): "
-                        f"{len(resultados)} productos escaneados."
+                        f"{len(resultados)} productos oficiales escaneados."
                     )
 
                     if not resultados:
@@ -320,6 +305,10 @@ def monitorear_ofertas() -> None:
                     for prod in resultados:
                         if alertas_enviadas >= MAX_ALERTAS_POR_EJECUCION:
                             break
+
+                        # Filtro estricto: Solo vendido por Falabella Oficial
+                        if not es_vendedor_oficial(prod):
+                            continue
 
                         prod_id = str(prod.get("productId", "")).strip()
                         if not prod_id:
@@ -343,13 +332,12 @@ def monitorear_ofertas() -> None:
                         if descuento >= UMBRAL_DESCUENTO:
                             nombre = prod.get("displayName", "Producto sin nombre").strip()
                             marca = prod.get("brand", "Genérico").strip()
-                            vendedor = prod.get("sellerName", "Falabella").strip()
 
                             mensaje = (
-                                f"🟢 OFERTA FALABELLA (-{descuento:.1f}%)\n\n"
+                                f"🟢 OFERTA FALABELLA OFICIAL (-{descuento:.1f}%)\n\n"
                                 f"Producto: {nombre}\n"
                                 f"Marca: {marca}\n"
-                                f"Vendedor: {vendedor}\n"
+                                f"Vendedor: Falabella\n"
                                 f"Precio Normal: S/ {precio_lista:,.2f}\n"
                                 f"Precio Oferta: S/ {precio_oferta:,.2f}\n\n"
                                 f"Enlace: {url_prod}"
