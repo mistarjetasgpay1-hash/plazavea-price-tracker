@@ -37,13 +37,15 @@ paso "Secretos (.env)"
 if [ ! -f .env ]; then
   cp .env.example .env
   chmod 600 .env
-  echo "Se creó .env. Complétalo con tu TELEGRAM_TOKEN y CHAT_ID:  nano .env"
+  echo "Se creó .env. Complétalo con los tokens y chats de ambos bots:  nano .env"
   echo "Luego vuelve a ejecutar:  bash deploy/setup_vps.sh"
   exit 0
 fi
 chmod 600 .env
-grep -qE '^TELEGRAM_TOKEN=.+' .env && ! grep -q 'TU_TOKEN' .env \
-  || { echo "Completa TELEGRAM_TOKEN y CHAT_ID en .env antes de continuar."; exit 1; }
+for var in TELEGRAM_TOKEN CHAT_ID TELEGRAM_TOKEN3 CHAT_ID3; do
+  grep -qE "^${var}=.+" .env && ! grep -qE "^${var}=TU_" .env \
+    || { echo "Completa ${var} en .env antes de continuar (TOKEN/CHAT_ID = bot general, *3 = bot canasta básica)."; exit 1; }
+done
 
 paso "Historial"
 mkdir -p state logs
