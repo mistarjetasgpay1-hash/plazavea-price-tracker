@@ -51,7 +51,7 @@ El TTL es por producto, así que no hay una avalancha de re-avisos el mismo día
 ## Telegram
 
 - Secrets (Settings → Secrets and variables → Actions): `TELEGRAM_TOKEN` y `CHAT_ID`.
-- Cada mensaje lleva hashtags por grupo y categoría (ej. `#PlazaVea_General`). Puedes buscar o filtrar por ellos dentro del chat.
+- Cada mensaje lleva hashtags por grupo y categoría (ej. `#PlazaVea_Alimentos #Abarrotes`). Puedes buscar o filtrar por ellos dentro del chat.
 - Máximo `max_individual_alerts` alertas con foto por corrida (las de mayor descuento). El resto va en **un** mensaje resumen; lo que no entra se envía en la siguiente corrida.
 - **Temas (opcional):** si conviertes el chat en un grupo con Temas, pon el `thread_id` de cada tema en `telegram.groups` y las alertas se separan solas.
 - Si 3 corridas seguidas no obtienen datos (bloqueo o cambio de la web), llega un aviso ⚠️ silencioso.
