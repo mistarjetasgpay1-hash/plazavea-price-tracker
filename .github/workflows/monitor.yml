@@ -1,30 +1,50 @@
-name: Monitor Plaza Vea
+name: Monitor Plaza Vea (pruebas)
 
+# Producción: los bots corren 24/7 en el VPS (ecosystem.config.js).
+# Este workflow ya NO está programado; solo se usa para:
+#   · push a main  → prueba de integración real (simulación, no envía a Telegram)
+#   · ejecución manual → simulación o, si el VPS está caído, una corrida real puntual
 on:
-  schedule:
-    # Horas en UTC (Lima = UTC-5). Minutos desfasados del :00 para evitar la cola pico de GitHub.
-    - cron: '7,22,37,52 0-5,11-23 * * *'   # 06:00–00:59 Lima → cada 15 min
-    - cron: '7 6-10 * * *'                 # 01:00–05:59 Lima → cada hora
+  push:
+    branches: [main]
+    paths:
+      - 'tracker/**'
+      - 'config*.yaml'
+      - 'run_*.py'
+      - 'requirements.txt'
+      - '.github/workflows/monitor.yml'
   workflow_dispatch:
     inputs:
+      bot:
+        description: 'Bot a ejecutar'
+        type: choice
+        options: [ambos, alimentos, general]
+        default: ambos
       dry_run:
-        description: 'Simulación: no envía a Telegram ni guarda el historial'
+        description: 'Simulación (no envía a Telegram). Desmárcalo solo si el VPS está caído: este historial no se comparte con el VPS.'
         type: boolean
-        default: false
+        default: true
 
 concurrency:
-  group: monitor-plazavea
-  cancel-in-progress: false
+  group: monitor-plazavea-${{ github.event_name }}
+  cancel-in-progress: true
 
 permissions:
-  contents: write   # necesario para guardar el historial en la rama `state`
+  contents: write   # solo se usa en corridas reales manuales (historial en ramas state-*)
 
 jobs:
   monitor:
+    name: ${{ matrix.bot }}
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        bot: ${{ fromJSON(inputs.bot == 'alimentos' && '["alimentos"]' || inputs.bot == 'general' && '["general"]' || '["alimentos","general"]') }}
     env:
-      STATE_FILE: state/plazavea.json
+      DRY_RUN: ${{ github.event_name == 'push' || inputs.dry_run }}
+      STATE_FILE: state/plazavea_${{ matrix.bot }}.json
+      STATE_BRANCH: state-${{ matrix.bot }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -39,41 +59,36 @@ jobs:
       - name: Instalar dependencias
         run: pip install --quiet --disable-pip-version-check -r requirements.txt
 
-      - name: Restaurar historial (rama state)
+      - name: Restaurar historial (solo corrida real)
+        if: env.DRY_RUN != 'true'
         run: |
-          mkdir -p "$(dirname "$STATE_FILE")"
-          if git fetch --quiet --depth=1 origin state 2>/dev/null; then
+          mkdir -p state
+          if git fetch --quiet --depth=1 origin "$STATE_BRANCH" 2>/dev/null; then
             git show "FETCH_HEAD:$(basename "$STATE_FILE")" > "$STATE_FILE" 2>/dev/null || rm -f "$STATE_FILE"
+          elif git fetch --quiet --depth=1 origin state 2>/dev/null; then
+            git show FETCH_HEAD:plazavea.json > "$STATE_FILE" 2>/dev/null || rm -f "$STATE_FILE"
           fi
-          if [ -f "$STATE_FILE" ]; then echo "Historial restaurado ($(wc -c < "$STATE_FILE") bytes)"; else echo "Sin historial previo"; fi
+          if [ -f "$STATE_FILE" ]; then echo "Historial restaurado"; else echo "Sin historial previo"; fi
 
-      - name: Ejecutar monitor
+      - name: Ejecutar bot ${{ matrix.bot }}
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-          DRY_RUN: ${{ inputs.dry_run }}
-        run: python -m tracker --config config.yaml
+        run: python run_${{ matrix.bot }}.py
 
-      - name: Guardar historial (rama state)
-        if: always() && inputs.dry_run != true
+      - name: Guardar historial (solo corrida real)
+        if: always() && env.DRY_RUN != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           [ -f "$STATE_FILE" ] || { echo "Nada que guardar"; exit 0; }
           name=$(basename "$STATE_FILE")
-          if git show "FETCH_HEAD:$name" 2>/dev/null | cmp -s - "$STATE_FILE"; then
-            echo "Historial sin cambios"; exit 0
-          fi
           tmp=$(mktemp -d)
           cp "$STATE_FILE" "$tmp/$name"
           cd "$tmp"
-          git init --quiet --initial-branch=state
+          git init --quiet --initial-branch="$STATE_BRANCH"
           git add "$name"
           git -c user.name="github-actions[bot]" \
               -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
               commit --quiet -m "state: $(date -u +%Y-%m-%dT%H:%MZ)"
-          # Rama huérfana de un solo commit: main queda limpio y el repo no crece.
-          for i in 1 2 3; do
-            git push --quiet --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" state && break
-            echo "Reintento $i…"; sleep 5
-          done
+          git push --quiet --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$STATE_BRANCH"
