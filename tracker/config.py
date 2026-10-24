@@ -1,0 +1,132 @@
+"""Carga y validación de `config.yaml` + secretos desde variables de entorno."""
+
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass, field, fields
+from pathlib import Path
+from typing import Any
+
+import yaml
+
+
+class ConfigError(Exception):
+    """Configuración inválida o secretos faltantes."""
+
+
+@dataclass
+class TelegramConfig:
+    token_env: str = "TELEGRAM_TOKEN"
+    chat_id_env: str = "CHAT_ID"
+    min_interval_s: float = 3.2        # ~19 msg/min: bajo el límite de 20/min por grupo
+    max_individual_alerts: int = 15    # alertas con foto por corrida
+    digest_max_items: int = 25         # el excedente va en un solo mensaje resumen
+    send_photos: bool = True
+    health_alert_after_failures: int = 3
+    groups: dict[str, dict[str, Any]] = field(default_factory=dict)
+    # Resueltos desde el entorno (no van en el YAML):
+    token: str = ""
+    chat_id: str = ""
+
+    def group_emoji(self, group: str) -> str:
+        return str(self.groups.get(group, {}).get("emoji") or "🔥")
+
+    def group_thread(self, group: str) -> int | None:
+        valor = self.groups.get(group, {}).get("thread_id")
+        return int(valor) if valor else None
+
+
+@dataclass
+class OffersConfig:
+    min_discount_pct: float = 49.5
+    min_price: float = 1.0
+    exclude_keywords: list[str] = field(default_factory=list)
+
+
+@dataclass
+class StateConfig:
+    path: str = "state/state.json"
+    ttl_days: float = 3.0
+    renotify_drop_pct: float = 3.0
+    legacy_path: str | None = None
+
+
+@dataclass
+class HttpConfig:
+    timeout_s: float = 20.0
+    retries: int = 3
+    backoff_base_s: float = 2.0
+    delay_min_s: float = 1.0
+    delay_max_s: float = 2.5
+
+
+@dataclass
+class AppConfig:
+    store_id: str
+    store_name: str
+    hashtag_prefix: str
+    telegram: TelegramConfig
+    offers: OffersConfig
+    state: StateConfig
+    http: HttpConfig
+    scraper: dict[str, Any]
+    base_dir: Path = Path(".")
+
+    def resolve(self, relative: str | None) -> Path | None:
+        if not relative:
+            return None
+        ruta = Path(relative)
+        return ruta if ruta.is_absolute() else self.base_dir / ruta
+
+
+def _build(cls: type, data: dict[str, Any] | None, section: str):
+    data = data or {}
+    if not isinstance(data, dict):
+        raise ConfigError(f"La sección '{section}' debe ser un diccionario.")
+    permitidos = {f.name for f in fields(cls)} - {"token", "chat_id"}
+    desconocidos = set(data) - permitidos
+    if desconocidos:
+        raise ConfigError(f"Claves desconocidas en '{section}': {', '.join(sorted(desconocidos))}")
+    return cls(**data)
+
+
+def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
+    ruta = Path(path)
+    if not ruta.exists():
+        raise ConfigError(f"No existe el archivo de configuración: {ruta}")
+    try:
+        raw = yaml.safe_load(ruta.read_text(encoding="utf-8")) or {}
+    except yaml.YAMLError as exc:
+        raise ConfigError(f"YAML inválido en {ruta}: {exc}") from exc
+
+    store = raw.get("store") or {}
+    if not store.get("id"):
+        raise ConfigError("Falta 'store.id' en la configuración.")
+    if not isinstance(raw.get("scraper"), dict):
+        raise ConfigError("Falta la sección 'scraper'.")
+
+    cfg = AppConfig(
+        store_id=str(store["id"]),
+        store_name=str(store.get("name") or store["id"]),
+        hashtag_prefix=str(store.get("hashtag_prefix") or store.get("name") or store["id"]),
+        telegram=_build(TelegramConfig, raw.get("telegram"), "telegram"),
+        offers=_build(OffersConfig, raw.get("offers"), "offers"),
+        state=_build(StateConfig, raw.get("state"), "state"),
+        http=_build(HttpConfig, raw.get("http"), "http"),
+        scraper=raw["scraper"],
+        base_dir=ruta.resolve().parent,
+    )
+
+    if cfg.http.delay_min_s > cfg.http.delay_max_s:
+        raise ConfigError("http.delay_min_s no puede ser mayor que http.delay_max_s.")
+    if cfg.telegram.max_individual_alerts < 0 or cfg.telegram.digest_max_items < 0:
+        raise ConfigError("Los límites de alertas no pueden ser negativos.")
+
+    cfg.telegram.token = os.getenv(cfg.telegram.token_env, "").strip()
+    cfg.telegram.chat_id = os.getenv(cfg.telegram.chat_id_env, "").strip()
+    if require_secrets and not (cfg.telegram.token and cfg.telegram.chat_id):
+        raise ConfigError(
+            f"Faltan los secretos {cfg.telegram.token_env} y/o {cfg.telegram.chat_id_env} "
+            "(configúralos en Settings → Secrets and variables → Actions)."
+        )
+    return cfg
