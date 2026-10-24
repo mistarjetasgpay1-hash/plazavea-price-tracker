@@ -31,7 +31,7 @@ def main(argv: list[str] | None = None) -> int:
         datefmt="%Y-%m-%d %H:%M:%S",
         stream=sys.stdout,   # PM2/Docker guardan stdout en el log principal
     )
-    for ruidoso in ("urllib3", "DrissionPage"):
+    for ruidoso in ("urllib3",):
         logging.getLogger(ruidoso).setLevel(logging.WARNING)
     log = logging.getLogger("tracker")
 
