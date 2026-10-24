@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import re
 import unicodedata
+from functools import lru_cache
 
 from .config import OffersConfig
 from .models import Offer
@@ -17,6 +19,20 @@ def normalize(texto: str) -> str:
 def is_official(offer: Offer, allowed_seller_ids: frozenset[str] | set[str]) -> bool:
     """Filtro estricto: solo vendedores oficiales de la tienda (nunca marketplace)."""
     return offer.seller_id in allowed_seller_ids
+
+
+@lru_cache(maxsize=64)
+def _regex(patron: str) -> re.Pattern:
+    return re.compile(patron, re.I)
+
+
+def excluded_tag(offer: Offer, patrones: list[str]) -> str | None:
+    """Devuelve la etiqueta (colección/categoría) que coincide con algún patrón excluido."""
+    for patron in patrones:
+        for etiqueta in offer.tags:
+            if _regex(patron).search(etiqueta):
+                return etiqueta
+    return None
 
 
 def threshold_for(offer: Offer, cfg: OffersConfig) -> float:
@@ -41,6 +57,8 @@ def rejection_reason(offer: Offer, cfg: OffersConfig) -> str | None:
         nombre = normalize(offer.name)
         if any(normalize(k) in nombre for k in cfg.exclude_keywords):
             return "palabra_excluida"
+    if cfg.exclude_tags and excluded_tag(offer, cfg.exclude_tags):
+        return "coleccion_excluida"
     umbral = threshold_for(offer, cfg)
     if offer.discount >= umbral:
         offer.qualified_by = "online"

@@ -54,6 +54,7 @@ class Offer:
     note: str = ""
     promos: list[Promo] = field(default_factory=list)
     quantity: Quantity | None = None
+    tags: tuple[str, ...] = ()   # ruta de categoría + colecciones de la tienda (ej. "plazaVea | Halloween | 19.10")
     qualified_by: str = ""  # online | tarjeta | promo (lo fija el filtro)
 
     @property

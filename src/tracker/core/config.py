@@ -7,6 +7,7 @@ combinan en profundidad y las listas/valores del archivo hijo reemplazan a los d
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass, field, fields
 from pathlib import Path
 from typing import Any
@@ -58,7 +59,8 @@ class TelegramConfig:
 class OffersConfig:
     min_discount_pct: float = 49.5
     min_price: float = 1.0
-    exclude_keywords: list[str] = field(default_factory=list)
+    exclude_keywords: list[str] = field(default_factory=list)   # palabras en el nombre del producto
+    exclude_tags: list[str] = field(default_factory=list)       # regex sobre categoría/colecciones de la tienda
 
 
 @dataclass
@@ -165,6 +167,11 @@ def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
         label=str(store.get("label") or ""),
     )
 
+    for patron in cfg.offers.exclude_tags:
+        try:
+            re.compile(patron)
+        except re.error as exc:
+            raise ConfigError(f"offers.exclude_tags: patrón inválido {patron!r}: {exc}") from exc
     if cfg.http.delay_min_s > cfg.http.delay_max_s:
         raise ConfigError("http.delay_min_s no puede ser mayor que http.delay_max_s.")
     if cfg.telegram.max_individual_alerts < 0 or cfg.telegram.digest_max_items < 0:
