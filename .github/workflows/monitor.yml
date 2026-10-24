@@ -22,7 +22,7 @@ permissions:
 jobs:
   monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     env:
       STATE_FILE: state/plazavea.json
     steps:
