@@ -57,7 +57,7 @@ class TelegramConfig:
 
 @dataclass
 class OffersConfig:
-    min_discount_pct: float = 49.5
+    min_discount_pct: float = 50.0
     min_price: float = 1.0
     exclude_keywords: list[str] = field(default_factory=list)   # palabras en el nombre del producto
     exclude_tags: list[str] = field(default_factory=list)       # regex sobre categoría/colecciones de la tienda
@@ -82,6 +82,17 @@ class HttpConfig:
 
 
 @dataclass
+class HealthcheckConfig:
+    """Ping opcional a un monitor externo (p. ej. healthchecks.io) al terminar cada corrida.
+    Si el VPS se cae, PM2 se detiene o Telegram rechaza los envíos, el monitor deja de recibir
+    pings (o recibe /fail) y te avisa por correo o Telegram."""
+
+    url_env: str | list[str] = ""     # variable(s) de entorno con la URL de ping
+    timeout_s: float = 10.0
+    url: str = ""                      # resuelta desde el entorno (no va en el YAML)
+
+
+@dataclass
 class AppConfig:
     store_id: str
     store_name: str
@@ -93,6 +104,7 @@ class AppConfig:
     scraper: dict[str, Any]
     base_dir: Path = Path(".")
     label: str = ""            # nombre del bot (ej. "Alimentos"), para logs y avisos
+    healthcheck: HealthcheckConfig = field(default_factory=HealthcheckConfig)
 
     @property
     def display_name(self) -> str:
@@ -109,7 +121,7 @@ def _build(cls: type, data: dict[str, Any] | None, section: str):
     data = data or {}
     if not isinstance(data, dict):
         raise ConfigError(f"La sección '{section}' debe ser un diccionario.")
-    permitidos = {f.name for f in fields(cls)} - {"token", "chat_id"}
+    permitidos = {f.name for f in fields(cls)} - {"token", "chat_id", "url"}
     desconocidos = set(data) - permitidos
     if desconocidos:
         raise ConfigError(f"Claves desconocidas en '{section}': {', '.join(sorted(desconocidos))}")
@@ -165,6 +177,7 @@ def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
         scraper=raw["scraper"],
         base_dir=ruta.resolve().parent,
         label=str(store.get("label") or ""),
+        healthcheck=_build(HealthcheckConfig, raw.get("healthcheck"), "healthcheck"),
     )
 
     for patron in cfg.offers.exclude_tags:
@@ -177,8 +190,15 @@ def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
     if cfg.telegram.max_individual_alerts < 0 or cfg.telegram.digest_max_items < 0:
         raise ConfigError("Los límites de alertas no pueden ser negativos.")
 
+    # Valida categorías, claves y tipos del scraper aquí (y no al crear el scraper): así un error
+    # al editar el YAML en caliente hace que el modo continuo siga con la última config válida.
+    from ..scrapers import validate_scraper_config
+
+    validate_scraper_config(cfg.scraper)
+
     cfg.telegram.token = first_env(cfg.telegram.token_env)
     cfg.telegram.chat_id = first_env(cfg.telegram.chat_id_env)
+    cfg.healthcheck.url = first_env(cfg.healthcheck.url_env) if cfg.healthcheck.url_env else ""
     if require_secrets and not (cfg.telegram.token and cfg.telegram.chat_id):
         raise ConfigError(
             f"Faltan los secretos {_names(cfg.telegram.token_env)} y/o {_names(cfg.telegram.chat_id_env)} "

@@ -101,6 +101,11 @@ class Offer:
         return self.price
 
     @property
+    def best_price(self) -> float:
+        """Mejor precio disponible (online o con tarjeta): se vigila para re-avisar si baja."""
+        return min(self.price, self.card_price) if self.card_price else self.price
+
+    @property
     def savings(self) -> float:
         return max(self.list_price - self.effective_price, 0.0)
 
