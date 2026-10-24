@@ -5,9 +5,9 @@ from __future__ import annotations
 import pytest
 import requests
 
-from tracker.config import HttpConfig
-from tracker.http_client import BlockedError, HttpClient, HttpError
-from tracker.telegram import TelegramNotifier
+from tracker.core.config import HttpConfig
+from tracker.core.http_client import BlockedError, HttpClient, HttpError
+from tracker.telegram.client import TelegramNotifier
 
 
 class Resp:

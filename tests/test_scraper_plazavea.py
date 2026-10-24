@@ -6,9 +6,9 @@ import copy
 
 import pytest
 
-from tracker.config import ConfigError
-from tracker.http_client import HttpError
-from tracker.scraper import PlazaVeaScraper
+from tracker.core.config import ConfigError
+from tracker.core.http_client import HttpError
+from tracker.scrapers.vtex import PlazaVeaScraper
 
 SCRAPER_CFG = {
     "api_url": "https://www.plazavea.com.pe/api/io/_v/api/intelligent-search/product_search",
@@ -56,11 +56,17 @@ def _cat(url):
 
 
 class FakeHttp:
-    def __init__(self, paginas):
+    def __init__(self, paginas, catalogo=None):
         self.paginas = paginas
+        self.catalogo = catalogo or {}
         self.llamadas = []
+        self.consultas_sku = []
 
     def get(self, url, *, params=None, expect="text", **_):
+        if "catalog_system" in url:                      # consulta del producto "Y" de un combo
+            sku = params["fq"].split(":")[1]
+            self.consultas_sku.append(sku)
+            return self.catalogo.get(sku, [])
         self.llamadas.append((url, params["page"]))
         respuesta = self.paginas.get((_cat(url), params["page"]))
         if isinstance(respuesta, Exception):
@@ -119,24 +125,29 @@ def test_invalid_category_seller(make_cfg):
 def test_repo_configs_are_valid():
     from pathlib import Path
 
-    from tracker.config import load_config
+    from tracker.core.config import load_config
 
     raiz = Path(__file__).parents[1]
     alim = load_config(raiz / "config.alimentos.yaml", require_secrets=False)
     gen = load_config(raiz / "config.general.yaml", require_secrets=False)
-    claves = {}
+    rutas = {}
     for cfg in (alim, gen):
         scraper = PlazaVeaScraper(cfg, {}, http=FakeHttp({}))
         assert scraper.allowed_seller_ids == {"1", "oechsle"} and scraper.rotating_pages > 0
         for c in scraper.categories:
             assert c.group in cfg.telegram.groups, c.key
-            assert c.path not in claves, f"{c.path} está en ambos bots"
-            claves[c.path] = cfg.label
+            assert c.path not in rutas, f"{c.path} está en ambos bots"
+            rutas[c.path] = cfg.label
     assert alim.state.path != gen.state.path                       # historiales separados
-    assert {c.group for c in PlazaVeaScraper(alim, {}, http=FakeHttp({})).categories} >= {"Alimentos", "Limpieza"}
+    # Bot de canasta básica: bot de Telegram propio y umbrales 15 % / 20 %
+    assert alim.telegram.token_env == "TELEGRAM_TOKEN3" and alim.telegram.chat_id_env == "CHAT_ID3"
+    umbrales = {c.key: c.min_discount for c in PlazaVeaScraper(alim, {}, http=FakeHttp({})).categories}
+    assert umbrales["Abarrotes"] == 15 and umbrales["LacteosHuevos"] == 15 and umbrales["Desayunos"] == 15
+    assert umbrales["Limpieza"] == 20 and umbrales["CuidadoPersonal"] == 20 and umbrales["PanalesToallitas"] == 20
     assert {c.group for c in PlazaVeaScraper(gen, {}, http=FakeHttp({})).categories} >= {
-        "Tecnologia", "Electro", "Juguetes", "Moda"}
-    assert alim.telegram.token_env[-1] == "TELEGRAM_TOKEN" and gen.telegram.chat_id_env[-1] == "CHAT_ID"
+        "Tecnologia", "Electro", "Juguetes", "Moda", "Frescos", "Bebidas"}
+    assert gen.telegram.token_env[-1] == "TELEGRAM_TOKEN" and gen.telegram.chat_id_env[-1] == "CHAT_ID"
+    assert "notificados.json" in alim.state.legacy_paths
 
 
 def test_entry_scripts_point_to_their_config():
@@ -182,3 +193,76 @@ def test_rotation_resets_when_offers_end(make_cfg):
     list(scraper.iter_offers())
     assert [p for _, p in http.llamadas] == [1, 2, 5, 6]          # la 6 ya está bajo el umbral
     assert meta["cursors"]["Limpieza"] == 3 and scraper.meta_changed
+
+
+
+# ── Promociones dentro del scraper ──────────────────────────────────────────────────────────
+ATUN = {
+    "productId": "20145", "productName": "Filete de Atún en Agua BELL'S Lata 140g", "brand": "BELL'S",
+    "link": "/filete-de-atun-en-agua-bells-lata-140g/p",
+    "items": [{"itemId": "12200761", "images": [], "measurementUnit": "un", "sellers": [{
+        "sellerId": "1", "sellerName": "Plaza Vea", "sellerDefault": True,
+        "commertialOffer": {"Price": 4.6, "ListPrice": 4.8, "PriceWithoutDiscount": 4.8, "AvailableQuantity": 30,
+                            "teasers": [{"name": "#PAGAXLLEVAY#[30018201]24/10/26 DSCTO%:90 SUCUR:264",
+                                         "conditions": {"parameters": [
+                                             {"name": "SkuIdsList1", "value": "12200759,12200761"},
+                                             {"name": "SkuIdsList2", "value": "1164"}], "minimumQuantity": 1},
+                                         "effects": {"parameters": [
+                                             {"name": "PercentualDiscountSkusList1", "value": "0"},
+                                             {"name": "PercentualDiscountSkusList2", "value": "90"}]}}]}}]}],
+}
+CATALOGO_GALLETAS = {"1164": [{"productName": "Galletas Saladitas BELL'S Paquete 6un", "items": [{
+    "itemId": "1164", "sellers": [{"sellerId": "1", "commertialOffer": {"Price": 3.2, "AvailableQuantity": 9}}]}]}]}
+
+
+def test_combo_is_resolved_with_catalog_and_cached(make_cfg):
+    from tracker.scrapers import vtex
+
+    vtex._SKU_CACHE.clear()
+    paginas = {("limpieza", 1): {"products": [ATUN], "recordsFiltered": 1}}
+    cfg = make_cfg(copy.deepcopy(SCRAPER_CFG) | {"categories": SCRAPER_CFG["categories"][:1]}, min_discount_pct=15)
+    http = FakeHttp(paginas, CATALOGO_GALLETAS)
+    offer = list(PlazaVeaScraper(cfg, {}, http=http).iter_offers())[0]
+    combo = offer.promos[0]
+    assert combo.kind == "combo" and "Galletas Saladitas BELL'S Paquete 6un a S/ 0.32 (−90%)" in combo.label
+    assert combo.effective_pct == pytest.approx(36.9, abs=0.1)           # 2.88 / 7.80
+    assert offer.quantity.amount == pytest.approx(0.14)
+    # segunda corrida: el SKU sale de la caché (sin nueva consulta)
+    list(PlazaVeaScraper(cfg, {}, http=http).iter_offers())
+    assert http.consultas_sku == ["1164"]
+
+
+def test_combo_lookup_skipped_when_it_cannot_reach_threshold(make_cfg):
+    from tracker.scrapers import vtex
+
+    vtex._SKU_CACHE.clear()
+    poco = copy.deepcopy(ATUN)
+    poco["items"][0]["sellers"][0]["commertialOffer"]["teasers"][0]["effects"]["parameters"][1]["value"] = "10"
+    cfg = make_cfg(copy.deepcopy(SCRAPER_CFG) | {"categories": SCRAPER_CFG["categories"][:1]}, min_discount_pct=15)
+    http = FakeHttp({("limpieza", 1): {"products": [poco], "recordsFiltered": 1}}, CATALOGO_GALLETAS)
+    offer = list(PlazaVeaScraper(cfg, {}, http=http).iter_offers())[0]
+    assert http.consultas_sku == [] and offer.promos[0].effective_pct is None
+
+
+def test_adaptive_head_keeps_reading_until_two_empty_pages(make_cfg):
+    # páginas 1-3 con ofertas, 4-5 sin ofertas que califiquen → se detiene en la 5
+    extra = {"fixed_pages": 20, "tail_pages": 2, "rotating_pages": 0, "max_pages": 20,
+             "categories": SCRAPER_CFG["categories"][:1]}
+    cfg = make_cfg(copy.deepcopy(SCRAPER_CFG) | extra, min_discount_pct=49.5)
+    http = FakeHttp(_paginas_altas(10, descuento_bajo_desde=4))
+    list(PlazaVeaScraper(cfg, {}, http=http).iter_offers())
+    assert [p for _, p in http.llamadas] == [1, 2, 3, 4, 5]
+
+
+def test_sweep_deep_continues_through_empty_pages(make_cfg):
+    extra = {"fixed_pages": 2, "tail_pages": 1, "rotating_pages": 2, "max_pages": 8, "sweep_deep": True,
+             "categories": SCRAPER_CFG["categories"][:1]}
+    meta = {}
+    vistas = []
+    for _ in range(3):
+        cfg = make_cfg(copy.deepcopy(SCRAPER_CFG) | extra, min_discount_pct=49.5)
+        http = FakeHttp(_paginas_altas(10, descuento_bajo_desde=1))    # nada califica
+        list(PlazaVeaScraper(cfg, meta, http=http).iter_offers())
+        vistas.append([p for _, p in http.llamadas])
+    # la cabecera para en la 1; el barrido profundo sigue 2→3, 4→5, 6→7 aunque estén vacías
+    assert vistas == [[1, 2, 3], [1, 4, 5], [1, 6, 7]]

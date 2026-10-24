@@ -7,8 +7,8 @@ import threading
 
 import pytest
 
-from tracker.config import ConfigError, first_env, load_config
-from tracker.runner import GracefulExit, load_env_file, run_loop
+from tracker.core.config import ConfigError, first_env, load_config
+from tracker.core.runner import GracefulExit, load_env_file, run_loop
 
 BASE = """
 store: {id: tienda, name: Tienda}
@@ -157,7 +157,7 @@ def test_cli_rejects_tiny_interval(configs):
 
 
 def test_exclusive_lock_blocks_second_instance(tmp_path):
-    from tracker.state import exclusive_lock
+    from tracker.state.store import exclusive_lock
 
     ruta = tmp_path / "state" / "bot.json"
     with exclusive_lock(ruta) as primero:

@@ -8,11 +8,11 @@ from datetime import datetime, timedelta, timezone
 import pytest
 
 from tests.conftest import make_offer
-from tracker import formatter
-from tracker.config import ConfigError, OffersConfig, load_config
-from tracker.filters import is_official, rejection_reason
-from tracker.pricing import discount_pct, parse_price
-from tracker.state import StateStore
+from tracker.telegram import formatter
+from tracker.core.config import ConfigError, OffersConfig, load_config
+from tracker.core.filters import is_official, rejection_reason
+from tracker.core.pricing import discount_pct, parse_price
+from tracker.state.store import StateStore
 
 
 # ------------------------------------------------------------------ precios
@@ -122,7 +122,7 @@ def test_caption_escapes_html_and_fits():
     assert len(texto) <= 1024
     assert "&lt;Picante&gt; &amp; Co" in texto
     assert "#PlazaVea_Alimentos #Abarrotes" in texto
-    assert "Bajó más" in texto and "Con tarjeta" in texto
+    assert "Bajó más" in texto and "💳 Tarjeta: <b>S/ 10.00</b>" in texto
 
 
 def test_hashtag_strips_accents():

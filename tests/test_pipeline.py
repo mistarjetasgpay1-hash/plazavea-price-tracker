@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 from tests.conftest import make_offer
-from tracker.base import BaseScraper
-from tracker.pipeline import RunReport, collect_candidates, notify, update_health
-from tracker.state import StateStore
+from tracker.scrapers.base import BaseScraper
+from tracker.core.pipeline import RunReport, collect_candidates, notify, update_health
+from tracker.state.store import StateStore
 
 
 class FakeScraper(BaseScraper):
@@ -96,7 +96,7 @@ def test_health_alert_after_streak(make_cfg):
 
 
 def test_diversify_and_digest_per_group(make_cfg):
-    from tracker.pipeline import diversify
+    from tracker.core.pipeline import diversify
 
     cfg = make_cfg()
     cfg.telegram.max_individual_alerts = 3

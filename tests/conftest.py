@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from tracker.config import AppConfig, HttpConfig, OffersConfig, StateConfig, TelegramConfig
-from tracker.models import Offer
+from tracker.core.config import AppConfig, HttpConfig, OffersConfig, StateConfig, TelegramConfig
+from tracker.core.models import Offer
 
 FIXTURES = Path(__file__).parent
 
