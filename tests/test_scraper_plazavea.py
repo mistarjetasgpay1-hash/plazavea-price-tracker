@@ -123,4 +123,15 @@ def test_repo_config_is_valid():
     cfg = load_config(Path(__file__).parents[1] / "config.yaml", require_secrets=False)
     scraper = PlazaVeaScraper(cfg, {}, http=FakeHttp({}))
     assert scraper.allowed_seller_ids == {"1", "oechsle"}
-    assert len(scraper.categories) >= 10
+    assert len(scraper.categories) >= 30
+    assert {c.group for c in scraper.categories} >= {"Tecnologia", "Electro", "Juguetes", "Moda", "Alimentos"}
+    for c in scraper.categories:
+        assert c.group in cfg.telegram.groups, c.key
+
+
+def test_per_category_max_pages(make_cfg):
+    paginas = {("limpieza", p): {"products": [PRODUCTO_OFICIAL] * 3, "recordsFiltered": 300} for p in range(1, 10)}
+    extra = {"max_pages": 2, "categories": [{"key": "Limpieza", "path": "category-1/limpieza", "max_pages": 5}]}
+    scraper, http = _scraper(make_cfg, paginas, **extra)
+    list(scraper.iter_offers())
+    assert [p for _, p in http.llamadas] == [1, 2, 3, 4, 5]
