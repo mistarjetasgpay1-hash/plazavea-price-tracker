@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 import re
 import unicodedata
 from html import escape, unescape
@@ -12,6 +13,11 @@ from ..promotions.units import format_unit_price
 
 CAPTION_LIMIT = 1024
 MESSAGE_LIMIT = 4096
+
+
+def pct(valor: float) -> int:
+    """Porcentaje redondeado hacia abajo, igual que la web de Plaza Vea (14.6 % → 14 %): nunca exagera."""
+    return math.floor(valor + 1e-9)
 
 
 def money(valor: float) -> str:
@@ -57,17 +63,17 @@ def offer_caption(
 
     def construir(nombre: str) -> str:
         lineas = [
-            f"{emoji} <b>-{offer.headline_discount:.0f}%{_headline_suffix(offer)}</b> · {escape(nombre, quote=False)}",
+            f"{emoji} <b>-{pct(offer.headline_discount)}%{_headline_suffix(offer)}</b> · {escape(nombre, quote=False)}",
             f"🏷️ {marca} · Vendido por <b>{vendedor}</b>",
         ]
         if offer.price < offer.list_price:
             lineas.append(f"💰 Regular <s>{money(offer.list_price)}</s> → Online <b>{money(offer.price)}</b>"
-                          f" (−{offer.discount:.0f}%)")
+                          f" (−{pct(offer.discount)}%)")
         else:
             lineas.append(f"💰 Precio: <b>{money(offer.price)}</b>")
         if offer.card_price and offer.card_price < offer.price:
             lineas.append(f"💳 {escape(offer.card_label, quote=False)}: <b>{money(offer.card_price)}</b>"
-                          f" (−{discount_pct(offer.list_price, offer.card_price):.0f}%)")
+                          f" (−{pct(discount_pct(offer.list_price, offer.card_price))}%)")
         for promo in offer.promos[:3]:
             lineas.append(f"🎁 {escape(promo.label, quote=False)}")
         if offer.unit_price and offer.quantity:
@@ -130,7 +136,7 @@ def digest_message(
         if reason == "drop":
             extras += " 📉"
         linea = (
-            f"• <b>-{offer.headline_discount:.0f}%</b> "
+            f"• <b>-{pct(offer.headline_discount)}%</b> "
             f'<a href="{escape(offer.url, quote=True)}">{escape(offer.name[:70], quote=False)}</a>'
             f" — {money(offer.effective_price)}{extras}"
         )
