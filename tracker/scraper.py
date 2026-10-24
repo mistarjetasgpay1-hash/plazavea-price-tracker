@@ -30,6 +30,7 @@ class Category:
     group: str
     sellers: tuple[str, ...] | None = None   # subconjunto de facetas para esta categoría
     min_discount: float | None = None
+    max_pages: int | None = None             # tope propio de páginas (si no, el global)
 
 
 class PlazaVeaScraper(BaseScraper):
@@ -55,6 +56,7 @@ class PlazaVeaScraper(BaseScraper):
                 group=str(c.get("group") or c["key"]),
                 sellers=tuple(c["sellers"]) if c.get("sellers") else None,
                 min_discount=float(c["min_discount"]) if c.get("min_discount") is not None else None,
+                max_pages=int(c["max_pages"]) if c.get("max_pages") else None,
             )
             for c in categorias
         ]
@@ -136,7 +138,7 @@ class PlazaVeaScraper(BaseScraper):
         for cat in self.categories:
             umbral = cat.min_discount if cat.min_discount is not None else self.cfg.offers.min_discount_pct
             url = self._search_url(cat)
-            for pagina in range(1, self.max_pages + 1):
+            for pagina in range(1, (cat.max_pages or self.max_pages) + 1):
                 try:
                     data = self.http.get(
                         url,
