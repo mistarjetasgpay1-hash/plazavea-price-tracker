@@ -1,0 +1,42 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Bot Plaza Vea · GENERAL (tecnología, electro, juguetes, moda, hogar…)
+#  →  python run_general.py --loop 300
+#  Hereda todo de config.yaml; aquí solo lo propio de este bot.
+# ─────────────────────────────────────────────────────────────────────────────
+extends: config.yaml
+
+store:
+  label: General
+
+telegram:
+  # Usa TELEGRAM_TOKEN_GENERAL / CHAT_ID_GENERAL si existen; si no, el bot y chat comunes.
+  token_env: [TELEGRAM_TOKEN_GENERAL, TELEGRAM_TOKEN]
+  chat_id_env: [CHAT_ID_GENERAL, CHAT_ID]
+
+state:
+  path: state/plazavea_general.json
+
+scraper:
+  # 2 fijas + 2 rotativas por categoría para que la corrida entre holgada en 5 minutos.
+  fixed_pages: 2
+  rotating_pages: 2
+  max_pages: 10
+  categories:
+    - {key: Tecnologia,      path: category-1/tecnologia,               group: Tecnologia, max_pages: 40}
+    - {key: Electrohogar,    path: category-1/electrohogar,             group: Electro,    max_pages: 40}
+    - {key: Juguetes,        path: category-1/juguetes-y-juegos,        group: Juguetes,   max_pages: 40}
+    - {key: ModaMujer,       path: category-1/moda-mujer,               group: Moda,       max_pages: 40}
+    - {key: ModaHombre,      path: category-1/moda-hombre,              group: Moda,       max_pages: 40}
+    - {key: ModaInfantil,    path: category-1/moda-infantil,            group: Moda,       max_pages: 40}
+    - {key: Accesorios,      path: category-1/accesorios,               group: Moda,       max_pages: 40}
+    - {key: Zapatillas,      path: category-1/zapatillas,               group: Moda}
+    - {key: Zapatos,         path: category-1/zapatos,                  group: Moda}
+    - {key: Deportes,        path: category-1/deportes,                 group: Deportes}
+    - {key: Belleza,         path: category-1/belleza,                  group: Belleza}
+    - {key: Decohogar,       path: category-1/decohogar,                group: Hogar,      max_pages: 40}
+    - {key: Dormitorio,      path: category-1/dormitorio,               group: Hogar,      max_pages: 40}
+    - {key: Muebles,         path: category-1/muebles,                  group: Hogar}
+    - {key: Terraza,         path: category-1/terraza-y-aire-libre,     group: Hogar}
+    - {key: MejoramientoHogar, path: category-1/mejoramiento-del-hogar, group: Hogar}
+    - {key: Libreria,        path: category-1/libreria-y-oficina,       group: Libreria}
+    - {key: Automotriz,      path: category-1/automotriz,               group: Automotriz}

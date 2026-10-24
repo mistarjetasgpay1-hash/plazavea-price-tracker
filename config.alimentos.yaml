@@ -1,0 +1,39 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Bot Plaza Vea · ALIMENTOS y consumo diario  →  python run_alimentos.py --loop 300
+#  Hereda todo de config.yaml; aquí solo lo propio de este bot.
+# ─────────────────────────────────────────────────────────────────────────────
+extends: config.yaml
+
+store:
+  label: Alimentos
+
+telegram:
+  # Usa TELEGRAM_TOKEN_ALIMENTOS / CHAT_ID_ALIMENTOS si existen; si no, el bot y chat comunes.
+  token_env: [TELEGRAM_TOKEN_ALIMENTOS, TELEGRAM_TOKEN]
+  chat_id_env: [CHAT_ID_ALIMENTOS, CHAT_ID]
+
+state:
+  path: state/plazavea_alimentos.json
+
+scraper:
+  # Paginado por categoría (50 productos por página, ordenados por descuento):
+  fixed_pages: 3                    # las 3 primeras (mayores descuentos) en cada corrida
+  rotating_pages: 2                 # + 2 más profundas que avanzan corrida a corrida…
+  max_pages: 10                     # …hasta esta página (o antes, si el descuento cae bajo el umbral)
+  # path = departamento VTEX · group = grupo de alerta/hashtag
+  # Opcionales por categoría: sellers (restringe vendedores) · min_discount (umbral) · max_pages
+  categories:
+    - {key: Abarrotes,       path: category-1/abarrotes,                group: Alimentos}
+    - {key: Desayunos,       path: category-1/desayunos,                group: Alimentos}
+    - {key: Lacteos,         path: category-1/lacteos-y-huevos,         group: Alimentos}
+    - {key: QuesosFiambres,  path: category-1/quesos-y-fiambres,        group: Alimentos}
+    - {key: Carnes,          path: category-1/carnes-aves-y-pescados,   group: Alimentos}
+    - {key: FrutasVerduras,  path: category-1/frutas-y-verduras,        group: Alimentos}
+    - {key: Congelados,      path: category-1/congelados,               group: Alimentos}
+    - {key: Panaderia,       path: category-1/panaderia-y-pasteleria,   group: Alimentos}
+    - {key: Bebidas,         path: category-1/bebidas,                  group: Bebidas}
+    - {key: Licores,         path: category-1/vinos-licores-y-cervezas, group: Bebidas}
+    - {key: Limpieza,        path: category-1/limpieza,                 group: Limpieza}
+    - {key: CuidadoPersonal, path: category-1/cuidado-personal-y-salud, group: CuidadoPersonal}
+    - {key: BebeInfantil,    path: category-1/bebe-e-infantil,          group: BebeInfantil}
+    - {key: Mascotas,        path: category-1/mascotas,                 group: Mascotas}

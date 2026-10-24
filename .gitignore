@@ -8,3 +8,5 @@ venv/
 state/
 *.tmp
 *.corrupt
+# Despliegue en VPS
+logs/

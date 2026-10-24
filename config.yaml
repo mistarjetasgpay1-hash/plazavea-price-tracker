@@ -1,6 +1,9 @@
 # ─────────────────────────────────────────────────────────────────────────────
-#  Monitor de ofertas Plaza Vea — configuración
-#  Cambia umbrales o categorías aquí; no hace falta tocar el código.
+#  Plaza Vea — configuración COMÚN de los dos bots
+#    · config.alimentos.yaml → run_alimentos.py (consumo diario)
+#    · config.general.yaml   → run_general.py   (tecnología, moda, juguetes, electro…)
+#  Ambos heredan de este archivo (`extends`); lo que definan ahí tiene prioridad.
+#  Este archivo no se ejecuta solo.
 # ─────────────────────────────────────────────────────────────────────────────
 store:
   id: plazavea
@@ -8,8 +11,8 @@ store:
   hashtag_prefix: PlazaVea          # → #PlazaVea_Alimentos, #PlazaVea_Limpieza…
 
 telegram:
-  token_env: TELEGRAM_TOKEN         # nombre del secret con el token del bot
-  chat_id_env: CHAT_ID              # nombre del secret con el chat destino
+  token_env: TELEGRAM_TOKEN         # variable de entorno (.env en el VPS / Secret en GitHub)
+  chat_id_env: CHAT_ID
   min_interval_s: 3.2               # pausa entre mensajes (límite Telegram: ~20/min por grupo)
   max_individual_alerts: 15         # alertas con foto por corrida (mayor descuento primero)
   digest_max_items: 200             # el excedente va en resúmenes por grupo (hasta 30 ofertas por mensaje)
@@ -39,7 +42,7 @@ offers:
   exclude_keywords: []              # ej. ["muestra", "pack x 24"]
 
 state:
-  path: state/plazavea.json         # vive en la rama `state`, no en main
+  # path: lo define cada bot (historiales separados)
   ttl_days: 3                       # cada producto puede volver a avisarse a los 3 días
   renotify_drop_pct: 3              # …o antes, si su precio baja ≥3 % desde el último aviso
   legacy_path: notificados.json     # se migra una sola vez (formato antiguo)
@@ -48,55 +51,14 @@ http:
   timeout_s: 15
   retries: 3
   backoff_base_s: 2
-  delay_min_s: 0.6                  # pausa aleatoria entre peticiones a la tienda
-  delay_max_s: 1.4
+  delay_min_s: 0.5                  # pausa aleatoria entre peticiones a la tienda
+  delay_max_s: 1.2
 
 scraper:
   api_url: https://www.plazavea.com.pe/api/io/_v/api/intelligent-search/product_search
   site_url: https://www.plazavea.com.pe
   page_size: 50
-  # Paginado por categoría (50 productos por página, ordenados por descuento):
-  fixed_pages: 3                    # las 3 primeras (mayores descuentos) en cada corrida
-  rotating_pages: 3                 # + 3 más profundas que avanzan corrida a corrida…
-  max_pages: 10                     # …hasta esta página (o antes, si el descuento cae bajo el umbral)
   # Faceta "Vendido por" (filtro en servidor) → sellerId VTEX aceptado (validación en cliente).
   sellers:
     plazavea: "1"
     oechsle: oechsle
-  # path = departamento VTEX · group = grupo de alerta/hashtag
-  # Opcionales por categoría: sellers (restringe vendedores) · min_discount (umbral) · max_pages
-  categories:
-    # ── Consumo diario ──
-    - {key: Abarrotes,       path: category-1/abarrotes,                group: Alimentos}
-    - {key: Desayunos,       path: category-1/desayunos,                group: Alimentos}
-    - {key: Lacteos,         path: category-1/lacteos-y-huevos,         group: Alimentos}
-    - {key: QuesosFiambres,  path: category-1/quesos-y-fiambres,        group: Alimentos}
-    - {key: Carnes,          path: category-1/carnes-aves-y-pescados,   group: Alimentos}
-    - {key: FrutasVerduras,  path: category-1/frutas-y-verduras,        group: Alimentos}
-    - {key: Congelados,      path: category-1/congelados,               group: Alimentos}
-    - {key: Panaderia,       path: category-1/panaderia-y-pasteleria,   group: Alimentos}
-    - {key: Bebidas,         path: category-1/bebidas,                  group: Bebidas}
-    - {key: Licores,         path: category-1/vinos-licores-y-cervezas, group: Bebidas}
-    - {key: Limpieza,        path: category-1/limpieza,                 group: Limpieza}
-    - {key: CuidadoPersonal, path: category-1/cuidado-personal-y-salud, group: CuidadoPersonal}
-    - {key: BebeInfantil,    path: category-1/bebe-e-infantil,          group: BebeInfantil}
-    - {key: Mascotas,        path: category-1/mascotas,                 group: Mascotas}
-    # ── Tecnología, electro, juguetes, moda y hogar (Plaza Vea + Oechsle) ──
-    - {key: Tecnologia,      path: category-1/tecnologia,               group: Tecnologia, max_pages: 40}
-    - {key: Electrohogar,    path: category-1/electrohogar,             group: Electro,    max_pages: 40}
-    - {key: Juguetes,        path: category-1/juguetes-y-juegos,        group: Juguetes,   max_pages: 40}
-    - {key: ModaMujer,       path: category-1/moda-mujer,               group: Moda,       max_pages: 40}
-    - {key: ModaHombre,      path: category-1/moda-hombre,              group: Moda,       max_pages: 40}
-    - {key: ModaInfantil,    path: category-1/moda-infantil,            group: Moda,       max_pages: 40}
-    - {key: Accesorios,      path: category-1/accesorios,               group: Moda,       max_pages: 40}
-    - {key: Zapatillas,      path: category-1/zapatillas,               group: Moda}
-    - {key: Zapatos,         path: category-1/zapatos,                  group: Moda}
-    - {key: Deportes,        path: category-1/deportes,                 group: Deportes}
-    - {key: Belleza,         path: category-1/belleza,                  group: Belleza}
-    - {key: Decohogar,       path: category-1/decohogar,                group: Hogar,      max_pages: 40}
-    - {key: Dormitorio,      path: category-1/dormitorio,               group: Hogar,      max_pages: 40}
-    - {key: Muebles,         path: category-1/muebles,                  group: Hogar}
-    - {key: Terraza,         path: category-1/terraza-y-aire-libre,     group: Hogar}
-    - {key: MejoramientoHogar, path: category-1/mejoramiento-del-hogar, group: Hogar}
-    - {key: Libreria,        path: category-1/libreria-y-oficina,       group: Libreria}
-    - {key: Automotriz,      path: category-1/automotriz,               group: Automotriz}
