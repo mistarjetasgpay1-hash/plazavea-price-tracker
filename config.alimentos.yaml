@@ -30,6 +30,9 @@ offers:
 state:
   path: state/plazavea_alimentos.json
 
+healthcheck:
+  url_env: HEALTHCHECK_URL_ALIMENTOS  # opcional: URL de ping de healthchecks.io en .env
+
 scraper:
   # Paginado adaptativo (50 productos por página, ordenados por mayor descuento online):
   fixed_pages: 20                   # sigue leyendo mientras haya ofertas que califiquen…

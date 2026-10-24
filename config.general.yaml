@@ -16,6 +16,9 @@ telegram:
 state:
   path: state/plazavea_general.json
 
+healthcheck:
+  url_env: HEALTHCHECK_URL_GENERAL    # opcional: URL de ping de healthchecks.io en .env
+
 scraper:
   # 2 primeras páginas por categoría (se corta antes si no hay ofertas) + 2 rotativas por corrida,
   # para que la corrida entre holgada en 5 minutos.
