@@ -12,7 +12,7 @@ telegram:
   chat_id_env: CHAT_ID              # nombre del secret con el chat destino
   min_interval_s: 3.2               # pausa entre mensajes (límite Telegram: ~20/min por grupo)
   max_individual_alerts: 15         # alertas con foto por corrida (mayor descuento primero)
-  digest_max_items: 25              # el excedente se envía en UN mensaje resumen
+  digest_max_items: 200             # el excedente va en resúmenes por grupo (hasta 30 ofertas por mensaje)
   send_photos: true
   health_alert_after_failures: 3    # avisa si 3 corridas seguidas no obtienen datos
   # Grupo → emoji del mensaje y, opcional, thread_id si conviertes el chat en grupo con Temas.
@@ -55,8 +55,10 @@ scraper:
   api_url: https://www.plazavea.com.pe/api/io/_v/api/intelligent-search/product_search
   site_url: https://www.plazavea.com.pe
   page_size: 50
-  max_pages: 4                      # por categoría (50 productos c/u); se detiene antes si el descuento
-                                    # cae bajo el umbral, así que más páginas solo cuestan si hay ofertas
+  # Paginado por categoría (50 productos por página, ordenados por descuento):
+  fixed_pages: 3                    # las 3 primeras (mayores descuentos) en cada corrida
+  rotating_pages: 3                 # + 3 más profundas que avanzan corrida a corrida…
+  max_pages: 10                     # …hasta esta página (o antes, si el descuento cae bajo el umbral)
   # Faceta "Vendido por" (filtro en servidor) → sellerId VTEX aceptado (validación en cliente).
   sellers:
     plazavea: "1"
@@ -80,19 +82,19 @@ scraper:
     - {key: BebeInfantil,    path: category-1/bebe-e-infantil,          group: BebeInfantil}
     - {key: Mascotas,        path: category-1/mascotas,                 group: Mascotas}
     # ── Tecnología, electro, juguetes, moda y hogar (Plaza Vea + Oechsle) ──
-    - {key: Tecnologia,      path: category-1/tecnologia,               group: Tecnologia, max_pages: 6}
-    - {key: Electrohogar,    path: category-1/electrohogar,             group: Electro,    max_pages: 6}
-    - {key: Juguetes,        path: category-1/juguetes-y-juegos,        group: Juguetes,   max_pages: 8}
-    - {key: ModaMujer,       path: category-1/moda-mujer,               group: Moda,       max_pages: 8}
-    - {key: ModaHombre,      path: category-1/moda-hombre,              group: Moda,       max_pages: 6}
-    - {key: ModaInfantil,    path: category-1/moda-infantil,            group: Moda,       max_pages: 6}
-    - {key: Accesorios,      path: category-1/accesorios,               group: Moda,       max_pages: 6}
+    - {key: Tecnologia,      path: category-1/tecnologia,               group: Tecnologia, max_pages: 40}
+    - {key: Electrohogar,    path: category-1/electrohogar,             group: Electro,    max_pages: 40}
+    - {key: Juguetes,        path: category-1/juguetes-y-juegos,        group: Juguetes,   max_pages: 40}
+    - {key: ModaMujer,       path: category-1/moda-mujer,               group: Moda,       max_pages: 40}
+    - {key: ModaHombre,      path: category-1/moda-hombre,              group: Moda,       max_pages: 40}
+    - {key: ModaInfantil,    path: category-1/moda-infantil,            group: Moda,       max_pages: 40}
+    - {key: Accesorios,      path: category-1/accesorios,               group: Moda,       max_pages: 40}
     - {key: Zapatillas,      path: category-1/zapatillas,               group: Moda}
     - {key: Zapatos,         path: category-1/zapatos,                  group: Moda}
     - {key: Deportes,        path: category-1/deportes,                 group: Deportes}
     - {key: Belleza,         path: category-1/belleza,                  group: Belleza}
-    - {key: Decohogar,       path: category-1/decohogar,                group: Hogar,      max_pages: 6}
-    - {key: Dormitorio,      path: category-1/dormitorio,               group: Hogar,      max_pages: 6}
+    - {key: Decohogar,       path: category-1/decohogar,                group: Hogar,      max_pages: 40}
+    - {key: Dormitorio,      path: category-1/dormitorio,               group: Hogar,      max_pages: 40}
     - {key: Muebles,         path: category-1/muebles,                  group: Hogar}
     - {key: Terraza,         path: category-1/terraza-y-aire-libre,     group: Hogar}
     - {key: MejoramientoHogar, path: category-1/mejoramiento-del-hogar, group: Hogar}
