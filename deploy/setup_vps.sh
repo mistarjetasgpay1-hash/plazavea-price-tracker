@@ -52,8 +52,11 @@ mkdir -p state logs
 for bot in alimentos general; do
   archivo="state/plazavea_${bot}.json"
   [ -f "$archivo" ] && { echo "$archivo ya existe"; continue; }
-  # Migra el historial que dejó GitHub Actions para no reenviar ofertas ya avisadas.
-  if git fetch --quiet origin state 2>/dev/null && git show FETCH_HEAD:plazavea.json > "$archivo" 2>/dev/null; then
+  # Migra el historial que dejó GitHub Actions para no reenviar ofertas ya avisadas:
+  # primero el de corridas manuales de este bot (rama state-<bot>), si no, el antiguo (rama state).
+  if git fetch --quiet origin "state-${bot}" 2>/dev/null && git show "FETCH_HEAD:plazavea_${bot}.json" > "$archivo" 2>/dev/null; then
+    echo "$archivo migrado desde la rama state-${bot}"
+  elif git fetch --quiet origin state 2>/dev/null && git show FETCH_HEAD:plazavea.json > "$archivo" 2>/dev/null; then
     echo "$archivo migrado desde la rama state"
   else
     rm -f "$archivo"
