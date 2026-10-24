@@ -1,0 +1,9 @@
+[project]
+name = "plazavea-price-tracker"
+version = "2.0.0"
+description = "Monitor de ofertas con alertas por Telegram"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

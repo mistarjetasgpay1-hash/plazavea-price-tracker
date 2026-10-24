@@ -1,0 +1,69 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Monitor de ofertas Plaza Vea — configuración
+#  Cambia umbrales o categorías aquí; no hace falta tocar el código.
+# ─────────────────────────────────────────────────────────────────────────────
+store:
+  id: plazavea
+  name: Plaza Vea
+  hashtag_prefix: PlazaVea          # → #PlazaVea_Alimentos, #PlazaVea_Limpieza…
+
+telegram:
+  token_env: TELEGRAM_TOKEN         # nombre del secret con el token del bot
+  chat_id_env: CHAT_ID              # nombre del secret con el chat destino
+  min_interval_s: 3.2               # pausa entre mensajes (límite Telegram: ~20/min por grupo)
+  max_individual_alerts: 15         # alertas con foto por corrida (mayor descuento primero)
+  digest_max_items: 25              # el excedente se envía en UN mensaje resumen
+  send_photos: true
+  health_alert_after_failures: 3    # avisa si 3 corridas seguidas no obtienen datos
+  # Grupo → emoji del mensaje y, opcional, thread_id si conviertes el chat en grupo con Temas.
+  groups:
+    Alimentos:       {emoji: "🛒", thread_id: null}
+    Bebidas:         {emoji: "🥤", thread_id: null}
+    Limpieza:        {emoji: "🧽", thread_id: null}
+    CuidadoPersonal: {emoji: "🧴", thread_id: null}
+    BebeInfantil:    {emoji: "🍼", thread_id: null}
+    Mascotas:        {emoji: "🐾", thread_id: null}
+
+offers:
+  min_discount_pct: 49.5            # umbral global (cada categoría puede tener min_discount propio)
+  min_price: 1.0                    # ignora productos de menos de S/ 1
+  exclude_keywords: []              # ej. ["muestra", "pack x 24"]
+
+state:
+  path: state/plazavea.json         # vive en la rama `state`, no en main
+  ttl_days: 3                       # cada producto puede volver a avisarse a los 3 días
+  renotify_drop_pct: 3              # …o antes, si su precio baja ≥3 % desde el último aviso
+  legacy_path: notificados.json     # se migra una sola vez (formato antiguo)
+
+http:
+  timeout_s: 15
+  retries: 3
+  backoff_base_s: 2
+  delay_min_s: 1.0                  # pausa aleatoria entre peticiones a la tienda
+  delay_max_s: 2.5
+
+scraper:
+  api_url: https://www.plazavea.com.pe/api/io/_v/api/intelligent-search/product_search
+  site_url: https://www.plazavea.com.pe
+  page_size: 50
+  max_pages: 3                      # por categoría; se detiene antes si el descuento cae bajo el umbral
+  # Faceta "Vendido por" (filtro en servidor) → sellerId VTEX aceptado (validación en cliente).
+  sellers:
+    plazavea: "1"
+    oechsle: oechsle
+  # path = departamento VTEX · group = grupo de alerta/hashtag
+  # sellers (opcional) restringe la categoría · min_discount (opcional) cambia el umbral
+  categories:
+    - {key: Abarrotes,       path: category-1/abarrotes,                group: Alimentos}
+    - {key: Desayunos,       path: category-1/desayunos,                group: Alimentos}
+    - {key: Lacteos,         path: category-1/lacteos-y-huevos,         group: Alimentos}
+    - {key: QuesosFiambres,  path: category-1/quesos-y-fiambres,        group: Alimentos}
+    - {key: Carnes,          path: category-1/carnes-aves-y-pescados,   group: Alimentos}
+    - {key: FrutasVerduras,  path: category-1/frutas-y-verduras,        group: Alimentos}
+    - {key: Congelados,      path: category-1/congelados,               group: Alimentos}
+    - {key: Panaderia,       path: category-1/panaderia-y-pasteleria,   group: Alimentos}
+    - {key: Bebidas,         path: category-1/bebidas,                  group: Bebidas}
+    - {key: Limpieza,        path: category-1/limpieza,                 group: Limpieza}
+    - {key: CuidadoPersonal, path: category-1/cuidado-personal-y-salud, group: CuidadoPersonal}
+    - {key: BebeInfantil,    path: category-1/bebe-e-infantil,          group: BebeInfantil, sellers: [plazavea]}
+    - {key: Mascotas,        path: category-1/mascotas,                 group: Mascotas}
