@@ -6,7 +6,9 @@ Estructuras reales observadas en `commertialOffer.teasers` (24/10/2026):
     name "TARJETA OH - PVEA" / "Promo Oh-Pay"
     conditions.parameters: PaymentMethodId = "210" (Tarjeta Oh!) / "202,208,210" (Oh! Pay)
     effects.parameters:   PromotionalPriceTableItemsDiscount = "1.920"
-    → precio tarjeta = precio regular − descuento   (web: Regular 6.00 · Online 4.80 · Tarjeta 4.08)
+    → precio tarjeta = precio regular − descuento / unitMultiplier
+      (web: Regular 6.00 · Online 4.80 · Tarjeta 4.08; a granel, Pollo x kg con unitMultiplier 2.2:
+       8.90 − 7.26 / 2.2 = 5.60 x kg, igual que la web: el descuento es por unidad de venta)
 
 * Combo "paga X lleva Y":
     name "#PAGAXLLEVAY#[30018201]24/10/26 DSCTO%:22.22 SUCUR:264"
@@ -93,7 +95,7 @@ def promos_from_text(texto: str, price: float) -> list[Promo]:
 
 
 def analyze(commertial_offer: dict, product: dict, *, list_price: float, price: float,
-            own_sku: str = "") -> PromoAnalysis:
+            own_sku: str = "", unit_multiplier: float = 1.0) -> PromoAnalysis:
     """Extrae precio con tarjeta, combos y otras mecánicas de una oferta VTEX."""
     res = PromoAnalysis()
     for prop in product.get("properties") or []:
@@ -116,7 +118,8 @@ def analyze(commertial_offer: dict, product: dict, *, list_price: float, price: 
             except ValueError:
                 continue
             base = list_price if list_price > 0 else price
-            precio_tarjeta = round(base - rebaja, 2)
+            multiplicador = unit_multiplier if unit_multiplier and unit_multiplier > 0 else 1.0
+            precio_tarjeta = round(base - rebaja / multiplicador, 2)
             if 0 < precio_tarjeta < price and (res.card_price is None or precio_tarjeta < res.card_price):
                 ids = [i.strip() for i in condiciones["PaymentMethodId"].split(",")]
                 res.card_price = precio_tarjeta
