@@ -116,17 +116,35 @@ def test_invalid_category_seller(make_cfg):
         PlazaVeaScraper(cfg, {}, http=FakeHttp({}))
 
 
-def test_repo_config_is_valid():
-    from tracker.config import load_config
+def test_repo_configs_are_valid():
     from pathlib import Path
 
-    cfg = load_config(Path(__file__).parents[1] / "config.yaml", require_secrets=False)
-    scraper = PlazaVeaScraper(cfg, {}, http=FakeHttp({}))
-    assert scraper.allowed_seller_ids == {"1", "oechsle"}
-    assert len(scraper.categories) >= 30 and scraper.rotating_pages > 0
-    assert {c.group for c in scraper.categories} >= {"Tecnologia", "Electro", "Juguetes", "Moda", "Alimentos"}
-    for c in scraper.categories:
-        assert c.group in cfg.telegram.groups, c.key
+    from tracker.config import load_config
+
+    raiz = Path(__file__).parents[1]
+    alim = load_config(raiz / "config.alimentos.yaml", require_secrets=False)
+    gen = load_config(raiz / "config.general.yaml", require_secrets=False)
+    claves = {}
+    for cfg in (alim, gen):
+        scraper = PlazaVeaScraper(cfg, {}, http=FakeHttp({}))
+        assert scraper.allowed_seller_ids == {"1", "oechsle"} and scraper.rotating_pages > 0
+        for c in scraper.categories:
+            assert c.group in cfg.telegram.groups, c.key
+            assert c.path not in claves, f"{c.path} está en ambos bots"
+            claves[c.path] = cfg.label
+    assert alim.state.path != gen.state.path                       # historiales separados
+    assert {c.group for c in PlazaVeaScraper(alim, {}, http=FakeHttp({})).categories} >= {"Alimentos", "Limpieza"}
+    assert {c.group for c in PlazaVeaScraper(gen, {}, http=FakeHttp({})).categories} >= {
+        "Tecnologia", "Electro", "Juguetes", "Moda"}
+    assert alim.telegram.token_env[-1] == "TELEGRAM_TOKEN" and gen.telegram.chat_id_env[-1] == "CHAT_ID"
+
+
+def test_entry_scripts_point_to_their_config():
+    from pathlib import Path
+
+    raiz = Path(__file__).parents[1]
+    for bot in ("alimentos", "general"):
+        assert f"config.{bot}.yaml" in (raiz / f"run_{bot}.py").read_text()
 
 
 def _paginas_altas(n, descuento_bajo_desde=None):
