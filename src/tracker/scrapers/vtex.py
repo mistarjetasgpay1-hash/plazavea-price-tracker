@@ -185,7 +185,9 @@ class PlazaVeaScraper(BaseScraper):
                     min_discount=cat.min_discount,
                     promos=list(promo.promos),
                     quantity=parse_quantity(nombre, propiedades, item.get("measurementUnit")),
-                    tags=tuple(str(c) for c in (prod.get("categories") or [])[:1])
+                    # todas las rutas de categoría (principal y secundarias, p. ej.
+                    # "/O/dulces de halloween/") + colecciones de campaña de la tienda
+                    tags=tuple(str(c) for c in prod.get("categories") or [])
                     + tuple(str(c.get("name") or "") for c in prod.get("productClusters") or []),
                 )
                 self._resolve_combos(offer, promo.combos, self._threshold(cat))
