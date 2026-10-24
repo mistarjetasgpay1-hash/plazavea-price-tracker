@@ -7,14 +7,20 @@ Formato del archivo (JSON):
       "updated_at": "2026-10-24T15:00:00+00:00",
       "meta": {"failure_streak": 0, "cursors": {...}},
       "entries": {
-        "plazavea:45574": {"price": 1.9, "discount": 67.8,
+        "plazavea:45574": {"price": 1.9, "discount": 67.8, "best_price": 1.9,
                            "first_seen": "...", "notified_at": "..."}
       }
     }
 
+`price` es el precio que hizo calificar la oferta (online, o el de tarjeta si solo califica con
+tarjeta) y `best_price` el mejor precio disponible (online o con tarjeta) al avisar.
+
 Reglas:
   * Producto nuevo                         -> se notifica ("new").
   * Precio <= último avisado × (1 - drop%) -> se vuelve a notificar ("drop").
+  * Mejor precio <= el avisado × (1 - drop%) -> "drop" (p. ej. aparece un precio con Tarjeta Oh!
+    mucho menor en una oferta ya avisada por su precio online). Las entradas antiguas sin
+    `best_price` no usan esta regla hasta su próximo aviso: no hay ráfaga de falsos re-avisos.
   * Entradas con aviso más antiguo que el TTL se purgan al cargar, por lo que
     si la oferta sigue vigente se notifica otra vez como nueva.
 """
@@ -81,6 +87,7 @@ class Entry:
     discount: float
     first_seen: str
     notified_at: str
+    best_price: float | None = None
 
 
 class StateStore:
@@ -129,6 +136,7 @@ class StateStore:
                     discount=float(raw.get("discount") or 0.0),
                     first_seen=str(raw.get("first_seen") or raw.get("notified_at") or ""),
                     notified_at=str(raw.get("notified_at") or ""),
+                    best_price=raw.get("best_price"),
                 )
         except (OSError, ValueError, AttributeError, TypeError) as exc:
             respaldo = self.path.with_suffix(self.path.suffix + ".corrupt")
@@ -168,7 +176,7 @@ class StateStore:
                     continue
                 nuevas[key] = Entry(raw.get("price"), float(raw.get("discount") or 0.0),
                                     str(raw.get("first_seen") or raw.get("notified_at") or ahora),
-                                    str(raw.get("notified_at") or ahora))
+                                    str(raw.get("notified_at") or ahora), raw.get("best_price"))
         for key, entry in nuevas.items():
             actual = self.entries.get(key)
             if actual is None or (_parse_iso(entry.notified_at) or datetime.min.replace(tzinfo=timezone.utc)) > \
@@ -192,20 +200,32 @@ class StateStore:
             self.dirty = True
         return len(vencidas)
 
-    def check(self, key: str, price: float) -> str | None:
+    def _bajo(self, actual: float | None, anterior: float | None) -> bool:
+        return bool(anterior) and actual is not None and actual <= anterior * (1.0 - self.drop_ratio) + 1e-9
+
+    def check(self, key: str, price: float, best: float | None = None) -> str | None:
         """'new', 'drop' o None si no corresponde notificar."""
         entry = self.entries.get(key)
         if entry is None:
             return "new"
-        if entry.price and price <= entry.price * (1.0 - self.drop_ratio) + 1e-9:
+        if self._bajo(price, entry.price) or self._bajo(best, entry.best_price):
             return "drop"
         return None
+
+    def drop_reference(self, key: str, price: float, best: float | None = None) -> tuple[float | None, bool]:
+        """(precio avisado antes, ¿la bajada viene del mejor precio, p. ej. con tarjeta?)."""
+        entry = self.entries.get(key)
+        if entry is None:
+            return None, False
+        if not self._bajo(price, entry.price) and self._bajo(best, entry.best_price):
+            return entry.best_price, True
+        return entry.price, False
 
     def previous_price(self, key: str) -> float | None:
         entry = self.entries.get(key)
         return entry.price if entry else None
 
-    def mark_notified(self, key: str, price: float, discount: float) -> None:
+    def mark_notified(self, key: str, price: float, discount: float, best: float | None = None) -> None:
         ahora = _iso(self.clock())
         anterior = self.entries.get(key)
         self.entries[key] = Entry(
@@ -213,6 +233,7 @@ class StateStore:
             discount=round(discount, 2),
             first_seen=anterior.first_seen if anterior else ahora,
             notified_at=ahora,
+            best_price=round(best, 2) if best else None,
         )
         self.dirty = True
 
