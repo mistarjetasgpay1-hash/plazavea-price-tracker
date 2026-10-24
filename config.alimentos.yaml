@@ -17,10 +17,15 @@ telegram:
 
 offers:
   min_discount_pct: 15              # umbral por defecto; cada categoría fija el suyo abajo
-  # Fuera los dulces de Halloween: por nombre y por las colecciones de campaña de la tienda
-  # ("plazaVea | Halloween | 19.10 al 25.10", "Especial Halloween", "Hallowen"…).
+  # Fuera los dulces de Halloween y las golosinas (no son canasta básica):
+  #   · por nombre ("Halloween") y por categoría o colección de campaña de la tienda
+  #     ("/O/dulces de halloween/", "plazaVea | Halloween | 19.10 al 25.10", "Especial Halloween"…)
+  #   · subcategorías de golosinas: caramelos y chupetes, gomitas, marshmallows y otras
+  # Galletas, chocolates y snacks siguen entrando; para quitarlos, agrega su ruta aquí.
   exclude_keywords: [halloween, hallowen]
-  exclude_tags: ["hallowe{1,2}n"]
+  exclude_tags:
+    - "hallowe{1,2}n"
+    - "/Galletas y Golosinas/(Caramelos y Chupetes|Gomitas y Gomas de Mascar|Otras Golosinas)/"
 
 state:
   path: state/plazavea_alimentos.json

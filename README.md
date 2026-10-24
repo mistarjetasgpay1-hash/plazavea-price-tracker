@@ -30,7 +30,11 @@ Monitor de ofertas de **Plaza Vea** con alertas por Telegram: dos bots que corre
   - Descuento por cantidad mínima.
   - Textos como "3x2", "2 x S/ 10", "2do al 70%" o "Lleva … a S/ 9.90" en teasers o sellos del producto.
   - Una oferta también califica si el **ahorro real del combo** (sobre todo lo que compras) llega al umbral.
-- **Exclusiones** (`offers.exclude_keywords` y `offers.exclude_tags`): en canasta básica se descartan los dulces de Halloween, tanto por el nombre como por las colecciones de campaña de Plaza Vea ("plazaVea | Halloween | …", "Especial Halloween"). Se pueden agregar otras campañas o categorías con el mismo mecanismo.
+- **Exclusiones** (`offers.exclude_keywords` y `offers.exclude_tags`): en canasta básica se descartan:
+  - los dulces de Halloween, por el nombre, por la categoría ("/O/dulces de halloween/") o por las colecciones de campaña de Plaza Vea ("plazaVea | Halloween | …", "Especial Halloween");
+  - las golosinas: caramelos y chupetes, gomitas, marshmallows y otras.
+
+  Galletas, chocolates y snacks siguen entrando. Se pueden quitar otras campañas o categorías agregando su ruta o nombre (regex) en `config.alimentos.yaml`.
 - **Precio por kilo, litro o unidad:** se calcula desde el nombre ("Bolsa 950g", "Caja 9un x 24g", "Doypack 3L", "Paquete 24un") o desde la propiedad `Contenido Neto`. Los productos a granel ya vienen por kg.
 
 ## Historial (TTL + bajada de precio)
