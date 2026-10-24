@@ -123,15 +123,44 @@ def test_repo_config_is_valid():
     cfg = load_config(Path(__file__).parents[1] / "config.yaml", require_secrets=False)
     scraper = PlazaVeaScraper(cfg, {}, http=FakeHttp({}))
     assert scraper.allowed_seller_ids == {"1", "oechsle"}
-    assert len(scraper.categories) >= 30
+    assert len(scraper.categories) >= 30 and scraper.rotating_pages > 0
     assert {c.group for c in scraper.categories} >= {"Tecnologia", "Electro", "Juguetes", "Moda", "Alimentos"}
     for c in scraper.categories:
         assert c.group in cfg.telegram.groups, c.key
 
 
-def test_per_category_max_pages(make_cfg):
-    paginas = {("limpieza", p): {"products": [PRODUCTO_OFICIAL] * 3, "recordsFiltered": 300} for p in range(1, 10)}
-    extra = {"max_pages": 2, "categories": [{"key": "Limpieza", "path": "category-1/limpieza", "max_pages": 5}]}
-    scraper, http = _scraper(make_cfg, paginas, **extra)
+def _paginas_altas(n, descuento_bajo_desde=None):
+    paginas = {}
+    for p in range(1, n + 1):
+        prod = copy.deepcopy(PRODUCTO_OFICIAL)
+        if descuento_bajo_desde and p >= descuento_bajo_desde:
+            prod["items"][0]["sellers"][0]["commertialOffer"].update(Price=5.0)   # 15 %
+        paginas[("limpieza", p)] = {"products": [prod] * 3, "recordsFiltered": n * 3}
+    return paginas
+
+
+def test_rotating_window_advances_and_wraps(make_cfg):
+    extra = {"fixed_pages": 2, "rotating_pages": 2, "max_pages": 4,
+             "categories": [{"key": "Limpieza", "path": "category-1/limpieza", "max_pages": 7}]}
+    meta = {}
+    vistas = []
+    for _ in range(3):
+        cfg = make_cfg(copy.deepcopy(SCRAPER_CFG) | extra, min_discount_pct=49.5)
+        http = FakeHttp(_paginas_altas(9))
+        scraper = PlazaVeaScraper(cfg, meta, http=http)
+        list(scraper.iter_offers())
+        vistas.append([p for _, p in http.llamadas])
+    assert vistas == [[1, 2, 3, 4], [1, 2, 5, 6], [1, 2, 7, 3]]   # tope 7 → vuelve a la 3
+    assert meta["cursors"]["Limpieza"] == 4
+
+
+def test_rotation_resets_when_offers_end(make_cfg):
+    extra = {"fixed_pages": 2, "rotating_pages": 3, "max_pages": 20}
+    meta = {"cursors": {"Limpieza": 5}}
+    cfg = make_cfg(copy.deepcopy(SCRAPER_CFG) | extra | {"categories": SCRAPER_CFG["categories"][:1]},
+                   min_discount_pct=49.5)
+    http = FakeHttp(_paginas_altas(10, descuento_bajo_desde=6))
+    scraper = PlazaVeaScraper(cfg, meta, http=http)
     list(scraper.iter_offers())
-    assert [p for _, p in http.llamadas] == [1, 2, 3, 4, 5]
+    assert [p for _, p in http.llamadas] == [1, 2, 5, 6]          # la 6 ya está bajo el umbral
+    assert meta["cursors"]["Limpieza"] == 3 and scraper.meta_changed

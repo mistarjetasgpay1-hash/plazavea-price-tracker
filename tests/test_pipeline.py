@@ -93,3 +93,25 @@ def test_health_alert_after_streak(make_cfg):
     assert st.meta["failure_streak"] == 2 and len(tg.messages) == 1
     update_health(FakeScraper(cfg, [make_offer()]), cfg, st, tg)
     assert st.meta["failure_streak"] == 0 and "volvió" in tg.messages[-1]
+
+
+def test_diversify_and_digest_per_group(make_cfg):
+    from tracker.pipeline import diversify
+
+    cfg = make_cfg()
+    cfg.telegram.max_individual_alerts = 3
+    cfg.telegram.digest_max_items = 100
+    moda = [make_offer(product_id=f"m{i}", group="Moda", price=5 + i * 0.1) for i in range(40)]
+    tec = [make_offer(product_id=f"t{i}", group="Tecnologia", price=10 + i * 0.1) for i in range(5)]
+    st, rep, tg = _state(cfg), RunReport(), FakeNotifier()
+    scraper = FakeScraper(cfg, moda + tec)
+    cands = collect_candidates(scraper, cfg, st, rep)
+    elegidas = diversify(cands, 3)
+    assert [o.group for o, _ in elegidas] == ["Moda", "Tecnologia", "Moda"]
+
+    notify(cands, cfg=cfg, state=st, notifier=tg, scraper=scraper, report=rep)
+    assert rep.sent_individual == 3 and rep.sent_digest == 42 and rep.deferred == 0
+    # Moda: 38 restantes → 2 mensajes (máx. 30 por mensaje); Tecnología: 4 → 1 mensaje
+    assert rep.digest_messages == 3
+    assert sum("Más ofertas · Moda" in m for m in tg.messages) == 2
+    assert any("#Test_Tecnologia" in m for m in tg.messages)
