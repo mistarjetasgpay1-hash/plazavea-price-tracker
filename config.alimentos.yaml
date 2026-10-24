@@ -17,6 +17,10 @@ telegram:
 
 offers:
   min_discount_pct: 15              # umbral por defecto; cada categoría fija el suyo abajo
+  # Fuera los dulces de Halloween: por nombre y por las colecciones de campaña de la tienda
+  # ("plazaVea | Halloween | 19.10 al 25.10", "Especial Halloween", "Hallowen"…).
+  exclude_keywords: [halloween, hallowen]
+  exclude_tags: ["hallowe{1,2}n"]
 
 state:
   path: state/plazavea_alimentos.json
