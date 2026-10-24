@@ -148,6 +148,7 @@ def test_repo_configs_are_valid():
         "Tecnologia", "Electro", "Juguetes", "Moda", "Frescos", "Bebidas"}
     assert gen.telegram.token_env[-1] == "TELEGRAM_TOKEN" and gen.telegram.chat_id_env[-1] == "CHAT_ID"
     assert "notificados.json" in alim.state.legacy_paths
+    assert alim.offers.exclude_tags and "halloween" in alim.offers.exclude_keywords
 
 
 def test_entry_scripts_point_to_their_config():
@@ -266,3 +267,44 @@ def test_sweep_deep_continues_through_empty_pages(make_cfg):
         vistas.append([p for _, p in http.llamadas])
     # la cabecera para en la 1; el barrido profundo sigue 2→3, 4→5, 6→7 aunque estén vacías
     assert vistas == [[1, 2, 3], [1, 4, 5], [1, 6, 7]]
+
+
+
+# ── Exclusión de dulces de Halloween (bot de canasta) ───────────────────────────────────────
+def _producto(pid, nombre, colecciones=(), categoria="/Abarrotes/Galletas y Golosinas/Caramelos y Chupetes/"):
+    prod = copy.deepcopy(PRODUCTO_OFICIAL)
+    prod.update(productId=pid, productName=nombre, categories=[categoria],
+                productClusters=[{"id": str(i), "name": c} for i, c in enumerate(colecciones)])
+    return prod
+
+
+def test_halloween_candies_are_excluded_by_collection_or_name(make_cfg):
+    from tracker.core.filters import rejection_reason
+    from tracker.core.config import OffersConfig
+
+    reglas = OffersConfig(min_discount_pct=15, exclude_keywords=["halloween", "hallowen"],
+                          exclude_tags=["hallowe{1,2}n"])
+    productos = [
+        # nombres y colecciones reales (24/10/2026)
+        _producto("1", "Calabaza Momia Grande de Halloween con Dulces ARCOR Paquete"),
+        _producto("2", "Caramelos ARCOR Sangrientos Mora Bolsa 312g", ["plazaVea | Halloween | 19.10 al 25.10"]),
+        _producto("3", "Gomitas Dulces AMBROSOLI Ambrujos Dientes Bolsa", ["plazaVea | Hallowen | 31.10"]),
+        _producto("4", "Bombones de Chocolate CHIN CHIN Ojo de Zombie", ["plazaVea | Especial Halloween | 12.10 al 31.10"],
+                  "/Abarrotes/Chocolatería/Bombones/"),
+        _producto("5", "Caramelos de Limón FIESTA Bolsa 100un", ["Abarrotes - Promoción"]),   # normal: se queda
+        _producto("6", "Arroz Extra COSTEÑO Bolsa 5Kg", [], "/Abarrotes/Arroz/"),
+    ]
+    paginas = {("limpieza", 1): {"products": productos, "recordsFiltered": len(productos)}}
+    scraper, _ = _scraper(make_cfg, paginas, categories=SCRAPER_CFG["categories"][:1])
+    motivos = {o.product_id: rejection_reason(o, reglas) for o in scraper.iter_offers()}
+    assert motivos == {"1": "palabra_excluida", "2": "coleccion_excluida", "3": "coleccion_excluida",
+                       "4": "coleccion_excluida", "5": None, "6": None}
+
+
+def test_invalid_exclude_pattern_is_a_config_error(tmp_path):
+    from tracker.core.config import load_config
+
+    ruta = tmp_path / "c.yaml"
+    ruta.write_text("store: {id: t}\noffers: {exclude_tags: ['(sin cerrar']}\nscraper: {a: 1}\n")
+    with pytest.raises(ConfigError, match="exclude_tags"):
+        load_config(ruta, require_secrets=False)
