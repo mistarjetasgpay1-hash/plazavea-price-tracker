@@ -271,34 +271,61 @@ def test_sweep_deep_continues_through_empty_pages(make_cfg):
 
 
 # ── Exclusión de dulces de Halloween (bot de canasta) ───────────────────────────────────────
-def _producto(pid, nombre, colecciones=(), categoria="/Abarrotes/Galletas y Golosinas/Caramelos y Chupetes/"):
+CARAMELOS = "/Abarrotes/Galletas y Golosinas/Caramelos y Chupetes/"
+
+
+def _producto(pid, nombre, colecciones=(), categorias=(CARAMELOS,)):
     prod = copy.deepcopy(PRODUCTO_OFICIAL)
-    prod.update(productId=pid, productName=nombre, categories=[categoria],
+    prod.update(productId=pid, productName=nombre, categories=list(categorias),
                 productClusters=[{"id": str(i), "name": c} for i, c in enumerate(colecciones)])
     return prod
 
 
-def test_halloween_candies_are_excluded_by_collection_or_name(make_cfg):
-    from tracker.core.filters import rejection_reason
-    from tracker.core.config import OffersConfig
+def test_canasta_excludes_halloween_and_candy_but_keeps_staples(make_cfg):
+    from pathlib import Path
 
-    reglas = OffersConfig(min_discount_pct=15, exclude_keywords=["halloween", "hallowen"],
-                          exclude_tags=["hallowe{1,2}n"])
+    from tracker.core.config import load_config
+    from tracker.core.filters import rejection_reason
+
+    reglas = load_config(Path(__file__).parents[1] / "config.alimentos.yaml", require_secrets=False).offers
     productos = [
-        # nombres y colecciones reales (24/10/2026)
+        # nombres, categorías y colecciones reales (24/10/2026)
         _producto("1", "Calabaza Momia Grande de Halloween con Dulces ARCOR Paquete"),
         _producto("2", "Caramelos ARCOR Sangrientos Mora Bolsa 312g", ["plazaVea | Halloween | 19.10 al 25.10"]),
-        _producto("3", "Gomitas Dulces AMBROSOLI Ambrujos Dientes Bolsa", ["plazaVea | Hallowen | 31.10"]),
+        _producto("3", "Gomitas Dulces AMBROSOLI Ambrujos Dientes Bolsa", ["plazaVea | Hallowen | 31.10"],
+                  ["/Abarrotes/Galletas y Golosinas/Gomitas y Gomas de Mascar/"]),
         _producto("4", "Bombones de Chocolate CHIN CHIN Ojo de Zombie", ["plazaVea | Especial Halloween | 12.10 al 31.10"],
-                  "/Abarrotes/Chocolatería/Bombones/"),
-        _producto("5", "Caramelos de Limón FIESTA Bolsa 100un", ["Abarrotes - Promoción"]),   # normal: se queda
-        _producto("6", "Arroz Extra COSTEÑO Bolsa 5Kg", [], "/Abarrotes/Arroz/"),
+                  ["/Abarrotes/Chocolatería/Bombones/"]),
+        # sin colección de campaña, pero con categoría secundaria de Halloween
+        _producto("5", "Galletas COSTA Pack de Terror Bolsa 249.5g", ["Colección FOOD Express"],
+                  ["/Abarrotes/Galletas y Golosinas/Galletas Dulces/", "/Abarrotes/Galletas y Golosinas/",
+                   "/Abarrotes/", "/O/", "/O/dulces de halloween/"]),
+        # golosinas sin nada de Halloween: tampoco son canasta básica
+        _producto("6", "Caramelos ARCOR Chicha Morada Bolsa 360g", ["Makro | Arma Tu Fiesta"]),
+        _producto("7", "Marshmallows GUANDY Surtidos Bolsa 100g", [],
+                  ["/Abarrotes/Galletas y Golosinas/Otras Golosinas/"]),
+        # se quedan
+        _producto("8", "Arroz Extra COSTEÑO Bolsa 5Kg", [], ["/Abarrotes/Arroz/"]),
+        _producto("9", "Galletas Saladas FIELD Soda Paquete 6un", [],
+                  ["/Abarrotes/Galletas y Golosinas/Galletas Saladas/"]),
+        _producto("10", "Leche Condensada NESTLÉ sabor Caramelo Lata 393g", [],
+                  ["/Lácteos y Huevos/Leche/Leche Condensada/"]),
     ]
     paginas = {("limpieza", 1): {"products": productos, "recordsFiltered": len(productos)}}
     scraper, _ = _scraper(make_cfg, paginas, categories=SCRAPER_CFG["categories"][:1])
     motivos = {o.product_id: rejection_reason(o, reglas) for o in scraper.iter_offers()}
     assert motivos == {"1": "palabra_excluida", "2": "coleccion_excluida", "3": "coleccion_excluida",
-                       "4": "coleccion_excluida", "5": None, "6": None}
+                       "4": "coleccion_excluida", "5": "coleccion_excluida", "6": "coleccion_excluida",
+                       "7": "coleccion_excluida", "8": None, "9": None, "10": None}
+
+
+def test_general_bot_does_not_exclude_candy():
+    from pathlib import Path
+
+    from tracker.core.config import load_config
+
+    gen = load_config(Path(__file__).parents[1] / "config.general.yaml", require_secrets=False)
+    assert not gen.offers.exclude_tags and not gen.offers.exclude_keywords
 
 
 def test_invalid_exclude_pattern_is_a_config_error(tmp_path):
