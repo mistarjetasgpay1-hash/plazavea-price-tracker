@@ -136,9 +136,12 @@ def test_digest_respects_length():
 
 
 # ------------------------------------------------------------------ config
+SCRAPER_MIN = "scraper: {api_url: x, sellers: {s: \"1\"}, categories: [{key: K, path: p}]}\n"
+
+
 def test_config_requires_secrets(tmp_path, monkeypatch):
     ruta = tmp_path / "c.yaml"
-    ruta.write_text("store: {id: t}\ntelegram: {token_env: X_TOKEN, chat_id_env: X_CHAT}\nscraper: {a: 1}\n")
+    ruta.write_text("store: {id: t}\ntelegram: {token_env: X_TOKEN, chat_id_env: X_CHAT}\n" + SCRAPER_MIN)
     monkeypatch.delenv("X_TOKEN", raising=False)
     with pytest.raises(ConfigError):
         load_config(ruta)
@@ -149,6 +152,6 @@ def test_config_requires_secrets(tmp_path, monkeypatch):
 
 def test_config_rejects_unknown_keys(tmp_path):
     ruta = tmp_path / "c.yaml"
-    ruta.write_text("store: {id: t}\noffers: {min_discount: 10}\nscraper: {a: 1}\n")
+    ruta.write_text("store: {id: t}\noffers: {min_discount: 10}\n" + SCRAPER_MIN)
     with pytest.raises(ConfigError, match="min_discount"):
         load_config(ruta, require_secrets=False)

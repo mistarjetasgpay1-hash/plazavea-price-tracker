@@ -152,6 +152,41 @@ def test_parse_quantity_edge_cases():
     assert parse_quantity("Toallas Higiénicas NOSOTRAS Invisible", {"Unidades Por Paquete": "10"}) == Quantity(10, "un")
 
 
+@pytest.mark.parametrize("nombre, cantidad, unidad", [
+    # Nombres reales en stock (Abarrotes, 24/10/2026): el tamaño va ANTES del número de unidades
+    ("Filete de Atún REAL en Aceite de Girasol Lata 80g Paquete 3un", 0.24, "kg"),
+    ("Duo Pack Trozos de Atún CAMPOMAR Lata 150g x 2un", 0.3, "kg"),
+    ("Galleta CASINO Sabor Chocolate Empaque 43g Paquete 6un", 0.258, "kg"),
+    # Mismo formato en bebidas y lácteos
+    ("Gaseosa INCA KOLA Botella 500ml Paquete 6un", 3.0, "L"),
+    ("Leche Evaporada GLORIA Azul Lata 400g Paquete 6un", 2.4, "kg"),
+    ("Cerveza PILSEN Lata 355ml Six Pack", 2.13, "L"),
+    ("Papel Aluminio BELL'S 8m x 30cm Caja 1un", None, None),           # 1 unidad: sin pack
+])
+def test_parse_quantity_multipack_with_count_after_size(nombre, cantidad, unidad):
+    q = parse_quantity(nombre)
+    if cantidad is None:
+        assert q is None
+    else:
+        assert q is not None and q.unit == unidad and q.amount == pytest.approx(cantidad)
+
+
+@pytest.mark.parametrize("nombre", [
+    "Caldo MAGGI Cubito Sabor Gallina 100g Paquete 25un",      # real: 100 g es el total de los 25 cubitos
+    "Comino SIBARITA Sobre 21.6g 6un",                          # real: 6 sobres de 3.6 g (21.6 g en total)
+    "Pack Fideo Spaghetti DON VITTORIO 950g Bolsa 2un",         # real: tamaño sin envase delante
+    "Piqueo BELL'S Papas fritas 185Gr + Piqueo BELL'S Snax 230Gr Paquete 2Un",   # real: pack mixto
+    "Detergente ARIEL 4kg + Suavizante DOWNY 900ml",
+])
+def test_ambiguous_packs_have_no_unit_price(nombre):
+    assert parse_quantity(nombre) is None          # mejor sin precio unitario que uno falso
+
+
+def test_lone_plus_keeps_unit_price():
+    # real: el "+" es parte del nombre, no un pack de dos productos
+    assert parse_quantity("Tónico Capilar Anticaída+ PANTENE Biotinamina B3 Frasco 52ml") == Quantity(0.052, "L")
+
+
 def test_unit_price_format():
     assert format_unit_price(5.05, "kg") == "S/ 5.05 x kg"
     assert format_unit_price(1.2, "L") == "S/ 1.20 x litro"
@@ -224,3 +259,16 @@ def test_percentages_round_down_like_the_website():
                                     hashtag_prefix="PlazaVea")
     assert "Online <b>S/ 20.50</b> (−14%)" in texto and "<b>S/ 17.43</b> (−27%)" in texto
     assert "<b>-27% con Tarjeta Oh!</b>" in texto
+
+
+@pytest.mark.parametrize("nombre, ids, esperado", [
+    ("TARJETA OH - PVEA", ["210"], "Tarjeta Oh!"),
+    ("Promo Oh-Pay", ["208", "202"], "Tarjeta Oh!"),
+    ("Promo billetera", ["202"], "Oh! Pay"),
+    ("DSCTO JOHNSON VISA", ["2"], "Tarjeta"),        # "oh" dentro de otra palabra ya no cuenta
+    ("PROMO ALCOHOL BBVA", ["4"], "Tarjeta"),
+])
+def test_card_label_comes_from_payment_method(nombre, ids, esperado):
+    from tracker.promotions.processor import card_label
+
+    assert card_label(ids, nombre) == esperado
