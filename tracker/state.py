@@ -24,14 +24,39 @@ from __future__ import annotations
 import json
 import logging
 import os
+from contextlib import contextmanager
 from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, Iterator
 
 log = logging.getLogger(__name__)
 
 SCHEMA_VERSION = 2
+
+
+@contextmanager
+def exclusive_lock(path: Path) -> Iterator[bool]:
+    """Candado de archivo (`<historial>.lock`) para que dos instancias del mismo bot no corran
+    a la vez (p. ej. PM2 + una prueba manual). Devuelve False si otra instancia lo tiene.
+    El sistema operativo lo libera solo si el proceso muere."""
+    try:
+        import fcntl
+    except ImportError:  # Windows: sin candado
+        yield True
+        return
+    ruta = Path(str(path) + ".lock")
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    with open(ruta, "w") as fh:
+        try:
+            fcntl.flock(fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError:
+            yield False
+            return
+        try:
+            yield True
+        finally:
+            fcntl.flock(fh, fcntl.LOCK_UN)
 
 
 def utcnow() -> datetime:

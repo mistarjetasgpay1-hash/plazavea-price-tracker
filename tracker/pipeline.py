@@ -12,10 +12,17 @@ from .base import BaseScraper
 from .config import AppConfig
 from .filters import is_official, rejection_reason
 from .models import Offer
-from .state import StateStore
+from .state import StateStore, exclusive_lock
 from .telegram import TelegramNotifier
 
 log = logging.getLogger(__name__)
+
+
+def annotate(level: str, message: str) -> None:
+    """Anotación visible en GitHub Actions; en un servidor queda solo en el log."""
+    if os.getenv("GITHUB_ACTIONS") == "true":
+        print(f"::{level}::{message}")
+    (log.error if level == "error" else log.warning)(message)
 
 
 @dataclass
@@ -153,14 +160,14 @@ def update_health(
     if scraper.stats.total_failure:
         racha = racha_previa + 1
         state.set_meta("failure_streak", racha)
-        print(f"::warning::{cfg.store_name}: corrida sin datos ({racha} seguidas). {scraper.stats.errors[:2]}")
+        annotate("warning", f"{cfg.display_name}: corrida sin datos ({racha} seguidas). {scraper.stats.errors[:2]}")
         if umbral and racha == umbral:
             notifier.send_message(
-                formatter.health_message(cfg.store_name, racha, scraper.stats.errors), silent=True, preview=False
+                formatter.health_message(cfg.display_name, racha, scraper.stats.errors), silent=True, preview=False
             )
     else:
         if umbral and racha_previa >= umbral:
-            notifier.send_message(formatter.recovery_message(cfg.store_name), silent=True, preview=False)
+            notifier.send_message(formatter.recovery_message(cfg.display_name), silent=True, preview=False)
         state.set_meta("failure_streak", 0)
 
 
@@ -169,7 +176,7 @@ def write_summary(cfg: AppConfig, report: RunReport, scraper: BaseScraper, durac
     log.info(
         "Resumen %s | vistos=%s candidatos=%s enviados=%s+%s(resumen) pendientes=%s fallos_envio=%s | "
         "páginas ok=%s fallidas=%s modo=%s | %.1fs",
-        cfg.store_name, report.seen, report.candidates, report.sent_individual, report.sent_digest,
+        cfg.display_name, report.seen, report.candidates, report.sent_individual, report.sent_digest,
         report.deferred, report.failed_sends, scraper.stats.pages_ok, scraper.stats.pages_failed,
         scraper.stats.mode, duracion,
     )
@@ -183,7 +190,7 @@ def write_summary(cfg: AppConfig, report: RunReport, scraper: BaseScraper, durac
         for o, r in report.sent[:40]
     )
     md = (
-        f"## {cfg.store_name}\n\n"
+        f"## {cfg.display_name}\n\n"
         f"| Métrica | Valor |\n|---|---|\n"
         f"| Productos vistos | {report.seen} |\n| Candidatos | {report.candidates} |\n"
         f"| Enviados (foto) | {report.sent_individual} |\n"
@@ -202,6 +209,19 @@ def write_summary(cfg: AppConfig, report: RunReport, scraper: BaseScraper, durac
 
 
 def run(cfg: AppConfig, *, dry_run: bool = False, max_alerts: int | None = None) -> int:
+    """Una corrida completa. En modo real toma un candado sobre el historial: si otra
+    instancia del mismo bot está corriendo, esta corrida se omite (código 3)."""
+    if dry_run:  # la simulación no escribe historial: puede convivir con el bot en producción
+        return _run(cfg, dry_run=True, max_alerts=max_alerts)
+    with exclusive_lock(cfg.resolve(cfg.state.path)) as adquirido:
+        if not adquirido:
+            log.error("Otra instancia de %s está corriendo (candado en %s.lock); se omite esta corrida.",
+                      cfg.display_name, cfg.state.path)
+            return 3
+        return _run(cfg, dry_run=False, max_alerts=max_alerts)
+
+
+def _run(cfg: AppConfig, *, dry_run: bool, max_alerts: int | None) -> int:
     from .scraper import build_scraper  # módulo propio de cada repositorio
 
     inicio = time.monotonic()
@@ -235,7 +255,7 @@ def run(cfg: AppConfig, *, dry_run: bool = False, max_alerts: int | None = None)
         update_health(scraper, cfg, state, notifier)
         if report.failed_sends and not report.sent:
             # Token/chat inválido o Telegram caído: se marca el job en rojo para que GitHub avise.
-            print(f"::error::No se pudo enviar ninguna alerta a Telegram: {notifier.last_error}")
+            annotate("error", f"No se pudo enviar ninguna alerta a Telegram: {notifier.last_error}")
             codigo = 1
     finally:
         scraper.close()

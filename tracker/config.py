@@ -1,4 +1,8 @@
-"""Carga y validación de `config.yaml` + secretos desde variables de entorno."""
+"""Carga y validación de la configuración YAML + secretos desde variables de entorno.
+
+Un archivo puede heredar de otro con `extends: config.yaml`: los diccionarios se
+combinan en profundidad y las listas/valores del archivo hijo reemplazan a los del padre.
+"""
 
 from __future__ import annotations
 
@@ -14,13 +18,27 @@ class ConfigError(Exception):
     """Configuración inválida o secretos faltantes."""
 
 
+def first_env(names: str | list[str]) -> str:
+    """Primer valor no vacío entre una o varias variables de entorno."""
+    for nombre in [names] if isinstance(names, str) else list(names or []):
+        valor = os.getenv(str(nombre), "").strip()
+        if valor:
+            return valor
+    return ""
+
+
+def _names(names: str | list[str]) -> str:
+    return names if isinstance(names, str) else " o ".join(map(str, names))
+
+
 @dataclass
 class TelegramConfig:
-    token_env: str = "TELEGRAM_TOKEN"
-    chat_id_env: str = "CHAT_ID"
+    # Nombre(s) de la variable de entorno; con una lista se usa la primera que tenga valor.
+    token_env: str | list[str] = "TELEGRAM_TOKEN"
+    chat_id_env: str | list[str] = "CHAT_ID"
     min_interval_s: float = 3.2        # ~19 msg/min: bajo el límite de 20/min por grupo
     max_individual_alerts: int = 15    # alertas con foto por corrida
-    digest_max_items: int = 25         # el excedente va en un solo mensaje resumen
+    digest_max_items: int = 25         # el excedente va en resúmenes
     send_photos: bool = True
     health_alert_after_failures: int = 3
     groups: dict[str, dict[str, Any]] = field(default_factory=dict)
@@ -71,6 +89,11 @@ class AppConfig:
     http: HttpConfig
     scraper: dict[str, Any]
     base_dir: Path = Path(".")
+    label: str = ""            # nombre del bot (ej. "Alimentos"), para logs y avisos
+
+    @property
+    def display_name(self) -> str:
+        return f"{self.store_name} · {self.label}" if self.label else self.store_name
 
     def resolve(self, relative: str | None) -> Path | None:
         if not relative:
@@ -90,14 +113,37 @@ def _build(cls: type, data: dict[str, Any] | None, section: str):
     return cls(**data)
 
 
-def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
-    ruta = Path(path)
+def deep_merge(base: dict, override: dict) -> dict:
+    resultado = dict(base)
+    for clave, valor in override.items():
+        if isinstance(valor, dict) and isinstance(resultado.get(clave), dict):
+            resultado[clave] = deep_merge(resultado[clave], valor)
+        else:
+            resultado[clave] = valor
+    return resultado
+
+
+def read_yaml(ruta: Path, _cadena: tuple[Path, ...] = ()) -> dict[str, Any]:
+    ruta = ruta.resolve()
+    if ruta in _cadena:
+        raise ConfigError(f"Herencia circular en 'extends': {' → '.join(p.name for p in (*_cadena, ruta))}")
     if not ruta.exists():
         raise ConfigError(f"No existe el archivo de configuración: {ruta}")
     try:
         raw = yaml.safe_load(ruta.read_text(encoding="utf-8")) or {}
     except yaml.YAMLError as exc:
         raise ConfigError(f"YAML inválido en {ruta}: {exc}") from exc
+    if not isinstance(raw, dict):
+        raise ConfigError(f"{ruta.name} debe contener un diccionario YAML.")
+    padre = raw.pop("extends", None)
+    if padre:
+        raw = deep_merge(read_yaml(ruta.parent / str(padre), (*_cadena, ruta)), raw)
+    return raw
+
+
+def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
+    ruta = Path(path)
+    raw = read_yaml(ruta)
 
     store = raw.get("store") or {}
     if not store.get("id"):
@@ -115,6 +161,7 @@ def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
         http=_build(HttpConfig, raw.get("http"), "http"),
         scraper=raw["scraper"],
         base_dir=ruta.resolve().parent,
+        label=str(store.get("label") or ""),
     )
 
     if cfg.http.delay_min_s > cfg.http.delay_max_s:
@@ -122,11 +169,11 @@ def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
     if cfg.telegram.max_individual_alerts < 0 or cfg.telegram.digest_max_items < 0:
         raise ConfigError("Los límites de alertas no pueden ser negativos.")
 
-    cfg.telegram.token = os.getenv(cfg.telegram.token_env, "").strip()
-    cfg.telegram.chat_id = os.getenv(cfg.telegram.chat_id_env, "").strip()
+    cfg.telegram.token = first_env(cfg.telegram.token_env)
+    cfg.telegram.chat_id = first_env(cfg.telegram.chat_id_env)
     if require_secrets and not (cfg.telegram.token and cfg.telegram.chat_id):
         raise ConfigError(
-            f"Faltan los secretos {cfg.telegram.token_env} y/o {cfg.telegram.chat_id_env} "
-            "(configúralos en Settings → Secrets and variables → Actions)."
+            f"Faltan los secretos {_names(cfg.telegram.token_env)} y/o {_names(cfg.telegram.chat_id_env)} "
+            "(en GitHub: Settings → Secrets; en el VPS: archivo .env)."
         )
     return cfg
