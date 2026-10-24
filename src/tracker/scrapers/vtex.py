@@ -159,7 +159,12 @@ class PlazaVeaScraper(BaseScraper):
                 if lista <= 0:
                     lista = precio
 
-                promo = analyze(oferta, prod, list_price=lista, price=precio, own_sku=str(item.get("itemId") or ""))
+                try:
+                    multiplicador = float(item.get("unitMultiplier") or 1) or 1.0
+                except (TypeError, ValueError):
+                    multiplicador = 1.0
+                promo = analyze(oferta, prod, list_price=lista, price=precio,
+                                own_sku=str(item.get("itemId") or ""), unit_multiplier=multiplicador)
                 nombre = str(prod.get("productName") or "Producto sin nombre").strip()
                 offer = Offer(
                     store=self.store_id,
