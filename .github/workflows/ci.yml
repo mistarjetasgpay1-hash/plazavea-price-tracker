@@ -3,19 +3,24 @@ name: Tests
 on:
   push:
     branches: [main]
-    paths: ['tracker/**', 'tests/**', 'config.yaml', 'requirements*.txt', 'pyproject.toml']
+    paths: ['src/**', 'tests/**', 'config*.yaml', 'run_*.py', 'requirements*.txt', 'pyproject.toml']
   pull_request:
   workflow_dispatch:
 
 jobs:
   pytest:
+    name: pytest (Python ${{ matrix.python }})
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.11', '3.12']   # 3.11 = mínimo soportado en el VPS
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
+          python-version: ${{ matrix.python }}
           cache: pip
           cache-dependency-path: requirements*.txt
       - run: pip install --quiet --disable-pip-version-check -r requirements-dev.txt

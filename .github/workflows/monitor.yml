@@ -8,7 +8,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'tracker/**'
+      - 'src/**'
       - 'config*.yaml'
       - 'run_*.py'
       - 'requirements.txt'
@@ -72,8 +72,10 @@ jobs:
 
       - name: Ejecutar bot ${{ matrix.bot }}
         env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}      # bot general
           CHAT_ID: ${{ secrets.CHAT_ID }}
+          TELEGRAM_TOKEN3: ${{ secrets.TELEGRAM_TOKEN3 }}    # bot canasta básica (run_alimentos)
+          CHAT_ID3: ${{ secrets.CHAT_ID3 }}
         run: python run_${{ matrix.bot }}.py
 
       - name: Guardar historial (solo corrida real)
