@@ -23,6 +23,15 @@ telegram:
     CuidadoPersonal: {emoji: "🧴", thread_id: null}
     BebeInfantil:    {emoji: "🍼", thread_id: null}
     Mascotas:        {emoji: "🐾", thread_id: null}
+    Tecnologia:      {emoji: "💻", thread_id: null}
+    Electro:         {emoji: "🔌", thread_id: null}
+    Juguetes:        {emoji: "🧸", thread_id: null}
+    Moda:            {emoji: "👕", thread_id: null}
+    Deportes:        {emoji: "⚽", thread_id: null}
+    Belleza:         {emoji: "💄", thread_id: null}
+    Hogar:           {emoji: "🛋️", thread_id: null}
+    Libreria:        {emoji: "📚", thread_id: null}
+    Automotriz:      {emoji: "🚗", thread_id: null}
 
 offers:
   min_discount_pct: 49.5            # umbral global (cada categoría puede tener min_discount propio)
@@ -39,21 +48,23 @@ http:
   timeout_s: 15
   retries: 3
   backoff_base_s: 2
-  delay_min_s: 1.0                  # pausa aleatoria entre peticiones a la tienda
-  delay_max_s: 2.5
+  delay_min_s: 0.6                  # pausa aleatoria entre peticiones a la tienda
+  delay_max_s: 1.4
 
 scraper:
   api_url: https://www.plazavea.com.pe/api/io/_v/api/intelligent-search/product_search
   site_url: https://www.plazavea.com.pe
   page_size: 50
-  max_pages: 3                      # por categoría; se detiene antes si el descuento cae bajo el umbral
+  max_pages: 4                      # por categoría (50 productos c/u); se detiene antes si el descuento
+                                    # cae bajo el umbral, así que más páginas solo cuestan si hay ofertas
   # Faceta "Vendido por" (filtro en servidor) → sellerId VTEX aceptado (validación en cliente).
   sellers:
     plazavea: "1"
     oechsle: oechsle
   # path = departamento VTEX · group = grupo de alerta/hashtag
-  # sellers (opcional) restringe la categoría · min_discount (opcional) cambia el umbral
+  # Opcionales por categoría: sellers (restringe vendedores) · min_discount (umbral) · max_pages
   categories:
+    # ── Consumo diario ──
     - {key: Abarrotes,       path: category-1/abarrotes,                group: Alimentos}
     - {key: Desayunos,       path: category-1/desayunos,                group: Alimentos}
     - {key: Lacteos,         path: category-1/lacteos-y-huevos,         group: Alimentos}
@@ -63,10 +74,27 @@ scraper:
     - {key: Congelados,      path: category-1/congelados,               group: Alimentos}
     - {key: Panaderia,       path: category-1/panaderia-y-pasteleria,   group: Alimentos}
     - {key: Bebidas,         path: category-1/bebidas,                  group: Bebidas}
+    - {key: Licores,         path: category-1/vinos-licores-y-cervezas, group: Bebidas}
     - {key: Limpieza,        path: category-1/limpieza,                 group: Limpieza}
     - {key: CuidadoPersonal, path: category-1/cuidado-personal-y-salud, group: CuidadoPersonal}
-    # Bebé: solo subcategorías de consumo (sin juguetes ni muebles)
-    - {key: BebeAlimentacion, path: category-1/bebe-e-infantil/category-2/alimentacion-del-bebe,         group: BebeInfantil, sellers: [plazavea]}
-    - {key: BebeAseo,         path: category-1/bebe-e-infantil/category-2/cuidado-y-aseo-del-bebe,       group: BebeInfantil, sellers: [plazavea]}
-    - {key: Panales,          path: category-1/bebe-e-infantil/category-2/panales-y-toallitas-para-bebe, group: BebeInfantil, sellers: [plazavea]}
+    - {key: BebeInfantil,    path: category-1/bebe-e-infantil,          group: BebeInfantil}
     - {key: Mascotas,        path: category-1/mascotas,                 group: Mascotas}
+    # ── Tecnología, electro, juguetes, moda y hogar (Plaza Vea + Oechsle) ──
+    - {key: Tecnologia,      path: category-1/tecnologia,               group: Tecnologia, max_pages: 6}
+    - {key: Electrohogar,    path: category-1/electrohogar,             group: Electro,    max_pages: 6}
+    - {key: Juguetes,        path: category-1/juguetes-y-juegos,        group: Juguetes,   max_pages: 8}
+    - {key: ModaMujer,       path: category-1/moda-mujer,               group: Moda,       max_pages: 8}
+    - {key: ModaHombre,      path: category-1/moda-hombre,              group: Moda,       max_pages: 6}
+    - {key: ModaInfantil,    path: category-1/moda-infantil,            group: Moda,       max_pages: 6}
+    - {key: Accesorios,      path: category-1/accesorios,               group: Moda,       max_pages: 6}
+    - {key: Zapatillas,      path: category-1/zapatillas,               group: Moda}
+    - {key: Zapatos,         path: category-1/zapatos,                  group: Moda}
+    - {key: Deportes,        path: category-1/deportes,                 group: Deportes}
+    - {key: Belleza,         path: category-1/belleza,                  group: Belleza}
+    - {key: Decohogar,       path: category-1/decohogar,                group: Hogar,      max_pages: 6}
+    - {key: Dormitorio,      path: category-1/dormitorio,               group: Hogar,      max_pages: 6}
+    - {key: Muebles,         path: category-1/muebles,                  group: Hogar}
+    - {key: Terraza,         path: category-1/terraza-y-aire-libre,     group: Hogar}
+    - {key: MejoramientoHogar, path: category-1/mejoramiento-del-hogar, group: Hogar}
+    - {key: Libreria,        path: category-1/libreria-y-oficina,       group: Libreria}
+    - {key: Automotriz,      path: category-1/automotriz,               group: Automotriz}

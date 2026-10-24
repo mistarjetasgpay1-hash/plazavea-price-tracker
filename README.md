@@ -10,7 +10,9 @@ Monitor de ofertas de **Plaza Vea** con alertas por Telegram. Corre en GitHub Ac
 4. Consulta el historial (TTL) y envía a Telegram solo lo nuevo o lo que **bajó aún más de precio**.
 5. Guarda el historial en la rama `state` (fuera de `main`) y publica un resumen en la pestaña *Actions*.
 
-Categorías de consumo diario: abarrotes, desayunos, lácteos, quesos y fiambres, carnes, frutas y verduras, congelados, panadería, bebidas, limpieza, cuidado personal, bebé y mascotas. La API devuelve los productos ordenados por descuento, así que cada categoría se corta en cuanto los descuentos bajan del umbral.
+**Categorías:** consumo diario (abarrotes, desayunos, lácteos, quesos y fiambres, carnes, frutas y verduras, congelados, panadería, bebidas, licores, limpieza, cuidado personal, bebé, mascotas) y además tecnología, electrohogar, juguetes, moda (mujer, hombre, infantil), accesorios, zapatillas, zapatos, deportes, belleza, hogar (deco, dormitorio, muebles, terraza, mejoramiento), librería y automotriz. Siempre vendidos por Plaza Vea u Oechsle.
+
+La API devuelve los productos ordenados por descuento, así que cada categoría se corta en cuanto los descuentos bajan del umbral. Por eso se pueden poner topes de páginas altos (`max_pages`) sin gastar peticiones de más.
 
 ## Estructura
 
@@ -51,7 +53,7 @@ El TTL es por producto, así que no hay una avalancha de re-avisos el mismo día
 ## Telegram
 
 - Secrets (Settings → Secrets and variables → Actions): `TELEGRAM_TOKEN` y `CHAT_ID`.
-- Cada mensaje lleva hashtags por grupo y categoría (ej. `#PlazaVea_Alimentos #Abarrotes`). Puedes buscar o filtrar por ellos dentro del chat.
+- Cada mensaje lleva hashtags por grupo y categoría (ej. `#PlazaVea_Alimentos #Abarrotes`, `#PlazaVea_Moda #ModaMujer`). Puedes buscar o filtrar por ellos dentro del chat.
 - Máximo `max_individual_alerts` alertas con foto por corrida (las de mayor descuento). El resto va en **un** mensaje resumen; lo que no entra se envía en la siguiente corrida.
 - **Temas (opcional):** si conviertes el chat en un grupo con Temas, pon el `thread_id` de cada tema en `telegram.groups` y las alertas se separan solas.
 - Si 3 corridas seguidas no obtienen datos (bloqueo o cambio de la web), llega un aviso ⚠️ silencioso.
