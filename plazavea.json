@@ -1,0 +1,4117 @@
+{
+ "version": 2,
+ "updated_at": "2026-10-24T18:05:46+00:00",
+ "meta": {
+  "scraper": {
+   "cursors": {
+    "BebeInfantil": 4,
+    "Electrohogar": 4,
+    "Juguetes": 7,
+    "ModaMujer": 7,
+    "ModaHombre": 4,
+    "ModaInfantil": 7,
+    "Accesorios": 4,
+    "Zapatillas": 4,
+    "Zapatos": 4,
+    "Decohogar": 4,
+    "Dormitorio": 7,
+    "Muebles": 4
+   }
+  },
+  "failure_streak": 0
+ },
+ "entries": {
+  "plazavea:100003517": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100003540": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100003663": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100034873": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100035496": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100071301": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100077950": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100091355": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100091376": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100097989": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099535": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099560": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099567": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099572": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099595": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099608": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099613": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099614": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099619": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099627": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099658": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099660": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099687": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100099691": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100102900": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100103122": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100103175": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100103182": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100103188": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100105246": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100105312": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100105714": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100105716": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100106207": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100117649": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100117786": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100117801": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100117804": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100117808": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100147257": {
+   "price": 69.9,
+   "discount": 66.7,
+   "first_seen": "2026-10-24T18:05:46+00:00",
+   "notified_at": "2026-10-24T18:05:46+00:00"
+  },
+  "plazavea:100150755": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100160938": {
+   "price": 29.97,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:04:29+00:00",
+   "notified_at": "2026-10-24T18:04:29+00:00"
+  },
+  "plazavea:100163311": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100174606": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100174611": {
+   "price": 68.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100174653": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100174655": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100174907": {
+   "price": 69.95,
+   "discount": 68.06,
+   "first_seen": "2026-10-24T18:05:39+00:00",
+   "notified_at": "2026-10-24T18:05:39+00:00"
+  },
+  "plazavea:100177691": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100177764": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100177836": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100177837": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100178035": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100183964": {
+   "price": 49.0,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:43+00:00",
+   "notified_at": "2026-10-24T18:05:43+00:00"
+  },
+  "plazavea:100194671": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100353087": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100385622": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100385635": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100385773": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100385774": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100385792": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100385949": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100402359": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100402365": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100417077": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100469443": {
+   "price": 49.95,
+   "discount": 70.44,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100469461": {
+   "price": 49.95,
+   "discount": 70.44,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100469609": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100469624": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100469627": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100469638": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100473090": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100473110": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100473123": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100473128": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100473736": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100483983": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100483992": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100484198": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100484203": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100484204": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100484205": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100484218": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100488713": {
+   "price": 34.95,
+   "discount": 70.63,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100488727": {
+   "price": 49.95,
+   "discount": 70.44,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100488728": {
+   "price": 34.95,
+   "discount": 70.63,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100488733": {
+   "price": 49.95,
+   "discount": 68.58,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100488735": {
+   "price": 49.95,
+   "discount": 68.58,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100488738": {
+   "price": 19.95,
+   "discount": 71.48,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:100488742": {
+   "price": 49.95,
+   "discount": 70.44,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100488743": {
+   "price": 34.95,
+   "discount": 70.63,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100488746": {
+   "price": 53.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100488747": {
+   "price": 19.95,
+   "discount": 71.48,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:100492391": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100492397": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100512094": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100512125": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100520273": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100522135": {
+   "price": 26.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100522144": {
+   "price": 29.95,
+   "discount": 66.7,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:100522180": {
+   "price": 59.95,
+   "discount": 69.87,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100522181": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100522183": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100522188": {
+   "price": 59.95,
+   "discount": 69.87,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100522192": {
+   "price": 19.95,
+   "discount": 66.72,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:100522193": {
+   "price": 19.95,
+   "discount": 66.72,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:100522194": {
+   "price": 19.95,
+   "discount": 66.72,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:100522197": {
+   "price": 19.95,
+   "discount": 66.72,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:100534418": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555673": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555677": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555682": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555693": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555708": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555709": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555710": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555720": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555727": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100555811": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100590105": {
+   "price": 99.95,
+   "discount": 70.52,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100590122": {
+   "price": 99.95,
+   "discount": 70.52,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100590460": {
+   "price": 26.97,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100598396": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598397": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598399": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598401": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598405": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598411": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598414": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598415": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598416": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598569": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598572": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598574": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598576": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598577": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598579": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598580": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598581": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598582": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598583": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598584": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598585": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598586": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598587": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598588": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598590": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598591": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598592": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598631": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598633": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598634": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598635": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598640": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598642": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598645": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598647": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598649": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598651": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598653": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598654": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598655": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598786": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598788": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598798": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598800": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598802": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598951": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598956": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100598960": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100649477": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100655504": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100655521": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100655528": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100665377": {
+   "price": 1649.0,
+   "discount": 66.44,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:100665382": {
+   "price": 1649.0,
+   "discount": 66.44,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:100665422": {
+   "price": 1799.0,
+   "discount": 66.98,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:100665603": {
+   "price": 1799.0,
+   "discount": 66.98,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:100665611": {
+   "price": 1649.0,
+   "discount": 66.44,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:100665633": {
+   "price": 1799.0,
+   "discount": 66.98,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:100750288": {
+   "price": 1849.0,
+   "discount": 66.07,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:100787311": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100806619": {
+   "price": 4.9,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:100806645": {
+   "price": 4.9,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:100806648": {
+   "price": 4.9,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:100809381": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820695": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820696": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820698": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820700": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820701": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820703": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820713": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820721": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820722": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820727": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820728": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820734": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820736": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820738": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820748": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100820751": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100832265": {
+   "price": 4.4,
+   "discount": 51.65,
+   "first_seen": "2026-10-24T17:04:53+00:00",
+   "notified_at": "2026-10-24T17:04:53+00:00"
+  },
+  "plazavea:100847451": {
+   "price": 29.95,
+   "discount": 72.52,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:100847467": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100847471": {
+   "price": 49.95,
+   "discount": 72.09,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:100847473": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100847516": {
+   "price": 99.95,
+   "discount": 72.16,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:100847534": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100847536": {
+   "price": 89.95,
+   "discount": 70.89,
+   "first_seen": "2026-10-24T18:04:15+00:00",
+   "notified_at": "2026-10-24T18:04:15+00:00"
+  },
+  "plazavea:100847537": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100847547": {
+   "price": 89.95,
+   "discount": 70.89,
+   "first_seen": "2026-10-24T18:04:59+00:00",
+   "notified_at": "2026-10-24T18:04:59+00:00"
+  },
+  "plazavea:100848645": {
+   "price": 458.84,
+   "discount": 67.89,
+   "first_seen": "2026-10-24T18:05:39+00:00",
+   "notified_at": "2026-10-24T18:05:39+00:00"
+  },
+  "plazavea:100848664": {
+   "price": 523.04,
+   "discount": 71.09,
+   "first_seen": "2026-10-24T18:04:11+00:00",
+   "notified_at": "2026-10-24T18:04:11+00:00"
+  },
+  "plazavea:100848704": {
+   "price": 593.74,
+   "discount": 69.0,
+   "first_seen": "2026-10-24T18:05:39+00:00",
+   "notified_at": "2026-10-24T18:05:39+00:00"
+  },
+  "plazavea:100848751": {
+   "price": 217.7,
+   "discount": 69.55,
+   "first_seen": "2026-10-24T18:05:39+00:00",
+   "notified_at": "2026-10-24T18:05:39+00:00"
+  },
+  "plazavea:100848815": {
+   "price": 653.12,
+   "discount": 65.89,
+   "first_seen": "2026-10-24T18:05:39+00:00",
+   "notified_at": "2026-10-24T18:05:39+00:00"
+  },
+  "plazavea:100848912": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100848953": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100848969": {
+   "price": 29.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100849198": {
+   "price": 8.98,
+   "discount": 70.02,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100849210": {
+   "price": 23.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100849225": {
+   "price": 22.48,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100849244": {
+   "price": 16.48,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100849871": {
+   "price": 11.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100850037": {
+   "price": 41.97,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100850503": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100850624": {
+   "price": 32.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100850630": {
+   "price": 32.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100850639": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100850660": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100850671": {
+   "price": 32.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100850678": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100850682": {
+   "price": 28.48,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100850695": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100850711": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100850719": {
+   "price": 19.95,
+   "discount": 71.48,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:100851825": {
+   "price": 7.95,
+   "discount": 73.46,
+   "first_seen": "2026-10-24T17:35:58+00:00",
+   "notified_at": "2026-10-24T17:35:58+00:00"
+  },
+  "plazavea:100851843": {
+   "price": 7.95,
+   "discount": 73.46,
+   "first_seen": "2026-10-24T17:36:03+00:00",
+   "notified_at": "2026-10-24T17:36:03+00:00"
+  },
+  "plazavea:100852647": {
+   "price": 99.95,
+   "discount": 72.16,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:100863914": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100864938": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100877039": {
+   "price": 26.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100886013": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100886129": {
+   "price": 8.98,
+   "discount": 70.02,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100886303": {
+   "price": 11.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:100886306": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100891414": {
+   "price": 95.97,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100900186": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100916832": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100918625": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100918630": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100918739": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100919063": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100919219": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100919249": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100919271": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100919272": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100919333": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100919340": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100920167": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100920770": {
+   "price": 75.9,
+   "discount": 69.63,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:100921052": {
+   "price": 5.95,
+   "discount": 70.18,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:100930149": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100930160": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100948155": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100959434": {
+   "price": 9.9,
+   "discount": 66.89,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:100960802": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100960824": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100970965": {
+   "price": 29.9,
+   "discount": 69.8,
+   "first_seen": "2026-10-24T18:04:33+00:00",
+   "notified_at": "2026-10-24T18:04:33+00:00"
+  },
+  "plazavea:100971118": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100989509": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:100989569": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101039508": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101039553": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101042669": {
+   "price": 349.0,
+   "discount": 72.28,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101071688": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101071691": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101071692": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101078773": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101078791": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101078829": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101078873": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101078881": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101078884": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101078913": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101086452": {
+   "price": 29.9,
+   "discount": 66.76,
+   "first_seen": "2026-10-24T18:05:43+00:00",
+   "notified_at": "2026-10-24T18:05:43+00:00"
+  },
+  "plazavea:101094332": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101103004": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101116782": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101121127": {
+   "price": 9.9,
+   "discount": 66.89,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101122664": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101125182": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101131313": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101131374": {
+   "price": 4.9,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101131377": {
+   "price": 4.9,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101136231": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101145230": {
+   "price": 299.0,
+   "discount": 70.07,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101152667": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101152763": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101152939": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101152958": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101152961": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101153066": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101153282": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101153305": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101153442": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101153444": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101153716": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101153733": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101153972": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101154088": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101159695": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101159894": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101160481": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101160482": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101160485": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101160497": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101160619": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101173729": {
+   "price": 29.0,
+   "discount": 73.39,
+   "first_seen": "2026-10-24T17:36:06+00:00",
+   "notified_at": "2026-10-24T17:36:06+00:00"
+  },
+  "plazavea:101185545": {
+   "price": 8.98,
+   "discount": 70.02,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101195761": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101196567": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101204450": {
+   "price": 2699.0,
+   "discount": 66.67,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101204451": {
+   "price": 2999.0,
+   "discount": 65.92,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101204452": {
+   "price": 1999.0,
+   "discount": 70.6,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101204453": {
+   "price": 2149.0,
+   "discount": 65.88,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101204455": {
+   "price": 1749.0,
+   "discount": 69.84,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101204458": {
+   "price": 2699.0,
+   "discount": 66.67,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101204460": {
+   "price": 2699.0,
+   "discount": 66.67,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101204461": {
+   "price": 1999.0,
+   "discount": 70.6,
+   "first_seen": "2026-10-24T18:05:03+00:00",
+   "notified_at": "2026-10-24T18:05:03+00:00"
+  },
+  "plazavea:101204463": {
+   "price": 1749.0,
+   "discount": 69.84,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101204464": {
+   "price": 2149.0,
+   "discount": 65.88,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101204466": {
+   "price": 1749.0,
+   "discount": 68.76,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101205951": {
+   "price": 1999.0,
+   "discount": 70.6,
+   "first_seen": "2026-10-24T18:04:20+00:00",
+   "notified_at": "2026-10-24T18:04:20+00:00"
+  },
+  "plazavea:101205952": {
+   "price": 1749.0,
+   "discount": 68.76,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101205960": {
+   "price": 1749.0,
+   "discount": 69.84,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101205964": {
+   "price": 2149.0,
+   "discount": 65.88,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101205967": {
+   "price": 1749.0,
+   "discount": 68.76,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101206475": {
+   "price": 249.0,
+   "discount": 72.3,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101206579": {
+   "price": 122.97,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:101206591": {
+   "price": 71.97,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:04:54+00:00",
+   "notified_at": "2026-10-24T18:04:54+00:00"
+  },
+  "plazavea:101206609": {
+   "price": 29.95,
+   "discount": 66.7,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:101206614": {
+   "price": 99.0,
+   "discount": 71.63,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101206743": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206748": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206750": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206751": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206759": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206761": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206765": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206766": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206770": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206771": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206772": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206773": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206774": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206775": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206776": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206781": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101206799": {
+   "price": 59.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:36+00:00",
+   "notified_at": "2026-10-24T18:05:36+00:00"
+  },
+  "plazavea:101207690": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101208148": {
+   "price": 39.95,
+   "discount": 66.43,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101208365": {
+   "price": 9.95,
+   "discount": 66.78,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101209545": {
+   "price": 7.95,
+   "discount": 68.14,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101228791": {
+   "price": 5.38,
+   "discount": 70.03,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101228924": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:36+00:00",
+   "notified_at": "2026-10-24T18:05:36+00:00"
+  },
+  "plazavea:101228955": {
+   "price": 14.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:36+00:00",
+   "notified_at": "2026-10-24T18:05:36+00:00"
+  },
+  "plazavea:101231542": {
+   "price": 9.88,
+   "discount": 70.02,
+   "first_seen": "2026-10-24T18:04:25+00:00",
+   "notified_at": "2026-10-24T18:04:25+00:00"
+  },
+  "plazavea:101240168": {
+   "price": 14.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101240169": {
+   "price": 14.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101240278": {
+   "price": 23.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:101240300": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:36+00:00",
+   "notified_at": "2026-10-24T18:05:36+00:00"
+  },
+  "plazavea:101256050": {
+   "price": 4.9,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101275496": {
+   "price": 9.9,
+   "discount": 66.89,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101288134": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101332896": {
+   "price": 19.9,
+   "discount": 53.61,
+   "first_seen": "2026-10-24T18:04:45+00:00",
+   "notified_at": "2026-10-24T18:04:45+00:00"
+  },
+  "plazavea:101358568": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101358627": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101358654": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101358667": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101371305": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101373453": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101373456": {
+   "price": 149.0,
+   "discount": 72.86,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101389240": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101439449": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101442291": {
+   "price": 12.5,
+   "discount": 49.8,
+   "first_seen": "2026-10-24T17:05:08+00:00",
+   "notified_at": "2026-10-24T17:05:08+00:00"
+  },
+  "plazavea:101445916": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101452279": {
+   "price": 65.9,
+   "discount": 70.03,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101452281": {
+   "price": 11.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101452298": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:101452306": {
+   "price": 49.9,
+   "discount": 66.71,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:101452330": {
+   "price": 8.98,
+   "discount": 70.02,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101452373": {
+   "price": 29.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:101455009": {
+   "price": 129.0,
+   "discount": 67.67,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101455022": {
+   "price": 129.0,
+   "discount": 71.27,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101455023": {
+   "price": 89.0,
+   "discount": 71.2,
+   "first_seen": "2026-10-24T18:04:07+00:00",
+   "notified_at": "2026-10-24T18:04:07+00:00"
+  },
+  "plazavea:101455031": {
+   "price": 129.0,
+   "discount": 73.07,
+   "first_seen": "2026-10-24T17:36:47+00:00",
+   "notified_at": "2026-10-24T17:36:47+00:00"
+  },
+  "plazavea:101455032": {
+   "price": 89.0,
+   "discount": 68.1,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101455041": {
+   "price": 89.0,
+   "discount": 71.2,
+   "first_seen": "2026-10-24T18:04:50+00:00",
+   "notified_at": "2026-10-24T18:04:50+00:00"
+  },
+  "plazavea:101455050": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101455051": {
+   "price": 129.0,
+   "discount": 73.07,
+   "first_seen": "2026-10-24T17:36:24+00:00",
+   "notified_at": "2026-10-24T17:36:24+00:00"
+  },
+  "plazavea:101455073": {
+   "price": 79.0,
+   "discount": 68.27,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101455080": {
+   "price": 99.0,
+   "discount": 66.89,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101455085": {
+   "price": 129.0,
+   "discount": 67.67,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101455093": {
+   "price": 129.0,
+   "discount": 73.07,
+   "first_seen": "2026-10-24T17:36:38+00:00",
+   "notified_at": "2026-10-24T17:36:38+00:00"
+  },
+  "plazavea:101455094": {
+   "price": 79.0,
+   "discount": 68.27,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101455096": {
+   "price": 89.0,
+   "discount": 72.95,
+   "first_seen": "2026-10-24T17:36:51+00:00",
+   "notified_at": "2026-10-24T17:36:51+00:00"
+  },
+  "plazavea:101455098": {
+   "price": 129.0,
+   "discount": 71.27,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101455101": {
+   "price": 129.0,
+   "discount": 67.67,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101455111": {
+   "price": 129.0,
+   "discount": 73.07,
+   "first_seen": "2026-10-24T17:36:42+00:00",
+   "notified_at": "2026-10-24T17:36:42+00:00"
+  },
+  "plazavea:101455115": {
+   "price": 99.0,
+   "discount": 71.63,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101455117": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101455126": {
+   "price": 79.0,
+   "discount": 68.27,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101455137": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101455140": {
+   "price": 129.0,
+   "discount": 73.07,
+   "first_seen": "2026-10-24T17:36:29+00:00",
+   "notified_at": "2026-10-24T17:36:29+00:00"
+  },
+  "plazavea:101455142": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101455152": {
+   "price": 79.0,
+   "discount": 70.63,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101455155": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101455158": {
+   "price": 129.0,
+   "discount": 73.07,
+   "first_seen": "2026-10-24T17:36:33+00:00",
+   "notified_at": "2026-10-24T17:36:33+00:00"
+  },
+  "plazavea:101455162": {
+   "price": 89.0,
+   "discount": 71.2,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101455167": {
+   "price": 129.0,
+   "discount": 73.07,
+   "first_seen": "2026-10-24T17:36:20+00:00",
+   "notified_at": "2026-10-24T17:36:20+00:00"
+  },
+  "plazavea:101455173": {
+   "price": 79.0,
+   "discount": 69.5,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101455176": {
+   "price": 79.0,
+   "discount": 70.63,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101455178": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101455180": {
+   "price": 99.0,
+   "discount": 66.89,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101455293": {
+   "price": 269.0,
+   "discount": 69.74,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101455606": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101455611": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101455616": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101464078": {
+   "price": 399.0,
+   "discount": 73.38,
+   "first_seen": "2026-10-24T17:36:11+00:00",
+   "notified_at": "2026-10-24T17:36:11+00:00"
+  },
+  "plazavea:101469835": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101474298": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101474303": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101489996": {
+   "price": 47.9,
+   "discount": 70.04,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101490086": {
+   "price": 47.9,
+   "discount": 70.04,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101495468": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101521383": {
+   "price": 109.0,
+   "discount": 69.64,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101521560": {
+   "price": 109.0,
+   "discount": 69.64,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101521572": {
+   "price": 19.9,
+   "discount": 66.81,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:101521625": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101521637": {
+   "price": 19.9,
+   "discount": 66.81,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:101521665": {
+   "price": 19.9,
+   "discount": 66.81,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:101521797": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101521807": {
+   "price": 149.0,
+   "discount": 70.14,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101521822": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101521840": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101521843": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101521954": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101522042": {
+   "price": 149.0,
+   "discount": 72.86,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101522106": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101522111": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101522125": {
+   "price": 7.95,
+   "discount": 73.46,
+   "first_seen": "2026-10-24T17:35:54+00:00",
+   "notified_at": "2026-10-24T17:35:54+00:00"
+  },
+  "plazavea:101535425": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101535496": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101535499": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101535815": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101537649": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101548260": {
+   "price": 49.0,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:04:38+00:00",
+   "notified_at": "2026-10-24T18:04:38+00:00"
+  },
+  "plazavea:101556696": {
+   "price": 12.9,
+   "discount": 67.67,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:101556701": {
+   "price": 12.9,
+   "discount": 67.67,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:101556713": {
+   "price": 12.9,
+   "discount": 67.67,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:101558634": {
+   "price": 9.9,
+   "discount": 66.89,
+   "first_seen": "2026-10-24T18:05:18+00:00",
+   "notified_at": "2026-10-24T18:05:18+00:00"
+  },
+  "plazavea:101563527": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101570849": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101570861": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101571352": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101571356": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101571522": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101571560": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101579559": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101579568": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101579571": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101579618": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101579623": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101579700": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101579703": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101584020": {
+   "price": 13.48,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101584331": {
+   "price": 14.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101586535": {
+   "price": 14.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:101602414": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101613235": {
+   "price": 299.0,
+   "discount": 70.07,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101613951": {
+   "price": 29.99,
+   "discount": 69.99,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101614076": {
+   "price": 38.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101614210": {
+   "price": 29.99,
+   "discount": 69.99,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101614211": {
+   "price": 35.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101615597": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101629195": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101660098": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101661915": {
+   "price": 14.99,
+   "discount": 69.99,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:101677003": {
+   "price": 299.0,
+   "discount": 70.07,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101677192": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101677222": {
+   "price": 299.0,
+   "discount": 70.07,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101677236": {
+   "price": 299.0,
+   "discount": 70.07,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101677279": {
+   "price": 299.0,
+   "discount": 70.07,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101677321": {
+   "price": 299.0,
+   "discount": 70.07,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101677372": {
+   "price": 299.0,
+   "discount": 72.79,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101677412": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101677414": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101677457": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101677495": {
+   "price": 299.0,
+   "discount": 70.07,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101692294": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101694702": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101695420": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101707543": {
+   "price": 174.9,
+   "discount": 50.01,
+   "first_seen": "2026-10-24T17:05:03+00:00",
+   "notified_at": "2026-10-24T17:05:03+00:00"
+  },
+  "plazavea:101712408": {
+   "price": 8.9,
+   "discount": 55.28,
+   "first_seen": "2026-10-24T17:04:40+00:00",
+   "notified_at": "2026-10-24T17:04:40+00:00"
+  },
+  "plazavea:101723298": {
+   "price": 8.98,
+   "discount": 70.02,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101723751": {
+   "price": 119.0,
+   "discount": 65.9,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101725960": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101739610": {
+   "price": 14.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:101744211": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101770725": {
+   "price": 69.0,
+   "discount": 68.49,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101770729": {
+   "price": 79.0,
+   "discount": 68.27,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:101783747": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101800243": {
+   "price": 11.9,
+   "discount": 60.2,
+   "first_seen": "2026-10-24T17:04:35+00:00",
+   "notified_at": "2026-10-24T17:04:35+00:00"
+  },
+  "plazavea:101804831": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101815963": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101840698": {
+   "price": 9.99,
+   "discount": 49.8,
+   "first_seen": "2026-10-24T17:05:12+00:00",
+   "notified_at": "2026-10-24T17:05:12+00:00"
+  },
+  "plazavea:101849547": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101849723": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101849749": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101849750": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101850019": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101850126": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101852064": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101853068": {
+   "price": 3199.0,
+   "discount": 73.34,
+   "first_seen": "2026-10-24T17:36:15+00:00",
+   "notified_at": "2026-10-24T17:36:15+00:00"
+  },
+  "plazavea:101853099": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101853120": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101856463": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101856883": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101856884": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101856885": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101856886": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101856887": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101903444": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101907561": {
+   "price": 12.88,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:36+00:00",
+   "notified_at": "2026-10-24T18:05:36+00:00"
+  },
+  "plazavea:101907569": {
+   "price": 12.88,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:08+00:00",
+   "notified_at": "2026-10-24T18:05:08+00:00"
+  },
+  "plazavea:101907574": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:36+00:00",
+   "notified_at": "2026-10-24T18:05:36+00:00"
+  },
+  "plazavea:101908424": {
+   "price": 224.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:15+00:00",
+   "notified_at": "2026-10-24T18:05:15+00:00"
+  },
+  "plazavea:101945803": {
+   "price": 9.9,
+   "discount": 66.89,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101954283": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101971479": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101971621": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101971654": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101971941": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101971958": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101972003": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101973266": {
+   "price": 4.9,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101973267": {
+   "price": 4.9,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101973269": {
+   "price": 4.9,
+   "discount": 67.11,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:101975138": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101979545": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101979887": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101979934": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:101997567": {
+   "price": 1909.0,
+   "discount": 72.72,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:101997570": {
+   "price": 2009.0,
+   "discount": 71.7,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:102000751": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102088647": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102088712": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102088750": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102088791": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102088800": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102088876": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102102289": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102141601": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102141691": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102141814": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102142752": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102142937": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102143027": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102172778": {
+   "price": 499.0,
+   "discount": 66.71,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:102172940": {
+   "price": 249.0,
+   "discount": 68.84,
+   "first_seen": "2026-10-24T18:05:33+00:00",
+   "notified_at": "2026-10-24T18:05:33+00:00"
+  },
+  "plazavea:102173291": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102173860": {
+   "price": 1809.0,
+   "discount": 73.78,
+   "first_seen": "2026-10-24T17:35:49+00:00",
+   "notified_at": "2026-10-24T17:35:49+00:00"
+  },
+  "plazavea:102174276": {
+   "price": 53.9,
+   "discount": 70.04,
+   "first_seen": "2026-10-24T18:05:11+00:00",
+   "notified_at": "2026-10-24T18:05:11+00:00"
+  },
+  "plazavea:102175624": {
+   "price": 56.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102175778": {
+   "price": 23.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102191577": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102256746": {
+   "price": 6.5,
+   "discount": 49.61,
+   "first_seen": "2026-10-24T17:05:37+00:00",
+   "notified_at": "2026-10-24T17:05:37+00:00"
+  },
+  "plazavea:102256747": {
+   "price": 6.5,
+   "discount": 49.61,
+   "first_seen": "2026-10-24T17:05:40+00:00",
+   "notified_at": "2026-10-24T17:05:40+00:00"
+  },
+  "plazavea:102256748": {
+   "price": 6.5,
+   "discount": 49.61,
+   "first_seen": "2026-10-24T17:05:32+00:00",
+   "notified_at": "2026-10-24T17:05:32+00:00"
+  },
+  "plazavea:102256749": {
+   "price": 6.5,
+   "discount": 49.61,
+   "first_seen": "2026-10-24T17:05:27+00:00",
+   "notified_at": "2026-10-24T17:05:27+00:00"
+  },
+  "plazavea:102271133": {
+   "price": 53.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102271134": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102271135": {
+   "price": 56.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102271138": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102271195": {
+   "price": 56.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102271266": {
+   "price": 53.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102271282": {
+   "price": 56.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102271299": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102271908": {
+   "price": 29.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102272733": {
+   "price": 29.95,
+   "discount": 69.75,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102273130": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102273713": {
+   "price": 29.95,
+   "discount": 69.75,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102278393": {
+   "price": 26.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102278914": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102279162": {
+   "price": 26.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102279258": {
+   "price": 11.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102280389": {
+   "price": 32.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102281728": {
+   "price": 44.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102281877": {
+   "price": 50.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102282664": {
+   "price": 29.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102283389": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102287995": {
+   "price": 26.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102290060": {
+   "price": 19.9,
+   "discount": 71.55,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:102292763": {
+   "price": 19.9,
+   "discount": 71.55,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:102294778": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102295005": {
+   "price": 69.95,
+   "discount": 68.06,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:102295006": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102295007": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102295949": {
+   "price": 69.95,
+   "discount": 68.06,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:102296001": {
+   "price": 20.7,
+   "discount": 70.0,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102299013": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102306969": {
+   "price": 21.6,
+   "discount": 53.04,
+   "first_seen": "2026-10-24T17:04:44+00:00",
+   "notified_at": "2026-10-24T17:04:44+00:00"
+  },
+  "plazavea:102318153": {
+   "price": 11.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102341457": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102363688": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102363697": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102363708": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102363741": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102363772": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102363778": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102363909": {
+   "price": 14.9,
+   "discount": 66.82,
+   "first_seen": "2026-10-24T18:05:29+00:00",
+   "notified_at": "2026-10-24T18:05:29+00:00"
+  },
+  "plazavea:102363995": {
+   "price": 24.9,
+   "discount": 68.84,
+   "first_seen": "2026-10-24T18:05:25+00:00",
+   "notified_at": "2026-10-24T18:05:25+00:00"
+  },
+  "plazavea:102364032": {
+   "price": 9.9,
+   "discount": 71.63,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:102364033": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102364070": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102364072": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102373306": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102373313": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102373314": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102377431": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102378833": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102397034": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102412719": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:102412815": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102412825": {
+   "price": 14.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102412833": {
+   "price": 17.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102412834": {
+   "price": 23.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102412838": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:102412850": {
+   "price": 20.98,
+   "discount": 70.01,
+   "first_seen": "2026-10-24T18:05:22+00:00",
+   "notified_at": "2026-10-24T18:05:22+00:00"
+  },
+  "plazavea:16745": {
+   "price": 4.4,
+   "discount": 51.65,
+   "first_seen": "2026-10-24T17:04:49+00:00",
+   "notified_at": "2026-10-24T17:04:49+00:00"
+  },
+  "plazavea:29622": {
+   "price": 11.0,
+   "discount": 49.77,
+   "first_seen": "2026-10-24T17:05:17+00:00",
+   "notified_at": "2026-10-24T17:05:17+00:00"
+  },
+  "plazavea:4335": {
+   "price": 1.0,
+   "discount": 49.75,
+   "first_seen": "2026-10-24T17:05:23+00:00",
+   "notified_at": "2026-10-24T17:05:23+00:00"
+  },
+  "plazavea:45574": {
+   "price": 1.9,
+   "discount": 67.8,
+   "first_seen": "2026-10-24T17:04:29+00:00",
+   "notified_at": "2026-10-24T17:04:29+00:00"
+  },
+  "plazavea:51175": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:51177": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:51178": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:51479": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:51484": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:51531": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:51538": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:51559": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:51621": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:51626": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:58307": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:58501": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:58890": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:60000": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:60156": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:60160": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:60357": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:63345": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:64380": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:65207": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:65387": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:65426": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:65606": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:66789": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:74357": {
+   "price": 42.9,
+   "discount": 54.6,
+   "first_seen": "2026-10-24T18:04:42+00:00",
+   "notified_at": "2026-10-24T18:04:42+00:00"
+  },
+  "plazavea:99926953": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:99927604": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:99928081": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:99928187": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:99928189": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:99928876": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:99928970": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:99928972": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:99930597": {
+   "price": 7.9,
+   "discount": 50.31,
+   "first_seen": "2026-10-24T17:04:58+00:00",
+   "notified_at": "2026-10-24T17:04:58+00:00"
+  },
+  "plazavea:99950218": {
+   "price": 12.9,
+   "discount": 71.27,
+   "first_seen": "2026-10-24T17:36:55+00:00",
+   "notified_at": "2026-10-24T17:36:55+00:00"
+  },
+  "plazavea:99966139": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  },
+  "plazavea:99983109": {
+   "price": null,
+   "discount": 0.0,
+   "first_seen": "2026-10-24T17:03:27+00:00",
+   "notified_at": "2026-10-24T17:03:27+00:00"
+  }
+ }
+}
