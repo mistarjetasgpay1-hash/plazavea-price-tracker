@@ -166,3 +166,36 @@ def test_exclusive_lock_blocks_second_instance(tmp_path):
             assert not segundo
     with exclusive_lock(ruta) as de_nuevo:
         assert de_nuevo
+
+
+def test_loop_keeps_last_valid_config_when_a_category_breaks(configs):
+    # Un error al editar las categorías en caliente ya no rompe cada ciclo: se usa la última config válida.
+    vistos = []
+
+    def corrida(cfg, dry_run, max_alerts):
+        vistos.append(cfg.scraper["categories"][0]["path"])
+        (configs / "hijo.yaml").write_text(HIJO.replace("path: p", "pth: p"))
+
+    run_loop(configs / "hijo.yaml", interval=300, stop_event=FakeEvent(), run_once=corrida,
+             monotonic=Reloj(), max_cycles=2, install_signals=False)
+    assert vistos == ["p", "p"]
+
+
+def test_env_file_strips_inline_comments(tmp_path, monkeypatch):
+    env = tmp_path / ".env"
+    env.write_text('TOKEN_X=123:ABC  # bot general\nCHAT_X="-100 # no es comentario"  # sí lo es\nURL_X=https://h/x#frag\n')
+    for var in ("TOKEN_X", "CHAT_X", "URL_X"):
+        monkeypatch.delenv(var, raising=False)
+    assert load_env_file(env) == 3
+    assert os.environ["TOKEN_X"] == "123:ABC"
+    assert os.environ["CHAT_X"] == "-100 # no es comentario"
+    assert os.environ["URL_X"] == "https://h/x#frag"          # "#" sin espacio antes no es comentario
+
+
+def test_local_config_is_ignored_by_git_and_used_by_the_scripts():
+    from pathlib import Path
+
+    raiz = Path(__file__).parents[1]
+    assert "config.*.local.yaml" in (raiz / ".gitignore").read_text()
+    for bot in ("alimentos", "general"):
+        assert f"config.{bot}.local.yaml" in (raiz / f"run_{bot}.py").read_text()

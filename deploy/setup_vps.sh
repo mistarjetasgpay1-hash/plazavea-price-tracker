@@ -26,7 +26,21 @@ if ! command -v pm2 >/dev/null; then
 fi
 
 paso "Código"
-git pull --ff-only 2>/dev/null || echo "(sin git pull: hay cambios locales o no hay remoto)"
+if git remote get-url origin >/dev/null 2>&1; then
+  if ! git pull --ff-only; then
+    echo
+    echo "✖ No se pudo actualizar desde GitHub. Archivos modificados en este VPS:"
+    git status --short
+    echo
+    echo "  Guarda tus ajustes en config.alimentos.local.yaml / config.general.local.yaml"
+    echo "  (empiezan con 'extends: config.alimentos.yaml' y no se suben a GitHub), descarta"
+    echo "  los cambios con:  git checkout -- <archivo>  y vuelve a ejecutar este script."
+    echo "  Los bots siguen corriendo con la versión anterior."
+    exit 1
+  fi
+else
+  echo "(sin remoto git: se usa el código tal como está)"
+fi
 
 paso "Entorno virtual y dependencias"
 [ -d .venv ] || python3 -m venv .venv
@@ -87,7 +101,7 @@ Listo: plazavea-alimentos y plazavea-general corren cada 5 minutos.
 
   pm2 status                    estado
   pm2 logs plazavea-general     logs en vivo
-  pm2 restart all               reiniciar (tras editar config*.yaml o .env)
+  pm2 restart all               reiniciar (tras editar .env; los config*.yaml se recargan solos)
 
 Para que arranquen solos si el VPS se reinicia, ejecuta UNA vez:
   pm2 startup        (y copia/pega el comando sudo que te muestre)

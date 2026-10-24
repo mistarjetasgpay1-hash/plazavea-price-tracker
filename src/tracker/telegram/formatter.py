@@ -57,6 +57,7 @@ def offer_caption(
     store_name: str,
     hashtag_prefix: str,
     emoji: str = "🔥",
+    drop_via_card: bool = False,
 ) -> str:
     marca = escape(offer.brand or "Sin marca", quote=False)
     vendedor = escape(offer.seller_name, quote=False)
@@ -82,7 +83,11 @@ def offer_caption(
         if offer.note:
             lineas.append(f"ℹ️ {escape(offer.note, quote=False)}")
         if reason == "drop" and previous_price:
-            lineas.append(f"📉 <b>¡Bajó más!</b> Antes avisado a {money(previous_price)}")
+            if drop_via_card and offer.card_price:
+                lineas.append(f"📉 <b>¡Bajó más!</b> Con {escape(offer.card_label, quote=False)} ahora "
+                              f"{money(offer.card_price)} · antes avisado a {money(previous_price)}")
+            else:
+                lineas.append(f"📉 <b>¡Bajó más!</b> Antes avisado a {money(previous_price)}")
         if offer.stock is not None and 0 < offer.stock < 9999:
             lineas.append(f"📦 Stock: {offer.stock} unid.")
         lineas.append(f'🔗 <a href="{escape(offer.url, quote=True)}">Ver en {escape(store_name)}</a>')
@@ -162,3 +167,20 @@ def health_message(store_name: str, streak: int, errors: list[str]) -> str:
 
 def recovery_message(store_name: str) -> str:
     return f"✅ <b>{escape(store_name)}</b>: el monitoreo volvió a obtener datos."
+
+
+def category_health_message(store_name: str, categories: list[str], streak: int,
+                            paths: dict[str, str] | None = None) -> str:
+    rutas = paths or {}
+    detalle = "\n".join(f"• {escape(c)}" + (f" (<code>{escape(rutas[c])}</code>)" if c in rutas else "")
+                        for c in categories[:15])
+    return (
+        f"⚠️ <b>{escape(store_name)}: {len(categories)} categoría(s) sin productos en las últimas {streak} corridas</b>\n"
+        "Puede que Plaza Vea haya cambiado la ruta o el filtro de vendedor (revisa <code>path</code> "
+        "en el config) o que esa sección no responda.\n\n"
+        f"{detalle}"
+    )
+
+
+def category_recovery_message(store_name: str, categories: list[str]) -> str:
+    return f"✅ <b>{escape(store_name)}</b>: volvieron a responder: {escape(', '.join(categories[:15]))}."

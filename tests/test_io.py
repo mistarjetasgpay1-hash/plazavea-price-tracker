@@ -111,3 +111,40 @@ def test_http_invalid_json_is_treated_as_block():
     c = _client([Resp(200, None, text="<html>captcha</html>")])
     with pytest.raises(BlockedError):
         c.get("https://x", expect="json")
+
+
+def test_telegram_pauses_on_long_429_and_skips_the_rest():
+    s = FakeSession([Resp(429, {"parameters": {"retry_after": 900}})])
+    tg = TelegramNotifier("T", "C", min_interval_s=0, session=s)
+    assert not tg.send_offer("cap", photo_url="https://img", photo_loader=lambda: b"\xff\xd8")
+    assert not tg.send_message("otro mensaje")
+    assert len(s.llamadas) == 1 and not tg.available and "900" in tg.last_error
+
+
+def test_telegram_wait_budget_per_run():
+    s = FakeSession([Resp(429, {"parameters": {"retry_after": 25}})] * 4)
+    tg = TelegramNotifier("T", "C", min_interval_s=0, session=s, wait_budget_s=60)
+    assert not tg.send_message("x")
+    assert len(s.llamadas) == 3 and tg.paused                # 25 + 25 caben; el 3er 429 supera los 60 s
+
+
+def test_telegram_5xx_sets_last_error():
+    s = FakeSession([Resp(502, {"description": "Bad Gateway"})] * 4)
+    tg = TelegramNotifier("T", "C", min_interval_s=0, session=s)
+    assert not tg.send_message("x") and "502" in tg.last_error
+
+
+def test_healthcheck_ping(monkeypatch):
+    from tracker.core import healthcheck
+
+    llamadas = []
+
+    class R:
+        ok = True
+        status_code = 200
+
+    monkeypatch.setattr(healthcheck.requests, "post", lambda url, data, timeout: llamadas.append(url) or R())
+    assert healthcheck.ping("https://hc-ping.com/uuid/", ok=True, body="resumen")
+    assert healthcheck.ping("https://hc-ping.com/uuid", ok=False)
+    assert not healthcheck.ping("", ok=True)
+    assert llamadas == ["https://hc-ping.com/uuid", "https://hc-ping.com/uuid/fail"]

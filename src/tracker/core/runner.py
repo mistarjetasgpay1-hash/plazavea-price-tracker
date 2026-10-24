@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 import signal
 import threading
 import time
@@ -31,6 +32,15 @@ class GracefulExit(BaseException):
     `except Exception` intermedio (red, Telegram) la capture."""
 
 
+def _valor_env(crudo: str) -> str:
+    """Valor de una línea .env: quita comillas y los comentarios al final ("TOKEN=123:ABC  # bot")."""
+    crudo = crudo.strip()
+    if crudo[:1] in ("'", '"'):
+        cierre = crudo.find(crudo[0], 1)
+        return crudo[1:cierre] if cierre > 0 else crudo[1:]
+    return re.split(r"\s+#", crudo, maxsplit=1)[0].strip()
+
+
 def load_env_file(path: str | Path) -> int:
     """Carga KEY=VALUE de un archivo .env sin pisar variables ya definidas. Devuelve cuántas cargó."""
     ruta = Path(path)
@@ -42,9 +52,7 @@ def load_env_file(path: str | Path) -> int:
         if not linea or linea.startswith("#") or "=" not in linea:
             continue
         clave, _, valor = linea.removeprefix("export ").partition("=")
-        clave, valor = clave.strip(), valor.strip()
-        if len(valor) >= 2 and valor[0] == valor[-1] and valor[0] in "'\"":
-            valor = valor[1:-1]
+        clave, valor = clave.strip(), _valor_env(valor)
         if clave and clave not in os.environ:
             os.environ[clave] = valor
             cargadas += 1

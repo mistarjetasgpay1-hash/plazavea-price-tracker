@@ -41,7 +41,9 @@ telegram:
     Automotriz:      {emoji: "🚗", thread_id: null}
 
 offers:
-  min_discount_pct: 49.5            # umbral global (cada categoría puede tener min_discount propio)
+  min_discount_pct: 50              # umbral global (cada categoría puede tener min_discount propio).
+                                    # Los % se muestran redondeados hacia abajo como en la web: con 50
+                                    # nunca llega una alerta "-49 %" al bot general.
   min_price: 1.0                    # ignora productos de menos de S/ 1
   exclude_keywords: []              # ej. ["muestra", "pack x 24"]
 
@@ -51,6 +53,11 @@ state:
   renotify_drop_pct: 3              # …salvo que su precio baje ≥3 % más: entonces avisa de inmediato
   # Si el historial del bot no existe, se migra desde estas fuentes (sin perder lo ya avisado):
   legacy_paths: [state/plazavea.json, notificados.json]
+
+# Monitor externo opcional (healthchecks.io u otro compatible): cada bot define su variable
+# en su config y la URL va en .env. Sin URL no hace nada.
+healthcheck:
+  timeout_s: 10
 
 http:
   timeout_s: 15

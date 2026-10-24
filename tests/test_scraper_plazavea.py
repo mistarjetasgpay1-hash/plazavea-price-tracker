@@ -332,6 +332,95 @@ def test_invalid_exclude_pattern_is_a_config_error(tmp_path):
     from tracker.core.config import load_config
 
     ruta = tmp_path / "c.yaml"
-    ruta.write_text("store: {id: t}\noffers: {exclude_tags: ['(sin cerrar']}\nscraper: {a: 1}\n")
+    ruta.write_text("store: {id: t}\noffers: {exclude_tags: ['(sin cerrar']}\n"
+                    "scraper: {api_url: x, sellers: {s: \"1\"}, categories: [{key: K, path: p}]}\n")
     with pytest.raises(ConfigError, match="exclude_tags"):
+        load_config(ruta, require_secrets=False)
+
+
+# ── Robustez: un dato raro nunca tumba la corrida ───────────────────────────────────────────
+def test_bad_product_is_skipped_and_the_rest_continues(make_cfg):
+    raro = copy.deepcopy(PRODUCTO_OFICIAL)
+    raro["productId"] = "raro"
+    raro["items"][0]["sellers"][0]["commertialOffer"]["teasers"] = [
+        {"name": "Llevando 2", "conditions": {"minimumQuantity": "2.0"},
+         "effects": {"parameters": [{"name": "PercentualDiscount", "value": "30%"}]}}]
+    roto = {"productId": "roto", "items": "no-es-una-lista"}
+    paginas = {("limpieza", 1): {"products": [roto, raro, PRODUCTO_OECHSLE], "recordsFiltered": 3}}
+    scraper, _ = _scraper(make_cfg, paginas)
+    assert [o.product_id for o in scraper.iter_offers()] == ["raro", "777"]
+    assert scraper.stats.parse_errors == 1 and "roto" in scraper.stats.errors[0]
+
+
+def test_unexpected_error_in_one_category_does_not_stop_the_others(make_cfg):
+    class HttpQueRevienta(FakeHttp):
+        def get(self, url, **kw):
+            if "limpieza" in url:
+                raise RuntimeError("cambio raro en la API")
+            return super().get(url, **kw)
+
+    cfg = make_cfg(copy.deepcopy(SCRAPER_CFG), min_discount_pct=49.5)
+    http = HttpQueRevienta({("bebe", 1): {"products": [PRODUCTO_OFICIAL], "recordsFiltered": 1}})
+    scraper = PlazaVeaScraper(cfg, {}, http=http)
+    assert [o.product_id for o in scraper.iter_offers()] == ["45574"]
+    assert scraper.stats.pages_failed == 1 and "Limpieza" in scraper.stats.errors[0]
+
+
+def test_non_json_object_response_is_a_failed_page(make_cfg):
+    scraper, _ = _scraper(make_cfg, {("limpieza", 1): ["no", "es", "un", "objeto"]})
+    list(scraper.iter_offers())
+    assert scraper.stats.failed_categories == ["Limpieza"] and scraper.stats.pages_failed == 1
+
+
+def test_empty_api_responses_count_as_total_failure(make_cfg):
+    # Si Plaza Vea renombra una categoría o el filtro de vendedor, la API responde 200 sin productos.
+    scraper, _ = _scraper(make_cfg, {})
+    assert list(scraper.iter_offers()) == []
+    assert scraper.stats.pages_failed == 0 and scraper.stats.total_failure
+    assert scraper.stats.empty_categories == ["Limpieza", "BebeInfantil"]
+
+
+# ── Dos fases: primero la página 1 de todas las categorías ─────────────────────────────────
+def test_head_phase_reads_page_one_of_every_category_first(make_cfg):
+    paginas = _paginas_altas(5)
+    paginas |= {("bebe", p): {"products": [PRODUCTO_OFICIAL] * 3, "recordsFiltered": 15} for p in range(1, 6)}
+    scraper, http = _scraper(make_cfg, paginas, fixed_pages=3, tail_pages=1, rotating_pages=0, max_pages=5)
+    cabecera = list(scraper.iter_head())
+    assert [(_cat(u), p) for u, p in http.llamadas] == [("limpieza", 1), ("bebe", 1)]
+    resto = list(scraper.iter_rest())
+    assert [(_cat(u), p) for u, p in http.llamadas] == [
+        ("limpieza", 1), ("bebe", 1), ("limpieza", 2), ("limpieza", 3), ("bebe", 2), ("bebe", 3)]
+    assert len(cabecera) == 6 and len(resto) == 12
+
+
+def test_head_stop_conditions_carry_over_to_second_phase(make_cfg):
+    # La página 1 ya no tiene ofertas que califiquen: la fase 2 no sigue la cabecera.
+    scraper, http = _scraper(make_cfg, _paginas_altas(5, descuento_bajo_desde=1),
+                             fixed_pages=3, tail_pages=1, rotating_pages=0, max_pages=5,
+                             categories=SCRAPER_CFG["categories"][:1])
+    list(scraper.iter_head())
+    list(scraper.iter_rest())
+    assert [p for _, p in http.llamadas] == [1]
+
+
+# ── Validación de la configuración del scraper al cargarla ──────────────────────────────────
+@pytest.mark.parametrize("cambio, mensaje", [
+    ({"categories": [{"key": "X", "pth": "p"}]}, "pth"),                                 # clave mal escrita
+    ({"categories": [{"key": "X", "path": "p", "min_discont": 20}]}, "quisiste decir min_discount"),
+    ({"categories": [{"key": "X"}]}, "path"),
+    ({"categories": [{"key": "X", "path": "p"}, {"key": "X", "path": "q"}]}, "repetida"),
+    ({"categories": [{"key": "X", "path": "p", "max_pages": "muchas"}]}, "max_pages"),
+    ({"categories": [{"key": "X", "path": "p", "min_discount": 150}]}, "entre 0 y 100"),
+    ({"fixed_page": 3}, "fixed_pages"),
+    ({"categories": []}, "al menos una"),
+])
+def test_scraper_config_errors_are_detected_when_loading(tmp_path, cambio, mensaje):
+    import yaml
+
+    from tracker.core.config import load_config
+
+    ruta = tmp_path / "c.yaml"
+    ruta.write_text(yaml.safe_dump({"store": {"id": "t"}, "scraper": copy.deepcopy(SCRAPER_CFG) | cambio},
+                                   allow_unicode=True), encoding="utf-8")
+    with pytest.raises(ConfigError, match=mensaje):
         load_config(ruta, require_secrets=False)

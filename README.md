@@ -35,7 +35,7 @@ Monitor de ofertas de **Plaza Vea** con alertas por Telegram: dos bots que corre
   - las golosinas: caramelos y chupetes, gomitas, marshmallows y otras.
 
   Galletas, chocolates y snacks siguen entrando. Se pueden quitar otras campañas o categorías agregando su ruta o nombre (regex) en `config.alimentos.yaml`.
-- **Precio por kilo, litro o unidad:** se calcula desde el nombre ("Bolsa 950g", "Caja 9un x 24g", "Doypack 3L", "Paquete 24un") o desde la propiedad `Contenido Neto`. Los productos a granel ya vienen por kg.
+- **Precio por kilo, litro o unidad:** se calcula desde el nombre ("Bolsa 950g", "Caja 9un x 24g", "Doypack 3L", "Paquete 24un", "Lata 80g Paquete 3un" = 240 g) o desde la propiedad `Contenido Neto`. Los productos a granel ya vienen por kg. Si el pack es ambiguo ("Caldo 100g Paquete 25un": ¿100 g en total o por unidad?) o mezcla productos ("Papas 185g + Snax 230g"), no se muestra precio unitario antes que mostrar uno falso.
 
 ## Historial (TTL + bajada de precio)
 
@@ -43,14 +43,22 @@ Monitor de ofertas de **Plaza Vea** con alertas por Telegram: dos bots que corre
 |---|---|
 | Producto nuevo | ✅ |
 | Ya avisado, pero su precio bajó ≥ 3 % desde el último aviso | ✅ de inmediato `📉 ¡Bajó más!` |
+| Ya avisado y aparece un precio con Tarjeta Oh! ≥ 3 % menor que el mejor precio avisado | ✅ `📉 ¡Bajó más! Con Tarjeta Oh! ahora…` |
 | Ya avisado, mismo precio o más caro | ❌ durante 3 días |
 | Pasaron 3 días y sigue en oferta | ✅ |
 
 Si un bot no tiene historial (`state/plazavea_<bot>.json`), lo **migra** automáticamente desde `state/plazavea.json` (formato v2) y `notificados.json` (formato antiguo), sin perder lo ya avisado.
 
+## Alertas en dos fases (más rápido, sin peticiones extra)
+
+1. **Fase 1:** lee la página 1 de todas las categorías (la de mayores descuentos) y envía de inmediato las alertas con foto. Las mejores ofertas salen a los pocos segundos de empezar la corrida, no al final.
+2. **Fase 2:** sigue con el resto del paginado; usa las fotos que queden del cupo (`max_individual_alerts`) y manda los resúmenes por grupo.
+
+El log y el resumen de Actions muestran a qué segundo salió la primera alerta.
+
 ## Paginado adaptativo
 
-La API devuelve los productos ordenados por mayor descuento online.
+La API devuelve los productos ordenados por mayor descuento online (máximo 2 500 por búsqueda: desde la página 51 responde HTTP 400).
 
 - **Cabecera adaptativa** (`fixed_pages`): el bot sigue leyendo mientras haya ofertas que califiquen y se detiene tras `tail_pages` páginas seguidas sin ninguna.
 - **Barrido profundo** (`rotating_pages` hasta `max_pages`): avanza unas páginas por corrida. En canasta básica (`sweep_deep: true`) recorre todo el fondo para encontrar combos y precios con tarjeta, que aparecen dispersos.
@@ -70,16 +78,21 @@ pm2 startup                   # (una vez) para que arranquen solos al reiniciar 
 |---|---|
 | Estado | `pm2 status` |
 | Logs en vivo | `pm2 logs plazavea-alimentos` (o `plazavea-general`) |
-| Actualizar tras cambios en GitHub | `bash deploy/setup_vps.sh` |
-| Tras editar `config*.yaml` | nada: se recarga en cada ciclo |
+| Actualizar tras cambios en GitHub | `bash deploy/setup_vps.sh` (si `git pull` falla por cambios locales, se detiene y no reinicia nada) |
+| Ajustes propios del VPS | créalos en `config.alimentos.local.yaml` / `config.general.local.yaml` (empiezan con `extends: config.alimentos.yaml`; no se suben a GitHub ni bloquean las actualizaciones) |
+| Tras editar `config*.yaml` | nada: se recarga en cada ciclo. Si queda con errores (clave mal escrita, falta `path`…), el bot lo registra y sigue con la última configuración válida |
 | Tras editar `.env` | `pm2 restart all` |
 
 **Modo continuo (`--loop 300`):**
 
 - Cada corrida empieza 5 minutos después de la anterior. Si una se pasa, la siguiente empieza ya.
-- Un error de red, de Telegram o un cambio en la web no detiene el bucle. Tras 3 corridas sin datos llega un aviso ⚠️.
+- Un error de red, de Telegram o un cambio en la web no detiene el bucle. Un producto con datos raros se ignora y un error en una categoría no afecta a las demás.
+- **Avisos de salud ⚠️** (una vez, y ✅ al recuperarse): tras 3 corridas sin datos (incluye que la API responda pero vacía, como pasa si Plaza Vea renombra una ruta o el filtro de vendedor) y tras 3 corridas en que una categoría no devuelve productos.
+- Si Telegram pide esperar más de 30 s (error 429), el bot deja los envíos restantes para la próxima corrida en vez de quedarse congelado.
 - `pm2 stop` / `restart` detienen limpio y guardan el historial.
 - Un candado (`state/*.lock`) impide dos instancias del mismo bot. `--dry-run` sí puede correr junto a PM2.
+
+**Monitor externo (opcional, recomendado):** crea en [healthchecks.io](https://healthchecks.io) (gratis) un check por bot con periodo 5 min y gracia 10 min, y pega su URL de ping en `.env` (`HEALTHCHECK_URL_ALIMENTOS`, `HEALTHCHECK_URL_GENERAL`) y luego `pm2 restart all`. Cada corrida avisa "estoy vivo" (o `/fail` si no obtuvo datos o no pudo enviar nada a Telegram); si el VPS se cae o PM2 se detiene, healthchecks.io te avisa por correo o Telegram.
 
 ## GitHub Actions
 
@@ -97,7 +110,7 @@ Sin horario (la producción está en el VPS):
 ├── config.alimentos.yaml / config.general.yaml
 ├── ecosystem.config.js · deploy/setup_vps.sh · .env.example
 ├── src/tracker/
-│   ├── core/          config (YAML con extends) · models · pricing · filters · http_client · pipeline · runner
+│   ├── core/          config (YAML con extends) · models · pricing · filters · http_client · pipeline · runner · healthcheck
 │   ├── scrapers/      base.py (interfaz) · vtex.py (Plaza Vea: filtro oficial, paginado, catálogo)
 │   ├── promotions/    processor.py (Tarjeta Oh!, combos, NxM, 2da unidad) · units.py (precio por kg/L/unidad)
 │   ├── telegram/      client.py (envío, 429, throttle) · formatter.py (plantillas)

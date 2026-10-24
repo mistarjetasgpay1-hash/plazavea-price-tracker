@@ -1,6 +1,6 @@
 [project]
 name = "plazavea-price-tracker"
-version = "2.0.0"
+version = "3.1.0"
 description = "Monitor de ofertas con alertas por Telegram"
 requires-python = ">=3.11"
 

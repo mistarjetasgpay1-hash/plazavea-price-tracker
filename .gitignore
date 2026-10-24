@@ -10,3 +10,5 @@ state/
 *.corrupt
 # Despliegue en VPS
 logs/
+# Ajustes propios del VPS (heredan del config versionado con `extends`)
+config.*.local.yaml

@@ -6,6 +6,8 @@
     python run_alimentos.py --dry-run -v  # simulación, sin enviar ni guardar
 
 Configuración: config.alimentos.yaml (hereda de config.yaml). Secretos: archivo .env.
+Cambios propios del VPS: config.alimentos.local.yaml (no se sube a GitHub; empieza con
+`extends: config.alimentos.yaml`). Si existe, se usa en lugar de config.alimentos.yaml.
 """
 
 import sys
@@ -16,5 +18,9 @@ sys.path.insert(0, str(RAIZ / "src"))
 
 from tracker.__main__ import main  # noqa: E402
 
+CONFIG = RAIZ / "config.alimentos.yaml"
+CONFIG_LOCAL = RAIZ / "config.alimentos.local.yaml"
+
 if __name__ == "__main__":
-    sys.exit(main(["--config", str(RAIZ / "config.alimentos.yaml"), *sys.argv[1:]]))
+    config = CONFIG_LOCAL if CONFIG_LOCAL.exists() else CONFIG
+    sys.exit(main(["--config", str(config), *sys.argv[1:]]))
