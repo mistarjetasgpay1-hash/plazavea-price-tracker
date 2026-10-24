@@ -51,6 +51,17 @@ def test_card_price_from_teaser_matches_website():
     assert res.combos == [] and res.promos == []        # el teaser "Oculto" se ignora
 
 
+def test_card_price_for_weighed_products_uses_unit_multiplier():
+    # Real: "Pollo Entero Fresco con Menudencia x kg" · unitMultiplier 2.2 · Regular 8.90/kg · Online 5.90/kg
+    # Teaser: PromotionalPriceTableItemsDiscount 7.26 (por unidad de 2.2 kg) → web: Tarjeta S/ 5.60 x kg
+    teaser = copy.deepcopy(TEASER_OH)
+    teaser["effects"]["parameters"][1]["value"] = "7.26000"
+    co = {"Price": 5.9, "ListPrice": 8.9, "teasers": [teaser]}
+    res = analyze(co, {"productName": "Pollo Entero Fresco con Menudencia x kg"}, list_price=8.9, price=5.9,
+                  unit_multiplier=2.2)
+    assert res.card_price == 5.60
+
+
 def test_card_price_ignored_if_not_cheaper():
     co = copy.deepcopy(CO_DON_VITTORIO)
     co["teasers"][1]["effects"]["parameters"][1]["value"] = "0.50"   # 6.00 − 0.50 = 5.50 > 4.80
