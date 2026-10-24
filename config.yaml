@@ -1,14 +1,14 @@
 # ─────────────────────────────────────────────────────────────────────────────
 #  Plaza Vea — configuración COMÚN de los dos bots
-#    · config.alimentos.yaml → run_alimentos.py (consumo diario)
-#    · config.general.yaml   → run_general.py   (tecnología, moda, juguetes, electro…)
+#    · config.alimentos.yaml → run_alimentos.py (canasta básica + aseo y limpieza · bot propio)
+#    · config.general.yaml   → run_general.py   (tecnología, moda, juguetes, electro, frescos…)
 #  Ambos heredan de este archivo (`extends`); lo que definan ahí tiene prioridad.
 #  Este archivo no se ejecuta solo.
 # ─────────────────────────────────────────────────────────────────────────────
 store:
   id: plazavea
   name: Plaza Vea
-  hashtag_prefix: PlazaVea          # → #PlazaVea_Alimentos, #PlazaVea_Limpieza…
+  hashtag_prefix: PlazaVea          # → #PlazaVea_Abarrotes, #PlazaVea_Moda…
 
 telegram:
   token_env: TELEGRAM_TOKEN         # variable de entorno (.env en el VPS / Secret en GitHub)
@@ -20,7 +20,11 @@ telegram:
   health_alert_after_failures: 3    # avisa si 3 corridas seguidas no obtienen datos
   # Grupo → emoji del mensaje y, opcional, thread_id si conviertes el chat en grupo con Temas.
   groups:
-    Alimentos:       {emoji: "🛒", thread_id: null}
+    Abarrotes:       {emoji: "🛒", thread_id: null}
+    LacteosHuevos:   {emoji: "🥛", thread_id: null}
+    Desayunos:       {emoji: "☕", thread_id: null}
+    BebeAseo:        {emoji: "🧷", thread_id: null}
+    Frescos:         {emoji: "🥩", thread_id: null}
     Bebidas:         {emoji: "🥤", thread_id: null}
     Limpieza:        {emoji: "🧽", thread_id: null}
     CuidadoPersonal: {emoji: "🧴", thread_id: null}
@@ -43,9 +47,10 @@ offers:
 
 state:
   # path: lo define cada bot (historiales separados)
-  ttl_days: 3                       # cada producto puede volver a avisarse a los 3 días
-  renotify_drop_pct: 3              # …o antes, si su precio baja ≥3 % desde el último aviso
-  legacy_path: notificados.json     # se migra una sola vez (formato antiguo)
+  ttl_days: 3                       # un producto avisado se ignora 3 días…
+  renotify_drop_pct: 3              # …salvo que su precio baje ≥3 % más: entonces avisa de inmediato
+  # Si el historial del bot no existe, se migra desde estas fuentes (sin perder lo ya avisado):
+  legacy_paths: [state/plazavea.json, notificados.json]
 
 http:
   timeout_s: 15

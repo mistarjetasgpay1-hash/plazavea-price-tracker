@@ -1,39 +1,41 @@
 # ─────────────────────────────────────────────────────────────────────────────
-#  Bot Plaza Vea · ALIMENTOS y consumo diario  →  python run_alimentos.py --loop 300
-#  Hereda todo de config.yaml; aquí solo lo propio de este bot.
+#  Bot Plaza Vea · CANASTA BÁSICA y ASEO  →  python run_alimentos.py --loop 300
+#    · Alimentos/abarrotes (arroz, azúcar, aceites, atún, fideos, lácteos, desayuno): desde −15 %
+#    · Aseo y limpieza (detergentes, lejía, suavizante, shampoo, toallas higiénicas…): desde −20 %
+#  Detecta precio con Tarjeta Oh!, combos (paga X lleva Y, 2x1, 3x2, 2da al %) y precio por kg/L.
+#  Bot de Telegram propio: secretos TELEGRAM_TOKEN3 y CHAT_ID3.
+#  Hereda el resto de config.yaml.
 # ─────────────────────────────────────────────────────────────────────────────
 extends: config.yaml
 
 store:
-  label: Alimentos
+  label: Canasta básica
 
 telegram:
-  # Usa TELEGRAM_TOKEN_ALIMENTOS / CHAT_ID_ALIMENTOS si existen; si no, el bot y chat comunes.
-  token_env: [TELEGRAM_TOKEN_ALIMENTOS, TELEGRAM_TOKEN]
-  chat_id_env: [CHAT_ID_ALIMENTOS, CHAT_ID]
+  token_env: TELEGRAM_TOKEN3        # bot dedicado (sin respaldo: nunca escribe en el chat de otro bot)
+  chat_id_env: CHAT_ID3
+
+offers:
+  min_discount_pct: 15              # umbral por defecto; cada categoría fija el suyo abajo
 
 state:
   path: state/plazavea_alimentos.json
 
 scraper:
-  # Paginado por categoría (50 productos por página, ordenados por descuento):
-  fixed_pages: 3                    # las 3 primeras (mayores descuentos) en cada corrida
-  rotating_pages: 2                 # + 2 más profundas que avanzan corrida a corrida…
-  max_pages: 10                     # …hasta esta página (o antes, si el descuento cae bajo el umbral)
-  # path = departamento VTEX · group = grupo de alerta/hashtag
-  # Opcionales por categoría: sellers (restringe vendedores) · min_discount (umbral) · max_pages
+  # Paginado adaptativo (50 productos por página, ordenados por mayor descuento online):
+  fixed_pages: 20                   # sigue leyendo mientras haya ofertas que califiquen…
+  tail_pages: 2                     # …y se detiene tras 2 páginas seguidas sin ninguna
+  rotating_pages: 2                 # + 2 páginas profundas por corrida, para combos y precios con tarjeta
+  max_pages: 48                     #   que aparecen dispersos (la API llega hasta ~2500 productos)
+  sweep_deep: true                  # recorre todo el fondo en ciclo, aunque una página venga vacía
+  combo_lookups_per_run: 40         # consultas al catálogo para describir el producto "Y" de los combos
   categories:
-    - {key: Abarrotes,       path: category-1/abarrotes,                group: Alimentos}
-    - {key: Desayunos,       path: category-1/desayunos,                group: Alimentos}
-    - {key: Lacteos,         path: category-1/lacteos-y-huevos,         group: Alimentos}
-    - {key: QuesosFiambres,  path: category-1/quesos-y-fiambres,        group: Alimentos}
-    - {key: Carnes,          path: category-1/carnes-aves-y-pescados,   group: Alimentos}
-    - {key: FrutasVerduras,  path: category-1/frutas-y-verduras,        group: Alimentos}
-    - {key: Congelados,      path: category-1/congelados,               group: Alimentos}
-    - {key: Panaderia,       path: category-1/panaderia-y-pasteleria,   group: Alimentos}
-    - {key: Bebidas,         path: category-1/bebidas,                  group: Bebidas}
-    - {key: Licores,         path: category-1/vinos-licores-y-cervezas, group: Bebidas}
-    - {key: Limpieza,        path: category-1/limpieza,                 group: Limpieza}
-    - {key: CuidadoPersonal, path: category-1/cuidado-personal-y-salud, group: CuidadoPersonal}
-    - {key: BebeInfantil,    path: category-1/bebe-e-infantil,          group: BebeInfantil}
-    - {key: Mascotas,        path: category-1/mascotas,                 group: Mascotas}
+    # ── Canasta básica · alimentos (mín. 15 %) ──
+    - {key: Abarrotes,        path: category-1/abarrotes,                min_discount: 15, group: Abarrotes}
+    - {key: LacteosHuevos,    path: category-1/lacteos-y-huevos,         min_discount: 15, group: LacteosHuevos}
+    - {key: Desayunos,        path: category-1/desayunos,                min_discount: 15, group: Desayunos}
+    # ── Aseo y limpieza (mín. 20 %) ──
+    - {key: Limpieza,         path: category-1/limpieza,                 min_discount: 20, group: Limpieza}
+    - {key: CuidadoPersonal,  path: category-1/cuidado-personal-y-salud, min_discount: 20, group: CuidadoPersonal}
+    - {key: PanalesToallitas, path: category-1/bebe-e-infantil/category-2/panales-y-toallitas-para-bebe, min_discount: 20, group: BebeAseo, sellers: [plazavea]}
+    - {key: AseoBebe,         path: category-1/bebe-e-infantil/category-2/cuidado-y-aseo-del-bebe,       min_discount: 20, group: BebeAseo, sellers: [plazavea]}

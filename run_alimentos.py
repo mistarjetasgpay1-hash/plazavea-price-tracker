@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent
-sys.path.insert(0, str(RAIZ))
+sys.path.insert(0, str(RAIZ / "src"))
 
 from tracker.__main__ import main  # noqa: E402
 

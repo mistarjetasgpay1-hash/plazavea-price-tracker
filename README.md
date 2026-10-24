@@ -1,107 +1,109 @@
 # plazavea-price-tracker
 
-Monitor de ofertas de **Plaza Vea** con alertas por Telegram. Son dos bots que corren 24/7 en un VPS, cada 5 minutos:
+Monitor de ofertas de **Plaza Vea** con alertas por Telegram: dos bots que corren 24/7 en un VPS, cada 5 minutos, **solo con productos vendidos por la tienda oficial** (Plaza Vea u Oechsle; nunca terceros ni marketplace).
 
-| Bot | Script | Configuración | Qué vigila |
-|---|---|---|---|
-| **Alimentos** | `run_alimentos.py` | `config.alimentos.yaml` | abarrotes, desayunos, lácteos, quesos y fiambres, carnes, frutas y verduras, congelados, panadería, bebidas, licores, limpieza, cuidado personal, bebé, mascotas |
-| **General** | `run_general.py` | `config.general.yaml` | tecnología, electrohogar, juguetes, moda (mujer, hombre, infantil), accesorios, zapatillas, zapatos, deportes, belleza, hogar, librería, automotriz |
+| Bot | Script | Telegram | Qué vigila | Umbral |
+|---|---|---|---|---|
+| **Canasta básica** | `run_alimentos.py` | `TELEGRAM_TOKEN3` / `CHAT_ID3` | abarrotes (arroz, azúcar, aceites, atún, fideos…), lácteos y huevos, desayuno | **15 %** |
+| | | | aseo y limpieza (detergente, lejía, suavizante, shampoo, toallas higiénicas…), pañales | **20 %** |
+| **General** | `run_general.py` | `TELEGRAM_TOKEN` / `CHAT_ID` | tecnología, electro, juguetes, moda, hogar, frescos, bebidas, bebé, mascotas… | 50 % |
 
-Lo común (umbral, TTL, Telegram, vendedores) está en `config.yaml`, del que heredan ambos.
+## Qué incluye cada alerta
 
-## Qué hace cada corrida
+```
+🛒 -32% con Tarjeta Oh! · Fideos DON VITTORIO Spaghetti Bolsa 950g
+🏷️ DON VITTORIO · Vendido por Plaza Vea
+💰 Regular S/ 6.00 → Online S/ 5.40 (−10%)
+💳 Tarjeta Oh!: S/ 4.08 (−32%)
+🎁 Compra 1 y lleva Galletas Saladitas BELL'S Paquete 6un a S/ 2.49 (−22%)
+⚖️ S/ 4.29 x kg
+💳 Exclusivo con Tarjeta Oh!        (o ✅ Cualquier medio de pago)
+🔗 Ver en Plaza Vea
+#PlazaVea_Abarrotes
+```
 
-1. Recorre sus categorías en la API de Plaza Vea, ordenadas por mayor descuento.
-2. **Filtro estricto de tienda oficial:** en el servidor, la faceta `vendido-por/plazavea` y `vendido-por/oechsle`; en el código, solo se acepta la oferta de un vendedor con `sellerId` `1` (Plaza Vea) u `oechsle` que tenga stock. Promart y el resto del marketplace quedan fuera.
-3. Descarta lo que no llega al umbral (50 %), no tiene stock o contiene palabras excluidas.
-4. Consulta el historial (TTL) y envía solo lo nuevo o lo que **bajó aún más de precio**.
-5. Guarda el historial en `state/plazavea_<bot>.json`.
+- **Medio de pago:** "Cualquier medio de pago" si el precio online ya llega al umbral. "Exclusivo con Tarjeta Oh!" si solo llega con el precio de tarjeta.
+- **Precio con Tarjeta Oh!:** sale del teaser VTEX `TARJETA OH - PVEA` / `Promo Oh-Pay` (precio regular − descuento del teaser). Coincide con el que muestra la web.
+- **Combos y promociones complejas** (`promotions/processor.py`):
+  - `#PAGAXLLEVAY#`: compra X y lleva Y con N % (el nombre y el precio de Y se consultan en el catálogo).
+  - Mismo producto: 2x1 o "2da unidad al N %".
+  - Descuento por cantidad mínima.
+  - Textos como "3x2", "2 x S/ 10", "2do al 70%" o "Lleva … a S/ 9.90" en teasers o sellos del producto.
+  - Una oferta también califica si el **ahorro real del combo** (sobre todo lo que compras) llega al umbral.
+- **Precio por kilo, litro o unidad:** se calcula desde el nombre ("Bolsa 950g", "Caja 9un x 24g", "Doypack 3L", "Paquete 24un") o desde la propiedad `Contenido Neto`. Los productos a granel ya vienen por kg.
 
-**Paginado:** en cada corrida se leen las `fixed_pages` primeras páginas de cada categoría (los mayores descuentos) más `rotating_pages` más profundas, que avanzan corrida a corrida hasta `max_pages` o hasta que el descuento baja del umbral.
+## Historial (TTL + bajada de precio)
+
+| Situación | ¿Se notifica? |
+|---|---|
+| Producto nuevo | ✅ |
+| Ya avisado, pero su precio bajó ≥ 3 % desde el último aviso | ✅ de inmediato `📉 ¡Bajó más!` |
+| Ya avisado, mismo precio o más caro | ❌ durante 3 días |
+| Pasaron 3 días y sigue en oferta | ✅ |
+
+Si un bot no tiene historial (`state/plazavea_<bot>.json`), lo **migra** automáticamente desde `state/plazavea.json` (formato v2) y `notificados.json` (formato antiguo), sin perder lo ya avisado.
+
+## Paginado adaptativo
+
+La API devuelve los productos ordenados por mayor descuento online.
+
+- **Cabecera adaptativa** (`fixed_pages`): el bot sigue leyendo mientras haya ofertas que califiquen y se detiene tras `tail_pages` páginas seguidas sin ninguna.
+- **Barrido profundo** (`rotating_pages` hasta `max_pages`): avanza unas páginas por corrida. En canasta básica (`sweep_deep: true`) recorre todo el fondo para encontrar combos y precios con tarjeta, que aparecen dispersos.
 
 ## Producción en el VPS (24/7, cada 5 minutos)
-
-Requisitos: Linux con Python 3.11+, `python3-venv`, Node.js (para PM2) y git.
 
 ```bash
 git clone https://github.com/mistarjetasgpay1-hash/plazavea-price-tracker.git
 cd plazavea-price-tracker
 bash deploy/setup_vps.sh      # 1ª vez: crea .env y se detiene
-nano .env                     # pon TELEGRAM_TOKEN y CHAT_ID
-bash deploy/setup_vps.sh      # instala dependencias, migra el historial, prueba y arranca PM2
+nano .env                     # TELEGRAM_TOKEN / CHAT_ID (general) y TELEGRAM_TOKEN3 / CHAT_ID3 (canasta)
+bash deploy/setup_vps.sh      # instala, migra el historial, prueba y arranca PM2
 pm2 startup                   # (una vez) para que arranquen solos al reiniciar el VPS
 ```
-
-El script es re-ejecutable: para **actualizar** tras cambios en GitHub, vuelve a correr `bash deploy/setup_vps.sh`.
 
 | Acción | Comando |
 |---|---|
 | Estado | `pm2 status` |
-| Logs en vivo | `pm2 logs plazavea-general` (o `plazavea-alimentos`) |
-| Reiniciar tras editar `config*.yaml` | no hace falta: la config se recarga en cada ciclo |
-| Reiniciar tras editar `.env` | `pm2 restart all` |
-| Detener | `pm2 stop all` |
+| Logs en vivo | `pm2 logs plazavea-alimentos` (o `plazavea-general`) |
+| Actualizar tras cambios en GitHub | `bash deploy/setup_vps.sh` |
+| Tras editar `config*.yaml` | nada: se recarga en cada ciclo |
+| Tras editar `.env` | `pm2 restart all` |
 
-**Cómo funciona el modo continuo (`--loop 300`):**
+**Modo continuo (`--loop 300`):**
 
-- La cadencia es fija de inicio a inicio: cada corrida empieza 5 minutos después de la anterior. Si una dura 70 s, la pausa es de 230 s. Si una se pasa de 5 minutos, la siguiente empieza de inmediato.
-- Un error (red, Telegram, cambio en la web) se registra y el bucle sigue. Si 3 corridas seguidas no obtienen datos, llega un aviso ⚠️ silencioso al chat.
-- Con `pm2 stop` / `restart` el bot se detiene limpio y guarda el historial de lo ya enviado.
-- Un candado (`state/*.lock`) impide que dos instancias del mismo bot corran a la vez. Una simulación (`--dry-run`) sí puede correr junto a PM2.
-- Si `.env` no tiene los secretos, el bot sale con código 2 y PM2 no lo reinicia en bucle.
-
-Sin PM2 también funciona: `nohup .venv/bin/python run_general.py --loop 300 >> logs/general.log 2>&1 &`
-
-## Telegram
-
-- **Secretos** (`.env` en el VPS, *Secrets* en GitHub): `TELEGRAM_TOKEN` y `CHAT_ID`. Para mandar cada bot a otro chat o bot, define `TELEGRAM_TOKEN_GENERAL` / `CHAT_ID_GENERAL` (o `_ALIMENTOS`); si no existen, se usan los comunes.
-- Cada mensaje lleva hashtags por grupo y categoría (ej. `#PlazaVea_Alimentos #Abarrotes`, `#PlazaVea_Moda #ModaMujer`).
-- **Por corrida:** `max_individual_alerts` alertas con foto, repartidas entre categorías. El resto, hasta `digest_max_items`, va en **resúmenes por categoría** de hasta 30 ofertas cada uno.
-- Si los dos bots escriben al mismo grupo a la vez, pueden toparse con el límite de Telegram (~20 mensajes/min por grupo). El bot espera y reintenta solo, pero si pasa seguido conviene usar `CHAT_ID_GENERAL` para separar los chats.
-
-## Historial con TTL
-
-| Situación | ¿Se notifica? |
-|---|---|
-| Producto nuevo | ✅ |
-| Su precio bajó ≥ `renotify_drop_pct` (3 %) desde el último aviso | ✅ `📉 ¡Bajó más!` |
-| Mismo precio o subió | ❌ |
-| Pasaron `ttl_days` (3) desde el último aviso y sigue en oferta | ✅ |
-
-Para empezar de cero, borra `state/plazavea_<bot>.json`.
+- Cada corrida empieza 5 minutos después de la anterior. Si una se pasa, la siguiente empieza ya.
+- Un error de red, de Telegram o un cambio en la web no detiene el bucle. Tras 3 corridas sin datos llega un aviso ⚠️.
+- `pm2 stop` / `restart` detienen limpio y guardan el historial.
+- Un candado (`state/*.lock`) impide dos instancias del mismo bot. `--dry-run` sí puede correr junto a PM2.
 
 ## GitHub Actions
 
-La producción está en el VPS. **`monitor.yml` ya no está programado:**
+Sin horario (la producción está en el VPS):
 
-- **Push a `main`** (cambios en código o config) → prueba de integración real de ambos bots en modo simulación: no envía nada.
-- **Manual** (*Actions → Monitor Plaza Vea (pruebas) → Run workflow*) → eliges el bot. Por defecto es una simulación. Desmárcala solo si el VPS está caído: ese historial no se comparte con el del VPS.
-- `ci.yml` corre los tests (`pytest`) en cada push.
+- **Push a `main`** → prueba de integración real de ambos bots en simulación: no envía nada. El resumen muestra qué ofertas califican y por qué (cualquier medio, solo tarjeta o combo).
+- **Manual** → eliges el bot. Por defecto es una simulación.
+- `ci.yml` corre `pytest` en Python 3.11 y 3.12.
+
+## Estructura
+
+```
+├── run_alimentos.py / run_general.py      # ejecutables (aceptan --loop, --dry-run, -v)
+├── config.yaml                             # común (heredado por ambos bots)
+├── config.alimentos.yaml / config.general.yaml
+├── ecosystem.config.js · deploy/setup_vps.sh · .env.example
+├── src/tracker/
+│   ├── core/          config (YAML con extends) · models · pricing · filters · http_client · pipeline · runner
+│   ├── scrapers/      base.py (interfaz) · vtex.py (Plaza Vea: filtro oficial, paginado, catálogo)
+│   ├── promotions/    processor.py (Tarjeta Oh!, combos, NxM, 2da unidad) · units.py (precio por kg/L/unidad)
+│   ├── telegram/      client.py (envío, 429, throttle) · formatter.py (plantillas)
+│   └── state/         store.py (historial TTL + bajada, migración, candado)
+└── tests/             pytest sin red, con respuestas reales recortadas de la API
+```
 
 ## Desarrollo local
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
 .venv/bin/python -m pytest -q
-.venv/bin/python run_alimentos.py --dry-run -v     # una corrida simulada
-```
-
-## Estructura
-
-```
-├── run_alimentos.py / run_general.py   # puntos de entrada (aceptan --loop, --dry-run, -v)
-├── config.yaml                          # configuración común
-├── config.alimentos.yaml / config.general.yaml
-├── ecosystem.config.js                  # PM2: ambos bots 24/7
-├── deploy/setup_vps.sh                  # instalación / actualización en el VPS
-├── .env.example                         # plantilla de secretos
-├── tracker/
-│   ├── __main__.py   # CLI
-│   ├── runner.py     # modo continuo, señales, carga de .env
-│   ├── config.py     # YAML con herencia (extends) + secretos
-│   ├── scraper.py    # API VTEX de Plaza Vea
-│   ├── pipeline.py   # filtros → historial → Telegram → resumen
-│   ├── state.py      # historial con TTL + candado
-│   ├── telegram.py · formatter.py · filters.py · pricing.py · models.py · http_client.py · base.py
-└── tests/            # pytest (sin red)
+.venv/bin/python run_alimentos.py --dry-run -v
 ```

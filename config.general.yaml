@@ -1,5 +1,5 @@
 # ─────────────────────────────────────────────────────────────────────────────
-#  Bot Plaza Vea · GENERAL (tecnología, electro, juguetes, moda, hogar…)
+#  Bot Plaza Vea · GENERAL (tecnología, electro, juguetes, moda, hogar, frescos, bebidas…)
 #  →  python run_general.py --loop 300
 #  Hereda todo de config.yaml; aquí solo lo propio de este bot.
 # ─────────────────────────────────────────────────────────────────────────────
@@ -17,8 +17,10 @@ state:
   path: state/plazavea_general.json
 
 scraper:
-  # 2 fijas + 2 rotativas por categoría para que la corrida entre holgada en 5 minutos.
+  # 2 primeras páginas por categoría (se corta antes si no hay ofertas) + 2 rotativas por corrida,
+  # para que la corrida entre holgada en 5 minutos.
   fixed_pages: 2
+  tail_pages: 1
   rotating_pages: 2
   max_pages: 10
   categories:
@@ -40,3 +42,13 @@ scraper:
     - {key: MejoramientoHogar, path: category-1/mejoramiento-del-hogar, group: Hogar}
     - {key: Libreria,        path: category-1/libreria-y-oficina,       group: Libreria}
     - {key: Automotriz,      path: category-1/automotriz,               group: Automotriz}
+    # ── Alimentos frescos, bebidas, bebé y mascotas (la canasta básica la cubre run_alimentos) ──
+    - {key: Carnes,          path: category-1/carnes-aves-y-pescados,   group: Frescos}
+    - {key: FrutasVerduras,  path: category-1/frutas-y-verduras,        group: Frescos}
+    - {key: QuesosFiambres,  path: category-1/quesos-y-fiambres,        group: Frescos}
+    - {key: Congelados,      path: category-1/congelados,               group: Frescos}
+    - {key: Panaderia,       path: category-1/panaderia-y-pasteleria,   group: Frescos}
+    - {key: Bebidas,         path: category-1/bebidas,                  group: Bebidas}
+    - {key: Licores,         path: category-1/vinos-licores-y-cervezas, group: Bebidas}
+    - {key: BebeInfantil,    path: category-1/bebe-e-infantil,          group: BebeInfantil}
+    - {key: Mascotas,        path: category-1/mascotas,                 group: Mascotas}
