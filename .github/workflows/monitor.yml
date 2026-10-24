@@ -1,51 +1,79 @@
-name: Monitor de Ofertas Plaza Vea
+name: Monitor Plaza Vea
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    # Horas en UTC (Lima = UTC-5). Minutos desfasados del :00 para evitar la cola pico de GitHub.
+    - cron: '7,22,37,52 0-5,11-23 * * *'   # 06:00–00:59 Lima → cada 15 min
+    - cron: '7 6-10 * * *'                 # 01:00–05:59 Lima → cada hora
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Simulación: no envía a Telegram ni guarda el historial'
+        type: boolean
+        default: false
 
 concurrency:
   group: monitor-plazavea
   cancel-in-progress: false
 
 permissions:
-  contents: write
+  contents: write   # necesario para guardar el historial en la rama `state`
 
 jobs:
-  monitorear:
+  monitor:
     runs-on: ubuntu-latest
-    timeout-minutes: 6
-
+    timeout-minutes: 8
+    env:
+      STATE_FILE: state/plazavea.json
     steps:
-      - name: Descargar repositorio
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
-      - name: Instalar dependencia ligera
-        run: pip install --quiet requests
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
 
-      - name: Ejecutar bot de ofertas
+      - name: Instalar dependencias
+        run: pip install --quiet --disable-pip-version-check -r requirements.txt
+
+      - name: Restaurar historial (rama state)
+        run: |
+          mkdir -p "$(dirname "$STATE_FILE")"
+          if git fetch --quiet --depth=1 origin state 2>/dev/null; then
+            git show "FETCH_HEAD:$(basename "$STATE_FILE")" > "$STATE_FILE" 2>/dev/null || rm -f "$STATE_FILE"
+          fi
+          if [ -f "$STATE_FILE" ]; then echo "Historial restaurado ($(wc -c < "$STATE_FILE") bytes)"; else echo "Sin historial previo"; fi
+
+      - name: Ejecutar monitor
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
-        run: python3 -u bot_ofertas.py
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: python -m tracker --config config.yaml
 
-      - name: Guardar estado si hubo cambios
-        if: always()
+      - name: Guardar historial (rama state)
+        if: always() && inputs.dry_run != true
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          if [ -f notificados.json ]; then
-            git add notificados.json
-            if ! git diff --cached --quiet; then
-              git config user.name "github-actions[bot]"
-              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-              git commit -m "chore: actualizar ofertas notificadas [skip ci]"
-              
-              for i in 1 2 3; do
-                git pull --rebase origin main && git push && break
-                echo "Fallo temporal de GitHub en intento $i. Reintentando en 5s..."
-                sleep 5
-              done
-            else
-              echo "No hay cambios en notificados.json. Se omite el commit."
-            fi
+          [ -f "$STATE_FILE" ] || { echo "Nada que guardar"; exit 0; }
+          name=$(basename "$STATE_FILE")
+          if git show "FETCH_HEAD:$name" 2>/dev/null | cmp -s - "$STATE_FILE"; then
+            echo "Historial sin cambios"; exit 0
           fi
+          tmp=$(mktemp -d)
+          cp "$STATE_FILE" "$tmp/$name"
+          cd "$tmp"
+          git init --quiet --initial-branch=state
+          git add "$name"
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit --quiet -m "state: $(date -u +%Y-%m-%dT%H:%MZ)"
+          # Rama huérfana de un solo commit: main queda limpio y el repo no crece.
+          for i in 1 2 3; do
+            git push --quiet --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" state && break
+            echo "Reintento $i…"; sleep 5
+          done
