@@ -32,6 +32,7 @@ from ..core.models import Promo
 
 PAYMENT_LABELS = {"210": "Tarjeta Oh!", "202": "Oh! Pay", "208": "Oh! Pay"}
 OH_EXCLUSIVE_PROP = "Descuentos exclusivos"
+OH_EN_NOMBRE = re.compile(r"\boh\b", re.I)     # "TARJETA OH - PVEA", "Promo Oh-Pay"; no "JOHNSON" ni "ALCOHOL"
 
 NXM = re.compile(r"(?<![\d.,/])([2-9])\s*[xX×]\s*([1-8])(?![\d.,]|\s*(?:ml|g|gr|kg|l|lt|un|und|cm|m)\b)")
 N_POR_PRECIO = re.compile(r"(?<![\d.,/])([2-9])\s*[xX×]\s*S/\.?\s*(\d+(?:[.,]\d{1,2})?)", re.I)
@@ -59,11 +60,34 @@ class PromoAnalysis:
 
 
 def _params(bloque: dict | None) -> dict[str, str]:
-    return {str(p.get("name")): str(p.get("value")) for p in (bloque or {}).get("parameters") or []}
+    parametros = (bloque or {}).get("parameters") if isinstance(bloque, dict) else None
+    return {str(p.get("name")): str(p.get("value")) for p in parametros or [] if isinstance(p, dict)}
 
 
 def _num(texto: str) -> float:
     return float(str(texto).replace(",", "."))
+
+
+def _num_o_none(texto: object) -> float | None:
+    """Número de un parámetro de VTEX, o None si viene con un formato inesperado."""
+    try:
+        return _num(str(texto))
+    except (TypeError, ValueError):
+        return None
+
+
+def _entero(valor: object) -> int:
+    try:
+        return int(float(str(valor)))
+    except (TypeError, ValueError):
+        return 0
+
+
+def card_label(payment_ids: list[str], teaser_name: str) -> str:
+    """Nombre del medio de pago a partir de los PaymentMethodId del teaser."""
+    if "210" in payment_ids or OH_EN_NOMBRE.search(teaser_name or ""):
+        return "Tarjeta Oh!"
+    return next((PAYMENT_LABELS[i] for i in payment_ids if i in PAYMENT_LABELS), "Tarjeta")
 
 
 def promos_from_text(texto: str, price: float) -> list[Promo]:
@@ -104,18 +128,19 @@ def analyze(commertial_offer: dict, product: dict, *, list_price: float, price: 
 
     vistas: set[str] = set()
     for teaser in commertial_offer.get("teasers") or commertial_offer.get("Teasers") or []:
+        if not isinstance(teaser, dict):
+            continue
         nombre = str(teaser.get("name") or teaser.get("<Name>k__BackingField") or "")
         if "oculto" in nombre.lower():          # promociones ocultas / de una sola tienda física
             continue
         condiciones = _params(teaser.get("conditions"))
         efectos = _params(teaser.get("effects"))
-        minimo = int((teaser.get("conditions") or {}).get("minimumQuantity") or 0)
+        minimo = _entero((teaser.get("conditions") or {}).get("minimumQuantity") or 0)
 
         # 1) Precio exclusivo por medio de pago (Tarjeta Oh! / Oh! Pay)
         if "PaymentMethodId" in condiciones and "PromotionalPriceTableItemsDiscount" in efectos:
-            try:
-                rebaja = _num(efectos["PromotionalPriceTableItemsDiscount"])
-            except ValueError:
+            rebaja = _num_o_none(efectos["PromotionalPriceTableItemsDiscount"])
+            if rebaja is None:
                 continue
             base = list_price if list_price > 0 else price
             multiplicador = unit_multiplier if unit_multiplier and unit_multiplier > 0 else 1.0
@@ -123,15 +148,13 @@ def analyze(commertial_offer: dict, product: dict, *, list_price: float, price: 
             if 0 < precio_tarjeta < price and (res.card_price is None or precio_tarjeta < res.card_price):
                 ids = [i.strip() for i in condiciones["PaymentMethodId"].split(",")]
                 res.card_price = precio_tarjeta
-                res.card_label = "Tarjeta Oh!" if "210" in ids or "oh" in nombre.lower() else \
-                    next((PAYMENT_LABELS[i] for i in ids if i in PAYMENT_LABELS), "Tarjeta")
+                res.card_label = card_label(ids, nombre)
             continue
 
         # 2) Combo paga X lleva Y (SkuIdsList1 → SkuIdsList2 con % de descuento)
         if "SkuIdsList2" in condiciones and "PercentualDiscountSkusList2" in efectos:
-            try:
-                pct = _num(efectos["PercentualDiscountSkusList2"])
-            except ValueError:
+            pct = _num_o_none(efectos["PercentualDiscountSkusList2"])
+            if pct is None:
                 continue
             objetivo = tuple(s.strip() for s in condiciones["SkuIdsList2"].split(",") if s.strip())
             compra = {s.strip() for s in condiciones.get("SkuIdsList1", "").split(",")}
@@ -142,10 +165,13 @@ def analyze(commertial_offer: dict, product: dict, *, list_price: float, price: 
 
         # 3) Descuento por cantidad mínima ("llevando 3, −30 %")
         if minimo >= 2 and ("PercentualDiscount" in efectos or "NominalDiscount" in efectos):
+            pct: float | None
             if "PercentualDiscount" in efectos:
-                pct = round(_num(efectos["PercentualDiscount"]), 1)
+                valor = _num_o_none(efectos["PercentualDiscount"])
+                pct = round(valor, 1) if valor is not None else None
             else:
-                pct = round(_num(efectos["NominalDiscount"]) / (minimo * price) * 100, 1) if price else None
+                valor = _num_o_none(efectos["NominalDiscount"])
+                pct = round(valor / (minimo * price) * 100, 1) if valor is not None and price else None
             res.promos.append(Promo("llevando_n", f"Llevando {minimo} unidades: −{pct:.0f}%" if pct else
                                     f"Descuento llevando {minimo} unidades", pct))
 
@@ -156,6 +182,8 @@ def analyze(commertial_offer: dict, product: dict, *, list_price: float, price: 
                 res.promos.append(promo)
 
     for sello in product.get("clusterHighlights") or []:
+        if not isinstance(sello, dict):
+            continue
         for promo in promos_from_text(str(sello.get("name") or ""), price):
             if promo.label not in vistas:
                 vistas.add(promo.label)
