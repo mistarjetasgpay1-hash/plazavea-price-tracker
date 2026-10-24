@@ -47,7 +47,9 @@ class PlazaVeaScraper(BaseScraper):
             raise ConfigError(f"scraper: falta la clave {exc}") from exc
         self.site_url = str(sc.get("site_url", "https://www.plazavea.com.pe")).rstrip("/")
         self.page_size = int(sc.get("page_size", 50))
-        self.max_pages = int(sc.get("max_pages", 3))
+        self.max_pages = int(sc.get("max_pages", 3))          # profundidad máxima por categoría
+        self.fixed_pages = max(1, int(sc.get("fixed_pages", self.max_pages)))
+        self.rotating_pages = max(0, int(sc.get("rotating_pages", 0)))
         self.allowed_seller_ids = frozenset(self.seller_facets.values())
         self.categories = [
             Category(
@@ -134,44 +136,83 @@ class PlazaVeaScraper(BaseScraper):
         return None
 
     # --------------------------------------------------------------------- API
+    def _scan_page(self, cat: Category, url: str, pagina: int, salida: list[Offer]) -> tuple[float, int] | None:
+        """Lee una página; agrega las ofertas a `salida`. Devuelve (máx. descuento, total) o None si falla."""
+        try:
+            data = self.http.get(
+                url,
+                params={"page": pagina, "count": self.page_size, "sort": "discount:desc"},
+                expect="json",
+            )
+        except HttpError as exc:
+            self.stats.fail(f"{cat.key} pág {pagina}: {exc}")
+            log.warning("[%s] pág %s: %s", cat.key, pagina, exc)
+            return None
+        productos = data.get("products") or []
+        self.stats.pages_ok += 1
+        max_pagina = 0.0
+        oficiales = 0
+        for prod in productos:
+            self.stats.products_seen += 1
+            max_pagina = max(max_pagina, self._default_discount(prod))
+            offer = self.parse_product(prod, cat)
+            if offer is not None:
+                oficiales += 1
+                salida.append(offer)
+        log.info("[%s] pág %s: %s productos | %s oficiales con stock | máx. dto %.0f%%",
+                 cat.key, pagina, len(productos), oficiales, max_pagina)
+        return max_pagina, int(data.get("recordsFiltered") or 0)
+
     def iter_offers(self) -> Iterator[Offer]:
+        """Por categoría: `fixed_pages` (los mayores descuentos, en cada corrida) + `rotating_pages`
+        más profundas que avanzan corrida a corrida hasta `max_pages` o hasta que el descuento cae
+        bajo el umbral (la API viene ordenada por descuento)."""
+        cursores = self.meta.setdefault("cursors", {})
         for cat in self.categories:
             umbral = cat.min_discount if cat.min_discount is not None else self.cfg.offers.min_discount_pct
             url = self._search_url(cat)
-            for pagina in range(1, (cat.max_pages or self.max_pages) + 1):
-                try:
-                    data = self.http.get(
-                        url,
-                        params={"page": pagina, "count": self.page_size, "sort": "discount:desc"},
-                        expect="json",
-                    )
-                except HttpError as exc:
-                    self.stats.fail(f"{cat.key} pág {pagina}: {exc}")
-                    log.warning("[%s] pág %s: %s", cat.key, pagina, exc)
-                    break
+            tope = cat.max_pages or self.max_pages
+            inicio_rot = self.fixed_pages + 1
+            ofertas: list[Offer] = []
 
-                productos = data.get("products") or []
-                self.stats.pages_ok += 1
-                if not productos:
+            # 1) Páginas fijas
+            seguir, total_paginas = True, 1
+            for pagina in range(1, min(self.fixed_pages, tope) + 1):
+                res = self._scan_page(cat, url, pagina, ofertas)
+                if res is None:
+                    seguir = False
                     break
-                max_pagina = 0.0
-                oficiales = 0
-                for prod in productos:
-                    self.stats.products_seen += 1
-                    max_pagina = max(max_pagina, self._default_discount(prod))
-                    offer = self.parse_product(prod, cat)
-                    if offer is not None:
-                        oficiales += 1
-                        yield offer
-                log.info("[%s] pág %s: %s productos | %s oficiales con stock | máx. dto %.0f%%",
-                         cat.key, pagina, len(productos), oficiales, max_pagina)
+                max_pagina, total = res
+                total_paginas = max(1, -(-total // self.page_size))
+                if pagina >= total_paginas or max_pagina < umbral:
+                    seguir = False
+                    break
+            yield from ofertas
+            ofertas.clear()
 
-                total = int(data.get("recordsFiltered") or 0)
-                if pagina * self.page_size >= total:
+            # 2) Ventana rotativa sobre las páginas más profundas
+            limite = min(tope, total_paginas)
+            if not seguir or self.rotating_pages == 0 or limite < inicio_rot:
+                if cursores.get(cat.key) not in (None, inicio_rot):
+                    cursores[cat.key] = inicio_rot
+                    self.meta_changed = True
+                continue
+            pagina = int(cursores.get(cat.key, inicio_rot))
+            for _ in range(self.rotating_pages):
+                if pagina > limite or pagina < inicio_rot:
+                    pagina = inicio_rot
+                res = self._scan_page(cat, url, pagina, ofertas)
+                if res is None:
                     break
-                if max_pagina < umbral:
-                    # La búsqueda viene ordenada por descuento: las páginas siguientes serán menores.
+                if res[0] < umbral:      # se acabaron las ofertas: la próxima vuelta empieza arriba
+                    pagina = inicio_rot
                     break
+                pagina += 1
+            yield from ofertas
+            ofertas.clear()
+            if cursores.get(cat.key) != pagina:
+                cursores[cat.key] = pagina
+                self.meta_changed = True
 
     def close(self) -> None:
         self.http.close()

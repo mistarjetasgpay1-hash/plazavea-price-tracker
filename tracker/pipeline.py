@@ -25,6 +25,7 @@ class RunReport:
     candidates: int = 0
     sent_individual: int = 0
     sent_digest: int = 0
+    digest_messages: int = 0
     deferred: int = 0
     failed_sends: int = 0
     sent: list[tuple[Offer, str]] = field(default_factory=list)
@@ -62,6 +63,24 @@ def collect_candidates(
     return candidatos
 
 
+def diversify(candidatos: list[tuple[Offer, str]], n: int) -> list[tuple[Offer, str]]:
+    """Elige `n` ofertas alternando grupos (round-robin), para que las alertas con foto no
+    queden todas en una sola categoría. Dentro de cada grupo se respeta el mayor descuento."""
+    por_grupo: dict[str, list[tuple[Offer, str]]] = {}
+    for par in candidatos:              # `candidatos` ya viene ordenado por descuento
+        por_grupo.setdefault(par[0].group, []).append(par)
+    colas = list(por_grupo.values())
+    elegidas: list[tuple[Offer, str]] = []
+    while len(elegidas) < n and colas:
+        for cola in list(colas):
+            if len(elegidas) >= n:
+                break
+            elegidas.append(cola.pop(0))
+            if not cola:
+                colas.remove(cola)
+    return elegidas
+
+
 def notify(
     candidatos: list[tuple[Offer, str]],
     *,
@@ -74,8 +93,9 @@ def notify(
 ) -> None:
     tg = cfg.telegram
     limite = tg.max_individual_alerts if max_alerts is None else max_alerts
-    individuales = candidatos[:limite]
-    resto = candidatos[limite: limite + tg.digest_max_items]
+    individuales = diversify(candidatos, limite)
+    elegidas = {id(par) for par in individuales}
+    resto = [par for par in candidatos if id(par) not in elegidas][: tg.digest_max_items]
 
     for offer, razon in individuales:
         caption = formatter.offer_caption(
@@ -100,20 +120,27 @@ def notify(
         else:
             report.failed_sends += 1
 
-    if resto:
-        texto, incluidas = formatter.digest_message(
-            resto, store_name=cfg.store_name, hashtag_prefix=cfg.hashtag_prefix
-        )
-        # El resumen va al hilo del grupo más frecuente (si se usan Temas).
-        grupos = [o.group for o, _ in incluidas]
-        hilo = tg.group_thread(max(set(grupos), key=grupos.count)) if grupos else None
-        if incluidas and notifier.send_message(texto, thread_id=hilo, preview=False):
+    # Resúmenes: uno o más mensajes por grupo (cada uno ≤ 4096 caracteres), al hilo del grupo.
+    por_grupo: dict[str, list[tuple[Offer, str]]] = {}
+    for par in resto:
+        por_grupo.setdefault(par[0].group, []).append(par)
+    for grupo, pendientes in por_grupo.items():
+        while pendientes:
+            texto, incluidas = formatter.digest_message(
+                pendientes, store_name=cfg.store_name, hashtag_prefix=cfg.hashtag_prefix,
+                group=grupo, emoji=tg.group_emoji(grupo),
+            )
+            if not incluidas:
+                break
+            if not notifier.send_message(texto, thread_id=tg.group_thread(grupo), preview=False):
+                report.failed_sends += 1
+                break
             for offer, razon in incluidas:
                 state.mark_notified(offer.key, offer.price, offer.discount)
                 report.sent.append((offer, razon))
-            report.sent_digest = len(incluidas)
-        else:
-            report.failed_sends += 1
+            report.sent_digest += len(incluidas)
+            report.digest_messages += 1
+            pendientes = pendientes[len(incluidas):]
 
     report.deferred = max(0, len(candidatos) - report.sent_individual - report.sent_digest)
 
@@ -159,7 +186,8 @@ def write_summary(cfg: AppConfig, report: RunReport, scraper: BaseScraper, durac
         f"## {cfg.store_name}\n\n"
         f"| Métrica | Valor |\n|---|---|\n"
         f"| Productos vistos | {report.seen} |\n| Candidatos | {report.candidates} |\n"
-        f"| Enviados (foto) | {report.sent_individual} |\n| Enviados (resumen) | {report.sent_digest} |\n"
+        f"| Enviados (foto) | {report.sent_individual} |\n"
+        f"| Enviados en resúmenes | {report.sent_digest} ({report.digest_messages} mensajes) |\n"
         f"| Pendientes p/ próxima corrida | {report.deferred} |\n| Fallos de envío | {report.failed_sends} |\n"
         f"| Páginas OK / fallidas | {scraper.stats.pages_ok} / {scraper.stats.pages_failed} |\n"
         f"| Modo de extracción | {scraper.stats.mode} |\n| Duración | {duracion:.1f}s |\n\n"

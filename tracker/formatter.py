@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
-from html import escape
+from html import escape, unescape
 
 from .models import Offer
 from .pricing import discount_pct
@@ -66,30 +66,45 @@ def offer_caption(
     return texto[:CAPTION_LIMIT]
 
 
+DIGEST_MAX_ITEMS = 30          # por mensaje (cada línea usa 2 entidades: negrita + enlace)
+_TAG_RE = re.compile(r"<[^>]+>")
+
+
+def _visible_len(html_text: str) -> int:
+    """Telegram cuenta el límite de 4096 sobre el texto visible, no sobre las etiquetas HTML."""
+    return len(unescape(_TAG_RE.sub("", html_text)))
+
+
 def digest_message(
     items: list[tuple[Offer, str]],
     *,
     store_name: str,
     hashtag_prefix: str,
+    group: str = "",
+    emoji: str = "📋",
 ) -> tuple[str, list[tuple[Offer, str]]]:
-    """Agrupa ofertas en un solo mensaje. Devuelve (texto, ofertas_incluidas)."""
-    cabecera = f"📋 <b>Más ofertas en {escape(store_name)}</b>"
-    pie = f"#{hashtag(hashtag_prefix)}_Resumen"
+    """Agrupa ofertas (idealmente de un mismo grupo) en un mensaje. Devuelve (texto, incluidas)."""
+    titulo = f"Más ofertas · {escape(group)}" if group else f"Más ofertas en {escape(store_name)}"
+    cabecera = f"{emoji} <b>{titulo}</b>"
+    pie = f"#{hashtag(f'{hashtag_prefix}_{group}')}" if group else f"#{hashtag(hashtag_prefix)}_Resumen"
     lineas: list[str] = []
     incluidas: list[tuple[Offer, str]] = []
-    largo = len(cabecera) + len(pie) + 20
+    largo = _visible_len(cabecera) + len(pie) + 20
     for offer, reason in items:
+        if len(incluidas) >= DIGEST_MAX_ITEMS:
+            break
         marca = " 📉" if reason == "drop" else ""
         linea = (
             f"• <b>-{offer.discount:.0f}%</b> "
             f'<a href="{escape(offer.url, quote=True)}">{escape(offer.name[:70], quote=False)}</a>'
             f" — {money(offer.price)}{marca}"
         )
-        if largo + len(linea) + 1 > MESSAGE_LIMIT - 50:
+        # Límite visible (Telegram) y límite bruto de seguridad para el payload.
+        if largo + _visible_len(linea) + 1 > MESSAGE_LIMIT - 100:
             break
         lineas.append(linea)
         incluidas.append((offer, reason))
-        largo += len(linea) + 1
+        largo += _visible_len(linea) + 1
     texto = "\n".join([f"{cabecera} ({len(incluidas)})", "", *lineas, "", pie])
     return texto, incluidas
 

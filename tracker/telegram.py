@@ -97,7 +97,7 @@ class TelegramNotifier:
     def send_message(self, text: str, *, thread_id: int | None = None, silent: bool = False,
                      preview: bool = True) -> bool:
         data = self._base(thread_id, silent)
-        data["text"] = text[:4096]
+        data["text"] = text  # el formatter garantiza ≤ 4096 caracteres visibles (no se corta el HTML)
         data["link_preview_options"] = json.dumps({"is_disabled": not preview})
         return self._call("sendMessage", data)
 
