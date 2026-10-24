@@ -213,3 +213,14 @@ def test_digest_marks_card_and_unit_price():
     texto, incluidas = formatter.digest_message([(o, "new")], store_name="Plaza Vea", hashtag_prefix="PlazaVea",
                                                 group="Abarrotes")
     assert len(incluidas) == 1 and "💳 Tarjeta Oh!" in texto and "S/ 4.29 x kg" in texto and "S/ 4.08" in texto
+
+
+def test_percentages_round_down_like_the_website():
+    # Real: Café NESCAFÉ Kirma 180g · Regular 24.00 · Online 20.50 (web: −14 %) · Tarjeta 17.43 (web: −27 %)
+    o = _offer(name="Café Instantáneo NESCAFÉ Kirma Lata 180g", list_price=24.0, price=20.5, card_price=17.43,
+               card_label="Tarjeta Oh!", quantity=Quantity(0.18, "kg"))
+    assert rejection_reason(o, OffersConfig(min_discount_pct=15)) is None and o.qualified_by == "tarjeta"
+    texto = formatter.offer_caption(o, reason="new", previous_price=None, store_name="Plaza Vea",
+                                    hashtag_prefix="PlazaVea")
+    assert "Online <b>S/ 20.50</b> (−14%)" in texto and "<b>S/ 17.43</b> (−27%)" in texto
+    assert "<b>-27% con Tarjeta Oh!</b>" in texto
