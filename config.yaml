@@ -65,5 +65,8 @@ scraper:
     - {key: Bebidas,         path: category-1/bebidas,                  group: Bebidas}
     - {key: Limpieza,        path: category-1/limpieza,                 group: Limpieza}
     - {key: CuidadoPersonal, path: category-1/cuidado-personal-y-salud, group: CuidadoPersonal}
-    - {key: BebeInfantil,    path: category-1/bebe-e-infantil,          group: BebeInfantil, sellers: [plazavea]}
+    # Bebé: solo subcategorías de consumo (sin juguetes ni muebles)
+    - {key: BebeAlimentacion, path: category-1/bebe-e-infantil/category-2/alimentacion-del-bebe,         group: BebeInfantil, sellers: [plazavea]}
+    - {key: BebeAseo,         path: category-1/bebe-e-infantil/category-2/cuidado-y-aseo-del-bebe,       group: BebeInfantil, sellers: [plazavea]}
+    - {key: Panales,          path: category-1/bebe-e-infantil/category-2/panales-y-toallitas-para-bebe, group: BebeInfantil, sellers: [plazavea]}
     - {key: Mascotas,        path: category-1/mascotas,                 group: Mascotas}
