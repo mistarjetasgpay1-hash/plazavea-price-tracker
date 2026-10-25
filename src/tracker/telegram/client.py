@@ -47,6 +47,12 @@ class TelegramNotifier:
         self.paused = False                   # Telegram pidió esperar demasiado: no más envíos en esta corrida
         self.sent = 0
         self.last_error = ""
+        # Diagnóstico (logs de GitHub Actions): respuestas HTTP reales de la API de Telegram.
+        self.http_calls = 0                   # peticiones que llegaron a salir hacia Telegram
+        self.http_status: dict[int, int] = {} # código HTTP → veces
+        self.network_errors = 0               # peticiones sin respuesta (timeout, DNS, conexión)
+        self.simulated = 0                    # llamadas no enviadas por DRY_RUN
+        self.skipped_paused = 0               # llamadas omitidas por pausa (429 largo)
 
     @property
     def available(self) -> bool:
@@ -63,35 +69,59 @@ class TelegramNotifier:
         self.last_error = motivo
         log.warning("%s Los envíos restantes quedan para la próxima corrida.", motivo)
 
+    @staticmethod
+    def _payload(resp) -> dict:
+        try:
+            payload = resp.json()
+        except ValueError:
+            payload = {}
+        return payload if isinstance(payload, dict) else {}
+
+    def _log_response(self, method: str, resp, payload: dict, intento: int) -> None:
+        """Una línea por respuesta de Telegram: método, código HTTP y lo que contestó la API."""
+        self.http_status[resp.status_code] = self.http_status.get(resp.status_code, 0) + 1
+        if resp.ok:
+            resultado = payload.get("result")
+            mensaje = resultado.get("message_id") if isinstance(resultado, dict) else None
+            log.info("[TG] ← %s · HTTP %s · ok=%s%s", method, resp.status_code,
+                     str(payload.get("ok", True)).lower(), f" · message_id={mensaje}" if mensaje else "")
+        else:
+            descripcion = str(payload.get("description") or getattr(resp, "text", "") or "")[:200]
+            log.warning("[TG] ← %s · HTTP %s · ok=false · error_code=%s · %s (intento %s/4)", method,
+                        resp.status_code, payload.get("error_code", resp.status_code), descripcion, intento)
+
     def _call(self, method: str, data: dict, files: dict | None = None) -> bool:
         if self.dry_run:
-            log.info("[DRY-RUN] %s → %s", method, (data.get("caption") or data.get("text") or "")[:120].replace("\n", " | "))
+            self.simulated += 1
+            log.info("[TG] %s NO invocado (DRY_RUN: simulación) → %s", method,
+                     (data.get("caption") or data.get("text") or "")[:120].replace("\n", " | "))
             self.sent += 1
             return True
         if self.paused:
+            self.skipped_paused += 1
+            log.info("[TG] %s omitido: Telegram en pausa (%s).", method, self.last_error)
             return False
 
-        url = API_URL.format(token=self.token, method=method)
+        url = API_URL.format(token=self.token, method=method)   # el token nunca se escribe en el log
         for intento in range(1, 5):
             self._throttle()
+            self.http_calls += 1
             try:
                 resp = self.session.post(url, data=data, files=files, timeout=self.timeout_s)
             except requests.RequestException as exc:
                 self._last_send = time.monotonic()
+                self.network_errors += 1
                 self.last_error = f"red: {type(exc).__name__}"
-                log.warning("Error de red con Telegram (%s/4): %s", intento, type(exc).__name__)
+                log.warning("[TG] ← %s · sin respuesta HTTP (%s, intento %s/4)", method, type(exc).__name__, intento)
                 time.sleep(2 * intento)
                 continue
             self._last_send = time.monotonic()
+            payload = self._payload(resp)
+            self._log_response(method, resp, payload, intento)
 
             if resp.ok:
                 self.sent += 1
                 return True
-            try:
-                payload = resp.json()
-            except ValueError:
-                payload = {}
-            payload = payload if isinstance(payload, dict) else {}
             descripcion = str(payload.get("description") or resp.text)[:200]
 
             if resp.status_code == 429:
@@ -112,10 +142,64 @@ class TelegramNotifier:
                 time.sleep(2 * intento)
                 continue
             # 400/403: foto inválida, chat incorrecto, bot expulsado... no se reintenta.
-            self.last_error = descripcion
-            log.warning("Telegram %s devolvió %s: %s", method, resp.status_code, descripcion)
+            self.last_error = f"HTTP {resp.status_code}: {descripcion}"
             return False
         return False
+
+    # ------------------------------------------------------------ diagnóstico
+    def check_connection(self) -> bool | None:
+        """Verifica token (getMe) y chat (getChat) antes de la corrida y registra la respuesta HTTP.
+
+        True  → token y chat válidos.
+        False → Telegram rechazó el token o el chat (401/400/403/404): ningún envío funcionará.
+        None  → no se pudo comprobar (simulación, red caída o Telegram 5xx): la corrida sigue.
+        """
+        if self.dry_run:
+            log.info("[TG] Verificación de token/chat omitida (DRY_RUN: simulación).")
+            return None
+        if not self.token or not self.chat_id:
+            self.last_error = "token o chat_id vacío"
+            log.error("[TG] Token o chat_id vacío: revisa los Secrets del repositorio.")
+            return False
+        for method, data in (("getMe", {}), ("getChat", {"chat_id": self.chat_id})):
+            try:
+                resp = self.session.post(API_URL.format(token=self.token, method=method), data=data,
+                                         timeout=self.timeout_s)
+            except requests.RequestException as exc:
+                log.warning("[TG] ← %s · sin respuesta HTTP (%s): no se pudo verificar.", method, type(exc).__name__)
+                return None
+            payload = self._payload(resp)
+            resultado = payload.get("result") if isinstance(payload.get("result"), dict) else {}
+            if resp.ok:
+                if method == "getMe":
+                    log.info("[TG] ← getMe · HTTP %s · bot @%s (id %s)", resp.status_code,
+                             resultado.get("username", "?"), resultado.get("id", "?"))
+                else:
+                    log.info("[TG] ← getChat · HTTP %s · chat \"%s\" (tipo %s)", resp.status_code,
+                             resultado.get("title") or resultado.get("username") or resultado.get("first_name") or "?",
+                             resultado.get("type", "?"))
+                continue
+            descripcion = str(payload.get("description") or getattr(resp, "text", "") or "")[:200]
+            log.error("[TG] ← %s · HTTP %s · ok=false · %s", method, resp.status_code, descripcion)
+            if resp.status_code >= 500 or resp.status_code == 429:
+                return None
+            self.last_error = f"{method} HTTP {resp.status_code}: {descripcion}"
+            return False
+        return True
+
+    def api_summary(self) -> str:
+        """Resumen de lo que respondió Telegram en la corrida (para el log y el resumen de Actions)."""
+        if self.dry_run:
+            return f"0 llamadas reales (DRY_RUN: {self.simulated} simuladas)"
+        codigos = ", ".join(f"HTTP {c}: {n}" for c, n in sorted(self.http_status.items())) or "ninguna respuesta"
+        extra = []
+        if self.network_errors:
+            extra.append(f"sin respuesta: {self.network_errors}")
+        if self.skipped_paused:
+            extra.append(f"omitidas por pausa: {self.skipped_paused}")
+        if self.last_error:
+            extra.append(f"último error: {self.last_error}")
+        return f"{self.http_calls} llamadas · {codigos}" + (f" · {' · '.join(extra)}" if extra else "")
 
     def _base(self, thread_id: int | None, silent: bool) -> dict:
         data: dict = {"chat_id": self.chat_id, "parse_mode": "HTML"}
