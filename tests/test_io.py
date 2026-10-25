@@ -148,3 +148,56 @@ def test_healthcheck_ping(monkeypatch):
     assert healthcheck.ping("https://hc-ping.com/uuid", ok=False)
     assert not healthcheck.ping("", ok=True)
     assert llamadas == ["https://hc-ping.com/uuid", "https://hc-ping.com/uuid/fail"]
+
+
+# ------------------------------------------------------- diagnóstico Telegram
+def test_telegram_logs_http_response_and_counts(caplog):
+    s = FakeSession([Resp(200, {"ok": True, "result": {"message_id": 42}}),
+                     Resp(400, {"ok": False, "error_code": 400, "description": "Bad Request: chat not found"})])
+    tg = TelegramNotifier("123456:SECRETO-abc", "C", min_interval_s=0, session=s)
+    with caplog.at_level("INFO", logger="tracker.telegram.client"):
+        assert tg.send_message("hola") and not tg.send_message("x")
+    assert "[TG] ← sendMessage · HTTP 200 · ok=true · message_id=42" in caplog.text
+    assert "HTTP 400 · ok=false · error_code=400 · Bad Request: chat not found" in caplog.text
+    assert tg.http_calls == 2 and tg.http_status == {200: 1, 400: 1}
+    assert "2 llamadas · HTTP 200: 1, HTTP 400: 1" in tg.api_summary() and "chat not found" in tg.api_summary()
+    assert "SECRETO" not in caplog.text and "SECRETO" not in tg.api_summary()   # el token nunca sale en el log
+
+
+def test_telegram_dry_run_logs_not_invoked(caplog):
+    tg = TelegramNotifier("", "", dry_run=True, session=FakeSession([]))
+    with caplog.at_level("INFO", logger="tracker.telegram.client"):
+        tg.send_message("hola")
+    assert "sendMessage NO invocado (DRY_RUN" in caplog.text
+    assert tg.api_summary() == "0 llamadas reales (DRY_RUN: 1 simuladas)"
+    assert tg.check_connection() is None
+
+
+def test_telegram_check_connection_ok(caplog):
+    s = FakeSession([Resp(200, {"ok": True, "result": {"id": 1, "username": "OfertasBot"}}),
+                     Resp(200, {"ok": True, "result": {"title": "Ofertas PlazaVea", "type": "channel"}})])
+    tg = TelegramNotifier("T", "-100123", min_interval_s=0, session=s)
+    with caplog.at_level("INFO", logger="tracker.telegram.client"):
+        assert tg.check_connection() is True
+    metodos = [a[0].rsplit("/", 1)[-1] for a, _ in s.llamadas]
+    assert metodos == ["getMe", "getChat"] and s.llamadas[1][1]["data"] == {"chat_id": "-100123"}
+    assert "@OfertasBot" in caplog.text and '"Ofertas PlazaVea" (tipo channel)' in caplog.text
+    assert tg.sent == 0 and tg.http_calls == 0                 # la verificación no cuenta como envío
+
+
+@pytest.mark.parametrize("respuestas, esperado", [
+    ([Resp(401, {"ok": False, "description": "Unauthorized"})], False),                   # token inválido
+    ([Resp(200, {"ok": True, "result": {}}), Resp(400, {"description": "chat not found"})], False),
+    ([Resp(502, {"description": "Bad Gateway"})], None),                                  # Telegram caído
+    ([requests.ConnectionError("sin red")], None),
+])
+def test_telegram_check_connection_failures(respuestas, esperado):
+    tg = TelegramNotifier("T", "C", min_interval_s=0, session=FakeSession(respuestas))
+    assert tg.check_connection() is esperado
+    if esperado is False:
+        assert "HTTP 40" in tg.last_error
+
+
+def test_telegram_check_connection_empty_secrets():
+    s = FakeSession([])
+    assert TelegramNotifier("", "C", session=s).check_connection() is False and s.llamadas == []

@@ -329,3 +329,73 @@ def test_old_state_in_a_failure_streak_is_not_alerted_twice(make_cfg):
     assert tg.messages == []
     update_health(FakeScraper(cfg, [make_offer()]), cfg, st, tg)
     assert len(tg.messages) == 1 and "volvió" in tg.messages[0]
+
+
+# ------------------------------------------------------- diagnóstico en la corrida
+def test_run_stops_red_when_telegram_rejects_token(make_cfg, monkeypatch):
+    from tracker.core import pipeline
+
+    cfg = make_cfg()
+    construido = []
+    monkeypatch.setattr("tracker.scrapers.build_scraper", lambda c, meta: construido.append(1))
+
+    class Rechaza(OrderedNotifier):
+        def __init__(self, *a, **kw):
+            super().__init__()
+            self.last_error = "getMe HTTP 401: Unauthorized"
+
+        def check_connection(self):
+            return False
+
+        def close(self):
+            pass
+
+    monkeypatch.setattr(pipeline, "TelegramNotifier", Rechaza)
+    assert pipeline.run(cfg) == 1 and construido == []          # no scrapea si no puede avisar
+
+
+def test_run_logs_filters_invocation_and_simulation(make_cfg, monkeypatch, caplog, tmp_path):
+    from tracker.core import pipeline
+
+    resumen = tmp_path / "summary.md"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(resumen))
+    monkeypatch.setenv("TELEGRAM_TOKEN", "")
+    cfg = make_cfg()
+    monkeypatch.setattr("tracker.scrapers.build_scraper", lambda c, meta: PhasedScraper(c, *_ofertas()))
+    with caplog.at_level("INFO"):
+        assert pipeline.run(cfg, dry_run=True) == 0
+    texto = caplog.text
+    assert "MODO SIMULACIÓN" in texto and "Token: VACÍO (se esperaba TELEGRAM_TOKEN)" in texto
+    assert "[FILTROS] Fase 1 (página 1): 2 productos superaron los filtros" in texto
+    assert "[FILTROS] Total: 4 de 5 productos superaron los filtros" in texto
+    assert "[TG] Invocando envío a Telegram [SIMULACIÓN, no sale nada]" in texto
+    assert "[TG] Respuestas de la API de Telegram en esta corrida: 0 llamadas reales" in texto
+    md = resumen.read_text(encoding="utf-8")
+    assert "🧪 SIMULACIÓN" in md and "Enviados (foto) (simulado)" in md
+
+
+def test_run_logs_real_mode_and_secret_source(make_cfg, monkeypatch, caplog):
+    from tracker.core import pipeline
+
+    monkeypatch.setenv("TELEGRAM_TOKEN", "123:abc")
+    monkeypatch.setenv("CHAT_ID", "-100")
+    cfg = make_cfg()
+    cfg.telegram.token, cfg.telegram.chat_id = "123:abc", "-100"
+    monkeypatch.setattr("tracker.scrapers.build_scraper", lambda c, meta: PhasedScraper(c, *_ofertas()))
+
+    class Notificador(OrderedNotifier):
+        def __init__(self, *a, **kw):
+            super().__init__()
+
+        def check_connection(self):
+            return True
+
+        def close(self):
+            pass
+
+    monkeypatch.setattr(pipeline, "TelegramNotifier", Notificador)
+    with caplog.at_level("INFO"):
+        assert pipeline.run(cfg) == 0
+    assert "MODO REAL" in caplog.text
+    assert "Token: variable TELEGRAM_TOKEN (definida, 7 caracteres) · chat_id: variable CHAT_ID (definida)" in caplog.text
+    assert "123:abc" not in caplog.text
