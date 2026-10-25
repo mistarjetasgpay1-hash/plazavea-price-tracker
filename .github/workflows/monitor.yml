@@ -1,10 +1,14 @@
-name: Monitor Plaza Vea (pruebas)
+name: Monitor Plaza Vea
 
-# Producción: los bots corren 24/7 en el VPS (ecosystem.config.js).
-# Este workflow ya NO está programado; solo se usa para:
-#   · push a main  → prueba de integración real (simulación, no envía a Telegram)
-#   · ejecución manual → simulación o, si el VPS está caído, una corrida real puntual
+# Producción: los bots corren SOLO en GitHub Actions (sin VPS).
+#   · schedule (cron)  → corrida REAL: envía a Telegram y guarda el historial en ramas state-*
+#   · ejecución manual → REAL por defecto (marca "Simulación" si solo quieres probar)
+#   · push a main      → prueba de integración en SIMULACIÓN (no envía a Telegram)
 on:
+  schedule:
+    # Horas en UTC (Lima = UTC-5). Minutos desfasados del :00 para evitar la cola pico de GitHub.
+    - cron: '7,22,37,52 0-5,11-23 * * *'   # 06:00–00:59 Lima → cada 15 min
+    - cron: '7 6-10 * * *'                 # 01:00–05:59 Lima → cada hora
   push:
     branches: [main]
     paths:
@@ -21,16 +25,18 @@ on:
         options: [ambos, alimentos, general]
         default: ambos
       dry_run:
-        description: 'Simulación (no envía a Telegram). Desmárcalo solo si el VPS está caído: este historial no se comparte con el VPS.'
+        description: 'Simulación (no envía a Telegram ni guarda el historial)'
         type: boolean
-        default: true
+        default: false
 
+# Las corridas reales nunca se cancelan entre sí (comparten el historial en las ramas state-*):
+# se encolan. Las simulaciones de push sí se cancelan si llega un push más nuevo.
 concurrency:
-  group: monitor-plazavea-${{ github.event_name }}
-  cancel-in-progress: true
+  group: monitor-plazavea-${{ (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.dry_run)) && 'simulacion' || 'real' }}
+  cancel-in-progress: ${{ github.event_name == 'push' }}
 
 permissions:
-  contents: write   # solo se usa en corridas reales manuales (historial en ramas state-*)
+  contents: write   # guarda el historial de las corridas reales en las ramas state-*
 
 jobs:
   monitor:
@@ -42,7 +48,8 @@ jobs:
       matrix:
         bot: ${{ fromJSON(inputs.bot == 'alimentos' && '["alimentos"]' || inputs.bot == 'general' && '["general"]' || '["alimentos","general"]') }}
     env:
-      DRY_RUN: ${{ github.event_name == 'push' || inputs.dry_run }}
+      # 'true' solo en push o si marcas "Simulación" al lanzarlo a mano; en el cron siempre 'false'.
+      DRY_RUN: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
       STATE_FILE: state/plazavea_${{ matrix.bot }}.json
       STATE_BRANCH: state-${{ matrix.bot }}
     steps:
@@ -72,11 +79,27 @@ jobs:
 
       - name: Ejecutar bot ${{ matrix.bot }}
         env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}      # bot general
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}      # bot general (run_general)
           CHAT_ID: ${{ secrets.CHAT_ID }}
           TELEGRAM_TOKEN3: ${{ secrets.TELEGRAM_TOKEN3 }}    # bot canasta básica (run_alimentos)
           CHAT_ID3: ${{ secrets.CHAT_ID3 }}
-        run: python run_${{ matrix.bot }}.py
+          BOT: ${{ matrix.bot }}
+          EVENTO: ${{ github.event_name }}
+        run: |
+          echo "── Diagnóstico ──────────────────────────────────────────"
+          echo "Evento: $EVENTO · Bot: $BOT · DRY_RUN=$DRY_RUN"
+          if [ "$BOT" = "alimentos" ]; then usadas="TELEGRAM_TOKEN3 CHAT_ID3"; else usadas="TELEGRAM_TOKEN CHAT_ID"; fi
+          for nombre in $usadas; do
+            valor="${!nombre}"
+            if [ -n "$valor" ]; then echo "Secreto $nombre: definido (${#valor} caracteres)"
+            elif [ "$DRY_RUN" = "true" ]; then echo "::warning title=Secreto vacío::$nombre está vacío (en simulación no se usa)"
+            else echo "::error title=Secreto vacío::$nombre no llega al job: revisa Settings → Secrets and variables → Actions"; fi
+          done
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "::notice title=Simulación ($BOT)::DRY_RUN=true por evento '$EVENTO': no se envía nada a Telegram."
+          fi
+          echo "─────────────────────────────────────────────────────────"
+          python run_${BOT}.py
 
       - name: Guardar historial (solo corrida real)
         if: always() && env.DRY_RUN != 'true'
