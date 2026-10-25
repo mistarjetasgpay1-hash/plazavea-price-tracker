@@ -1,6 +1,6 @@
 # plazavea-price-tracker
 
-Monitor de ofertas de **Plaza Vea** con alertas por Telegram: dos bots que corren 24/7 en un VPS, cada 5 minutos, **solo con productos vendidos por la tienda oficial** (Plaza Vea u Oechsle; nunca terceros ni marketplace).
+Monitor de ofertas de **Plaza Vea** con alertas por Telegram: dos bots que corren en **GitHub Actions** (cada 15 min de 06:00 a 00:59 y cada hora de madrugada, hora de Lima), **solo con productos vendidos por la tienda oficial** (Plaza Vea u Oechsle; nunca terceros ni marketplace).
 
 | Bot | Script | Telegram | Qué vigila | Umbral |
 |---|---|---|---|---|
@@ -63,7 +63,10 @@ La API devuelve los productos ordenados por mayor descuento online (máximo 2 50
 - **Cabecera adaptativa** (`fixed_pages`): el bot sigue leyendo mientras haya ofertas que califiquen y se detiene tras `tail_pages` páginas seguidas sin ninguna.
 - **Barrido profundo** (`rotating_pages` hasta `max_pages`): avanza unas páginas por corrida. En canasta básica (`sweep_deep: true`) recorre todo el fondo para encontrar combos y precios con tarjeta, que aparecen dispersos.
 
-## Producción en el VPS (24/7, cada 5 minutos)
+## Producción en un VPS (opcional, 24/7 cada 5 minutos)
+
+> Hoy la producción es **GitHub Actions** (sección siguiente). Esto queda solo por si vuelves a un VPS:
+> en ese caso quita el `schedule:` de `monitor.yml` para no tener dos instancias avisando a la vez.
 
 ```bash
 git clone https://github.com/mistarjetasgpay1-hash/plazavea-price-tracker.git
@@ -96,11 +99,26 @@ pm2 startup                   # (una vez) para que arranquen solos al reiniciar 
 
 ## GitHub Actions
 
-Sin horario (la producción está en el VPS):
+`monitor.yml` es la **producción**:
 
-- **Push a `main`** → prueba de integración real de ambos bots en simulación: no envía nada. El resumen muestra qué ofertas califican y por qué (cualquier medio, solo tarjeta o combo).
-- **Manual** → eliges el bot. Por defecto es una simulación.
+- **Horario (cron)** → corrida **real** de ambos bots: envía a Telegram y guarda el historial en las ramas `state-alimentos` / `state-general`. Las corridas reales se encolan, nunca se cancelan entre sí.
+- **Manual** → eliges el bot; por defecto es **real**. Marca *Simulación* si solo quieres probar.
+- **Push a `main`** → prueba de integración en **simulación**: no envía nada (el log y el resumen lo dicen con 🧪 SIMULACIÓN).
 - `ci.yml` corre `pytest` en Python 3.11 y 3.12.
+
+**Diagnóstico en el log de cada corrida** (paso *Ejecutar bot*):
+
+| Línea | Qué te dice |
+|---|---|
+| `Secreto TELEGRAM_TOKEN3: definido (46 caracteres)` | el Secret llega al job (o `::error` si está vacío) |
+| `[TG] Token: variable TELEGRAM_TOKEN3 (definida…) · chat_id: variable CHAT_ID3 (definida)` | de qué variable leyó el bot cada secreto |
+| `[TG] ← getMe · HTTP 200 · bot @…` / `[TG] ← getChat · HTTP 200 · chat "…"` | Telegram acepta el token y el chat (si no, la corrida termina en **rojo**) |
+| `[FILTROS] Total: N de M productos superaron los filtros…` | cuántas ofertas califican y por qué se descartó el resto |
+| `[TG] Invocando envío a Telegram: X alertas con foto + Y en resúmenes` | se llamó a la función de envío (o `Nada que enviar…`) |
+| `[TG] ← sendPhoto · HTTP 200 · ok=true · message_id=…` | respuesta HTTP real de Telegram por cada mensaje |
+| `[TG] Respuestas de la API de Telegram en esta corrida: … HTTP 200: 26` | totales por código HTTP (también en el resumen del run) |
+
+GitHub desactiva los workflows con `schedule` de un repositorio público tras 60 días sin actividad en el repo: si eso pasa, actívalo de nuevo desde la pestaña Actions.
 
 ## Estructura
 
