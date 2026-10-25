@@ -18,7 +18,7 @@ from ..state.store import StateStore, exclusive_lock
 from ..telegram import formatter
 from ..telegram.client import TelegramNotifier
 from . import healthcheck
-from .config import AppConfig
+from .config import AppConfig, env_source
 from .filters import is_official, rejection_reason
 from .models import Offer
 
@@ -29,10 +29,14 @@ _PAGO = {"online": "cualquier medio", "tarjeta": "solo tarjeta", "promo": "combo
 
 
 def annotate(level: str, message: str) -> None:
-    """Anotación visible en GitHub Actions; en un servidor queda solo en el log."""
+    """Anotación visible en GitHub Actions (error / warning / notice); en un servidor queda solo en el log."""
     if os.getenv("GITHUB_ACTIONS") == "true":
-        print(f"::{level}::{message}")
-    (log.error if level == "error" else log.warning)(message)
+        print(f"::{level}::{message}", flush=True)
+    {"error": log.error, "notice": log.info}.get(level, log.warning)(message)
+
+
+def _es_simulacion(notifier) -> bool:
+    return bool(getattr(notifier, "dry_run", False))
 
 
 @dataclass
@@ -131,6 +135,13 @@ def notify(
     elegidas = {id(par) for par in individuales}
     resto = [par for par in candidatos if id(par) not in elegidas][: tg.digest_max_items] if digests else []
     antes_individual, antes_digest = report.sent_individual, report.sent_digest
+    antes_fallos = report.failed_sends
+    if not individuales and not resto:
+        log.info("[TG] Nada que enviar aquí (%s candidatos): no se invoca Telegram.", len(candidatos))
+    else:
+        log.info("[TG] Invocando envío a Telegram%s: %s alertas con foto + %s ofertas en resúmenes (de %s candidatos).",
+                 " [SIMULACIÓN, no sale nada]" if _es_simulacion(notifier) else "",
+                 len(individuales), len(resto), len(candidatos))
 
     for offer, razon in individuales:
         if not _disponible(notifier):
@@ -188,6 +199,11 @@ def notify(
 
     enviadas = (report.sent_individual - antes_individual) + (report.sent_digest - antes_digest)
     report.deferred = max(0, len(candidatos) - enviadas)
+    if individuales or resto:
+        log.info("[TG] Resultado del envío%s: %s con foto, %s en resúmenes, %s fallos, %s pendientes.",
+                 " [SIMULACIÓN]" if _es_simulacion(notifier) else "",
+                 report.sent_individual - antes_individual, report.sent_digest - antes_digest,
+                 report.failed_sends - antes_fallos, report.deferred)
 
 
 def update_health(
@@ -243,20 +259,25 @@ def _update_category_health(
     state.set_meta("category_alerted", sorted(avisadas & set(sin_datos + con_datos)))
 
 
-def summary_line(cfg: AppConfig, report: RunReport, scraper: BaseScraper, duracion: float) -> str:
+def summary_line(cfg: AppConfig, report: RunReport, scraper: BaseScraper, duracion: float,
+                 dry_run: bool = False) -> str:
     primera = f" | 1ª alerta a los {report.first_alert_s:.0f}s" if report.first_alert_s is not None else ""
     return (
-        f"Resumen {cfg.display_name} | vistos={report.seen} candidatos={report.candidates} "
+        f"Resumen {cfg.display_name} [{'SIMULACIÓN' if dry_run else 'REAL'}] | "
+        f"vistos={report.seen} candidatos={report.candidates} "
         f"enviados={report.sent_individual}+{report.sent_digest}(resumen) pendientes={report.deferred} "
         f"fallos_envio={report.failed_sends} | páginas ok={scraper.stats.pages_ok} "
         f"fallidas={scraper.stats.pages_failed} modo={scraper.stats.mode} | {duracion:.1f}s{primera}"
     )
 
 
-def write_summary(cfg: AppConfig, report: RunReport, scraper: BaseScraper, duracion: float) -> None:
+def write_summary(cfg: AppConfig, report: RunReport, scraper: BaseScraper, duracion: float, *,
+                  dry_run: bool = False, notifier=None) -> None:
     rechazos = ", ".join(f"{k}: {v}" for k, v in sorted(report.rejected.items())) or "—"
-    log.info("%s", summary_line(cfg, report, scraper, duracion))
+    api = notifier.api_summary() if hasattr(notifier, "api_summary") else "—"
+    log.info("%s", summary_line(cfg, report, scraper, duracion, dry_run))
     log.info("Descartes: %s", rechazos)
+    log.info("[TG] Respuestas de la API de Telegram en esta corrida: %s", api)
     if scraper.stats.parse_errors:
         log.warning("Productos ignorados por datos inesperados: %s", scraper.stats.parse_errors)
 
@@ -269,12 +290,15 @@ def write_summary(cfg: AppConfig, report: RunReport, scraper: BaseScraper, durac
         for o, r in report.sent[:40]
     )
     primera = f"{report.first_alert_s:.0f}s" if report.first_alert_s is not None else "—"
+    sim = " (simulado)" if dry_run else ""
+    modo = ("🧪 SIMULACIÓN: no se envió nada a Telegram" if dry_run else "📨 REAL: envío a Telegram activado")
     md = (
-        f"## {cfg.display_name}\n\n"
+        f"## {cfg.display_name} · {modo}\n\n"
         f"| Métrica | Valor |\n|---|---|\n"
-        f"| Productos vistos | {report.seen} |\n| Candidatos | {report.candidates} |\n"
-        f"| Enviados (foto) | {report.sent_individual} |\n"
-        f"| Enviados en resúmenes | {report.sent_digest} ({report.digest_messages} mensajes) |\n"
+        f"| Productos vistos | {report.seen} |\n| Superaron los filtros (candidatos) | {report.candidates} |\n"
+        f"| Enviados (foto){sim} | {report.sent_individual} |\n"
+        f"| Enviados en resúmenes{sim} | {report.sent_digest} ({report.digest_messages} mensajes) |\n"
+        f"| Respuestas de la API de Telegram | {api.replace('|', '/')} |\n"
         f"| Pendientes p/ próxima corrida | {report.deferred} |\n| Fallos de envío | {report.failed_sends} |\n"
         f"| Primera alerta (desde el inicio) | {primera} |\n"
         f"| Páginas OK / fallidas | {scraper.stats.pages_ok} / {scraper.stats.pages_failed} |\n"
@@ -323,6 +347,8 @@ def run_phases(
     vistos: set[str] = set()
 
     primeras = collect_candidates(scraper, cfg, state, report, offers=scraper.iter_head(), vistos=vistos)
+    log.info("[FILTROS] Fase 1 (página 1): %s productos superaron los filtros (de %s vistos).",
+             len(primeras), report.seen)
     if primeras:
         notify(primeras, cfg=cfg, state=state, notifier=notifier, scraper=scraper, report=report,
                max_alerts=limite, digests=False, started_at=started_at)
@@ -332,13 +358,42 @@ def run_phases(
     # Las que fallaron en la fase 1 no se reintentan en esta corrida (quedan para la próxima).
     pendientes = [p for p in primeras if p[0].key not in enviadas and p[0].key not in report.failed_keys]
 
+    vistos_fase1 = report.seen
     resto = collect_candidates(scraper, cfg, state, report, offers=scraper.iter_rest(), vistos=vistos)
+    log.info("[FILTROS] Fase 2 (resto del paginado): %s productos más superaron los filtros (de %s vistos) "
+             "+ %s pendientes de la fase 1.", len(resto), report.seen - vistos_fase1, len(pendientes))
+    rechazos = ", ".join(f"{k}: {v}" for k, v in sorted(report.rejected.items())) or "—"
+    log.info("[FILTROS] Total: %s de %s productos superaron los filtros (umbral por defecto %s%%; "
+             "cada categoría puede fijar el suyo). Descartes: %s",
+             report.candidates, report.seen, f"{cfg.offers.min_discount_pct:g}", rechazos)
     notify(_por_descuento(pendientes + resto), cfg=cfg, state=state, notifier=notifier, scraper=scraper,
            report=report, max_alerts=max(0, limite - report.sent_individual), digests=True, started_at=started_at)
     report.deferred = max(0, report.candidates - report.sent_individual - report.sent_digest)
     if not _disponible(notifier):
         annotate("warning", f"Telegram en pausa ({notifier.last_error}): {report.deferred} ofertas quedan "
                             "para la próxima corrida.")
+
+
+def _check_telegram(cfg: AppConfig, notifier, dry_run: bool) -> bool:
+    """Deja en el log el modo de la corrida, de qué variable salió cada secreto y si Telegram acepta
+    el token y el chat. Devuelve False solo si Telegram los rechazó (la corrida se marca en rojo)."""
+    tg = cfg.telegram
+    if dry_run:
+        annotate("notice", f"{cfg.display_name}: MODO SIMULACIÓN (DRY_RUN): se extrae y filtra, pero NO se envía "
+                           "nada a Telegram ni se guarda el historial.")
+    else:
+        log.info("[TG] %s: MODO REAL, envío a Telegram activado.", cfg.display_name)
+    origen_token, origen_chat = env_source(tg.token_env), env_source(tg.chat_id_env)
+    log.info("[TG] Token: %s · chat_id: %s",
+             f"variable {origen_token} (definida, {len(tg.token)} caracteres)" if origen_token
+             else f"VACÍO (se esperaba {tg.token_env})",
+             f"variable {origen_chat} (definida)" if origen_chat else f"VACÍO (se esperaba {tg.chat_id_env})")
+    verificar = getattr(notifier, "check_connection", None)
+    if verificar is None or verificar() is not False:
+        return True
+    annotate("error", f"{cfg.display_name}: Telegram rechazó el token o el chat ({notifier.last_error}). "
+                      "Revisa los Secrets del repositorio y que el bot sea miembro (o admin) del chat/canal.")
+    return False
 
 
 def _run(cfg: AppConfig, *, dry_run: bool, max_alerts: int | None) -> int:
@@ -366,6 +421,12 @@ def _run(cfg: AppConfig, *, dry_run: bool, max_alerts: int | None) -> int:
         send_photos=cfg.telegram.send_photos,
         dry_run=dry_run,
     )
+    if not _check_telegram(cfg, notifier, dry_run):
+        notifier.close()
+        if not dry_run:
+            healthcheck.ping(cfg.healthcheck.url, ok=False, body=f"Telegram rechazó la conexión: {notifier.last_error}",
+                             timeout_s=cfg.healthcheck.timeout_s)
+        return 1
     scraper = build_scraper(cfg, state.meta.setdefault("scraper", {}))
     report = RunReport()
     codigo = 0
@@ -391,7 +452,7 @@ def _run(cfg: AppConfig, *, dry_run: bool, max_alerts: int | None) -> int:
         elif state.save():
             log.info("Historial guardado en %s (%s entradas).", state.path, len(state.entries))
         duracion = time.monotonic() - inicio
-        write_summary(cfg, report, scraper, duracion)
+        write_summary(cfg, report, scraper, duracion, dry_run=dry_run, notifier=notifier)
         if not dry_run and (completada or fallo):
             sano = completada and codigo == 0 and not scraper.stats.total_failure
             detalle = summary_line(cfg, report, scraper, duracion) + (f"\nError: {fallo}" if fallo else "")

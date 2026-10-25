@@ -28,6 +28,14 @@ def first_env(names: str | list[str]) -> str:
     return ""
 
 
+def env_source(names: str | list[str]) -> str:
+    """Nombre de la primera variable de entorno con valor (para logs: nunca expone el valor)."""
+    for nombre in [names] if isinstance(names, str) else list(names or []):
+        if os.getenv(str(nombre), "").strip():
+            return str(nombre)
+    return ""
+
+
 def _names(names: str | list[str]) -> str:
     return names if isinstance(names, str) else " o ".join(map(str, names))
 
