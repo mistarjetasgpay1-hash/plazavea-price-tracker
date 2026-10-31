@@ -1,0 +1,6384 @@
+{
+ "version": 2,
+ "updated_at": "2026-10-31T22:21:44+00:00",
+ "meta": {
+  "scraper": {
+   "cursors": {
+    "BebeInfantil": 4,
+    "Electrohogar": 4,
+    "Juguetes": 7,
+    "ModaMujer": 7,
+    "ModaHombre": 4,
+    "ModaInfantil": 7,
+    "Accesorios": 4,
+    "Zapatillas": 4,
+    "Zapatos": 4,
+    "Decohogar": 4,
+    "Dormitorio": 7,
+    "Muebles": 4,
+    "Abarrotes": 20,
+    "LacteosHuevos": 13,
+    "Desayunos": 15,
+    "Limpieza": 22,
+    "CuidadoPersonal": 9,
+    "PanalesToallitas": 5,
+    "AseoBebe": 5
+   }
+  },
+  "failure_streak": 0,
+  "failure_alerted": false,
+  "category_streaks": {},
+  "category_alerted": []
+ },
+ "entries": {
+  "plazavea:100": {
+   "price": 15.7,
+   "discount": 28.31,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 15.7
+  },
+  "plazavea:100001777": {
+   "price": 26.0,
+   "discount": 20.49,
+   "first_seen": "2026-10-30T22:56:47+00:00",
+   "notified_at": "2026-10-30T22:56:47+00:00",
+   "best_price": 26.0
+  },
+  "plazavea:100001778": {
+   "price": 29.7,
+   "discount": 20.59,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 29.7
+  },
+  "plazavea:100009101": {
+   "price": 6.5,
+   "discount": 23.53,
+   "first_seen": "2026-10-31T07:52:18+00:00",
+   "notified_at": "2026-10-31T07:52:18+00:00",
+   "best_price": 6.5
+  },
+  "plazavea:100011039": {
+   "price": 50.9,
+   "discount": 24.93,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 50.9
+  },
+  "plazavea:100022488": {
+   "price": 34.9,
+   "discount": 25.43,
+   "first_seen": "2026-10-31T05:15:53+00:00",
+   "notified_at": "2026-10-31T05:15:53+00:00",
+   "best_price": 34.9
+  },
+  "plazavea:100094829": {
+   "price": 8.4,
+   "discount": 15.15,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 8.4
+  },
+  "plazavea:100114568": {
+   "price": 4.9,
+   "discount": 28.99,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:100114661": {
+   "price": 4.8,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 4.8
+  },
+  "plazavea:100119501": {
+   "price": 17.9,
+   "discount": 21.83,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:100120520": {
+   "price": 5.9,
+   "discount": 33.71,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 5.9
+  },
+  "plazavea:100120550": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:100120601": {
+   "price": 20.3,
+   "discount": 15.06,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 20.3
+  },
+  "plazavea:100120602": {
+   "price": 33.9,
+   "discount": 15.04,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 33.9
+  },
+  "plazavea:100121347": {
+   "price": 58.6,
+   "discount": 15.07,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 58.6
+  },
+  "plazavea:100121349": {
+   "price": 84.0,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 84.0
+  },
+  "plazavea:100123676": {
+   "price": 39.9,
+   "discount": 42.17,
+   "first_seen": "2026-10-30T23:35:06+00:00",
+   "notified_at": "2026-10-30T23:35:06+00:00",
+   "best_price": 39.9
+  },
+  "plazavea:100129114": {
+   "price": 14.9,
+   "discount": 21.58,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:100129135": {
+   "price": 8.2,
+   "discount": 19.61,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:100135404": {
+   "price": 6.4,
+   "discount": 18.99,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 6.4
+  },
+  "plazavea:100135424": {
+   "price": 10.6,
+   "discount": 15.2,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:100135425": {
+   "price": 12.5,
+   "discount": 16.11,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:100135426": {
+   "price": 12.5,
+   "discount": 16.11,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:100135427": {
+   "price": 10.6,
+   "discount": 15.2,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:100135428": {
+   "price": 10.6,
+   "discount": 15.2,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:100135429": {
+   "price": 12.5,
+   "discount": 16.11,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:100137603": {
+   "price": 16.9,
+   "discount": 15.08,
+   "first_seen": "2026-10-31T06:49:38+00:00",
+   "notified_at": "2026-10-31T06:49:38+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:100137604": {
+   "price": 14.5,
+   "discount": 18.99,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 14.5
+  },
+  "plazavea:100138032": {
+   "price": 41.9,
+   "discount": 37.37,
+   "first_seen": "2026-10-30T23:35:32+00:00",
+   "notified_at": "2026-10-30T23:35:32+00:00",
+   "best_price": 41.9
+  },
+  "plazavea:100140036": {
+   "price": 11.5,
+   "discount": 20.69,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 11.5
+  },
+  "plazavea:100140133": {
+   "price": 15.9,
+   "discount": 32.34,
+   "first_seen": "2026-10-30T23:35:48+00:00",
+   "notified_at": "2026-10-30T23:35:48+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:100140134": {
+   "price": 15.9,
+   "discount": 32.34,
+   "first_seen": "2026-10-31T01:21:36+00:00",
+   "notified_at": "2026-10-31T01:21:36+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:100145195": {
+   "price": 21.5,
+   "discount": 20.07,
+   "first_seen": "2026-10-31T13:59:23+00:00",
+   "notified_at": "2026-10-31T13:59:23+00:00",
+   "best_price": 21.5
+  },
+  "plazavea:100145197": {
+   "price": 18.5,
+   "discount": 21.28,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 18.5
+  },
+  "plazavea:100151814": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:100151815": {
+   "price": 22.9,
+   "discount": 24.92,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:100151822": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:100152660": {
+   "price": 135.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:51+00:00",
+   "notified_at": "2026-10-31T05:58:51+00:00",
+   "best_price": 135.2
+  },
+  "plazavea:100152713": {
+   "price": 135.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:51+00:00",
+   "notified_at": "2026-10-31T05:58:51+00:00",
+   "best_price": 135.2
+  },
+  "plazavea:100159333": {
+   "price": 24.9,
+   "discount": 21.94,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:100159334": {
+   "price": 24.9,
+   "discount": 21.94,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:100159336": {
+   "price": 24.9,
+   "discount": 21.94,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:100160876": {
+   "price": 7.9,
+   "discount": 33.61,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:100169031": {
+   "price": 202.3,
+   "discount": 30.0,
+   "first_seen": "2026-10-30T22:16:51+00:00",
+   "notified_at": "2026-10-30T22:16:51+00:00",
+   "best_price": 202.3
+  },
+  "plazavea:100169137": {
+   "price": 319.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:56:59+00:00",
+   "notified_at": "2026-10-31T05:56:59+00:00",
+   "best_price": 319.2
+  },
+  "plazavea:100169175": {
+   "price": 174.3,
+   "discount": 30.0,
+   "first_seen": "2026-10-30T22:16:51+00:00",
+   "notified_at": "2026-10-30T22:16:51+00:00",
+   "best_price": 174.3
+  },
+  "plazavea:100169267": {
+   "price": 10.8,
+   "discount": 42.83,
+   "first_seen": "2026-10-31T08:42:46+00:00",
+   "notified_at": "2026-10-31T08:42:46+00:00",
+   "best_price": 10.8
+  },
+  "plazavea:100170000": {
+   "price": 31.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:51+00:00",
+   "notified_at": "2026-10-31T05:58:51+00:00",
+   "best_price": 31.2
+  },
+  "plazavea:100179943": {
+   "price": 10.9,
+   "discount": 20.96,
+   "first_seen": "2026-10-31T08:42:53+00:00",
+   "notified_at": "2026-10-31T08:42:53+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:100183839": {
+   "price": 31.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:51+00:00",
+   "notified_at": "2026-10-31T05:58:51+00:00",
+   "best_price": 31.2
+  },
+  "plazavea:100193193": {
+   "price": 3.8,
+   "discount": 20.83,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 3.8
+  },
+  "plazavea:100200890": {
+   "price": 7.9,
+   "discount": 18.56,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:100200902": {
+   "price": 11.2,
+   "discount": 27.74,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 11.2
+  },
+  "plazavea:100200904": {
+   "price": 11.2,
+   "discount": 27.74,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 11.2
+  },
+  "plazavea:100200905": {
+   "price": 11.2,
+   "discount": 27.74,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 11.2
+  },
+  "plazavea:100213240": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:100213279": {
+   "price": 20.3,
+   "discount": 17.14,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 20.3
+  },
+  "plazavea:100283605": {
+   "price": 4.4,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 4.4
+  },
+  "plazavea:100371183": {
+   "price": 3.8,
+   "discount": 22.45,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 3.8
+  },
+  "plazavea:100371185": {
+   "price": 3.5,
+   "discount": 28.57,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 3.5
+  },
+  "plazavea:100377895": {
+   "price": 3.3,
+   "discount": 17.5,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 3.3
+  },
+  "plazavea:100383606": {
+   "price": 4.7,
+   "discount": 21.67,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 4.7
+  },
+  "plazavea:100384107": {
+   "price": 3.3,
+   "discount": 17.5,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 3.3
+  },
+  "plazavea:100396049": {
+   "price": 8.9,
+   "discount": 22.61,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:100396068": {
+   "price": 5.6,
+   "discount": 18.84,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 5.6
+  },
+  "plazavea:100399876": {
+   "price": 3.4,
+   "discount": 17.07,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 3.4
+  },
+  "plazavea:100400084": {
+   "price": 89.9,
+   "discount": 28.08,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 89.9
+  },
+  "plazavea:100410194": {
+   "price": 15.5,
+   "discount": 21.32,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 15.5
+  },
+  "plazavea:100410309": {
+   "price": 19.4,
+   "discount": 22.4,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 19.4
+  },
+  "plazavea:100414033": {
+   "price": 4.7,
+   "discount": 21.67,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 4.7
+  },
+  "plazavea:100414045": {
+   "price": 4.7,
+   "discount": 21.67,
+   "first_seen": "2026-10-30T06:53:27+00:00",
+   "notified_at": "2026-10-30T06:53:27+00:00",
+   "best_price": 4.7
+  },
+  "plazavea:100415835": {
+   "price": 11.6,
+   "discount": 16.55,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 11.6
+  },
+  "plazavea:100415874": {
+   "price": 9.2,
+   "discount": 26.4,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 9.2
+  },
+  "plazavea:100415890": {
+   "price": 14.5,
+   "discount": 23.28,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 14.5
+  },
+  "plazavea:100425975": {
+   "price": 8.9,
+   "discount": 19.09,
+   "first_seen": "2026-10-30T06:53:35+00:00",
+   "notified_at": "2026-10-30T06:53:35+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:100425977": {
+   "price": 8.1,
+   "discount": 17.35,
+   "first_seen": "2026-10-29T20:44:12+00:00",
+   "notified_at": "2026-10-29T20:44:12+00:00",
+   "best_price": 8.1
+  },
+  "plazavea:100428810": {
+   "price": 6.0,
+   "discount": 29.41,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 6.0
+  },
+  "plazavea:100428812": {
+   "price": 11.5,
+   "discount": 32.35,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 11.5
+  },
+  "plazavea:100441974": {
+   "price": 359.9,
+   "discount": 40.01,
+   "first_seen": "2026-10-30T22:15:12+00:00",
+   "notified_at": "2026-10-30T22:15:12+00:00",
+   "best_price": 359.9
+  },
+  "plazavea:100441982": {
+   "price": 359.9,
+   "discount": 40.01,
+   "first_seen": "2026-10-30T22:16:51+00:00",
+   "notified_at": "2026-10-30T22:16:51+00:00",
+   "best_price": 359.9
+  },
+  "plazavea:100470717": {
+   "price": 5.0,
+   "discount": 15.25,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:100470721": {
+   "price": 5.1,
+   "discount": 21.54,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 5.1
+  },
+  "plazavea:100483747": {
+   "price": 12.9,
+   "discount": 49.9,
+   "first_seen": "2026-10-29T02:32:58+00:00",
+   "notified_at": "2026-10-29T02:32:58+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:100483755": {
+   "price": 23.9,
+   "discount": 20.07,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:100488491": {
+   "price": 12.5,
+   "discount": 16.11,
+   "first_seen": "2026-10-31T06:49:00+00:00",
+   "notified_at": "2026-10-31T06:49:00+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:100488496": {
+   "price": 12.5,
+   "discount": 16.11,
+   "first_seen": "2026-10-31T06:48:49+00:00",
+   "notified_at": "2026-10-31T06:48:49+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:100489896": {
+   "price": 6.9,
+   "discount": 28.87,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:100489898": {
+   "price": 7.7,
+   "discount": 20.62,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 7.7
+  },
+  "plazavea:100489899": {
+   "price": 7.7,
+   "discount": 20.62,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 7.7
+  },
+  "plazavea:100492856": {
+   "price": 8.9,
+   "discount": 15.24,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:100492860": {
+   "price": 4.0,
+   "discount": 27.27,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 4.0
+  },
+  "plazavea:100492861": {
+   "price": 4.2,
+   "discount": 20.75,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 4.2
+  },
+  "plazavea:100492863": {
+   "price": 8.9,
+   "discount": 15.24,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:100492865": {
+   "price": 2.7,
+   "discount": 22.86,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 2.7
+  },
+  "plazavea:100492878": {
+   "price": 4.7,
+   "discount": 16.07,
+   "first_seen": "2026-10-29T08:00:59+00:00",
+   "notified_at": "2026-10-29T08:00:59+00:00",
+   "best_price": 4.6
+  },
+  "plazavea:100496589": {
+   "price": 7.9,
+   "discount": 28.18,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:100504814": {
+   "price": 17.9,
+   "discount": 19.37,
+   "first_seen": "2026-10-31T05:56:33+00:00",
+   "notified_at": "2026-10-31T05:56:33+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:100506801": {
+   "price": 17.9,
+   "discount": 15.1,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:100512176": {
+   "price": 13.8,
+   "discount": 19.3,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 13.8
+  },
+  "plazavea:100512179": {
+   "price": 5.5,
+   "discount": 17.91,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:100512217": {
+   "price": 40.2,
+   "discount": 25.42,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 40.2
+  },
+  "plazavea:100513495": {
+   "price": 104.9,
+   "discount": 30.02,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 104.9
+  },
+  "plazavea:100513501": {
+   "price": 59.9,
+   "discount": 30.27,
+   "first_seen": "2026-10-31T01:21:40+00:00",
+   "notified_at": "2026-10-31T01:21:40+00:00",
+   "best_price": 59.9
+  },
+  "plazavea:100513503": {
+   "price": 11.59,
+   "discount": 29.76,
+   "first_seen": "2026-10-31T00:09:00+00:00",
+   "notified_at": "2026-10-31T00:09:00+00:00",
+   "best_price": 11.59
+  },
+  "plazavea:100513504": {
+   "price": 11.59,
+   "discount": 29.76,
+   "first_seen": "2026-10-30T22:54:48+00:00",
+   "notified_at": "2026-10-30T22:54:48+00:00",
+   "best_price": 11.59
+  },
+  "plazavea:100513852": {
+   "price": 5.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 5.2
+  },
+  "plazavea:100514099": {
+   "price": 23.9,
+   "discount": 20.07,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:100514100": {
+   "price": 31.9,
+   "discount": 20.05,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 31.9
+  },
+  "plazavea:100514101": {
+   "price": 13.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 13.2
+  },
+  "plazavea:100514424": {
+   "price": 25.5,
+   "discount": 20.06,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 25.5
+  },
+  "plazavea:100514426": {
+   "price": 25.5,
+   "discount": 20.06,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 25.5
+  },
+  "plazavea:100520927": {
+   "price": 19.9,
+   "discount": 18.78,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:100524747": {
+   "price": 15.9,
+   "discount": 20.1,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:100524748": {
+   "price": 18.3,
+   "discount": 20.09,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 18.3
+  },
+  "plazavea:100524749": {
+   "price": 15.9,
+   "discount": 22.44,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:100524786": {
+   "price": 8.5,
+   "discount": 28.57,
+   "first_seen": "2026-10-30T22:17:16+00:00",
+   "notified_at": "2026-10-30T22:17:16+00:00",
+   "best_price": 8.5
+  },
+  "plazavea:100524804": {
+   "price": 12.0,
+   "discount": 19.46,
+   "first_seen": "2026-10-30T14:32:36+00:00",
+   "notified_at": "2026-10-30T14:32:36+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:100530019": {
+   "price": 8.5,
+   "discount": 17.48,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 8.5
+  },
+  "plazavea:100530020": {
+   "price": 8.5,
+   "discount": 17.48,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 8.5
+  },
+  "plazavea:100530026": {
+   "price": 8.5,
+   "discount": 17.48,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 8.5
+  },
+  "plazavea:100530027": {
+   "price": 8.5,
+   "discount": 17.48,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 8.5
+  },
+  "plazavea:100530028": {
+   "price": 8.5,
+   "discount": 17.48,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 8.5
+  },
+  "plazavea:100533290": {
+   "price": 23.9,
+   "discount": 20.07,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:100533291": {
+   "price": 23.9,
+   "discount": 20.07,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:100549278": {
+   "price": 5.5,
+   "discount": 17.91,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:100553104": {
+   "price": 9.9,
+   "discount": 26.67,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:100596910": {
+   "price": 14.0,
+   "discount": 18.13,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 14.0
+  },
+  "plazavea:100596916": {
+   "price": 2.7,
+   "discount": 22.86,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 2.7
+  },
+  "plazavea:100604603": {
+   "price": 23.9,
+   "discount": 20.07,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:100654503": {
+   "price": 22.9,
+   "discount": 24.92,
+   "first_seen": "2026-10-30T22:56:47+00:00",
+   "notified_at": "2026-10-30T22:56:47+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:100655546": {
+   "price": 2.7,
+   "discount": 22.86,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 2.7
+  },
+  "plazavea:100655551": {
+   "price": 10.8,
+   "discount": 16.86,
+   "first_seen": "2026-10-30T23:38:03+00:00",
+   "notified_at": "2026-10-30T23:38:03+00:00",
+   "best_price": 10.8
+  },
+  "plazavea:100665208": {
+   "price": 4.9,
+   "discount": 34.67,
+   "first_seen": "2026-10-31T01:21:33+00:00",
+   "notified_at": "2026-10-31T01:21:33+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:100665224": {
+   "price": 4.9,
+   "discount": 24.62,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:100665225": {
+   "price": 4.9,
+   "discount": 24.62,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:100665270": {
+   "price": 2.1,
+   "discount": 16.0,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 2.1
+  },
+  "plazavea:100680480": {
+   "price": 11.1,
+   "discount": 25.5,
+   "first_seen": "2026-10-30T22:56:47+00:00",
+   "notified_at": "2026-10-30T22:56:47+00:00",
+   "best_price": 11.1
+  },
+  "plazavea:100685948": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:100685949": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:100685950": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T12:11:07+00:00",
+   "notified_at": "2026-10-31T12:11:07+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:100685951": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:100685977": {
+   "price": 2.8,
+   "discount": 30.0,
+   "first_seen": "2026-10-30T22:17:12+00:00",
+   "notified_at": "2026-10-30T22:17:12+00:00",
+   "best_price": 2.8
+  },
+  "plazavea:100685983": {
+   "price": 2.8,
+   "discount": 30.0,
+   "first_seen": "2026-10-30T22:17:12+00:00",
+   "notified_at": "2026-10-30T22:17:12+00:00",
+   "best_price": 2.8
+  },
+  "plazavea:100685985": {
+   "price": 2.8,
+   "discount": 30.0,
+   "first_seen": "2026-10-30T22:17:12+00:00",
+   "notified_at": "2026-10-30T22:17:12+00:00",
+   "best_price": 2.8
+  },
+  "plazavea:100693836": {
+   "price": 4.9,
+   "discount": 24.62,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:100703630": {
+   "price": 72.9,
+   "discount": 22.28,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 72.9
+  },
+  "plazavea:100704306": {
+   "price": 19.9,
+   "discount": 22.27,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:100704307": {
+   "price": 19.9,
+   "discount": 22.27,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:100704308": {
+   "price": 19.9,
+   "discount": 22.27,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:100706825": {
+   "price": 9.9,
+   "discount": 21.37,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:100706827": {
+   "price": 8.9,
+   "discount": 22.61,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:100762935": {
+   "price": 7.5,
+   "discount": 36.97,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 7.5
+  },
+  "plazavea:100768312": {
+   "price": 287.9,
+   "discount": 40.01,
+   "first_seen": "2026-10-30T22:14:50+00:00",
+   "notified_at": "2026-10-30T22:14:50+00:00",
+   "best_price": 287.9
+  },
+  "plazavea:100787272": {
+   "price": 5.0,
+   "discount": 15.25,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:100792723": {
+   "price": 6.9,
+   "discount": 18.73,
+   "first_seen": "2026-10-29T06:52:32+00:00",
+   "notified_at": "2026-10-29T06:52:32+00:00",
+   "best_price": 5.9
+  },
+  "plazavea:100792754": {
+   "price": 6.4,
+   "discount": 24.71,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 6.4
+  },
+  "plazavea:100792755": {
+   "price": 6.4,
+   "discount": 24.71,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 6.4
+  },
+  "plazavea:100793138": {
+   "price": 15.1,
+   "discount": 20.11,
+   "first_seen": "2026-10-31T05:58:47+00:00",
+   "notified_at": "2026-10-31T05:58:47+00:00",
+   "best_price": 15.1
+  },
+  "plazavea:100793160": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:100794338": {
+   "price": 7.9,
+   "discount": 33.61,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:100794339": {
+   "price": 7.9,
+   "discount": 27.52,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:100798112": {
+   "price": 10.4,
+   "discount": 28.28,
+   "first_seen": "2026-10-31T00:10:52+00:00",
+   "notified_at": "2026-10-31T00:10:52+00:00",
+   "best_price": 10.4
+  },
+  "plazavea:100809834": {
+   "price": 6.4,
+   "discount": 24.71,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 6.4
+  },
+  "plazavea:100810705": {
+   "price": 15.9,
+   "discount": 19.7,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:100816706": {
+   "price": 88.5,
+   "discount": 24.87,
+   "first_seen": "2026-10-31T05:16:36+00:00",
+   "notified_at": "2026-10-31T05:16:36+00:00",
+   "best_price": 88.5
+  },
+  "plazavea:100819953": {
+   "price": 8.5,
+   "discount": 17.48,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 8.5
+  },
+  "plazavea:100827620": {
+   "price": 26.9,
+   "discount": 29.21,
+   "first_seen": "2026-10-30T22:54:11+00:00",
+   "notified_at": "2026-10-30T22:54:11+00:00",
+   "best_price": 26.9
+  },
+  "plazavea:100832254": {
+   "price": 7.8,
+   "discount": 18.75,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 7.8
+  },
+  "plazavea:100832257": {
+   "price": 7.8,
+   "discount": 18.75,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 7.8
+  },
+  "plazavea:100832258": {
+   "price": 7.9,
+   "discount": 17.71,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:100832281": {
+   "price": 13.5,
+   "discount": 22.86,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 13.5
+  },
+  "plazavea:100832306": {
+   "price": 20.5,
+   "discount": 17.67,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 20.5
+  },
+  "plazavea:100837606": {
+   "price": 319.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:51+00:00",
+   "notified_at": "2026-10-31T05:58:51+00:00",
+   "best_price": 319.2
+  },
+  "plazavea:100838929": {
+   "price": 10.0,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:100838931": {
+   "price": 31.9,
+   "discount": 20.05,
+   "first_seen": "2026-10-31T00:11:19+00:00",
+   "notified_at": "2026-10-31T00:11:19+00:00",
+   "best_price": 31.9
+  },
+  "plazavea:100838933": {
+   "price": 31.9,
+   "discount": 20.05,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 31.9
+  },
+  "plazavea:100838954": {
+   "price": 11.8,
+   "discount": 23.87,
+   "first_seen": "2026-10-31T12:09:00+00:00",
+   "notified_at": "2026-10-31T12:09:00+00:00",
+   "best_price": 11.8
+  },
+  "plazavea:100841781": {
+   "price": 15.8,
+   "discount": 15.96,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 15.8
+  },
+  "plazavea:100841782": {
+   "price": 15.8,
+   "discount": 20.6,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 15.8
+  },
+  "plazavea:100841783": {
+   "price": 15.8,
+   "discount": 15.96,
+   "first_seen": "2026-10-31T06:49:03+00:00",
+   "notified_at": "2026-10-31T06:49:03+00:00",
+   "best_price": 15.8
+  },
+  "plazavea:100849145": {
+   "price": 9.9,
+   "discount": 33.56,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:100849154": {
+   "price": 9.9,
+   "discount": 33.56,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:100849157": {
+   "price": 30.9,
+   "discount": 22.56,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 30.9
+  },
+  "plazavea:100851751": {
+   "price": 134.9,
+   "discount": 28.96,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 134.9
+  },
+  "plazavea:100851752": {
+   "price": 133.9,
+   "discount": 29.49,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 133.9
+  },
+  "plazavea:100851919": {
+   "price": 6.9,
+   "discount": 27.37,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:100851936": {
+   "price": 5.9,
+   "discount": 26.25,
+   "first_seen": "2026-10-29T08:00:48+00:00",
+   "notified_at": "2026-10-29T08:00:48+00:00",
+   "best_price": 5.9
+  },
+  "plazavea:100861959": {
+   "price": 6.0,
+   "discount": 23.08,
+   "first_seen": "2026-10-31T09:39:49+00:00",
+   "notified_at": "2026-10-31T09:39:49+00:00",
+   "best_price": 6.0
+  },
+  "plazavea:100861963": {
+   "price": 15.0,
+   "discount": 24.24,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 15.0
+  },
+  "plazavea:100862003": {
+   "price": 6.9,
+   "discount": 41.53,
+   "first_seen": "2026-10-30T23:35:10+00:00",
+   "notified_at": "2026-10-30T23:35:10+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:100866783": {
+   "price": 4.5,
+   "discount": 18.18,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:100877491": {
+   "price": 5.7,
+   "discount": 21.92,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 5.7
+  },
+  "plazavea:100877500": {
+   "price": 9.9,
+   "discount": 23.26,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:100885883": {
+   "price": 16.9,
+   "discount": 50.3,
+   "first_seen": "2026-10-28T20:43:13+00:00",
+   "notified_at": "2026-10-30T19:25:04+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:100885884": {
+   "price": 16.9,
+   "discount": 50.3,
+   "first_seen": "2026-10-28T20:43:05+00:00",
+   "notified_at": "2026-10-30T19:24:57+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:100885888": {
+   "price": 16.9,
+   "discount": 50.3,
+   "first_seen": "2026-10-28T20:43:00+00:00",
+   "notified_at": "2026-10-30T19:24:54+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:100887279": {
+   "price": 30.9,
+   "discount": 15.34,
+   "first_seen": "2026-10-31T06:49:31+00:00",
+   "notified_at": "2026-10-31T06:49:31+00:00",
+   "best_price": 30.9
+  },
+  "plazavea:100891548": {
+   "price": 24.9,
+   "discount": 16.72,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:100891549": {
+   "price": 13.9,
+   "discount": 22.78,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:100891569": {
+   "price": 20.5,
+   "discount": 20.85,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 20.5
+  },
+  "plazavea:100891598": {
+   "price": 49.9,
+   "discount": 18.86,
+   "first_seen": "2026-10-31T00:11:26+00:00",
+   "notified_at": "2026-10-31T00:11:26+00:00",
+   "best_price": 49.9
+  },
+  "plazavea:100891607": {
+   "price": 49.9,
+   "discount": 18.86,
+   "first_seen": "2026-10-31T01:23:24+00:00",
+   "notified_at": "2026-10-31T01:23:24+00:00",
+   "best_price": 49.9
+  },
+  "plazavea:100906214": {
+   "price": 69.9,
+   "discount": 22.59,
+   "first_seen": "2026-10-31T08:45:25+00:00",
+   "notified_at": "2026-10-31T08:45:25+00:00",
+   "best_price": 69.9
+  },
+  "plazavea:100906221": {
+   "price": 44.9,
+   "discount": 24.92,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 44.9
+  },
+  "plazavea:100909714": {
+   "price": 16.9,
+   "discount": 30.17,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:100909748": {
+   "price": 10.0,
+   "discount": 15.97,
+   "first_seen": "2026-10-30T22:57:01+00:00",
+   "notified_at": "2026-10-30T22:57:01+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:100909760": {
+   "price": 5.0,
+   "discount": 16.67,
+   "first_seen": "2026-10-31T11:36:26+00:00",
+   "notified_at": "2026-10-31T11:36:26+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:100909780": {
+   "price": 10.9,
+   "discount": 16.79,
+   "first_seen": "2026-10-30T08:53:17+00:00",
+   "notified_at": "2026-10-30T08:53:17+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:100909858": {
+   "price": 12.3,
+   "discount": 22.15,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 12.3
+  },
+  "plazavea:100909859": {
+   "price": 13.5,
+   "discount": 20.54,
+   "first_seen": "2026-10-31T05:18:22+00:00",
+   "notified_at": "2026-10-31T05:18:22+00:00",
+   "best_price": 13.5
+  },
+  "plazavea:100917232": {
+   "price": 11.5,
+   "discount": 22.82,
+   "first_seen": "2026-10-29T05:29:35+00:00",
+   "notified_at": "2026-10-29T05:29:35+00:00",
+   "best_price": 11.5
+  },
+  "plazavea:100917234": {
+   "price": 3.9,
+   "discount": 20.41,
+   "first_seen": "2026-10-29T16:30:47+00:00",
+   "notified_at": "2026-10-29T16:30:47+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:100924147": {
+   "price": 8.5,
+   "discount": 28.57,
+   "first_seen": "2026-10-30T22:17:16+00:00",
+   "notified_at": "2026-10-30T22:17:16+00:00",
+   "best_price": 8.5
+  },
+  "plazavea:100926458": {
+   "price": 9.2,
+   "discount": 16.36,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 9.2
+  },
+  "plazavea:100930086": {
+   "price": 8.2,
+   "discount": 21.15,
+   "first_seen": "2026-10-31T09:39:59+00:00",
+   "notified_at": "2026-10-31T09:39:59+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:100930087": {
+   "price": 8.2,
+   "discount": 21.15,
+   "first_seen": "2026-10-31T09:40:06+00:00",
+   "notified_at": "2026-10-31T09:40:06+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:100930089": {
+   "price": 8.2,
+   "discount": 21.15,
+   "first_seen": "2026-10-31T09:39:56+00:00",
+   "notified_at": "2026-10-31T09:39:56+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:100930090": {
+   "price": 8.9,
+   "discount": 16.04,
+   "first_seen": "2026-10-31T06:49:17+00:00",
+   "notified_at": "2026-10-31T06:49:17+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:100930091": {
+   "price": 8.9,
+   "discount": 16.04,
+   "first_seen": "2026-10-31T06:49:07+00:00",
+   "notified_at": "2026-10-31T06:49:07+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:100930092": {
+   "price": 7.3,
+   "discount": 23.96,
+   "first_seen": "2026-10-31T09:39:42+00:00",
+   "notified_at": "2026-10-31T09:39:42+00:00",
+   "best_price": 7.3
+  },
+  "plazavea:100930093": {
+   "price": 8.2,
+   "discount": 21.15,
+   "first_seen": "2026-10-31T09:40:03+00:00",
+   "notified_at": "2026-10-31T09:40:03+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:100939671": {
+   "price": 8.9,
+   "discount": 18.35,
+   "first_seen": "2026-10-31T05:56:55+00:00",
+   "notified_at": "2026-10-31T05:56:55+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:100949737": {
+   "price": 10.0,
+   "discount": 16.67,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:100949747": {
+   "price": 8.2,
+   "discount": 16.33,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:100949748": {
+   "price": 8.2,
+   "discount": 16.33,
+   "first_seen": "2026-10-30T22:17:02+00:00",
+   "notified_at": "2026-10-30T22:17:02+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:100959990": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:100959994": {
+   "price": 7.9,
+   "discount": 27.52,
+   "first_seen": "2026-10-27T22:40:12+00:00",
+   "notified_at": "2026-10-30T06:53:24+00:00",
+   "best_price": 7.5
+  },
+  "plazavea:100959995": {
+   "price": 7.9,
+   "discount": 27.52,
+   "first_seen": "2026-10-27T23:12:59+00:00",
+   "notified_at": "2026-10-30T06:53:19+00:00",
+   "best_price": 7.5
+  },
+  "plazavea:100959996": {
+   "price": 7.9,
+   "discount": 27.52,
+   "first_seen": "2026-10-27T22:40:12+00:00",
+   "notified_at": "2026-10-30T06:53:10+00:00",
+   "best_price": 7.5
+  },
+  "plazavea:100962766": {
+   "price": 9.9,
+   "discount": 28.78,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:100962767": {
+   "price": 9.9,
+   "discount": 28.78,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:100962768": {
+   "price": 9.9,
+   "discount": 28.78,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:100982076": {
+   "price": 13.0,
+   "discount": 23.53,
+   "first_seen": "2026-10-31T09:39:46+00:00",
+   "notified_at": "2026-10-31T09:39:46+00:00",
+   "best_price": 13.0
+  },
+  "plazavea:100990279": {
+   "price": 19.9,
+   "discount": 21.96,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:100990284": {
+   "price": 19.7,
+   "discount": 22.75,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 19.7
+  },
+  "plazavea:100990997": {
+   "price": 12.7,
+   "discount": 19.62,
+   "first_seen": "2026-10-30T07:58:47+00:00",
+   "notified_at": "2026-10-30T07:58:47+00:00",
+   "best_price": 12.7
+  },
+  "plazavea:101021450": {
+   "price": 15.9,
+   "discount": 15.87,
+   "first_seen": "2026-10-31T06:49:10+00:00",
+   "notified_at": "2026-10-31T06:49:10+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:101021581": {
+   "price": 9.4,
+   "discount": 21.67,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 9.4
+  },
+  "plazavea:101028322": {
+   "price": 47.6,
+   "discount": 25.04,
+   "first_seen": "2026-10-31T05:16:21+00:00",
+   "notified_at": "2026-10-31T05:16:21+00:00",
+   "best_price": 47.6
+  },
+  "plazavea:101028328": {
+   "price": 16.9,
+   "discount": 50.3,
+   "first_seen": "2026-10-28T20:43:09+00:00",
+   "notified_at": "2026-10-30T19:25:01+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:101032386": {
+   "price": 10.0,
+   "discount": 24.24,
+   "first_seen": "2026-10-30T07:58:43+00:00",
+   "notified_at": "2026-10-30T07:58:43+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:101032398": {
+   "price": 8.8,
+   "discount": 19.27,
+   "first_seen": "2026-10-30T22:57:01+00:00",
+   "notified_at": "2026-10-30T22:57:01+00:00",
+   "best_price": 8.8
+  },
+  "plazavea:101032450": {
+   "price": 23.9,
+   "discount": 20.07,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:101032453": {
+   "price": 24.9,
+   "discount": 30.64,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:101034017": {
+   "price": 24.2,
+   "discount": 20.92,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 24.2
+  },
+  "plazavea:101039768": {
+   "price": 133.9,
+   "discount": 29.49,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 133.9
+  },
+  "plazavea:101048228": {
+   "price": 19.2,
+   "discount": 21.31,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 19.2
+  },
+  "plazavea:101057711": {
+   "price": 8.2,
+   "discount": 16.33,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:101066023": {
+   "price": 15.5,
+   "discount": 17.55,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 15.5
+  },
+  "plazavea:101066034": {
+   "price": 3.0,
+   "discount": 26.83,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 3.0
+  },
+  "plazavea:101072902": {
+   "price": 11.1,
+   "discount": 25.5,
+   "first_seen": "2026-10-31T01:23:27+00:00",
+   "notified_at": "2026-10-31T01:23:27+00:00",
+   "best_price": 11.1
+  },
+  "plazavea:101076396": {
+   "price": 17.9,
+   "discount": 18.64,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:101076399": {
+   "price": 13.9,
+   "discount": 25.67,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:101076402": {
+   "price": 17.9,
+   "discount": 18.64,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:101077054": {
+   "price": 17.9,
+   "discount": 21.83,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:101089277": {
+   "price": 29.9,
+   "discount": 16.94,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 29.9
+  },
+  "plazavea:101089353": {
+   "price": 10.9,
+   "discount": 16.79,
+   "first_seen": "2026-10-30T06:53:58+00:00",
+   "notified_at": "2026-10-30T06:53:58+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:101089434": {
+   "price": 38.2,
+   "discount": 20.08,
+   "first_seen": "2026-10-31T05:56:23+00:00",
+   "notified_at": "2026-10-31T05:56:23+00:00",
+   "best_price": 38.2
+  },
+  "plazavea:101101905": {
+   "price": 16.5,
+   "discount": 26.01,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 16.5
+  },
+  "plazavea:101101937": {
+   "price": 9.9,
+   "discount": 20.8,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101111808": {
+   "price": 56.9,
+   "discount": 20.86,
+   "first_seen": "2026-10-30T23:37:53+00:00",
+   "notified_at": "2026-10-30T23:37:53+00:00",
+   "best_price": 56.9
+  },
+  "plazavea:101111941": {
+   "price": 9.9,
+   "discount": 22.66,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101111942": {
+   "price": 9.9,
+   "discount": 22.66,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101111943": {
+   "price": 9.9,
+   "discount": 22.66,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101113007": {
+   "price": 29.0,
+   "discount": 20.55,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 29.0
+  },
+  "plazavea:101115060": {
+   "price": 5.5,
+   "discount": 17.91,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:101115061": {
+   "price": 23.9,
+   "discount": 16.14,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:101115062": {
+   "price": 5.5,
+   "discount": 20.29,
+   "first_seen": "2026-10-31T05:16:28+00:00",
+   "notified_at": "2026-10-31T05:16:28+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:101115063": {
+   "price": 5.5,
+   "discount": 17.91,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:101115064": {
+   "price": 23.9,
+   "discount": 16.14,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:101115065": {
+   "price": 5.5,
+   "discount": 17.91,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:101115478": {
+   "price": 9.9,
+   "discount": 23.85,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101115479": {
+   "price": 9.9,
+   "discount": 23.85,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101115481": {
+   "price": 9.9,
+   "discount": 23.85,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101115929": {
+   "price": 3.9,
+   "discount": 20.41,
+   "first_seen": "2026-10-31T05:18:22+00:00",
+   "notified_at": "2026-10-31T05:18:22+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:101125464": {
+   "price": 22.9,
+   "discount": 21.03,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101131505": {
+   "price": 55.8,
+   "discount": 20.06,
+   "first_seen": "2026-10-31T09:37:50+00:00",
+   "notified_at": "2026-10-31T09:37:50+00:00",
+   "best_price": 55.8
+  },
+  "plazavea:101143174": {
+   "price": 10.4,
+   "discount": 28.28,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 10.4
+  },
+  "plazavea:101143380": {
+   "price": 12.0,
+   "discount": 69.92,
+   "first_seen": "2026-10-31T08:43:25+00:00",
+   "notified_at": "2026-10-31T08:43:25+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101143383": {
+   "price": 12.0,
+   "discount": 69.92,
+   "first_seen": "2026-10-31T08:43:11+00:00",
+   "notified_at": "2026-10-31T08:43:11+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101143386": {
+   "price": 18.0,
+   "discount": 69.95,
+   "first_seen": "2026-10-31T08:42:50+00:00",
+   "notified_at": "2026-10-31T08:42:50+00:00",
+   "best_price": 18.0
+  },
+  "plazavea:101143387": {
+   "price": 12.0,
+   "discount": 69.92,
+   "first_seen": "2026-10-31T08:43:21+00:00",
+   "notified_at": "2026-10-31T08:43:21+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101143388": {
+   "price": 21.0,
+   "discount": 69.96,
+   "first_seen": "2026-10-31T08:42:43+00:00",
+   "notified_at": "2026-10-31T08:42:43+00:00",
+   "best_price": 21.0
+  },
+  "plazavea:101143389": {
+   "price": 15.0,
+   "discount": 69.94,
+   "first_seen": "2026-10-31T09:37:47+00:00",
+   "notified_at": "2026-10-31T09:37:47+00:00",
+   "best_price": 15.0
+  },
+  "plazavea:101143391": {
+   "price": 12.0,
+   "discount": 69.92,
+   "first_seen": "2026-10-31T08:43:18+00:00",
+   "notified_at": "2026-10-31T08:43:18+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101143392": {
+   "price": 15.0,
+   "discount": 69.94,
+   "first_seen": "2026-10-31T08:43:04+00:00",
+   "notified_at": "2026-10-31T08:43:04+00:00",
+   "best_price": 15.0
+  },
+  "plazavea:101143398": {
+   "price": 12.0,
+   "discount": 69.92,
+   "first_seen": "2026-10-31T09:37:54+00:00",
+   "notified_at": "2026-10-31T09:37:54+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101143399": {
+   "price": 12.0,
+   "discount": 69.92,
+   "first_seen": "2026-10-31T08:43:07+00:00",
+   "notified_at": "2026-10-31T08:43:07+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101143400": {
+   "price": 18.0,
+   "discount": 69.95,
+   "first_seen": "2026-10-31T08:42:57+00:00",
+   "notified_at": "2026-10-31T08:42:57+00:00",
+   "best_price": 18.0
+  },
+  "plazavea:101143403": {
+   "price": 12.0,
+   "discount": 69.92,
+   "first_seen": "2026-10-31T08:43:14+00:00",
+   "notified_at": "2026-10-31T08:43:14+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101143404": {
+   "price": 12.0,
+   "discount": 69.92,
+   "first_seen": "2026-10-31T07:50:47+00:00",
+   "notified_at": "2026-10-31T07:50:47+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101143976": {
+   "price": 27.9,
+   "discount": 23.56,
+   "first_seen": "2026-10-31T05:18:33+00:00",
+   "notified_at": "2026-10-31T05:18:33+00:00",
+   "best_price": 27.9
+  },
+  "plazavea:101143999": {
+   "price": 15.0,
+   "discount": 69.94,
+   "first_seen": "2026-10-31T08:43:00+00:00",
+   "notified_at": "2026-10-31T08:43:00+00:00",
+   "best_price": 15.0
+  },
+  "plazavea:101152490": {
+   "price": 11.9,
+   "discount": 23.23,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:101152501": {
+   "price": 12.0,
+   "discount": 17.24,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101152502": {
+   "price": 12.0,
+   "discount": 17.24,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101152503": {
+   "price": 12.0,
+   "discount": 17.24,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101166346": {
+   "price": 66.2,
+   "discount": 34.97,
+   "first_seen": "2026-10-29T17:24:21+00:00",
+   "notified_at": "2026-10-29T17:24:21+00:00",
+   "best_price": 66.2
+  },
+  "plazavea:101166446": {
+   "price": 10.9,
+   "discount": 23.24,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:101176766": {
+   "price": 27.1,
+   "discount": 20.06,
+   "first_seen": "2026-10-31T05:58:47+00:00",
+   "notified_at": "2026-10-31T05:58:47+00:00",
+   "best_price": 27.1
+  },
+  "plazavea:101178419": {
+   "price": 29.9,
+   "discount": 21.11,
+   "first_seen": "2026-10-30T22:54:37+00:00",
+   "notified_at": "2026-10-30T22:54:37+00:00",
+   "best_price": 29.9
+  },
+  "plazavea:101178444": {
+   "price": 12.0,
+   "discount": 17.24,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101178452": {
+   "price": 17.8,
+   "discount": 18.72,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 17.8
+  },
+  "plazavea:101184901": {
+   "price": 12.5,
+   "discount": 19.35,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:101188756": {
+   "price": 4.9,
+   "discount": 16.95,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:101188758": {
+   "price": 4.9,
+   "discount": 16.95,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:101188762": {
+   "price": 4.9,
+   "discount": 16.95,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:101188787": {
+   "price": 14.9,
+   "discount": 17.22,
+   "first_seen": "2026-10-31T06:48:57+00:00",
+   "notified_at": "2026-10-31T06:48:57+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:101188788": {
+   "price": 4.9,
+   "discount": 28.99,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:101188791": {
+   "price": 14.9,
+   "discount": 17.22,
+   "first_seen": "2026-10-31T06:48:45+00:00",
+   "notified_at": "2026-10-31T06:48:45+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:101188802": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:101188806": {
+   "price": 8.9,
+   "discount": 40.27,
+   "first_seen": "2026-10-30T22:14:31+00:00",
+   "notified_at": "2026-10-30T22:14:31+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:101189665": {
+   "price": 19.9,
+   "discount": 19.11,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:101190351": {
+   "price": 7.7,
+   "discount": 20.62,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 7.7
+  },
+  "plazavea:101190352": {
+   "price": 15.7,
+   "discount": 20.3,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 15.7
+  },
+  "plazavea:101199491": {
+   "price": 9.9,
+   "discount": 28.26,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101199493": {
+   "price": 22.9,
+   "discount": 21.03,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101199496": {
+   "price": 11.9,
+   "discount": 20.67,
+   "first_seen": "2026-10-31T05:18:22+00:00",
+   "notified_at": "2026-10-31T05:18:22+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:101200856": {
+   "price": 8.9,
+   "discount": 18.35,
+   "first_seen": "2026-10-30T23:38:03+00:00",
+   "notified_at": "2026-10-30T23:38:03+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:101219476": {
+   "price": 18.1,
+   "discount": 27.31,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 18.1
+  },
+  "plazavea:101234731": {
+   "price": 15.9,
+   "discount": 19.7,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:101240029": {
+   "price": 11.0,
+   "discount": 22.54,
+   "first_seen": "2026-10-31T09:39:53+00:00",
+   "notified_at": "2026-10-31T09:39:53+00:00",
+   "best_price": 11.0
+  },
+  "plazavea:101250198": {
+   "price": 5.9,
+   "discount": 21.33,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 5.9
+  },
+  "plazavea:101250213": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-30T23:35:51+00:00",
+   "notified_at": "2026-10-30T23:35:51+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101250214": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-30T22:54:16+00:00",
+   "notified_at": "2026-10-30T22:54:16+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101250216": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-30T23:37:53+00:00",
+   "notified_at": "2026-10-30T23:37:53+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101251099": {
+   "price": 41.9,
+   "discount": 29.93,
+   "first_seen": "2026-10-30T08:51:48+00:00",
+   "notified_at": "2026-10-30T08:51:48+00:00",
+   "best_price": 41.9
+  },
+  "plazavea:101251100": {
+   "price": 41.9,
+   "discount": 29.93,
+   "first_seen": "2026-10-30T08:51:38+00:00",
+   "notified_at": "2026-10-30T08:51:38+00:00",
+   "best_price": 41.9
+  },
+  "plazavea:101251102": {
+   "price": 69.9,
+   "discount": 21.28,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 69.9
+  },
+  "plazavea:101251104": {
+   "price": 41.9,
+   "discount": 29.93,
+   "first_seen": "2026-10-30T08:51:41+00:00",
+   "notified_at": "2026-10-30T08:51:41+00:00",
+   "best_price": 41.9
+  },
+  "plazavea:101274289": {
+   "price": 60.5,
+   "discount": 21.02,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 60.5
+  },
+  "plazavea:101280210": {
+   "price": 7.0,
+   "discount": 17.65,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 7.0
+  },
+  "plazavea:101280211": {
+   "price": 6.9,
+   "discount": 18.82,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:101327891": {
+   "price": 5.9,
+   "discount": 21.33,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 5.9
+  },
+  "plazavea:101346379": {
+   "price": 24.3,
+   "discount": 15.92,
+   "first_seen": "2026-10-31T06:49:14+00:00",
+   "notified_at": "2026-10-31T06:49:14+00:00",
+   "best_price": 24.3
+  },
+  "plazavea:101346419": {
+   "price": 18.9,
+   "discount": 17.83,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 18.9
+  },
+  "plazavea:101346420": {
+   "price": 18.9,
+   "discount": 17.83,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 18.9
+  },
+  "plazavea:101346421": {
+   "price": 18.9,
+   "discount": 17.83,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 18.9
+  },
+  "plazavea:101358712": {
+   "price": 8.9,
+   "discount": 18.35,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:101359773": {
+   "price": 1.9,
+   "discount": 24.0,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 1.9
+  },
+  "plazavea:101359774": {
+   "price": 1.9,
+   "discount": 24.0,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 1.9
+  },
+  "plazavea:101385802": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:101385803": {
+   "price": 22.9,
+   "discount": 24.92,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101385804": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:101385858": {
+   "price": 44.9,
+   "discount": 23.77,
+   "first_seen": "2026-10-30T23:35:35+00:00",
+   "notified_at": "2026-10-30T23:35:35+00:00",
+   "best_price": 44.9
+  },
+  "plazavea:101391533": {
+   "price": 29.7,
+   "discount": 21.64,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 29.7
+  },
+  "plazavea:101400074": {
+   "price": 11.9,
+   "discount": 28.31,
+   "first_seen": "2026-10-27T21:55:11+00:00",
+   "notified_at": "2026-10-30T07:58:37+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:101400091": {
+   "price": 7.6,
+   "discount": 21.65,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 7.6
+  },
+  "plazavea:101400092": {
+   "price": 15.7,
+   "discount": 20.3,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 15.7
+  },
+  "plazavea:101400093": {
+   "price": 7.6,
+   "discount": 21.65,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 7.6
+  },
+  "plazavea:101412928": {
+   "price": 9.9,
+   "discount": 33.56,
+   "first_seen": "2026-10-30T22:15:03+00:00",
+   "notified_at": "2026-10-30T22:15:03+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101412930": {
+   "price": 9.9,
+   "discount": 33.56,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101424809": {
+   "price": 3.2,
+   "discount": 15.79,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 3.2
+  },
+  "plazavea:101424810": {
+   "price": 3.2,
+   "discount": 15.79,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 3.2
+  },
+  "plazavea:101424811": {
+   "price": 3.2,
+   "discount": 15.79,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 3.2
+  },
+  "plazavea:101439357": {
+   "price": 6.3,
+   "discount": 20.25,
+   "first_seen": "2026-10-30T23:35:25+00:00",
+   "notified_at": "2026-10-30T23:35:25+00:00",
+   "best_price": 6.3
+  },
+  "plazavea:101440285": {
+   "price": 3.2,
+   "discount": 15.79,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 3.2
+  },
+  "plazavea:101442199": {
+   "price": 6.9,
+   "discount": 28.87,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:101442254": {
+   "price": 6.9,
+   "discount": 18.82,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:101442291": {
+   "price": 12.5,
+   "discount": 49.8,
+   "first_seen": "2026-10-30T17:44:28+00:00",
+   "notified_at": "2026-10-30T17:44:28+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:101442301": {
+   "price": 19.99,
+   "discount": 22.82,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 19.99
+  },
+  "plazavea:101442302": {
+   "price": 19.99,
+   "discount": 22.82,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 19.99
+  },
+  "plazavea:101442303": {
+   "price": 19.99,
+   "discount": 22.82,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 19.99
+  },
+  "plazavea:101442305": {
+   "price": 7.5,
+   "discount": 21.05,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 7.5
+  },
+  "plazavea:101442378": {
+   "price": 27.9,
+   "discount": 19.13,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 27.9
+  },
+  "plazavea:101442425": {
+   "price": 16.5,
+   "discount": 17.09,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 16.5
+  },
+  "plazavea:101442426": {
+   "price": 16.5,
+   "discount": 17.09,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 16.5
+  },
+  "plazavea:101442430": {
+   "price": 17.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 17.2
+  },
+  "plazavea:101443669": {
+   "price": 15.1,
+   "discount": 20.11,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 15.1
+  },
+  "plazavea:101443672": {
+   "price": 12.4,
+   "discount": 50.8,
+   "first_seen": "2026-10-28T22:40:18+00:00",
+   "notified_at": "2026-10-28T22:40:18+00:00",
+   "best_price": 12.4
+  },
+  "plazavea:101443920": {
+   "price": 19.6,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 19.6
+  },
+  "plazavea:101454400": {
+   "price": 8.6,
+   "discount": 23.89,
+   "first_seen": "2026-10-31T05:16:41+00:00",
+   "notified_at": "2026-10-31T05:16:41+00:00",
+   "best_price": 8.6
+  },
+  "plazavea:101457192": {
+   "price": 9.9,
+   "discount": 66.89,
+   "first_seen": "2026-10-29T06:50:46+00:00",
+   "notified_at": "2026-10-29T06:50:46+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101457200": {
+   "price": 9.9,
+   "discount": 66.89,
+   "first_seen": "2026-10-29T06:52:29+00:00",
+   "notified_at": "2026-10-29T06:52:29+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101492836": {
+   "price": 8.9,
+   "discount": 22.61,
+   "first_seen": "2026-10-31T08:45:21+00:00",
+   "notified_at": "2026-10-31T08:45:21+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:101492847": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:101492848": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:101492885": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:101492913": {
+   "price": 10.9,
+   "discount": 16.15,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:101492953": {
+   "price": 9.0,
+   "discount": 16.67,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 9.0
+  },
+  "plazavea:101531939": {
+   "price": 8.9,
+   "discount": 22.61,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:101531964": {
+   "price": 6.5,
+   "discount": 20.73,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 6.5
+  },
+  "plazavea:101548017": {
+   "price": 35.0,
+   "discount": 16.67,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 35.0
+  },
+  "plazavea:101549726": {
+   "price": 14.9,
+   "discount": 40.16,
+   "first_seen": "2026-10-30T23:35:13+00:00",
+   "notified_at": "2026-10-30T23:35:13+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:101560223": {
+   "price": 10.9,
+   "discount": 15.5,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:101560246": {
+   "price": 9.5,
+   "discount": 20.17,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 9.5
+  },
+  "plazavea:101560247": {
+   "price": 9.5,
+   "discount": 20.17,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 9.5
+  },
+  "plazavea:101563205": {
+   "price": 13.9,
+   "discount": 22.78,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:101563207": {
+   "price": 13.9,
+   "discount": 22.78,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:101563209": {
+   "price": 9.9,
+   "discount": 23.85,
+   "first_seen": "2026-10-31T13:59:15+00:00",
+   "notified_at": "2026-10-31T13:59:15+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101563210": {
+   "price": 13.9,
+   "discount": 22.78,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:101563212": {
+   "price": 9.9,
+   "discount": 20.16,
+   "first_seen": "2026-10-31T11:36:21+00:00",
+   "notified_at": "2026-10-31T11:36:21+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101563213": {
+   "price": 22.9,
+   "discount": 21.03,
+   "first_seen": "2026-10-31T09:39:39+00:00",
+   "notified_at": "2026-10-31T09:39:39+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101563220": {
+   "price": 21.9,
+   "discount": 15.3,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 21.9
+  },
+  "plazavea:101574246": {
+   "price": 26.0,
+   "discount": 25.5,
+   "first_seen": "2026-10-31T04:26:06+00:00",
+   "notified_at": "2026-10-31T04:26:06+00:00",
+   "best_price": 26.0
+  },
+  "plazavea:101576408": {
+   "price": 4.5,
+   "discount": 18.18,
+   "first_seen": "2026-10-29T23:37:59+00:00",
+   "notified_at": "2026-10-29T23:37:59+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:101576426": {
+   "price": 17.5,
+   "discount": 16.27,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 17.5
+  },
+  "plazavea:101582349": {
+   "price": 17.9,
+   "discount": 16.74,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:101582351": {
+   "price": 23.9,
+   "discount": 16.43,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:101582354": {
+   "price": 9.9,
+   "discount": 22.66,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101590645": {
+   "price": 53.6,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:51+00:00",
+   "notified_at": "2026-10-31T05:58:51+00:00",
+   "best_price": 53.6
+  },
+  "plazavea:101593929": {
+   "price": 6.0,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 6.0
+  },
+  "plazavea:101620268": {
+   "price": 23.9,
+   "discount": 20.07,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 23.9
+  },
+  "plazavea:101620269": {
+   "price": 14.5,
+   "discount": 17.14,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 14.5
+  },
+  "plazavea:101620270": {
+   "price": 21.5,
+   "discount": 16.99,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 21.5
+  },
+  "plazavea:101620271": {
+   "price": 11.5,
+   "discount": 17.27,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 11.5
+  },
+  "plazavea:101620278": {
+   "price": 24.0,
+   "discount": 16.96,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 24.0
+  },
+  "plazavea:101620291": {
+   "price": 18.5,
+   "discount": 21.28,
+   "first_seen": "2026-10-29T07:59:19+00:00",
+   "notified_at": "2026-10-29T07:59:19+00:00",
+   "best_price": 18.5
+  },
+  "plazavea:101682760": {
+   "price": 4.2,
+   "discount": 20.75,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 4.2
+  },
+  "plazavea:101682761": {
+   "price": 4.2,
+   "discount": 20.75,
+   "first_seen": "2026-10-31T12:10:57+00:00",
+   "notified_at": "2026-10-31T12:10:57+00:00",
+   "best_price": 4.2
+  },
+  "plazavea:101682762": {
+   "price": 4.2,
+   "discount": 20.75,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 4.2
+  },
+  "plazavea:101684538": {
+   "price": 19.9,
+   "discount": 17.08,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:101707495": {
+   "price": 58.4,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:56:51+00:00",
+   "notified_at": "2026-10-31T05:56:51+00:00",
+   "best_price": 58.4
+  },
+  "plazavea:101707522": {
+   "price": 19.9,
+   "discount": 33.44,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:101707543": {
+   "price": 174.9,
+   "discount": 50.01,
+   "first_seen": "2026-10-30T17:44:24+00:00",
+   "notified_at": "2026-10-30T17:44:24+00:00",
+   "best_price": 174.9
+  },
+  "plazavea:101707556": {
+   "price": 4.8,
+   "discount": 18.64,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 4.8
+  },
+  "plazavea:101707592": {
+   "price": 13.9,
+   "discount": 20.57,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:101707594": {
+   "price": 3.9,
+   "discount": 17.02,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:101722585": {
+   "price": 4.5,
+   "discount": 30.77,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:101722586": {
+   "price": 4.5,
+   "discount": 30.77,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:101722651": {
+   "price": 16.3,
+   "discount": 25.57,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 16.3
+  },
+  "plazavea:101742741": {
+   "price": 5.5,
+   "discount": 20.29,
+   "first_seen": "2026-10-29T08:00:52+00:00",
+   "notified_at": "2026-10-29T08:00:52+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:101742752": {
+   "price": 7.8,
+   "discount": 17.89,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 7.8
+  },
+  "plazavea:101748651": {
+   "price": 22.9,
+   "discount": 23.15,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101748660": {
+   "price": 22.9,
+   "discount": 23.15,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101748668": {
+   "price": 22.9,
+   "discount": 23.15,
+   "first_seen": "2026-10-31T13:59:08+00:00",
+   "notified_at": "2026-10-31T13:59:08+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101748671": {
+   "price": 22.9,
+   "discount": 23.15,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:101755146": {
+   "price": 9.9,
+   "discount": 28.78,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101784909": {
+   "price": 15.9,
+   "discount": 20.1,
+   "first_seen": "2026-10-30T22:54:56+00:00",
+   "notified_at": "2026-10-30T22:54:56+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:101784910": {
+   "price": 17.5,
+   "discount": 20.09,
+   "first_seen": "2026-10-30T22:57:01+00:00",
+   "notified_at": "2026-10-30T22:57:01+00:00",
+   "best_price": 17.5
+  },
+  "plazavea:101784911": {
+   "price": 16.7,
+   "discount": 20.1,
+   "first_seen": "2026-10-30T22:57:01+00:00",
+   "notified_at": "2026-10-30T22:57:01+00:00",
+   "best_price": 16.7
+  },
+  "plazavea:101784918": {
+   "price": 27.9,
+   "discount": 34.97,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 27.9
+  },
+  "plazavea:101784919": {
+   "price": 19.9,
+   "discount": 31.14,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:101784920": {
+   "price": 19.9,
+   "discount": 31.14,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:101784921": {
+   "price": 19.9,
+   "discount": 31.14,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:101784922": {
+   "price": 27.9,
+   "discount": 34.97,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 27.9
+  },
+  "plazavea:101784926": {
+   "price": 18.9,
+   "discount": 25.88,
+   "first_seen": "2026-10-30T22:56:47+00:00",
+   "notified_at": "2026-10-30T22:56:47+00:00",
+   "best_price": 18.9
+  },
+  "plazavea:101789092": {
+   "price": 9.9,
+   "discount": 35.71,
+   "first_seen": "2026-10-30T22:14:41+00:00",
+   "notified_at": "2026-10-30T22:14:41+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101800217": {
+   "price": 4.0,
+   "discount": 18.37,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 4.0
+  },
+  "plazavea:101800243": {
+   "price": 11.9,
+   "discount": 60.2,
+   "first_seen": "2026-10-30T17:44:21+00:00",
+   "notified_at": "2026-10-30T17:44:21+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:101800258": {
+   "price": 11.4,
+   "discount": 47.95,
+   "first_seen": "2026-10-30T22:14:24+00:00",
+   "notified_at": "2026-10-30T22:14:24+00:00",
+   "best_price": 11.4
+  },
+  "plazavea:101800263": {
+   "price": 18.9,
+   "discount": 16.0,
+   "first_seen": "2026-10-31T06:49:28+00:00",
+   "notified_at": "2026-10-31T06:49:28+00:00",
+   "best_price": 18.9
+  },
+  "plazavea:101809847": {
+   "price": 109.8,
+   "discount": 35.9,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 109.8
+  },
+  "plazavea:101832693": {
+   "price": 36.9,
+   "discount": 24.54,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 36.9
+  },
+  "plazavea:101838453": {
+   "price": 14.5,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 14.5
+  },
+  "plazavea:101838454": {
+   "price": 14.5,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 14.5
+  },
+  "plazavea:101838491": {
+   "price": 27.9,
+   "discount": 34.97,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 27.9
+  },
+  "plazavea:101838526": {
+   "price": 8.9,
+   "discount": 18.35,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:101840060": {
+   "price": 24.7,
+   "discount": 31.2,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 24.7
+  },
+  "plazavea:101840676": {
+   "price": 10.1,
+   "discount": 15.13,
+   "first_seen": "2026-10-31T06:49:38+00:00",
+   "notified_at": "2026-10-31T06:49:38+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:101840677": {
+   "price": 6.2,
+   "discount": 30.34,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 6.2
+  },
+  "plazavea:101840695": {
+   "price": 1.8,
+   "discount": 28.0,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 1.8
+  },
+  "plazavea:101840696": {
+   "price": 3.2,
+   "discount": 15.79,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 3.2
+  },
+  "plazavea:101840698": {
+   "price": 9.99,
+   "discount": 49.8,
+   "first_seen": "2026-10-30T17:44:31+00:00",
+   "notified_at": "2026-10-30T17:44:31+00:00",
+   "best_price": 9.99
+  },
+  "plazavea:101840699": {
+   "price": 10.9,
+   "discount": 31.45,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:101840703": {
+   "price": 26.0,
+   "discount": 23.3,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 26.0
+  },
+  "plazavea:101840719": {
+   "price": 3.9,
+   "discount": 18.75,
+   "first_seen": "2026-10-30T06:53:44+00:00",
+   "notified_at": "2026-10-30T06:53:44+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:101840721": {
+   "price": 3.9,
+   "discount": 18.75,
+   "first_seen": "2026-10-30T06:53:40+00:00",
+   "notified_at": "2026-10-30T06:53:40+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:101841046": {
+   "price": 4.0,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 4.0
+  },
+  "plazavea:101843979": {
+   "price": 119.0,
+   "discount": 37.04,
+   "first_seen": "2026-10-30T22:15:00+00:00",
+   "notified_at": "2026-10-30T22:15:00+00:00",
+   "best_price": 119.0
+  },
+  "plazavea:101843980": {
+   "price": 119.0,
+   "discount": 37.04,
+   "first_seen": "2026-10-30T22:14:38+00:00",
+   "notified_at": "2026-10-30T22:14:38+00:00",
+   "best_price": 119.0
+  },
+  "plazavea:101854758": {
+   "price": 42.8,
+   "discount": 24.65,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 42.8
+  },
+  "plazavea:101854759": {
+   "price": 42.8,
+   "discount": 24.65,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 42.8
+  },
+  "plazavea:101854760": {
+   "price": 39.9,
+   "discount": 32.14,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 39.9
+  },
+  "plazavea:101854761": {
+   "price": 25.8,
+   "discount": 25.86,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 25.8
+  },
+  "plazavea:101854762": {
+   "price": 39.9,
+   "discount": 32.14,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 39.9
+  },
+  "plazavea:101854763": {
+   "price": 42.8,
+   "discount": 24.65,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 42.8
+  },
+  "plazavea:101854764": {
+   "price": 36.8,
+   "discount": 24.59,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 36.8
+  },
+  "plazavea:101854765": {
+   "price": 39.9,
+   "discount": 32.14,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 39.9
+  },
+  "plazavea:101854766": {
+   "price": 25.8,
+   "discount": 25.86,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 25.8
+  },
+  "plazavea:101854767": {
+   "price": 39.9,
+   "discount": 32.14,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 39.9
+  },
+  "plazavea:101877406": {
+   "price": 11.9,
+   "discount": 25.62,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:101877408": {
+   "price": 11.9,
+   "discount": 25.62,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:101877410": {
+   "price": 7.9,
+   "discount": 21.0,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:101877416": {
+   "price": 13.9,
+   "discount": 22.78,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:101885954": {
+   "price": 17.9,
+   "discount": 48.9,
+   "first_seen": "2026-10-28T22:40:21+00:00",
+   "notified_at": "2026-10-28T22:40:21+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:101924893": {
+   "price": 10.5,
+   "discount": 26.9,
+   "first_seen": "2026-10-30T22:56:58+00:00",
+   "notified_at": "2026-10-30T22:56:58+00:00",
+   "best_price": 10.5
+  },
+  "plazavea:101924894": {
+   "price": 10.5,
+   "discount": 26.9,
+   "first_seen": "2026-10-30T23:37:53+00:00",
+   "notified_at": "2026-10-30T23:37:53+00:00",
+   "best_price": 10.5
+  },
+  "plazavea:101924905": {
+   "price": 47.9,
+   "discount": 20.03,
+   "first_seen": "2026-10-30T06:51:17+00:00",
+   "notified_at": "2026-10-30T06:51:17+00:00",
+   "best_price": 47.9
+  },
+  "plazavea:101924906": {
+   "price": 47.9,
+   "discount": 20.03,
+   "first_seen": "2026-10-30T06:51:22+00:00",
+   "notified_at": "2026-10-30T06:51:22+00:00",
+   "best_price": 47.9
+  },
+  "plazavea:101924907": {
+   "price": 47.9,
+   "discount": 20.03,
+   "first_seen": "2026-10-30T06:15:53+00:00",
+   "notified_at": "2026-10-30T06:15:53+00:00",
+   "best_price": 47.9
+  },
+  "plazavea:101925008": {
+   "price": 4.2,
+   "discount": 20.75,
+   "first_seen": "2026-10-31T13:59:20+00:00",
+   "notified_at": "2026-10-31T13:59:20+00:00",
+   "best_price": 4.2
+  },
+  "plazavea:101928347": {
+   "price": 9.9,
+   "discount": 27.74,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:101935502": {
+   "price": 3.9,
+   "discount": 20.41,
+   "first_seen": "2026-10-31T13:59:11+00:00",
+   "notified_at": "2026-10-31T13:59:11+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:101935503": {
+   "price": 3.9,
+   "discount": 20.41,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:101935504": {
+   "price": 3.9,
+   "discount": 20.41,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:101935506": {
+   "price": 3.9,
+   "discount": 20.41,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:101935644": {
+   "price": 6.0,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 6.0
+  },
+  "plazavea:101942851": {
+   "price": 13.9,
+   "discount": 22.78,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:101944373": {
+   "price": 17.9,
+   "discount": 18.64,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:101944390": {
+   "price": 12.5,
+   "discount": 20.89,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:101944393": {
+   "price": 10.1,
+   "discount": 15.13,
+   "first_seen": "2026-10-31T06:49:38+00:00",
+   "notified_at": "2026-10-31T06:49:38+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:101944396": {
+   "price": 20.89,
+   "discount": 19.96,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 20.89
+  },
+  "plazavea:101944405": {
+   "price": 11.9,
+   "discount": 25.16,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:101944416": {
+   "price": 26.49,
+   "discount": 19.97,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 26.49
+  },
+  "plazavea:101944417": {
+   "price": 44.7,
+   "discount": 20.04,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 44.7
+  },
+  "plazavea:101944778": {
+   "price": 17.9,
+   "discount": 21.83,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:101951702": {
+   "price": 56.5,
+   "discount": 20.53,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 56.5
+  },
+  "plazavea:101951704": {
+   "price": 51.9,
+   "discount": 21.48,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 51.9
+  },
+  "plazavea:101951730": {
+   "price": 84.9,
+   "discount": 21.17,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 84.9
+  },
+  "plazavea:101953648": {
+   "price": 11.0,
+   "discount": 25.17,
+   "first_seen": "2026-10-31T10:36:55+00:00",
+   "notified_at": "2026-10-31T10:36:55+00:00",
+   "best_price": 11.0
+  },
+  "plazavea:101974336": {
+   "price": 7.0,
+   "discount": 29.29,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 7.0
+  },
+  "plazavea:101974337": {
+   "price": 7.0,
+   "discount": 29.29,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 7.0
+  },
+  "plazavea:101974366": {
+   "price": 19.9,
+   "discount": 28.93,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:101978761": {
+   "price": 24.9,
+   "discount": 19.65,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:101980656": {
+   "price": 5.9,
+   "discount": 25.32,
+   "first_seen": "2026-10-31T06:47:17+00:00",
+   "notified_at": "2026-10-31T06:47:17+00:00",
+   "best_price": 5.9
+  },
+  "plazavea:101981312": {
+   "price": 71.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 71.2
+  },
+  "plazavea:101983086": {
+   "price": 87.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 87.2
+  },
+  "plazavea:101985748": {
+   "price": 15.9,
+   "discount": 23.19,
+   "first_seen": "2026-10-31T07:52:21+00:00",
+   "notified_at": "2026-10-31T07:52:21+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:101989161": {
+   "price": 12.0,
+   "discount": 16.67,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 12.0
+  },
+  "plazavea:101989189": {
+   "price": 6.5,
+   "discount": 23.53,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 6.5
+  },
+  "plazavea:101990162": {
+   "price": 17.9,
+   "discount": 26.94,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:101990163": {
+   "price": 17.9,
+   "discount": 26.94,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:101990166": {
+   "price": 14.5,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:18:47+00:00",
+   "notified_at": "2026-10-31T05:18:47+00:00",
+   "best_price": 14.5
+  },
+  "plazavea:101995464": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:101996271": {
+   "price": 16.5,
+   "discount": 15.38,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 16.5
+  },
+  "plazavea:102003157": {
+   "price": 42.8,
+   "discount": 21.03,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 42.8
+  },
+  "plazavea:102004201": {
+   "price": 159.9,
+   "discount": 20.01,
+   "first_seen": "2026-10-31T05:56:30+00:00",
+   "notified_at": "2026-10-31T05:56:30+00:00",
+   "best_price": 159.9
+  },
+  "plazavea:102004202": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:56:16+00:00",
+   "notified_at": "2026-10-31T05:56:16+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:102004203": {
+   "price": 62.3,
+   "discount": 30.0,
+   "first_seen": "2026-10-30T22:16:51+00:00",
+   "notified_at": "2026-10-30T22:16:51+00:00",
+   "best_price": 62.3
+  },
+  "plazavea:102004204": {
+   "price": 159.9,
+   "discount": 20.01,
+   "first_seen": "2026-10-31T05:56:43+00:00",
+   "notified_at": "2026-10-31T05:56:43+00:00",
+   "best_price": 159.9
+  },
+  "plazavea:102004205": {
+   "price": 159.9,
+   "discount": 20.01,
+   "first_seen": "2026-10-31T05:56:37+00:00",
+   "notified_at": "2026-10-31T05:56:37+00:00",
+   "best_price": 159.9
+  },
+  "plazavea:102004206": {
+   "price": 62.3,
+   "discount": 30.0,
+   "first_seen": "2026-10-30T22:16:51+00:00",
+   "notified_at": "2026-10-30T22:16:51+00:00",
+   "best_price": 62.3
+  },
+  "plazavea:102004211": {
+   "price": 8.2,
+   "discount": 16.33,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:102004212": {
+   "price": 8.2,
+   "discount": 16.33,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:102004311": {
+   "price": 2.9,
+   "discount": 32.56,
+   "first_seen": "2026-10-31T00:10:48+00:00",
+   "notified_at": "2026-10-31T00:10:48+00:00",
+   "best_price": 2.9
+  },
+  "plazavea:102004318": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:102004320": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:102004321": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:102004322": {
+   "price": 6.9,
+   "discount": 22.47,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:102004325": {
+   "price": 4.9,
+   "discount": 28.99,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:102004328": {
+   "price": 18.0,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 18.0
+  },
+  "plazavea:102018957": {
+   "price": 79.9,
+   "discount": 24.19,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 79.9
+  },
+  "plazavea:102019580": {
+   "price": 89.9,
+   "discount": 25.33,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 89.9
+  },
+  "plazavea:102022778": {
+   "price": 5.5,
+   "discount": 19.12,
+   "first_seen": "2026-10-31T05:56:40+00:00",
+   "notified_at": "2026-10-31T05:56:40+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:102022779": {
+   "price": 7.0,
+   "discount": 23.08,
+   "first_seen": "2026-10-31T05:16:14+00:00",
+   "notified_at": "2026-10-31T05:16:14+00:00",
+   "best_price": 7.0
+  },
+  "plazavea:102022780": {
+   "price": 5.5,
+   "discount": 17.91,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:102022781": {
+   "price": 5.5,
+   "discount": 17.91,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:102022782": {
+   "price": 5.5,
+   "discount": 17.91,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:102022783": {
+   "price": 7.0,
+   "discount": 23.08,
+   "first_seen": "2026-10-31T05:16:00+00:00",
+   "notified_at": "2026-10-31T05:16:00+00:00",
+   "best_price": 7.0
+  },
+  "plazavea:102022789": {
+   "price": 25.0,
+   "discount": 15.25,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 25.0
+  },
+  "plazavea:102022798": {
+   "price": 20.0,
+   "discount": 16.32,
+   "first_seen": "2026-10-29T06:52:36+00:00",
+   "notified_at": "2026-10-29T06:52:36+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:102045746": {
+   "price": 54.9,
+   "discount": 15.41,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 54.9
+  },
+  "plazavea:102045747": {
+   "price": 49.9,
+   "discount": 15.28,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 49.9
+  },
+  "plazavea:102047476": {
+   "price": 7.1,
+   "discount": 20.22,
+   "first_seen": "2026-10-30T22:54:40+00:00",
+   "notified_at": "2026-10-30T22:54:40+00:00",
+   "best_price": 7.1
+  },
+  "plazavea:102047617": {
+   "price": 26.9,
+   "discount": 35.18,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 26.9
+  },
+  "plazavea:102055506": {
+   "price": 8.6,
+   "discount": 17.31,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 8.6
+  },
+  "plazavea:102056096": {
+   "price": 44.5,
+   "discount": 21.79,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 44.5
+  },
+  "plazavea:102056105": {
+   "price": 63.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 63.2
+  },
+  "plazavea:102056253": {
+   "price": 13.9,
+   "discount": 17.75,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:102056254": {
+   "price": 11.9,
+   "discount": 20.13,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:102056257": {
+   "price": 16.9,
+   "discount": 26.2,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:102056672": {
+   "price": 8.5,
+   "discount": 26.09,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 8.5
+  },
+  "plazavea:102058648": {
+   "price": 16.9,
+   "discount": 22.12,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:102059152": {
+   "price": 30.9,
+   "discount": 20.57,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 30.9
+  },
+  "plazavea:102066147": {
+   "price": 4.5,
+   "discount": 18.18,
+   "first_seen": "2026-10-30T11:41:13+00:00",
+   "notified_at": "2026-10-30T11:41:13+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:102071148": {
+   "price": 24.9,
+   "discount": 15.59,
+   "first_seen": "2026-10-31T06:49:24+00:00",
+   "notified_at": "2026-10-31T06:49:24+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:102071149": {
+   "price": 5.6,
+   "discount": 30.0,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 5.6
+  },
+  "plazavea:102071150": {
+   "price": 24.9,
+   "discount": 21.94,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:102071163": {
+   "price": 6.0,
+   "discount": 36.84,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 6.0
+  },
+  "plazavea:102081981": {
+   "price": 84.9,
+   "discount": 21.17,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 84.9
+  },
+  "plazavea:102087839": {
+   "price": 8.2,
+   "discount": 25.45,
+   "first_seen": "2026-10-31T09:39:35+00:00",
+   "notified_at": "2026-10-31T09:39:35+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:102088477": {
+   "price": 30.5,
+   "discount": 22.59,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 30.5
+  },
+  "plazavea:102088478": {
+   "price": 22.9,
+   "discount": 25.16,
+   "first_seen": "2026-10-31T05:16:07+00:00",
+   "notified_at": "2026-10-31T05:16:07+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:102090626": {
+   "price": 12.9,
+   "discount": 49.9,
+   "first_seen": "2026-10-31T09:39:32+00:00",
+   "notified_at": "2026-10-31T09:39:32+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:102090659": {
+   "price": 12.9,
+   "discount": 49.9,
+   "first_seen": "2026-10-30T22:56:47+00:00",
+   "notified_at": "2026-10-30T22:56:47+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:102090661": {
+   "price": 15.9,
+   "discount": 20.1,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:102090789": {
+   "price": 15.1,
+   "discount": 20.11,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 15.1
+  },
+  "plazavea:102104852": {
+   "price": 11.9,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:102119501": {
+   "price": 9.9,
+   "discount": 28.26,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:102124570": {
+   "price": 12.9,
+   "discount": 25.0,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:102124571": {
+   "price": 12.9,
+   "discount": 25.0,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:102140251": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-31T12:10:52+00:00",
+   "notified_at": "2026-10-31T12:10:52+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:102140317": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:18:33+00:00",
+   "notified_at": "2026-10-31T05:18:33+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:102140330": {
+   "price": 17.9,
+   "discount": 18.26,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:102143694": {
+   "price": 3.5,
+   "discount": 18.6,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 3.5
+  },
+  "plazavea:102146554": {
+   "price": 62.9,
+   "discount": 20.38,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 62.9
+  },
+  "plazavea:102148976": {
+   "price": 8.2,
+   "discount": 16.33,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:102185021": {
+   "price": 13.5,
+   "discount": 20.59,
+   "first_seen": "2026-10-31T05:18:22+00:00",
+   "notified_at": "2026-10-31T05:18:22+00:00",
+   "best_price": 13.5
+  },
+  "plazavea:102185022": {
+   "price": 4.8,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 4.8
+  },
+  "plazavea:102185023": {
+   "price": 13.5,
+   "discount": 20.59,
+   "first_seen": "2026-10-31T05:18:22+00:00",
+   "notified_at": "2026-10-31T05:18:22+00:00",
+   "best_price": 13.5
+  },
+  "plazavea:102185024": {
+   "price": 13.5,
+   "discount": 20.59,
+   "first_seen": "2026-10-31T05:18:22+00:00",
+   "notified_at": "2026-10-31T05:18:22+00:00",
+   "best_price": 13.5
+  },
+  "plazavea:102233013": {
+   "price": 28.9,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 28.9
+  },
+  "plazavea:102241929": {
+   "price": 16.9,
+   "discount": 15.08,
+   "first_seen": "2026-10-31T06:49:38+00:00",
+   "notified_at": "2026-10-31T06:49:38+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:102244485": {
+   "price": 41.9,
+   "discount": 29.93,
+   "first_seen": "2026-10-30T08:51:45+00:00",
+   "notified_at": "2026-10-30T08:51:45+00:00",
+   "best_price": 41.9
+  },
+  "plazavea:102252950": {
+   "price": 69.9,
+   "discount": 21.28,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 69.9
+  },
+  "plazavea:102258239": {
+   "price": 4.5,
+   "discount": 30.77,
+   "first_seen": "2026-10-31T00:11:00+00:00",
+   "notified_at": "2026-10-31T00:11:00+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:102278120": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T12:09:03+00:00",
+   "notified_at": "2026-10-31T12:09:03+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:102278121": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:56:12+00:00",
+   "notified_at": "2026-10-31T05:56:12+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:102278122": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:56:19+00:00",
+   "notified_at": "2026-10-31T05:56:19+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:102306904": {
+   "price": 12.5,
+   "discount": 20.89,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:102306912": {
+   "price": 19.9,
+   "discount": 21.96,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:102306913": {
+   "price": 19.9,
+   "discount": 21.96,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:102306942": {
+   "price": 7.5,
+   "discount": 16.67,
+   "first_seen": "2026-10-29T08:00:56+00:00",
+   "notified_at": "2026-10-29T08:00:56+00:00",
+   "best_price": 7.5
+  },
+  "plazavea:102313347": {
+   "price": 28.9,
+   "discount": 22.1,
+   "first_seen": "2026-10-31T11:36:18+00:00",
+   "notified_at": "2026-10-31T11:36:18+00:00",
+   "best_price": 28.9
+  },
+  "plazavea:102313348": {
+   "price": 29.9,
+   "discount": 21.52,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 29.9
+  },
+  "plazavea:102313350": {
+   "price": 29.9,
+   "discount": 21.52,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 29.9
+  },
+  "plazavea:102323788": {
+   "price": 84.9,
+   "discount": 21.17,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 84.9
+  },
+  "plazavea:102326266": {
+   "price": 79.9,
+   "discount": 29.54,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 79.9
+  },
+  "plazavea:102329165": {
+   "price": 51.9,
+   "discount": 24.45,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 51.9
+  },
+  "plazavea:102329166": {
+   "price": 124.9,
+   "discount": 22.61,
+   "first_seen": "2026-10-30T16:23:46+00:00",
+   "notified_at": "2026-10-30T16:23:46+00:00",
+   "best_price": 124.9
+  },
+  "plazavea:102329831": {
+   "price": 119.9,
+   "discount": 33.2,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 119.9
+  },
+  "plazavea:102333673": {
+   "price": 17.9,
+   "discount": 48.9,
+   "first_seen": "2026-10-29T17:25:51+00:00",
+   "notified_at": "2026-10-29T17:25:51+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:102333674": {
+   "price": 17.9,
+   "discount": 48.9,
+   "first_seen": "2026-10-28T23:56:22+00:00",
+   "notified_at": "2026-10-28T23:56:22+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:102340892": {
+   "price": 14.3,
+   "discount": 29.21,
+   "first_seen": "2026-10-30T22:14:53+00:00",
+   "notified_at": "2026-10-30T22:14:53+00:00",
+   "best_price": 14.3
+  },
+  "plazavea:102359510": {
+   "price": 20.5,
+   "discount": 30.27,
+   "first_seen": "2026-10-30T22:17:12+00:00",
+   "notified_at": "2026-10-30T22:17:12+00:00",
+   "best_price": 20.5
+  },
+  "plazavea:102386137": {
+   "price": 22.5,
+   "discount": 26.23,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 22.5
+  },
+  "plazavea:102386138": {
+   "price": 22.5,
+   "discount": 26.23,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 22.5
+  },
+  "plazavea:102386139": {
+   "price": 22.5,
+   "discount": 26.23,
+   "first_seen": "2026-10-30T22:17:09+00:00",
+   "notified_at": "2026-10-30T22:17:09+00:00",
+   "best_price": 22.5
+  },
+  "plazavea:102396485": {
+   "price": 8.9,
+   "discount": 19.09,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:102396486": {
+   "price": 22.5,
+   "discount": 19.9,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 22.5
+  },
+  "plazavea:102396487": {
+   "price": 19.9,
+   "discount": 20.37,
+   "first_seen": "2026-10-31T05:18:22+00:00",
+   "notified_at": "2026-10-31T05:18:22+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:102396489": {
+   "price": 25.5,
+   "discount": 22.96,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 25.5
+  },
+  "plazavea:102405278": {
+   "price": 8.4,
+   "discount": 20.75,
+   "first_seen": "2026-10-29T20:42:37+00:00",
+   "notified_at": "2026-10-29T20:42:37+00:00",
+   "best_price": 8.4
+  },
+  "plazavea:102405283": {
+   "price": 8.4,
+   "discount": 19.23,
+   "first_seen": "2026-10-30T02:20:21+00:00",
+   "notified_at": "2026-10-30T02:20:21+00:00",
+   "best_price": 8.4
+  },
+  "plazavea:102405285": {
+   "price": 12.4,
+   "discount": 26.19,
+   "first_seen": "2026-10-30T22:17:16+00:00",
+   "notified_at": "2026-10-30T22:17:16+00:00",
+   "best_price": 12.4
+  },
+  "plazavea:102405921": {
+   "price": 8.4,
+   "discount": 17.65,
+   "first_seen": "2026-10-30T02:20:25+00:00",
+   "notified_at": "2026-10-30T02:20:25+00:00",
+   "best_price": 8.4
+  },
+  "plazavea:10519": {
+   "price": 26.0,
+   "discount": 20.49,
+   "first_seen": "2026-10-31T01:23:31+00:00",
+   "notified_at": "2026-10-31T01:23:31+00:00",
+   "best_price": 26.0
+  },
+  "plazavea:10821": {
+   "price": 33.6,
+   "discount": 26.32,
+   "first_seen": "2026-10-30T23:35:18+00:00",
+   "notified_at": "2026-10-30T23:35:18+00:00",
+   "best_price": 33.6
+  },
+  "plazavea:10964": {
+   "price": 9.9,
+   "discount": 46.49,
+   "first_seen": "2026-10-30T22:14:27+00:00",
+   "notified_at": "2026-10-30T22:14:27+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:1179": {
+   "price": 2.1,
+   "discount": 16.0,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 2.1
+  },
+  "plazavea:12416": {
+   "price": 10.9,
+   "discount": 37.71,
+   "first_seen": "2026-10-30T22:14:45+00:00",
+   "notified_at": "2026-10-30T22:14:45+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:1249": {
+   "price": 5.0,
+   "discount": 36.71,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:1250": {
+   "price": 5.0,
+   "discount": 36.71,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:13028": {
+   "price": 2.8,
+   "discount": 17.65,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 2.8
+  },
+  "plazavea:13054": {
+   "price": 10.0,
+   "discount": 24.24,
+   "first_seen": "2026-10-30T14:32:32+00:00",
+   "notified_at": "2026-10-30T14:32:32+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:13055": {
+   "price": 8.0,
+   "discount": 21.57,
+   "first_seen": "2026-10-30T11:39:20+00:00",
+   "notified_at": "2026-10-30T11:39:20+00:00",
+   "best_price": 8.0
+  },
+  "plazavea:13090": {
+   "price": 8.9,
+   "discount": 18.35,
+   "first_seen": "2026-10-31T05:57:03+00:00",
+   "notified_at": "2026-10-31T05:57:03+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:1317": {
+   "price": 4.5,
+   "discount": 18.18,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:1318": {
+   "price": 4.5,
+   "discount": 18.18,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:1321": {
+   "price": 4.7,
+   "discount": 20.34,
+   "first_seen": "2026-10-31T05:18:22+00:00",
+   "notified_at": "2026-10-31T05:18:22+00:00",
+   "best_price": 4.7
+  },
+  "plazavea:1322": {
+   "price": 4.5,
+   "discount": 18.18,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:13507": {
+   "price": 14.0,
+   "discount": 28.21,
+   "first_seen": "2026-10-30T22:17:05+00:00",
+   "notified_at": "2026-10-30T22:17:05+00:00",
+   "best_price": 14.0
+  },
+  "plazavea:13525": {
+   "price": 11.59,
+   "discount": 29.76,
+   "first_seen": "2026-10-30T22:54:08+00:00",
+   "notified_at": "2026-10-30T22:54:08+00:00",
+   "best_price": 11.59
+  },
+  "plazavea:13534": {
+   "price": 11.59,
+   "discount": 29.76,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 11.59
+  },
+  "plazavea:13541": {
+   "price": 11.59,
+   "discount": 29.76,
+   "first_seen": "2026-10-30T22:54:28+00:00",
+   "notified_at": "2026-10-30T22:54:28+00:00",
+   "best_price": 11.59
+  },
+  "plazavea:13570": {
+   "price": 11.1,
+   "discount": 25.5,
+   "first_seen": "2026-10-31T00:11:04+00:00",
+   "notified_at": "2026-10-31T00:11:04+00:00",
+   "best_price": 11.1
+  },
+  "plazavea:13571": {
+   "price": 11.1,
+   "discount": 25.5,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 11.1
+  },
+  "plazavea:13603": {
+   "price": 11.59,
+   "discount": 29.76,
+   "first_seen": "2026-10-31T00:08:57+00:00",
+   "notified_at": "2026-10-31T00:08:57+00:00",
+   "best_price": 11.59
+  },
+  "plazavea:13658": {
+   "price": 14.9,
+   "discount": 16.2,
+   "first_seen": "2026-10-31T13:12:13+00:00",
+   "notified_at": "2026-10-31T13:12:13+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:13698": {
+   "price": 21.5,
+   "discount": 20.07,
+   "first_seen": "2026-10-31T05:58:47+00:00",
+   "notified_at": "2026-10-31T05:58:47+00:00",
+   "best_price": 21.5
+  },
+  "plazavea:1373": {
+   "price": 3.5,
+   "discount": 22.22,
+   "first_seen": "2026-10-29T22:59:32+00:00",
+   "notified_at": "2026-10-29T22:59:32+00:00",
+   "best_price": 3.1
+  },
+  "plazavea:13774": {
+   "price": 6.5,
+   "discount": 26.14,
+   "first_seen": "2026-10-30T22:17:12+00:00",
+   "notified_at": "2026-10-30T22:17:12+00:00",
+   "best_price": 6.5
+  },
+  "plazavea:13778": {
+   "price": 8.0,
+   "discount": 21.57,
+   "first_seen": "2026-10-30T11:39:09+00:00",
+   "notified_at": "2026-10-30T11:39:09+00:00",
+   "best_price": 8.0
+  },
+  "plazavea:1410": {
+   "price": 2.9,
+   "discount": 30.95,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 2.9
+  },
+  "plazavea:14407": {
+   "price": 11.9,
+   "discount": 20.13,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:1454": {
+   "price": 4.9,
+   "discount": 37.97,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 4.9
+  },
+  "plazavea:14545": {
+   "price": 3.5,
+   "discount": 22.22,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 3.5
+  },
+  "plazavea:14546": {
+   "price": 3.5,
+   "discount": 22.22,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 3.5
+  },
+  "plazavea:15169": {
+   "price": 4.0,
+   "discount": 28.57,
+   "first_seen": "2026-10-30T22:56:54+00:00",
+   "notified_at": "2026-10-30T22:56:54+00:00",
+   "best_price": 4.0
+  },
+  "plazavea:15195": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:15244": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:1542": {
+   "price": 2.1,
+   "discount": 16.0,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 2.1
+  },
+  "plazavea:1546": {
+   "price": 2.9,
+   "discount": 19.44,
+   "first_seen": "2026-10-30T06:53:31+00:00",
+   "notified_at": "2026-10-30T06:53:31+00:00",
+   "best_price": 2.9
+  },
+  "plazavea:1548": {
+   "price": 4.5,
+   "discount": 18.18,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:1640": {
+   "price": 38.9,
+   "discount": 15.43,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 38.9
+  },
+  "plazavea:1676": {
+   "price": 2.9,
+   "discount": 23.68,
+   "first_seen": "2026-10-31T00:11:15+00:00",
+   "notified_at": "2026-10-31T00:11:15+00:00",
+   "best_price": 2.9
+  },
+  "plazavea:1714": {
+   "price": 5.0,
+   "discount": 36.71,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:1752": {
+   "price": 2.9,
+   "discount": 30.95,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 2.9
+  },
+  "plazavea:18412": {
+   "price": 10.7,
+   "discount": 15.08,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 10.7
+  },
+  "plazavea:18422": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:1849": {
+   "price": 4.5,
+   "discount": 18.18,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:1850": {
+   "price": 4.1,
+   "discount": 22.64,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 4.1
+  },
+  "plazavea:1853": {
+   "price": 4.5,
+   "discount": 18.18,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:18701": {
+   "price": 8.9,
+   "discount": 18.35,
+   "first_seen": "2026-10-30T23:38:03+00:00",
+   "notified_at": "2026-10-30T23:38:03+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:18716": {
+   "price": 15.2,
+   "discount": 15.08,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 15.2
+  },
+  "plazavea:1908": {
+   "price": 2.9,
+   "discount": 30.95,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 2.9
+  },
+  "plazavea:1938": {
+   "price": 8.9,
+   "discount": 16.04,
+   "first_seen": "2026-10-31T06:48:52+00:00",
+   "notified_at": "2026-10-31T06:48:52+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:19887": {
+   "price": 6.0,
+   "discount": 38.14,
+   "first_seen": "2026-10-30T22:14:57+00:00",
+   "notified_at": "2026-10-30T22:14:57+00:00",
+   "best_price": 6.0
+  },
+  "plazavea:20001": {
+   "price": 17.9,
+   "discount": 33.46,
+   "first_seen": "2026-10-29T23:36:13+00:00",
+   "notified_at": "2026-10-29T23:36:13+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:20010": {
+   "price": 1.7,
+   "discount": 26.09,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:20011": {
+   "price": 1.7,
+   "discount": 26.09,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:20014": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:2119": {
+   "price": 10.0,
+   "discount": 23.08,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:214": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:2230": {
+   "price": 3.4,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T06:49:38+00:00",
+   "notified_at": "2026-10-31T06:49:38+00:00",
+   "best_price": 3.4
+  },
+  "plazavea:2276": {
+   "price": 7.9,
+   "discount": 24.69,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:23074": {
+   "price": 64.5,
+   "discount": 19.27,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 64.5
+  },
+  "plazavea:23140": {
+   "price": 12.4,
+   "discount": 22.01,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 12.4
+  },
+  "plazavea:23180": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:23193": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:236": {
+   "price": 11.6,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T05:58:26+00:00",
+   "notified_at": "2026-10-31T05:58:26+00:00",
+   "best_price": 11.6
+  },
+  "plazavea:23689": {
+   "price": 44.9,
+   "discount": 23.77,
+   "first_seen": "2026-10-30T23:35:21+00:00",
+   "notified_at": "2026-10-30T23:35:21+00:00",
+   "best_price": 44.9
+  },
+  "plazavea:23717": {
+   "price": 10.4,
+   "discount": 28.28,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 10.4
+  },
+  "plazavea:24995": {
+   "price": 9.9,
+   "discount": 33.56,
+   "first_seen": "2026-10-30T23:35:43+00:00",
+   "notified_at": "2026-10-30T23:35:43+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:25031": {
+   "price": 18.2,
+   "discount": 20.52,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 18.2
+  },
+  "plazavea:2508": {
+   "price": 9.9,
+   "discount": 17.5,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:2535": {
+   "price": 3.0,
+   "discount": 26.83,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 3.0
+  },
+  "plazavea:25463": {
+   "price": 15.0,
+   "discount": 31.0,
+   "first_seen": "2026-10-30T23:37:53+00:00",
+   "notified_at": "2026-10-30T23:37:53+00:00",
+   "best_price": 15.0
+  },
+  "plazavea:25608": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:25623": {
+   "price": 7.6,
+   "discount": 30.28,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 7.6
+  },
+  "plazavea:2653": {
+   "price": 3.3,
+   "discount": 17.5,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 3.3
+  },
+  "plazavea:2654": {
+   "price": 2.9,
+   "discount": 25.64,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 2.9
+  },
+  "plazavea:26631": {
+   "price": 15.9,
+   "discount": 30.87,
+   "first_seen": "2026-10-31T22:21:34+00:00",
+   "notified_at": "2026-10-31T22:21:34+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:2721": {
+   "price": 5.0,
+   "discount": 15.25,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:28308": {
+   "price": 22.5,
+   "discount": 16.36,
+   "first_seen": "2026-10-30T06:54:06+00:00",
+   "notified_at": "2026-10-30T06:54:06+00:00",
+   "best_price": 22.5
+  },
+  "plazavea:28310": {
+   "price": 3.4,
+   "discount": 22.73,
+   "first_seen": "2026-10-31T22:21:37+00:00",
+   "notified_at": "2026-10-31T22:21:37+00:00",
+   "best_price": 3.4
+  },
+  "plazavea:28668": {
+   "price": 16.9,
+   "discount": 50.3,
+   "first_seen": "2026-10-28T20:42:51+00:00",
+   "notified_at": "2026-10-30T19:24:47+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:28690": {
+   "price": 16.9,
+   "discount": 50.3,
+   "first_seen": "2026-10-28T20:42:56+00:00",
+   "notified_at": "2026-10-30T19:24:50+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:28922": {
+   "price": 3.9,
+   "discount": 18.75,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 3.9
+  },
+  "plazavea:2893": {
+   "price": 3.1,
+   "discount": 16.22,
+   "first_seen": "2026-10-30T22:57:01+00:00",
+   "notified_at": "2026-10-30T22:57:01+00:00",
+   "best_price": 3.1
+  },
+  "plazavea:2916": {
+   "price": 16.5,
+   "discount": 25.0,
+   "first_seen": "2026-10-31T05:16:11+00:00",
+   "notified_at": "2026-10-31T05:16:11+00:00",
+   "best_price": 16.5
+  },
+  "plazavea:2921": {
+   "price": 16.9,
+   "discount": 22.83,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:29233": {
+   "price": 12.8,
+   "discount": 19.5,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 12.8
+  },
+  "plazavea:2963": {
+   "price": 6.4,
+   "discount": 24.71,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 6.4
+  },
+  "plazavea:297": {
+   "price": 4.0,
+   "discount": 28.57,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 4.0
+  },
+  "plazavea:307": {
+   "price": 3.4,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T06:49:38+00:00",
+   "notified_at": "2026-10-31T06:49:38+00:00",
+   "best_price": 3.4
+  },
+  "plazavea:308": {
+   "price": 2.8,
+   "discount": 30.0,
+   "first_seen": "2026-10-30T23:35:59+00:00",
+   "notified_at": "2026-10-30T23:35:59+00:00",
+   "best_price": 2.8
+  },
+  "plazavea:3115": {
+   "price": 16.5,
+   "discount": 25.0,
+   "first_seen": "2026-10-31T05:16:25+00:00",
+   "notified_at": "2026-10-31T05:16:25+00:00",
+   "best_price": 16.5
+  },
+  "plazavea:3222": {
+   "price": 7.7,
+   "discount": 20.62,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 7.7
+  },
+  "plazavea:324": {
+   "price": 1.7,
+   "discount": 26.09,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:3245": {
+   "price": 8.1,
+   "discount": 22.12,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 8.1
+  },
+  "plazavea:325": {
+   "price": 1.7,
+   "discount": 26.09,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:3312": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:3358": {
+   "price": 2.5,
+   "discount": 19.35,
+   "first_seen": "2026-10-31T22:21:44+00:00",
+   "notified_at": "2026-10-31T22:21:44+00:00",
+   "best_price": 2.5
+  },
+  "plazavea:3389": {
+   "price": 10.1,
+   "discount": 30.34,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:340": {
+   "price": 2.6,
+   "discount": 21.21,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 2.6
+  },
+  "plazavea:342": {
+   "price": 15.5,
+   "discount": 22.11,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 15.5
+  },
+  "plazavea:3434": {
+   "price": 10.1,
+   "discount": 25.19,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:3447": {
+   "price": 10.9,
+   "discount": 21.58,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:3448": {
+   "price": 16.5,
+   "discount": 25.0,
+   "first_seen": "2026-10-31T05:15:57+00:00",
+   "notified_at": "2026-10-31T05:15:57+00:00",
+   "best_price": 16.5
+  },
+  "plazavea:3500": {
+   "price": 1.5,
+   "discount": 48.28,
+   "first_seen": "2026-10-30T22:14:20+00:00",
+   "notified_at": "2026-10-30T22:14:20+00:00",
+   "best_price": 1.5
+  },
+  "plazavea:3571": {
+   "price": 16.5,
+   "discount": 25.0,
+   "first_seen": "2026-10-31T04:26:13+00:00",
+   "notified_at": "2026-10-31T04:26:13+00:00",
+   "best_price": 16.5
+  },
+  "plazavea:3640": {
+   "price": 10.9,
+   "discount": 33.94,
+   "first_seen": "2026-10-30T23:35:28+00:00",
+   "notified_at": "2026-10-30T23:35:28+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:3670": {
+   "price": 8.1,
+   "discount": 22.86,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 8.1
+  },
+  "plazavea:3711": {
+   "price": 5.3,
+   "discount": 20.9,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 5.3
+  },
+  "plazavea:3755": {
+   "price": 9.9,
+   "discount": 16.81,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:3840": {
+   "price": 1.4,
+   "discount": 17.65,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 1.4
+  },
+  "plazavea:3841": {
+   "price": 1.7,
+   "discount": 15.0,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 1.7
+  },
+  "plazavea:3996": {
+   "price": 10.6,
+   "discount": 20.9,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 10.6
+  },
+  "plazavea:40": {
+   "price": 4.0,
+   "discount": 28.57,
+   "first_seen": "2026-10-30T23:38:00+00:00",
+   "notified_at": "2026-10-30T23:38:00+00:00",
+   "best_price": 4.0
+  },
+  "plazavea:4004": {
+   "price": 17.9,
+   "discount": 18.23,
+   "first_seen": "2026-10-28T06:01:28+00:00",
+   "notified_at": "2026-10-30T06:53:49+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:4013": {
+   "price": 27.9,
+   "discount": 17.94,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 27.9
+  },
+  "plazavea:40757": {
+   "price": 4.5,
+   "discount": 26.23,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:40790": {
+   "price": 4.5,
+   "discount": 26.23,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:4125": {
+   "price": 32.5,
+   "discount": 16.45,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 32.5
+  },
+  "plazavea:41705": {
+   "price": 7.9,
+   "discount": 33.05,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:41823": {
+   "price": 13.9,
+   "discount": 35.05,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:42084": {
+   "price": 10.8,
+   "discount": 16.86,
+   "first_seen": "2026-10-30T23:38:03+00:00",
+   "notified_at": "2026-10-30T23:38:03+00:00",
+   "best_price": 10.8
+  },
+  "plazavea:42085": {
+   "price": 10.8,
+   "discount": 16.86,
+   "first_seen": "2026-10-30T23:38:03+00:00",
+   "notified_at": "2026-10-30T23:38:03+00:00",
+   "best_price": 10.8
+  },
+  "plazavea:43268": {
+   "price": 8.9,
+   "discount": 15.24,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:43681": {
+   "price": 5.0,
+   "discount": 27.54,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:43690": {
+   "price": 10.0,
+   "discount": 32.89,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:43702": {
+   "price": 5.0,
+   "discount": 36.71,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:43712": {
+   "price": 15.9,
+   "discount": 15.87,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:43723": {
+   "price": 4.0,
+   "discount": 32.2,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 4.0
+  },
+  "plazavea:43725": {
+   "price": 5.0,
+   "discount": 27.54,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 5.0
+  },
+  "plazavea:43737": {
+   "price": 5.9,
+   "discount": 33.71,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 5.9
+  },
+  "plazavea:43749": {
+   "price": 5.8,
+   "discount": 15.94,
+   "first_seen": "2026-10-29T22:59:37+00:00",
+   "notified_at": "2026-10-29T22:59:37+00:00",
+   "best_price": 5.8
+  },
+  "plazavea:43751": {
+   "price": 10.0,
+   "discount": 32.43,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:4419": {
+   "price": 3.8,
+   "discount": 15.56,
+   "first_seen": "2026-10-31T06:49:21+00:00",
+   "notified_at": "2026-10-31T06:49:21+00:00",
+   "best_price": 3.8
+  },
+  "plazavea:4455": {
+   "price": 10.9,
+   "discount": 17.42,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 10.9
+  },
+  "plazavea:45574": {
+   "price": 1.9,
+   "discount": 67.8,
+   "first_seen": "2026-10-30T17:44:17+00:00",
+   "notified_at": "2026-10-30T17:44:17+00:00",
+   "best_price": 1.9
+  },
+  "plazavea:4573": {
+   "price": 4.5,
+   "discount": 21.05,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:46012": {
+   "price": 16.2,
+   "discount": 15.18,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 16.2
+  },
+  "plazavea:46130": {
+   "price": 7.9,
+   "discount": 20.2,
+   "first_seen": "2026-10-31T05:58:47+00:00",
+   "notified_at": "2026-10-31T05:58:47+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:46386": {
+   "price": 6.5,
+   "discount": 29.35,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 6.5
+  },
+  "plazavea:4692": {
+   "price": 12.2,
+   "discount": 20.26,
+   "first_seen": "2026-10-30T22:54:20+00:00",
+   "notified_at": "2026-10-30T22:54:20+00:00",
+   "best_price": 12.2
+  },
+  "plazavea:48313": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:18:33+00:00",
+   "notified_at": "2026-10-31T05:18:33+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:48325": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:18:33+00:00",
+   "notified_at": "2026-10-31T05:18:33+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:48330": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:16:04+00:00",
+   "notified_at": "2026-10-31T05:16:04+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:48336": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:18:33+00:00",
+   "notified_at": "2026-10-31T05:18:33+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:48342": {
+   "price": 22.9,
+   "discount": 24.92,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:48349": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:18:33+00:00",
+   "notified_at": "2026-10-31T05:18:33+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:48350": {
+   "price": 22.9,
+   "discount": 24.92,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:48359": {
+   "price": 15.0,
+   "discount": 25.37,
+   "first_seen": "2026-10-31T04:26:10+00:00",
+   "notified_at": "2026-10-31T04:26:10+00:00",
+   "best_price": 15.0
+  },
+  "plazavea:4841": {
+   "price": 1.4,
+   "discount": 17.16,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 1.4
+  },
+  "plazavea:48541": {
+   "price": 4.5,
+   "discount": 23.73,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 4.5
+  },
+  "plazavea:48579": {
+   "price": 11.2,
+   "discount": 27.74,
+   "first_seen": "2026-10-31T00:11:07+00:00",
+   "notified_at": "2026-10-31T00:11:07+00:00",
+   "best_price": 11.2
+  },
+  "plazavea:48621": {
+   "price": 4.3,
+   "discount": 18.87,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 4.3
+  },
+  "plazavea:48623": {
+   "price": 9.9,
+   "discount": 31.72,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:48625": {
+   "price": 9.9,
+   "discount": 20.8,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:48934": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:16:45+00:00",
+   "notified_at": "2026-10-31T05:16:45+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:48935": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:18:33+00:00",
+   "notified_at": "2026-10-31T05:18:33+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:48971": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:18:33+00:00",
+   "notified_at": "2026-10-31T05:18:33+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:49014": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:16:32+00:00",
+   "notified_at": "2026-10-31T05:16:32+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:49015": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:18:33+00:00",
+   "notified_at": "2026-10-31T05:18:33+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:49050": {
+   "price": 24.9,
+   "discount": 21.7,
+   "first_seen": "2026-10-31T05:16:18+00:00",
+   "notified_at": "2026-10-31T05:16:18+00:00",
+   "best_price": 24.9
+  },
+  "plazavea:49132": {
+   "price": 32.3,
+   "discount": 20.64,
+   "first_seen": "2026-10-31T05:18:22+00:00",
+   "notified_at": "2026-10-31T05:18:22+00:00",
+   "best_price": 32.3
+  },
+  "plazavea:49459": {
+   "price": 7.6,
+   "discount": 17.39,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 7.6
+  },
+  "plazavea:49501": {
+   "price": 15.7,
+   "discount": 20.3,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 15.7
+  },
+  "plazavea:49533": {
+   "price": 5.3,
+   "discount": 20.9,
+   "first_seen": "2026-10-31T05:18:40+00:00",
+   "notified_at": "2026-10-31T05:18:40+00:00",
+   "best_price": 5.3
+  },
+  "plazavea:49580": {
+   "price": 7.6,
+   "discount": 17.39,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 7.6
+  },
+  "plazavea:49599": {
+   "price": 15.7,
+   "discount": 20.3,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 15.7
+  },
+  "plazavea:49936": {
+   "price": 1.9,
+   "discount": 44.12,
+   "first_seen": "2026-10-30T22:54:23+00:00",
+   "notified_at": "2026-10-30T22:54:23+00:00",
+   "best_price": 1.9
+  },
+  "plazavea:49975": {
+   "price": 1.9,
+   "discount": 44.12,
+   "first_seen": "2026-10-30T22:55:01+00:00",
+   "notified_at": "2026-10-30T22:55:01+00:00",
+   "best_price": 1.9
+  },
+  "plazavea:50009": {
+   "price": 1.9,
+   "discount": 44.12,
+   "first_seen": "2026-10-31T00:08:53+00:00",
+   "notified_at": "2026-10-31T00:08:53+00:00",
+   "best_price": 1.9
+  },
+  "plazavea:50051": {
+   "price": 30.9,
+   "discount": 24.45,
+   "first_seen": "2026-10-30T06:17:26+00:00",
+   "notified_at": "2026-10-30T06:17:26+00:00",
+   "best_price": 30.9
+  },
+  "plazavea:5033": {
+   "price": 5.5,
+   "discount": 32.93,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 5.5
+  },
+  "plazavea:5053": {
+   "price": 8.9,
+   "discount": 18.35,
+   "first_seen": "2026-10-31T05:56:47+00:00",
+   "notified_at": "2026-10-31T05:56:47+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:506": {
+   "price": 21.7,
+   "discount": 19.33,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 21.7
+  },
+  "plazavea:50781": {
+   "price": 23.19,
+   "discount": 24.95,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 23.19
+  },
+  "plazavea:5166": {
+   "price": 5.9,
+   "discount": 22.37,
+   "first_seen": "2026-10-31T08:45:29+00:00",
+   "notified_at": "2026-10-31T08:45:29+00:00",
+   "best_price": 5.9
+  },
+  "plazavea:52331": {
+   "price": 33.5,
+   "discount": 20.05,
+   "first_seen": "2026-10-31T05:58:47+00:00",
+   "notified_at": "2026-10-31T05:58:47+00:00",
+   "best_price": 33.5
+  },
+  "plazavea:52583": {
+   "price": 19.9,
+   "discount": 23.17,
+   "first_seen": "2026-10-30T22:17:12+00:00",
+   "notified_at": "2026-10-30T22:17:12+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:52759": {
+   "price": 14.9,
+   "discount": 19.46,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:52789": {
+   "price": 12.9,
+   "discount": 18.87,
+   "first_seen": "2026-10-30T23:35:55+00:00",
+   "notified_at": "2026-10-30T23:35:55+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:52790": {
+   "price": 12.9,
+   "discount": 18.87,
+   "first_seen": "2026-10-30T23:35:39+00:00",
+   "notified_at": "2026-10-30T23:35:39+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:53068": {
+   "price": 8.9,
+   "discount": 18.35,
+   "first_seen": "2026-10-31T05:58:33+00:00",
+   "notified_at": "2026-10-31T05:58:33+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:53133": {
+   "price": 15.9,
+   "discount": 20.1,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:5414": {
+   "price": 8.9,
+   "discount": 18.35,
+   "first_seen": "2026-10-30T23:38:03+00:00",
+   "notified_at": "2026-10-30T23:38:03+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:54218": {
+   "price": 3.0,
+   "discount": 30.23,
+   "first_seen": "2026-10-30T22:17:12+00:00",
+   "notified_at": "2026-10-30T22:17:12+00:00",
+   "best_price": 3.0
+  },
+  "plazavea:54219": {
+   "price": 2.7,
+   "discount": 30.77,
+   "first_seen": "2026-10-30T22:15:07+00:00",
+   "notified_at": "2026-10-30T22:15:07+00:00",
+   "best_price": 2.7
+  },
+  "plazavea:5552": {
+   "price": 1.4,
+   "discount": 17.16,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 1.4
+  },
+  "plazavea:56630": {
+   "price": 14.9,
+   "discount": 21.16,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:56632": {
+   "price": 15.5,
+   "discount": 19.69,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 15.5
+  },
+  "plazavea:56633": {
+   "price": 14.9,
+   "discount": 21.16,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:56637": {
+   "price": 15.5,
+   "discount": 19.69,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 15.5
+  },
+  "plazavea:573": {
+   "price": 16.9,
+   "discount": 25.22,
+   "first_seen": "2026-10-31T11:36:13+00:00",
+   "notified_at": "2026-10-31T11:36:13+00:00",
+   "best_price": 16.9
+  },
+  "plazavea:57969": {
+   "price": 17.9,
+   "discount": 21.83,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:58044": {
+   "price": 6.9,
+   "discount": 28.87,
+   "first_seen": "2026-10-30T22:54:32+00:00",
+   "notified_at": "2026-10-30T22:54:32+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:58059": {
+   "price": 11.59,
+   "discount": 29.76,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 11.59
+  },
+  "plazavea:60876": {
+   "price": 17.2,
+   "discount": 20.0,
+   "first_seen": "2026-10-31T00:11:23+00:00",
+   "notified_at": "2026-10-31T00:11:23+00:00",
+   "best_price": 17.2
+  },
+  "plazavea:60877": {
+   "price": 3.2,
+   "discount": 15.79,
+   "first_seen": "2026-10-30T23:37:50+00:00",
+   "notified_at": "2026-10-30T23:37:50+00:00",
+   "best_price": 3.2
+  },
+  "plazavea:60879": {
+   "price": 3.2,
+   "discount": 15.79,
+   "first_seen": "2026-10-31T12:11:02+00:00",
+   "notified_at": "2026-10-31T12:11:02+00:00",
+   "best_price": 3.2
+  },
+  "plazavea:6900": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:6966": {
+   "price": 14.9,
+   "discount": 23.2,
+   "first_seen": "2026-10-30T06:53:15+00:00",
+   "notified_at": "2026-10-30T06:53:15+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:69858": {
+   "price": 12.9,
+   "discount": 18.87,
+   "first_seen": "2026-10-30T23:38:03+00:00",
+   "notified_at": "2026-10-30T23:38:03+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:69874": {
+   "price": 12.9,
+   "discount": 18.87,
+   "first_seen": "2026-10-30T23:38:03+00:00",
+   "notified_at": "2026-10-30T23:38:03+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:70090": {
+   "price": 22.9,
+   "discount": 24.92,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:7059": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:7115": {
+   "price": 13.5,
+   "discount": 25.41,
+   "first_seen": "2026-10-30T08:00:14+00:00",
+   "notified_at": "2026-10-30T08:00:14+00:00",
+   "best_price": 13.5
+  },
+  "plazavea:7146": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:72255": {
+   "price": 14.19,
+   "discount": 19.83,
+   "first_seen": "2026-10-31T05:56:26+00:00",
+   "notified_at": "2026-10-31T05:56:26+00:00",
+   "best_price": 14.19
+  },
+  "plazavea:72491": {
+   "price": 5.9,
+   "discount": 33.71,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 5.9
+  },
+  "plazavea:72868": {
+   "price": 12.8,
+   "discount": 19.5,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 12.8
+  },
+  "plazavea:7307": {
+   "price": 36.9,
+   "discount": 24.54,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 36.9
+  },
+  "plazavea:7378": {
+   "price": 14.7,
+   "discount": 28.29,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 14.7
+  },
+  "plazavea:73829": {
+   "price": 10.5,
+   "discount": 22.22,
+   "first_seen": "2026-10-30T08:00:19+00:00",
+   "notified_at": "2026-10-30T08:00:19+00:00",
+   "best_price": 10.5
+  },
+  "plazavea:73926": {
+   "price": 11.9,
+   "discount": 20.13,
+   "first_seen": "2026-10-30T08:00:28+00:00",
+   "notified_at": "2026-10-30T08:00:28+00:00",
+   "best_price": 11.9
+  },
+  "plazavea:74115": {
+   "price": 11.5,
+   "discount": 20.69,
+   "first_seen": "2026-10-30T08:00:23+00:00",
+   "notified_at": "2026-10-30T08:00:23+00:00",
+   "best_price": 11.5
+  },
+  "plazavea:74116": {
+   "price": 11.5,
+   "discount": 17.27,
+   "first_seen": "2026-10-30T08:00:32+00:00",
+   "notified_at": "2026-10-30T08:00:32+00:00",
+   "best_price": 11.5
+  },
+  "plazavea:74289": {
+   "price": 8.7,
+   "discount": 20.18,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 8.7
+  },
+  "plazavea:7573": {
+   "price": 8.0,
+   "discount": 21.57,
+   "first_seen": "2026-10-30T11:39:15+00:00",
+   "notified_at": "2026-10-30T11:39:15+00:00",
+   "best_price": 8.0
+  },
+  "plazavea:768": {
+   "price": 44.9,
+   "discount": 23.77,
+   "first_seen": "2026-10-31T05:18:15+00:00",
+   "notified_at": "2026-10-31T05:18:15+00:00",
+   "best_price": 44.9
+  },
+  "plazavea:7699": {
+   "price": 6.0,
+   "discount": 21.05,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 6.0
+  },
+  "plazavea:77": {
+   "price": 10.1,
+   "discount": 25.19,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:7705": {
+   "price": 7.1,
+   "discount": 20.22,
+   "first_seen": "2026-10-31T00:10:56+00:00",
+   "notified_at": "2026-10-31T00:10:56+00:00",
+   "best_price": 7.1
+  },
+  "plazavea:77265": {
+   "price": 33.9,
+   "discount": 15.04,
+   "first_seen": "2026-10-31T06:49:38+00:00",
+   "notified_at": "2026-10-31T06:49:38+00:00",
+   "best_price": 33.9
+  },
+  "plazavea:77298": {
+   "price": 22.9,
+   "discount": 23.41,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.9
+  },
+  "plazavea:77338": {
+   "price": 8.9,
+   "discount": 22.61,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:77339": {
+   "price": 9.9,
+   "discount": 21.43,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:77375": {
+   "price": 8.9,
+   "discount": 22.61,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:7769": {
+   "price": 11.1,
+   "discount": 25.5,
+   "first_seen": "2026-10-31T00:11:11+00:00",
+   "notified_at": "2026-10-31T00:11:11+00:00",
+   "best_price": 11.1
+  },
+  "plazavea:78": {
+   "price": 10.1,
+   "discount": 25.19,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:7813": {
+   "price": 10.4,
+   "discount": 28.28,
+   "first_seen": "2026-10-31T01:23:21+00:00",
+   "notified_at": "2026-10-31T01:23:21+00:00",
+   "best_price": 10.4
+  },
+  "plazavea:7871": {
+   "price": 10.4,
+   "discount": 28.28,
+   "first_seen": "2026-10-30T22:56:47+00:00",
+   "notified_at": "2026-10-30T22:56:47+00:00",
+   "best_price": 10.4
+  },
+  "plazavea:79622": {
+   "price": 6.9,
+   "discount": 28.87,
+   "first_seen": "2026-10-30T22:54:52+00:00",
+   "notified_at": "2026-10-30T22:54:52+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:8119": {
+   "price": 10.0,
+   "discount": 24.24,
+   "first_seen": "2026-10-30T11:39:04+00:00",
+   "notified_at": "2026-10-30T11:39:04+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:83212": {
+   "price": 6.5,
+   "discount": 32.99,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 6.5
+  },
+  "plazavea:835": {
+   "price": 28.0,
+   "discount": 17.4,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 28.0
+  },
+  "plazavea:89": {
+   "price": 2.6,
+   "discount": 21.21,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 2.6
+  },
+  "plazavea:90": {
+   "price": 2.6,
+   "discount": 21.21,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 2.6
+  },
+  "plazavea:9128": {
+   "price": 10.4,
+   "discount": 28.28,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 10.4
+  },
+  "plazavea:91720": {
+   "price": 2.5,
+   "discount": 28.57,
+   "first_seen": "2026-10-30T22:17:12+00:00",
+   "notified_at": "2026-10-30T22:17:12+00:00",
+   "best_price": 2.5
+  },
+  "plazavea:961": {
+   "price": 58.4,
+   "discount": 20.22,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 58.4
+  },
+  "plazavea:962": {
+   "price": 8.6,
+   "discount": 16.5,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 8.6
+  },
+  "plazavea:965": {
+   "price": 27.9,
+   "discount": 17.7,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 27.9
+  },
+  "plazavea:966": {
+   "price": 19.9,
+   "discount": 16.74,
+   "first_seen": "2026-10-31T05:58:44+00:00",
+   "notified_at": "2026-10-31T05:58:44+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:9729": {
+   "price": 11.5,
+   "discount": 25.81,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 11.5
+  },
+  "plazavea:987": {
+   "price": 2.9,
+   "discount": 23.68,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 2.9
+  },
+  "plazavea:99923802": {
+   "price": 11.1,
+   "discount": 25.5,
+   "first_seen": "2026-10-30T23:37:56+00:00",
+   "notified_at": "2026-10-30T23:37:56+00:00",
+   "best_price": 11.1
+  },
+  "plazavea:99925182": {
+   "price": 1.9,
+   "discount": 44.12,
+   "first_seen": "2026-10-30T22:54:44+00:00",
+   "notified_at": "2026-10-30T22:54:44+00:00",
+   "best_price": 1.9
+  },
+  "plazavea:99925984": {
+   "price": 15.5,
+   "discount": 17.07,
+   "first_seen": "2026-10-30T06:53:53+00:00",
+   "notified_at": "2026-10-30T06:53:53+00:00",
+   "best_price": 15.5
+  },
+  "plazavea:99925990": {
+   "price": 21.7,
+   "discount": 21.09,
+   "first_seen": "2026-10-31T05:18:36+00:00",
+   "notified_at": "2026-10-31T05:18:36+00:00",
+   "best_price": 21.7
+  },
+  "plazavea:99926523": {
+   "price": 13.9,
+   "discount": 16.77,
+   "first_seen": "2026-10-30T06:54:02+00:00",
+   "notified_at": "2026-10-30T06:54:02+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:99928295": {
+   "price": 15.9,
+   "discount": 20.1,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 15.9
+  },
+  "plazavea:99930577": {
+   "price": 7.9,
+   "discount": 28.18,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:99930578": {
+   "price": 17.9,
+   "discount": 18.64,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 17.9
+  },
+  "plazavea:99930594": {
+   "price": 14.9,
+   "discount": 34.93,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:99930596": {
+   "price": 9.9,
+   "discount": 37.74,
+   "first_seen": "2026-10-31T13:59:04+00:00",
+   "notified_at": "2026-10-31T13:59:04+00:00",
+   "best_price": 9.9
+  },
+  "plazavea:99930597": {
+   "price": 7.9,
+   "discount": 50.31,
+   "first_seen": "2026-10-30T22:54:04+00:00",
+   "notified_at": "2026-10-30T22:54:04+00:00",
+   "best_price": 7.9
+  },
+  "plazavea:99930598": {
+   "price": 12.5,
+   "discount": 21.38,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 12.5
+  },
+  "plazavea:99930599": {
+   "price": 12.9,
+   "discount": 33.85,
+   "first_seen": "2026-10-30T23:37:46+00:00",
+   "notified_at": "2026-10-30T23:37:46+00:00",
+   "best_price": 12.9
+  },
+  "plazavea:99930627": {
+   "price": 5.3,
+   "discount": 22.06,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 5.3
+  },
+  "plazavea:99930628": {
+   "price": 5.3,
+   "discount": 22.06,
+   "first_seen": "2026-10-31T05:18:19+00:00",
+   "notified_at": "2026-10-31T05:18:19+00:00",
+   "best_price": 5.3
+  },
+  "plazavea:99931468": {
+   "price": 10.8,
+   "discount": 16.86,
+   "first_seen": "2026-10-30T23:38:03+00:00",
+   "notified_at": "2026-10-30T23:38:03+00:00",
+   "best_price": 10.8
+  },
+  "plazavea:99936125": {
+   "price": 15.3,
+   "discount": 15.0,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 15.3
+  },
+  "plazavea:99938795": {
+   "price": 5.6,
+   "discount": 18.84,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 5.6
+  },
+  "plazavea:99939743": {
+   "price": 14.9,
+   "discount": 15.77,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 14.9
+  },
+  "plazavea:99940803": {
+   "price": 15.5,
+   "discount": 22.11,
+   "first_seen": "2026-10-31T05:18:43+00:00",
+   "notified_at": "2026-10-31T05:18:43+00:00",
+   "best_price": 15.5
+  },
+  "plazavea:99941066": {
+   "price": 11.5,
+   "discount": 20.69,
+   "first_seen": "2026-10-31T22:21:41+00:00",
+   "notified_at": "2026-10-31T22:21:41+00:00",
+   "best_price": 11.5
+  },
+  "plazavea:99946070": {
+   "price": 10.1,
+   "discount": 25.19,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 10.1
+  },
+  "plazavea:99950029": {
+   "price": 8.9,
+   "discount": 19.09,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 8.9
+  },
+  "plazavea:99950030": {
+   "price": 7.5,
+   "discount": 15.73,
+   "first_seen": "2026-10-31T06:49:34+00:00",
+   "notified_at": "2026-10-31T06:49:34+00:00",
+   "best_price": 7.5
+  },
+  "plazavea:99950031": {
+   "price": 8.2,
+   "discount": 18.0,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 8.2
+  },
+  "plazavea:99950034": {
+   "price": 6.9,
+   "discount": 18.82,
+   "first_seen": "2026-10-31T05:58:40+00:00",
+   "notified_at": "2026-10-31T05:58:40+00:00",
+   "best_price": 6.9
+  },
+  "plazavea:99957411": {
+   "price": 12.8,
+   "discount": 19.5,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 12.8
+  },
+  "plazavea:99959664": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:99959668": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:99959670": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:99959688": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:99959689": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:99959690": {
+   "price": 22.7,
+   "discount": 24.08,
+   "first_seen": "2026-10-31T05:18:26+00:00",
+   "notified_at": "2026-10-31T05:18:26+00:00",
+   "best_price": 22.7
+  },
+  "plazavea:99964254": {
+   "price": 8.4,
+   "discount": 27.59,
+   "first_seen": "2026-10-30T22:16:58+00:00",
+   "notified_at": "2026-10-30T22:16:58+00:00",
+   "best_price": 8.4
+  },
+  "plazavea:99964258": {
+   "price": 6.4,
+   "discount": 32.63,
+   "first_seen": "2026-10-30T22:56:51+00:00",
+   "notified_at": "2026-10-30T22:56:51+00:00",
+   "best_price": 6.4
+  },
+  "plazavea:99968542": {
+   "price": 18.5,
+   "discount": 39.94,
+   "first_seen": "2026-10-30T22:14:34+00:00",
+   "notified_at": "2026-10-30T22:14:34+00:00",
+   "best_price": 18.5
+  },
+  "plazavea:99968580": {
+   "price": 10.0,
+   "discount": 32.89,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 10.0
+  },
+  "plazavea:99970235": {
+   "price": 19.9,
+   "discount": 20.08,
+   "first_seen": "2026-10-31T05:58:37+00:00",
+   "notified_at": "2026-10-31T05:58:37+00:00",
+   "best_price": 19.9
+  },
+  "plazavea:99971152": {
+   "price": 13.9,
+   "discount": 17.75,
+   "first_seen": "2026-10-31T05:58:54+00:00",
+   "notified_at": "2026-10-31T05:58:54+00:00",
+   "best_price": 13.9
+  },
+  "plazavea:99971483": {
+   "price": 69.9,
+   "discount": 22.59,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 69.9
+  },
+  "plazavea:99971484": {
+   "price": 69.9,
+   "discount": 22.59,
+   "first_seen": "2026-10-31T05:18:29+00:00",
+   "notified_at": "2026-10-31T05:18:29+00:00",
+   "best_price": 69.9
+  },
+  "plazavea:99986878": {
+   "price": 6.0,
+   "discount": 29.41,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 6.0
+  },
+  "plazavea:99986880": {
+   "price": 6.0,
+   "discount": 29.41,
+   "first_seen": "2026-10-30T22:16:55+00:00",
+   "notified_at": "2026-10-30T22:16:55+00:00",
+   "best_price": 6.0
+  },
+  "plazavea:99986913": {
+   "price": 5.6,
+   "discount": 18.84,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 5.6
+  },
+  "plazavea:99986914": {
+   "price": 5.6,
+   "discount": 18.84,
+   "first_seen": "2026-10-31T05:58:30+00:00",
+   "notified_at": "2026-10-31T05:58:30+00:00",
+   "best_price": 5.6
+  },
+  "plazavea:99990421": {
+   "price": 5.4,
+   "discount": 18.18,
+   "first_seen": "2026-10-31T12:09:07+00:00",
+   "notified_at": "2026-10-31T12:09:07+00:00",
+   "best_price": 5.4
+  }
+ }
+}
