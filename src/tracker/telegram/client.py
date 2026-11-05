@@ -32,9 +32,11 @@ class TelegramNotifier:
         timeout_s: float = 20.0,
         max_wait_s: float = 30.0,
         wait_budget_s: float = 90.0,
+        label: str = "TG",
     ) -> None:
         self.token = token
         self.chat_id = chat_id
+        self.label = label                    # prefijo en el log: "TG" (bot principal), "TG4" (bot de ofertas bomba)
         self.min_interval_s = min_interval_s
         self.send_photos = send_photos
         self.dry_run = dry_run
@@ -67,7 +69,7 @@ class TelegramNotifier:
     def _pause(self, motivo: str) -> None:
         self.paused = True
         self.last_error = motivo
-        log.warning("%s Los envíos restantes quedan para la próxima corrida.", motivo)
+        log.warning("[%s] %s Los envíos restantes quedan para la próxima corrida.", self.label, motivo)
 
     @staticmethod
     def _payload(resp) -> dict:
@@ -83,23 +85,23 @@ class TelegramNotifier:
         if resp.ok:
             resultado = payload.get("result")
             mensaje = resultado.get("message_id") if isinstance(resultado, dict) else None
-            log.info("[TG] ← %s · HTTP %s · ok=%s%s", method, resp.status_code,
+            log.info("[%s] ← %s · HTTP %s · ok=%s%s", self.label, method, resp.status_code,
                      str(payload.get("ok", True)).lower(), f" · message_id={mensaje}" if mensaje else "")
         else:
             descripcion = str(payload.get("description") or getattr(resp, "text", "") or "")[:200]
-            log.warning("[TG] ← %s · HTTP %s · ok=false · error_code=%s · %s (intento %s/4)", method,
+            log.warning("[%s] ← %s · HTTP %s · ok=false · error_code=%s · %s (intento %s/4)", self.label, method,
                         resp.status_code, payload.get("error_code", resp.status_code), descripcion, intento)
 
     def _call(self, method: str, data: dict, files: dict | None = None) -> bool:
         if self.dry_run:
             self.simulated += 1
-            log.info("[TG] %s NO invocado (DRY_RUN: simulación) → %s", method,
+            log.info("[%s] %s NO invocado (DRY_RUN: simulación) → %s", self.label, method,
                      (data.get("caption") or data.get("text") or "")[:120].replace("\n", " | "))
             self.sent += 1
             return True
         if self.paused:
             self.skipped_paused += 1
-            log.info("[TG] %s omitido: Telegram en pausa (%s).", method, self.last_error)
+            log.info("[%s] %s omitido: Telegram en pausa (%s).", self.label, method, self.last_error)
             return False
 
         url = API_URL.format(token=self.token, method=method)   # el token nunca se escribe en el log
@@ -112,7 +114,8 @@ class TelegramNotifier:
                 self._last_send = time.monotonic()
                 self.network_errors += 1
                 self.last_error = f"red: {type(exc).__name__}"
-                log.warning("[TG] ← %s · sin respuesta HTTP (%s, intento %s/4)", method, type(exc).__name__, intento)
+                log.warning("[%s] ← %s · sin respuesta HTTP (%s, intento %s/4)", self.label, method,
+                            type(exc).__name__, intento)
                 time.sleep(2 * intento)
                 continue
             self._last_send = time.monotonic()
@@ -132,7 +135,7 @@ class TelegramNotifier:
                 if espera > self.max_wait_s or self._waited_s + espera > self.wait_budget_s:
                     self._pause(f"Telegram pidió esperar {espera:.0f}s (429).")
                     return False
-                log.warning("Telegram pidió esperar %.0fs (429).", espera)
+                log.warning("[%s] Telegram pidió esperar %.0fs (429).", self.label, espera)
                 self.last_error = f"429: esperar {espera:.0f}s"
                 self._waited_s += espera
                 time.sleep(espera + 0.5)
@@ -155,32 +158,33 @@ class TelegramNotifier:
         None  → no se pudo comprobar (simulación, red caída o Telegram 5xx): la corrida sigue.
         """
         if self.dry_run:
-            log.info("[TG] Verificación de token/chat omitida (DRY_RUN: simulación).")
+            log.info("[%s] Verificación de token/chat omitida (DRY_RUN: simulación).", self.label)
             return None
         if not self.token or not self.chat_id:
             self.last_error = "token o chat_id vacío"
-            log.error("[TG] Token o chat_id vacío: revisa los Secrets del repositorio.")
+            log.error("[%s] Token o chat_id vacío: revisa los Secrets del repositorio.", self.label)
             return False
         for method, data in (("getMe", {}), ("getChat", {"chat_id": self.chat_id})):
             try:
                 resp = self.session.post(API_URL.format(token=self.token, method=method), data=data,
                                          timeout=self.timeout_s)
             except requests.RequestException as exc:
-                log.warning("[TG] ← %s · sin respuesta HTTP (%s): no se pudo verificar.", method, type(exc).__name__)
+                log.warning("[%s] ← %s · sin respuesta HTTP (%s): no se pudo verificar.", self.label, method,
+                            type(exc).__name__)
                 return None
             payload = self._payload(resp)
             resultado = payload.get("result") if isinstance(payload.get("result"), dict) else {}
             if resp.ok:
                 if method == "getMe":
-                    log.info("[TG] ← getMe · HTTP %s · bot @%s (id %s)", resp.status_code,
+                    log.info("[%s] ← getMe · HTTP %s · bot @%s (id %s)", self.label, resp.status_code,
                              resultado.get("username", "?"), resultado.get("id", "?"))
                 else:
-                    log.info("[TG] ← getChat · HTTP %s · chat \"%s\" (tipo %s)", resp.status_code,
+                    log.info("[%s] ← getChat · HTTP %s · chat \"%s\" (tipo %s)", self.label, resp.status_code,
                              resultado.get("title") or resultado.get("username") or resultado.get("first_name") or "?",
                              resultado.get("type", "?"))
                 continue
             descripcion = str(payload.get("description") or getattr(resp, "text", "") or "")[:200]
-            log.error("[TG] ← %s · HTTP %s · ok=false · %s", method, resp.status_code, descripcion)
+            log.error("[%s] ← %s · HTTP %s · ok=false · %s", self.label, method, resp.status_code, descripcion)
             if resp.status_code >= 500 or resp.status_code == 429:
                 return None
             self.last_error = f"{method} HTTP {resp.status_code}: {descripcion}"
