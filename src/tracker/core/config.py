@@ -64,6 +64,21 @@ class TelegramConfig:
 
 
 @dataclass
+class BombaConfig:
+    """Canal extra de ofertas "bomba" (bot 4): las alertas con descuento estrictamente mayor que
+    `discount_gt` se reenvían también a este bot/chat, además del envío normal. Es opcional: si
+    las variables están vacías, el bot sigue igual y no reenvía nada."""
+
+    enabled: bool = True
+    token_env: str | list[str] = "TELEGRAM_TOKEN4"
+    chat_id_env: str | list[str] = "CHAT_ID4"
+    discount_gt: float = 69.0          # % entero del mensaje > 69 → desde "-70 %"
+    # Resueltos desde el entorno (no van en el YAML):
+    token: str = ""
+    chat_id: str = ""
+
+
+@dataclass
 class OffersConfig:
     min_discount_pct: float = 50.0
     min_price: float = 1.0
@@ -113,6 +128,7 @@ class AppConfig:
     base_dir: Path = Path(".")
     label: str = ""            # nombre del bot (ej. "Alimentos"), para logs y avisos
     healthcheck: HealthcheckConfig = field(default_factory=HealthcheckConfig)
+    bomba: BombaConfig = field(default_factory=BombaConfig)
 
     @property
     def display_name(self) -> str:
@@ -186,6 +202,7 @@ def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
         base_dir=ruta.resolve().parent,
         label=str(store.get("label") or ""),
         healthcheck=_build(HealthcheckConfig, raw.get("healthcheck"), "healthcheck"),
+        bomba=_build(BombaConfig, raw.get("bomba"), "bomba"),
     )
 
     for patron in cfg.offers.exclude_tags:
@@ -207,6 +224,9 @@ def load_config(path: str | Path, *, require_secrets: bool = True) -> AppConfig:
     cfg.telegram.token = first_env(cfg.telegram.token_env)
     cfg.telegram.chat_id = first_env(cfg.telegram.chat_id_env)
     cfg.healthcheck.url = first_env(cfg.healthcheck.url_env) if cfg.healthcheck.url_env else ""
+    # Bot 4 (ofertas bomba): opcional, nunca bloquea la carga si falta.
+    cfg.bomba.token = first_env(cfg.bomba.token_env)
+    cfg.bomba.chat_id = first_env(cfg.bomba.chat_id_env)
     if require_secrets and not (cfg.telegram.token and cfg.telegram.chat_id):
         raise ConfigError(
             f"Faltan los secretos {_names(cfg.telegram.token_env)} y/o {_names(cfg.telegram.chat_id_env)} "
