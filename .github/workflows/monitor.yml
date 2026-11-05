@@ -83,6 +83,8 @@ jobs:
           CHAT_ID: ${{ secrets.CHAT_ID }}
           TELEGRAM_TOKEN3: ${{ secrets.TELEGRAM_TOKEN3 }}    # bot canasta básica (run_alimentos)
           CHAT_ID3: ${{ secrets.CHAT_ID3 }}
+          TELEGRAM_TOKEN4: ${{ secrets.TELEGRAM_TOKEN4 }}    # bot 4: ofertas bomba > 69 % (ambos bots, opcional)
+          CHAT_ID4: ${{ secrets.CHAT_ID4 }}
           BOT: ${{ matrix.bot }}
           EVENTO: ${{ github.event_name }}
         run: |
@@ -94,6 +96,12 @@ jobs:
             if [ -n "$valor" ]; then echo "Secreto $nombre: definido (${#valor} caracteres)"
             elif [ "$DRY_RUN" = "true" ]; then echo "::warning title=Secreto vacío::$nombre está vacío (en simulación no se usa)"
             else echo "::error title=Secreto vacío::$nombre no llega al job: revisa Settings → Secrets and variables → Actions"; fi
+          done
+          # Bot 4 (ofertas bomba > 69 %): opcional; si falta, el bot sigue normal sin reenviar.
+          for nombre in TELEGRAM_TOKEN4 CHAT_ID4; do
+            valor="${!nombre}"
+            if [ -n "$valor" ]; then echo "Secreto $nombre (bot 4 · ofertas bomba): definido (${#valor} caracteres)"
+            else echo "Secreto $nombre (bot 4 · ofertas bomba): vacío → se omite el reenvío (opcional)"; fi
           done
           if [ "$DRY_RUN" = "true" ]; then
             echo "::notice title=Simulación ($BOT)::DRY_RUN=true por evento '$EVENTO': no se envía nada a Telegram."
