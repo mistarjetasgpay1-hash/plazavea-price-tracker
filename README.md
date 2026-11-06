@@ -7,6 +7,15 @@ Monitor de ofertas de **Plaza Vea** con alertas por Telegram: dos bots que corre
 | **Canasta básica** | `run_alimentos.py` | `TELEGRAM_TOKEN3` / `CHAT_ID3` | abarrotes (arroz, azúcar, aceites, atún, fideos…), lácteos y huevos, desayuno | **15 %** |
 | | | | aseo y limpieza (detergente, lejía, suavizante, shampoo, toallas higiénicas…), pañales | **20 %** |
 | **General** | `run_general.py` | `TELEGRAM_TOKEN` / `CHAT_ID` | tecnología, electro, juguetes, moda, hogar, frescos, bebidas, bebé, mascotas… | 50 % |
+| **Bot 4 · ofertas bomba** (opcional) | los dos anteriores | `TELEGRAM_TOKEN4` / `CHAT_ID4` | copia, con foto, de toda alerta de cualquiera de los dos bots | **> 69 %** (desde -70 %) |
+
+### Bot 4 · ofertas bomba
+
+- El envío normal no cambia: cuando el canal habitual **acepta** una alerta con descuento > 69 %, se reenvía la misma alerta al bot 4 (también las que en el canal habitual van dentro de un resumen).
+- El umbral se compara con el % que muestra el mensaje (redondeado hacia abajo, como la web): un "-69 %" no entra, un "-70 %" sí. Se cambia en `config.yaml` → `bomba.discount_gt`.
+- Sin spam: usa el mismo historial de cada bot (TTL de 3 días + re-aviso si baja ≥3 %), así que la misma oferta no se repite.
+- Si `TELEGRAM_TOKEN4` / `CHAT_ID4` faltan o Telegram los rechaza, los bots siguen normal y la corrida no se marca en rojo.
+- En el log: `[BOMBA] ✓ Reenviada al bot 4…` o `[BOMBA] ✗ El bot 4 no aceptó… (HTTP 403: …)`, cada respuesta HTTP como `[TG4] ← sendPhoto · HTTP 200…` y el total en `[TG4] Bot 4 (ofertas > 69 %) en esta corrida: …`.
 
 ## Qué incluye cada alerta
 
@@ -117,6 +126,7 @@ pm2 startup                   # (una vez) para que arranquen solos al reiniciar 
 | `[TG] Invocando envío a Telegram: X alertas con foto + Y en resúmenes` | se llamó a la función de envío (o `Nada que enviar…`) |
 | `[TG] ← sendPhoto · HTTP 200 · ok=true · message_id=…` | respuesta HTTP real de Telegram por cada mensaje |
 | `[TG] Respuestas de la API de Telegram en esta corrida: … HTTP 200: 26` | totales por código HTTP (también en el resumen del run) |
+| `[BOMBA] Bot 4 activo…` / `[TG4] ← sendPhoto · HTTP 200…` | bot 4 (ofertas > 69 %): estado al inicio y respuesta HTTP de cada reenvío |
 
 GitHub desactiva los workflows con `schedule` de un repositorio público tras 60 días sin actividad en el repo: si eso pasa, actívalo de nuevo desde la pestaña Actions.
 
@@ -128,7 +138,7 @@ GitHub desactiva los workflows con `schedule` de un repositorio público tras 60
 ├── config.alimentos.yaml / config.general.yaml
 ├── ecosystem.config.js · deploy/setup_vps.sh · .env.example
 ├── src/tracker/
-│   ├── core/          config (YAML con extends) · models · pricing · filters · http_client · pipeline · runner · healthcheck
+│   ├── core/          config (YAML con extends) · models · pricing · filters · http_client · pipeline · runner · healthcheck · bomba (bot 4: ofertas > 69 %)
 │   ├── scrapers/      base.py (interfaz) · vtex.py (Plaza Vea: filtro oficial, paginado, catálogo)
 │   ├── promotions/    processor.py (Tarjeta Oh!, combos, NxM, 2da unidad) · units.py (precio por kg/L/unidad)
 │   ├── telegram/      client.py (envío, 429, throttle) · formatter.py (plantillas)

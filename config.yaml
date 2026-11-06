@@ -40,6 +40,15 @@ telegram:
     Libreria:        {emoji: "📚", thread_id: null}
     Automotriz:      {emoji: "🚗", thread_id: null}
 
+# Bot 4 · OFERTAS BOMBA (común a los dos bots, opcional). Cada alerta que el canal habitual acepta
+# con descuento > discount_gt se reenvía también aquí, con foto. El historial de cada bot evita
+# repetirla (TTL + re-aviso si baja ≥3 %). Sin TELEGRAM_TOKEN4 / CHAT_ID4, no reenvía nada.
+bomba:
+  enabled: true
+  token_env: TELEGRAM_TOKEN4
+  chat_id_env: CHAT_ID4
+  discount_gt: 69                   # % entero del mensaje estrictamente mayor que 69 → desde "-70 %"
+
 offers:
   min_discount_pct: 50              # umbral global (cada categoría puede tener min_discount propio).
                                     # Los % se muestran redondeados hacia abajo como en la web: con 50
